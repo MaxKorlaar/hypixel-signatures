@@ -12,7 +12,8 @@
     "barryvdh/laravel-ide-helper": "^2.6",
     "fideloper/proxy": "^4.0",
     "laravel/framework": "^6.2",
-    "laravel/tinker": "^1.0"
+    "laravel/tinker": "^1.0",
+    "rcrowe/twigbridge": "^0.11.2"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
