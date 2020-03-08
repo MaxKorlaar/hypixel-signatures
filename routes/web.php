@@ -11,6 +11,8 @@
     |
     */
 
-    Route::get('/', static function () {
-        return view('welcome');
+    Route::get('/', 'IndexController@index')->name('home');
+
+    Route::prefix('signature/{uuid}')->where(['uuid' => '\w{32}'])->name('signatures.')->namespace('Signatures')->group(static function () {
+        Route::get('general', 'GeneralController@render')->name('general');
     });
