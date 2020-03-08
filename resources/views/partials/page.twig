@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="{{ config_get('app.locale') }}">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>
+            {% block page_title %}
+            {% endblock %}
+        </title>
+        <meta name="keywords" content="Hypixel, Hypixel Statistics, Hypixel Signatures, Hypixel guild members">
+        {% block social_meta_tags %}
+            <meta property="og:image" content="{% block social_image %}{% endblock %}"/>
+            <meta property="og:url" content="{% block social_url %}{% endblock %}"/>
+            <meta name="twitter:card" content="summary"/>
+            <meta name="twitter:site" content="{% block social_twitter_username %}@MaxKorlaar{% endblock %}"/>
+            <meta name="twitter:description" content="{% block social_description %}Hypixel Tools offers tools that may be useful for players on the gameserver Hypixel for the videogame Minecraft. You can view your friend list or generate an auto-updating image containing your game statistics, for example!{% endblock %}"/>
+            <meta name="twitter:title" content="{% block social_title %}Hypixel Related Tools and Signatures{% endblock %}"/>
+            <meta name="twitter:image" content="{{ block('social_image') }}"/>
+            <meta name="twitter:url" content="{{ block('social_url') }}"/>
+            <meta property="og:title" content="{{ block('social_title') }}"/>
+            <meta property="og:description" content="{{ block('social_description') }}"/>
+        {% endblock %}
+    {% endblock %}
+    {% block ad_scripts %}
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({
+                google_ad_client:      "{{ config_get('app.google_ad_client') }}",
+                enable_page_level_ads: true
+            });
+        </script>
+    {% endblock %}
+</head>
+<body>
+    {% block body %}
+        {% block content %}
+        {% endblock %}
+    {% endblock %}
+</body>
+</html>

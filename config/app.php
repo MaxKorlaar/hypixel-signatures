@@ -13,7 +13,7 @@
         |
         */
 
-        'name' => env('APP_NAME', 'Laravel'),
+        'name' => env('APP_NAME', 'Hypixel Signatures'),
 
         /*
         |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@
         |
         */
 
-        'timezone' => 'UTC',
+        'timezone' => 'Europe/Amsterdam',
 
         /*
         |--------------------------------------------------------------------------
@@ -122,6 +122,7 @@
         'key' => env('APP_KEY'),
 
         'cipher' => 'AES-256-CBC',
+
 
         /*
         |--------------------------------------------------------------------------
@@ -225,6 +226,7 @@
             'URL'          => Illuminate\Support\Facades\URL::class,
             'Validator'    => Illuminate\Support\Facades\Validator::class,
             'View'         => Illuminate\Support\Facades\View::class,
+            'Image' => Intervention\Image\Facades\Image::class
 
         ],
 
