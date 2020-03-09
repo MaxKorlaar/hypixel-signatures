@@ -3,6 +3,7 @@
     namespace App\Http\Controllers\Signatures;
 
     use App\Http\Controllers\Controller;
+    use App\Utilities\HypixelAPI;
     use GDText\Box;
     use GDText\Color;
     use Illuminate\Http\Request;
@@ -11,8 +12,6 @@
     use Plancke\HypixelPHP\classes\HypixelObject;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\exceptions\InvalidUUIDException;
-    use Plancke\HypixelPHP\HypixelPHP;
-    use Plancke\HypixelPHP\log\impl\NoLogger;
     use Plancke\HypixelPHP\responses\player\Player;
 
     /**
@@ -25,20 +24,16 @@
         private const FULLY_TRANSPARENT = 127;
 
         /**
-         * @var HypixelPHP $api
+         * @var HypixelAPI $api
          */
         protected $api;
 
         /**
          * BaseSignature constructor.
          *
-         * @throws HypixelPHPException
          */
         public function __construct() {
-            $this->api = new HypixelPHP(config('signatures.api_key'));
-            $this->api->setLogger(new NoLogger($this->api));
-            $this->api->getCacheHandler()->setBaseDirectory(storage_path('app/cache/hypixelphp'));
-            $this->api->getFetcher()->setTimeOut(config('signatures.api_timeout'));
+            $this->api = new HypixelAPI();
         }
 
         /**
@@ -64,36 +59,26 @@
          */
         protected function getPlayerData(string $uuid) {
             try {
-                $player = $this->getPlayerByUuid($uuid);
+                $player = $this->api->getPlayerByUuid($uuid);
 
                 /** @var HypixelObject $player */
                 if (($player instanceof HypixelObject) && $player->getResponse() !== null && !$player->getResponse()->wasSuccessful()) {
-                    return $this->generateErrorImage("Bad API response.\n{$player->getResponse()->getData()['cause']}");
+                    return self::generateErrorImage("Bad API response.\n{$player->getResponse()->getData()['cause']}");
                 }
 
                 if ($player instanceof Player) {
                     if (empty($player->getData())) {
-                        return $this->generateErrorImage('Player has no public data.');
+                        return self::generateErrorImage('Player has no public data.');
                     }
                     return $player;
                 }
 
-                return $this->generateErrorImage('Unexpected API response.');
+                return self::generateErrorImage('Unexpected API response.');
             } catch (InvalidUUIDException $exception) {
-                return $this->generateErrorImage('UUID is invalid.');
+                return self::generateErrorImage('UUID is invalid.');
             } catch (HypixelPHPException $e) {
-                return $this->generateErrorImage('Unknown: ' . $e->getMessage());
+                return self::generateErrorImage('Unknown: ' . $e->getMessage());
             }
-        }
-
-        /**
-         * @param string $uuid
-         *
-         * @return HypixelObject|\Plancke\HypixelPHP\fetch\Response|Player|null
-         * @throws HypixelPHPException
-         */
-        protected function getPlayerByUuid(string $uuid) {
-            return $this->api->getPlayer(['uuid' => $uuid]);
         }
 
         /**
@@ -103,18 +88,18 @@
          *
          * @return Response
          */
-        protected function generateErrorImage($error, $width = 740, $height = 160): Response {
-            $image = $this->getImage($width, $height);
+        public static function generateErrorImage($error, $width = 740, $height = 160): Response {
+            $image = self::getImage($width, $height);
             $box   = new Box($image);
             $box->setFontFace(resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf'));
             $box->setFontColor(new Color(255, 0, 0));
             $box->setFontSize($height / 3);
-            $box->setBox(10, 10, $width - 10, $height - 10);
+            $box->setBox(5, 0, $width - 5, $height - 5);
             $box->setTextAlign('center', 'top');
             $box->draw('Something went wrong');
 
-            $box->setBox(10, $height / 3 + 15, $width - 10, $height - 10);
-            $box->setFontSize($height / 4);
+            $box->setBox(5, $height / 4 + 15, $width - 5, $height - 5);
+            $box->setFontSize($height / 5);
             $box->setFontColor(new Color(0, 0, 0));
             $box->setTextShadow(new Color(0, 0, 0, 50), 1, 1);
             $box->draw($error);
@@ -128,7 +113,7 @@
          *
          * @return false|resource
          */
-        protected function getImage($width, $height) {
+        protected static function getImage($width, $height) {
             $image       = imagecreatetruecolor($width, $height);
             $transparent = imagecolorallocatealpha($image, 250, 100, 100, config('app.debug') ? 0 : self::FULLY_TRANSPARENT);
             imagefill($image, 0, 0, $transparent);
@@ -156,7 +141,7 @@
         protected function addWatermark($image, $font, $imageWidth, $imageHeight, $size = 16): void {
             $grey = imagecolorallocate($image, 203, 203, 203);
 
-            $watermarkBoundingBox = imagettfbbox(16, 0, $font, config('signatures.watermark'));
+            $watermarkBoundingBox = imagettfbbox($size, 0, $font, config('signatures.watermark'));
             imagettftext($image, $size, 0, $imageWidth - $watermarkBoundingBox[4], $imageHeight - $watermarkBoundingBox[3], $grey, $font, config('signatures.watermark'));
         }
     }

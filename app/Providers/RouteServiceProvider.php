@@ -26,8 +26,7 @@
          * @return void
          */
         public function boot() {
-            //
-
+            Route::pattern('uuid', '\w{32}');
             parent::boot();
         }
 
