@@ -2,6 +2,7 @@
 
     namespace App\Utilities\MinecraftAvatar;
 
+    use Log;
     use RuntimeException;
 
     /**
@@ -78,6 +79,7 @@
                     if ($skinData['skinURL'] === null) {
                         $imgURL          = $skinData['isSteve'] ? self::STEVE_SKIN : 'https://minecraft.net/images/alex.png';
                         $this->cacheInfo = 'image not yet downloaded - default';
+                        Log::debug('image not yet downloaded - default');
                     } else {
                         $imgURL = $skinData['skinURL'];
 
@@ -85,14 +87,17 @@
                     $this->fetchUrl = $imgURL;
                     $src            = imagecreatefrompng($imgURL);
                     if (!$src) {
+                        Log::debug('Source is false', [$this->fetchUrl]);
                         $src              = imagecreatefrompng(self::STEVE_SKIN);
                         $this->fetchError = true;
                         $save             = false;
                     }
                     $this->cacheInfo = 'Downloaded from ' . $imgURL;
+                    Log::debug('Downloaded from ' . $imgURL);
                 } else {
-                    $src              = imagecreatefrompng(self::STEVE_SKIN);
-                    $this->cacheInfo  = 'image not yet downloaded - unknown error while getting player profile';
+                    $src             = imagecreatefrompng(self::STEVE_SKIN);
+                    $this->cacheInfo = 'image not yet downloaded - unknown error while getting player profile';
+                    Log::debug('image not yet downloaded - unknown error while getting player profile', [$data]);
                     $this->fetchError = true;
                     $save             = false;
                 }
@@ -105,8 +110,9 @@
                     return $this->getSkin($uuid['data']['id'], $save);
                 }
 
-                $src              = imagecreatefrompng(self::STEVE_SKIN);
-                $this->cacheInfo  = 'image not yet downloaded - unknown error while fetching skin from username. Last resort: ' . self::STEVE_SKIN;
+                $src             = imagecreatefrompng(self::STEVE_SKIN);
+                $this->cacheInfo = 'image not yet downloaded - unknown error while fetching skin from username. Last resort: ' . self::STEVE_SKIN;
+                Log::debug('image not yet downloaded - unknown error while fetching skin from username. Last resort: ' . self::STEVE_SKIN);
                 $this->fetchError = true;
                 $save             = false;
             }

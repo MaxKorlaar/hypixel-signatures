@@ -161,14 +161,14 @@
             $this->fetchURL   = $MCa->fetchUrl;
 
             if ($skinURL !== false) {
+                Log::debug('Getting skin from existing URL: ' . $skinURL);
                 $this->playerSkin = @imageCreateFromPng($skinURL);
-                Log::debug('Getting skin: ' . $skinURL);
             } else {
                 // Try again one more time
                 $skinURL = $MCa->getSkinFromCache($this->playerName);
                 if ($skinURL !== false) {
                     $this->playerSkin = @imageCreateFromPng($skinURL);
-                    Log::debug('Getting skin: ' . $skinURL);
+                    Log::debug('Getting skin from existing URL, second try: ' . $skinURL);
                 }
             }
             if ($MCa->fetchError === true) {
