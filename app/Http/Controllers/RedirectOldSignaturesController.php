@@ -16,7 +16,8 @@
     class RedirectOldSignaturesController extends Controller {
         private const URL_MAPPING = [
             'Main'       => 'signatures.general',
-            'Main-small' => 'signatures.general_small'
+            'Main-small' => 'signatures.general_small',
+            'Tooltip'    => 'signatures.general_tooltip'
         ];
 
         /**
@@ -27,8 +28,6 @@
          * @return Application|RedirectResponse|Response|Redirector
          */
         public function redirect($oldSignatureName, $uuid, $other = null) {
-            //            dd($oldSignatureName, $uuid, $other);
-
             if (isset(self::URL_MAPPING[$oldSignatureName])) {
                 return redirect(route(self::URL_MAPPING[$oldSignatureName], [$uuid]), 301);
             }

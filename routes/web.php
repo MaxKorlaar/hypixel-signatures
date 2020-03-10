@@ -16,11 +16,11 @@
     Route::prefix('signature/{uuid}')->name('signatures.')->namespace('Signatures')->group(static function () {
         Route::get('general', 'GeneralSignatureController@render')->name('general');
         Route::get('general-small', 'SmallGeneralSignatureController@render')->name('general_small');
+        Route::get('general-tooltip', 'TooltipSignatureController@render')->name('general_tooltip');
     });
 
     Route::get('friends/{uuid}', 'Friends\FriendsController@getFriends')->where(['uuid' => '\w{32}']);
 
     Route::prefix('status-sig')->group(static function () {
         Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');
-        //       Route::permanentRedirect('get-Main/{old_uuid}', '/signature/{old_uuid}/general');
     });

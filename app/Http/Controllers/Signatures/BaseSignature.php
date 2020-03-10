@@ -10,6 +10,7 @@
     use Illuminate\Http\Response;
     use Image;
     use Plancke\HypixelPHP\classes\HypixelObject;
+    use Plancke\HypixelPHP\exceptions\BadResponseCodeException;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\exceptions\InvalidUUIDException;
     use Plancke\HypixelPHP\responses\player\Player;
@@ -76,8 +77,14 @@
                 return self::generateErrorImage('Unexpected API response.');
             } catch (InvalidUUIDException $exception) {
                 return self::generateErrorImage('UUID is invalid.');
-            } catch (HypixelPHPException $e) {
-                return self::generateErrorImage('Unknown: ' . $e->getMessage());
+            } catch (BadResponseCodeException $exception) {
+                if ($exception->getActualCode() === 429) {
+                    return self::generateErrorImage('Too many API requests – please wait a few seconds and try again');
+                }
+
+                return self::generateErrorImage('API error. Expected code ' . $exception->getExpected() . ', got ' . $exception->getActualCode());
+            } catch (HypixelPHPException $exception) {
+                return self::generateErrorImage('Unknown: ' . $exception->getMessage());
             }
         }
 
