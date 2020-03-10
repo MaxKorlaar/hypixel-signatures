@@ -10,6 +10,7 @@ Based on access logs from the 11th of April 2019 (I switched from Microsoft Azur
 
 * Main/general statistics (729252)
 * Tooltip/general tooltip (491750)
+* Bed Wars (439797)
 * SkyWars (260097)
 * Main small/small general statistics (173663)
 * UHC Champions (119657)
