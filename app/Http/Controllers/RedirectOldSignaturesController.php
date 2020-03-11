@@ -17,7 +17,8 @@
         private const URL_MAPPING = [
             'Main'       => 'signatures.general',
             'Main-small' => 'signatures.general_small',
-            'Tooltip'    => 'signatures.general_tooltip'
+            'Tooltip'    => 'signatures.general_tooltip',
+            'Bed-Wars'   => 'signatures.bedwars'
         ];
 
         /**

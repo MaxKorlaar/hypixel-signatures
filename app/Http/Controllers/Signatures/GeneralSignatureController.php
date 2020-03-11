@@ -47,9 +47,12 @@
             $mostRecentGame = $player->get('mostRecentGameType', 'None');
             $username       = $player->getName();
 
-            $rank               = $player->getRank(false);
-            $rankColour         = $rank->getColor();
-            $rankName           = $rank->getCleanName();
+            $rank       = $player->getRank(false);
+            $rankColour = $rank->getColor();
+            $rankName   = $rank->getCleanName();
+            if ($rankName === 'DEFAULT') {
+                $rankName = 'Player';
+            }
             $rankNameWithColour = $rankColour . $rankName;
 
             $lastgameType = GameTypes::fromEnum($mostRecentGame);

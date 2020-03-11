@@ -1,0 +1,116 @@
+<?php
+
+    namespace App\Http\Controllers\Signatures;
+
+    use App\Utilities\ColourHelper;
+    use App\Utilities\MinecraftAvatar\ThreeDAvatar;
+    use Illuminate\Http\Request;
+    use Illuminate\Http\Response;
+    use Image;
+    use Plancke\HypixelPHP\classes\gameType\GameTypes;
+    use Plancke\HypixelPHP\exceptions\HypixelPHPException;
+    use Plancke\HypixelPHP\responses\player\GameStats;
+    use Plancke\HypixelPHP\responses\player\Player;
+    use Plancke\HypixelPHP\util\games\GameUtils;
+
+    /**
+     * Class BedWarsSignatureController
+     *
+     * @package App\Http\Controllers\Signatures
+     */
+    class BedWarsSignatureController extends BaseSignature {
+
+        /**
+         * @param Request $request
+         * @param Player  $player
+         *
+         * @return Response
+         * @throws HypixelPHPException
+         */
+        protected function signature(Request $request, Player $player): Response {
+            $image                  = BaseSignature::getImage(520, 160);
+            $black                  = imagecolorallocate($image, 0, 0, 0);
+            $grey                   = imagecolorallocate($image, 203, 203, 203);
+            $fontSourceSansProLight = resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf');
+
+            $username = $player->getName();
+
+            $rank       = $player->getRank(false);
+            $rankColour = $rank->getColor();
+            $rankName   = $rank->getCleanName();
+            if ($rankName === 'DEFAULT') {
+                $rankName = 'Player';
+            }
+            $rankNameWithColour = $rankColour . $rankName;
+
+            $mainStats = $player->getStats();
+            /** @var GameStats $stats */
+            $stats = $mainStats->getGameFromID(GameTypes::BEDWARS);
+
+            $level      = GameUtils::getBedWars()->getExpCalculator()->getLevelForExp($stats->getInt('Experience'));
+            $wins       = $stats->get('wins_bedwars', 0);
+            $finalKills = $stats->get('final_kills_bedwars', 0);
+            $kills      = $stats->get('kills_bedwars', 0);
+            $deaths     = $stats->get('final_deaths_bedwars', 0);
+            $games      = $stats->getInt('games_played_bedwars', 0);
+
+            if ($deaths !== 0) {
+                $kd = round($finalKills / $deaths, 2);
+            } else {
+                $kd = 'None';
+            }
+
+            if ($wins !== 0 && $games !== 0) {
+                $winsPercentage = round(($wins / ($games)) * 100, 2);
+            } else {
+                $winsPercentage = 0;
+            }
+
+            if ($request->has('no_3d_avatar')) {
+                $avatarWidth        = 0;
+                $textX              = $avatarWidth + 5;
+                $textBeneathAvatarX = $textX;
+            } else {
+                $threedAvatar = new ThreeDAvatar();
+                $avatarImage  = $threedAvatar->getThreeDSkinFromCache($player->getUUID(), 4, 30, false, true, true);
+
+                $avatarWidth        = imagesx($avatarImage);
+                $textX              = $avatarWidth + 5;
+                $textBeneathAvatarX = $textX;
+
+                imagecopy($image, $avatarImage, 0, 0, 0, 0, imagesx($avatarImage), imagesy($avatarImage));
+                imagedestroy($avatarImage);
+            }
+
+            if ($request->has('guildTag')) {
+                $guildTag = '§7[' . $player->getGuildTag() . ']';
+                if ($guildTag === '§7[]') {
+                    $guildTag = '§7[-]';
+                }
+                $usernameBoundingBox = ColourHelper::minecraftStringToTTFText($image, $fontSourceSansProLight, 25, $textX, 14, '§0' . $username . ' ' . $guildTag);
+            } else {
+                $usernameBoundingBox = imagettftext($image, 25, 0, $textX, 30, $black, $fontSourceSansProLight, $username);
+            }
+
+            imagettftext($image, 17, 0, $usernameBoundingBox[2] + 10, 30, $grey, $fontSourceSansProLight, 'Bed Wars statistics');
+
+            $linesY = [60, 95, 130]; // Y starting points of the various text lines
+
+            ColourHelper::minecraftStringToTTFText($image, $fontSourceSansProLight, 20, $textX, 44, $rankNameWithColour); // Rank name (coloured)
+
+            imagettftext($image, 20, 0, $textX, $linesY[1], $black, $fontSourceSansProLight, $wins . ' wins'); // Total wins
+
+            imagettftext($image, 20, 0, 250, $linesY[0], $black, $fontSourceSansProLight, ($kills + $finalKills) . ' kills'); // Total kills
+
+            imagettftext($image, 20, 0, 250, $linesY[1], $black, $fontSourceSansProLight, 'Final KD: ' . $kd); // Final kill/death ratio
+
+            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, 'Level ' . $level); // BedWars level
+
+            imagettftext($image, 20, 0, 250, $linesY[2], $black, $fontSourceSansProLight, "Wins percentage: {$winsPercentage}%"); // Percentage of games won
+
+            $this->addWatermark($image, $fontSourceSansProLight, 520, 160); // Watermark/advertisement
+
+            return Image::make($image)->response('png');
+        }
+
+    }
