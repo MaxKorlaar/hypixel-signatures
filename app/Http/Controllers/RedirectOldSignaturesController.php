@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -45,10 +45,11 @@
      */
     class RedirectOldSignaturesController extends Controller {
         private const URL_MAPPING = [
-            'Main'       => 'signatures.general',
-            'Main-small' => 'signatures.general_small',
-            'Tooltip'    => 'signatures.general_tooltip',
-            'Bed-Wars'   => 'signatures.bedwars'
+            'main'       => 'signatures.general',
+            'main-small' => 'signatures.general_small',
+            'tooltip'    => 'signatures.general_tooltip',
+            'bed-wars'   => 'signatures.bedwars',
+            'skywars'    => 'signatures.skywars'
         ];
 
         /**
@@ -59,10 +60,12 @@
          * @return Application|RedirectResponse|Response|Redirector
          */
         public function redirect($oldSignatureName, $uuid, $other = null) {
-            if (isset(self::URL_MAPPING[$oldSignatureName])) {
-                return redirect(route(self::URL_MAPPING[$oldSignatureName], [$uuid]), 301);
+            $lowercaseOldSignatureName = strtolower($oldSignatureName);
+
+            if (isset(self::URL_MAPPING[$lowercaseOldSignatureName])) {
+                return redirect(route(self::URL_MAPPING[$lowercaseOldSignatureName], [$uuid]), 301);
             }
 
-            return BaseSignature::generateErrorImage("The signature '{$oldSignatureName}' does not exist anymore or has been moved. See Hypixel.Paniek.de.");
+            return BaseSignature::generateErrorImage("The signature '{$oldSignatureName}' does not exist anymore or has been moved. See Hypixel.Paniek.de.", 404);
         }
     }

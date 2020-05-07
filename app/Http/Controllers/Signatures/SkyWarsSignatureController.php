@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -40,14 +40,13 @@
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\player\GameStats;
     use Plancke\HypixelPHP\responses\player\Player;
-    use Plancke\HypixelPHP\util\games\GameUtils;
 
     /**
-     * Class BedWarsSignatureController
+     * Class SkyWarsSignatureController
      *
      * @package App\Http\Controllers\Signatures
      */
-    class BedWarsSignatureController extends BaseSignature {
+    class SkyWarsSignatureController extends BaseSignature {
 
         /**
          * @param Request $request
@@ -57,7 +56,7 @@
          * @throws HypixelPHPException
          */
         protected function signature(Request $request, Player $player): Response {
-            $image                  = BaseSignature::getImage(520, 160);
+            $image                  = BaseSignature::getImage(650, 160);
             $black                  = imagecolorallocate($image, 0, 0, 0);
             $grey                   = imagecolorallocate($image, 203, 203, 203);
             $fontSourceSansProLight = resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf');
@@ -74,23 +73,21 @@
 
             $mainStats = $player->getStats();
             /** @var GameStats $stats */
-            $stats = $mainStats->getGameFromID(GameTypes::BEDWARS);
+            $stats = $mainStats->getGameFromID(GameTypes::SKYWARS);
 
-            $level      = GameUtils::getBedWars()->getExpCalculator()->getLevelForExp($stats->getInt('Experience'));
-            $wins       = $stats->get('wins_bedwars', 0);
-            $finalKills = $stats->get('final_kills_bedwars', 0);
-            $kills      = $stats->get('kills_bedwars', 0);
-            $deaths     = $stats->get('final_deaths_bedwars', 0);
-            $games      = $stats->getInt('games_played_bedwars', 0);
+            $wins     = $stats->get('wins', 0);
+            $kills    = $stats->get('kills', 0);
+            $survived = $stats->get('survived_players', 0);
+            $deaths   = $stats->get('deaths', 0);
+            $losses   = $stats->getInt('losses', 0);
 
             if ($deaths !== 0) {
-                $kd = round($finalKills / $deaths, 2);
+                $kd = round($kills / $deaths, 2);
             } else {
                 $kd = 'None';
             }
-
-            if ($wins !== 0 && $games !== 0) {
-                $winsPercentage = round(($wins / ($games)) * 100, 2);
+            if ($wins !== 0) {
+                $winsPercentage = round(($wins / ($wins + $losses)) * 100, 2);
             } else {
                 $winsPercentage = 0;
             }
@@ -111,7 +108,7 @@
                 $usernameBoundingBox = imagettftext($image, 25, 0, $textX, 30, $black, $fontSourceSansProLight, $username);
             }
 
-            imagettftext($image, 17, 0, $usernameBoundingBox[2] + 10, 30, $grey, $fontSourceSansProLight, 'BedWars statistics');
+            imagettftext($image, 17, 0, $usernameBoundingBox[2] + 10, 30, $grey, $fontSourceSansProLight, 'SkyWars statistics');
 
             $linesY = [60, 95, 130]; // Y starting points of the various text lines
 
@@ -119,15 +116,15 @@
 
             imagettftext($image, 20, 0, $textX, $linesY[1], $black, $fontSourceSansProLight, $wins . ' wins'); // Total wins
 
-            imagettftext($image, 20, 0, 250, $linesY[0], $black, $fontSourceSansProLight, ($kills + $finalKills) . ' kills'); // Total kills
+            imagettftext($image, 20, 0, 350, $linesY[0], $black, $fontSourceSansProLight, $kills . ' kills'); // Total kills
 
-            imagettftext($image, 20, 0, 250, $linesY[1], $black, $fontSourceSansProLight, 'Final KD: ' . $kd); // Final kill/death ratio
+            imagettftext($image, 20, 0, 350, $linesY[1], $black, $fontSourceSansProLight, 'KD: ' . $kd); // kill/death ratio
 
-            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, 'Level ' . $level); // BedWars level
+            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, "Survived {$survived} players"); // SkyWars level
 
-            imagettftext($image, 20, 0, 250, $linesY[2], $black, $fontSourceSansProLight, "Wins percentage: {$winsPercentage}%"); // Percentage of games won
+            imagettftext($image, 20, 0, 350, $linesY[2], $black, $fontSourceSansProLight, "Wins percentage: {$winsPercentage}%"); // Percentage of games won
 
-            $this->addWatermark($image, $fontSourceSansProLight, 520, 160); // Watermark/advertisement
+            $this->addWatermark($image, $fontSourceSansProLight, 650, 160); // Watermark/advertisement
 
             return Image::make($image)->response('png');
         }

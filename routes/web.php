@@ -50,6 +50,7 @@
         Route::get('general-small', 'SmallGeneralSignatureController@render')->name('general_small');
         Route::get('general-tooltip', 'TooltipSignatureController@render')->name('general_tooltip');
         Route::get('bedwars', 'BedWarsSignatureController@render')->name('bedwars');
+        Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
     });
 
     Route::get('friends/{uuid}', 'Friends\FriendsController@getFriends')->where(['uuid' => '\w{32}']);

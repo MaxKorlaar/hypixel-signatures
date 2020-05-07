@@ -34,6 +34,7 @@
 
     use App\Http\Controllers\Controller;
     use App\Utilities\HypixelAPI;
+    use App\Utilities\MinecraftAvatar\ThreeDAvatar;
     use GDText\Box;
     use GDText\Color;
     use Illuminate\Http\Request;
@@ -84,6 +85,40 @@
         }
 
         /**
+         * @param Player $player
+         * @param        $image
+         *
+         * @return int[]
+         */
+        protected function get2dAvatar(Player $player, &$image) {
+            $avatarWidth        = 0;
+            $textX              = $avatarWidth + 5;
+            $textBeneathAvatarX = $textX;
+
+            return [$avatarWidth, $textX, $textBeneathAvatarX];
+        }
+
+        /**
+         * @param Player $player
+         * @param        $image
+         *
+         * @return int[]
+         */
+        protected function get3dAvatar(Player $player, &$image) {
+            $threedAvatar = new ThreeDAvatar();
+            $avatarImage  = $threedAvatar->getThreeDSkinFromCache($player->getUUID(), 4, 30, false, true, true);
+
+            $avatarWidth        = imagesx($avatarImage);
+            $textX              = $avatarWidth + 5;
+            $textBeneathAvatarX = $textX;
+
+            imagecopy($image, $avatarImage, 0, 0, 0, 0, imagesx($avatarImage), imagesy($avatarImage));
+            imagedestroy($avatarImage);
+
+            return [$avatarWidth, $textX, $textBeneathAvatarX];
+        }
+
+        /**
          * @param string $uuid
          *
          * @return Response|Player
@@ -99,17 +134,17 @@
 
                 if ($player instanceof Player) {
                     if (empty($player->getData())) {
-                        return self::generateErrorImage('Player has no public data.');
+                        return self::generateErrorImage('Player has no public data.', 404);
                     }
                     return $player;
                 }
 
                 return self::generateErrorImage('Unexpected API response.');
             } catch (InvalidUUIDException $exception) {
-                return self::generateErrorImage('UUID is invalid.');
+                return self::generateErrorImage('UUID is invalid.', 400);
             } catch (BadResponseCodeException $exception) {
                 if ($exception->getActualCode() === 429) {
-                    return self::generateErrorImage('Too many API requests – please wait a few seconds and try again');
+                    return self::generateErrorImage('Too many API requests – please wait a few seconds and try again', 429);
                 }
 
                 return self::generateErrorImage('API error. Expected code ' . $exception->getExpected() . ', got ' . $exception->getActualCode());
@@ -120,12 +155,14 @@
 
         /**
          * @param     $error
+         * @param int $statusCode
+         *
          * @param int $width
          * @param int $height
          *
          * @return Response
          */
-        public static function generateErrorImage($error, $width = 740, $height = 160): Response {
+        public static function generateErrorImage($error, $statusCode = 500, $width = 740, $height = 160): Response {
             $image = self::getImage($width, $height);
             $box   = new Box($image);
             $box->setFontFace(resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf'));
@@ -141,7 +178,11 @@
             $box->setTextShadow(new Color(0, 0, 0, 50), 1, 1);
             $box->draw($error);
 
-            return Image::make($image)->response('png');
+            /** @var Response $response */
+            $response = Image::make($image)->response('png');
+            $response->setStatusCode($statusCode);
+
+            return $response;
         }
 
         /**
