@@ -1,0 +1,8 @@
+<component name="CopyrightManager">
+  <settings default="Max">
+    <module2copyright>
+      <element module="All Changed Files" copyright="Max" />
+      <element module="Project Files" copyright="Max" />
+    </module2copyright>
+  </settings>
+</component>
