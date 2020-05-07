@@ -10,6 +10,11 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+public/css
+public/js
+mix-manifest.json
+
 # Created by https://www.gitignore.io/api/composer,phpstorm
 # Edit at https://www.gitignore.io/?templates=composer,phpstorm
 
