@@ -173,7 +173,7 @@
             $box->draw('Something went wrong');
 
             $box->setBox(5, $height / 4 + 15, $width - 5, $height - 5);
-            $box->setFontSize($height / 5);
+            $box->setFontSize($height / 6);
             $box->setFontColor(new Color(0, 0, 0));
             $box->setTextShadow(new Color(0, 0, 0, 50), 1, 1);
             $box->draw($error);

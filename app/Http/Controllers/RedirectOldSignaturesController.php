@@ -37,6 +37,7 @@
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Response;
     use Illuminate\Routing\Redirector;
+    use Illuminate\Support\Str;
 
     /**
      * Class RedirectOldSignaturesController
@@ -66,6 +67,8 @@
                 return redirect(route(self::URL_MAPPING[$lowercaseOldSignatureName], [$uuid]), 301);
             }
 
-            return BaseSignature::generateErrorImage("The signature '{$oldSignatureName}' does not exist anymore or has been moved. See Hypixel.Paniek.de.", 404);
+            $oldSignatureName = Str::limit($oldSignatureName, 20);
+
+            return BaseSignature::generateErrorImage("The signature '{$oldSignatureName}' does not exist. It probably has been (re)moved. You can suggest it to be added again, if it's been removed. Visit Hypixel.Paniek.de.", 404, 800, 200);
         }
     }

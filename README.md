@@ -12,7 +12,7 @@ Based on access logs from the 11th of April 2019 (I switched from Microsoft Azur
 * ~~Tooltip/general tooltip (491750)~~
 * ~~Bed Wars (439797)~~
 * ~~SkyWars (260097)~~
-* Main small/small general statistics (173663)
+* ~~Main small/small general statistics (173663)~~
 * UHC Champions (119657)
 * Online status (smaller variant) (94711)
 * Blitz (56736)
