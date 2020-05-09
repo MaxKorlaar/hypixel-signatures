@@ -22,6 +22,7 @@
             <meta property="og:title" content="{{ block('social_title') }}"/>
             <meta property="og:description" content="{{ block('social_description') }}"/>
         {% endblock %}
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     {% endblock %}
     {% block ad_scripts %}
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -35,8 +36,14 @@
 </head>
 <body>
     {% block body %}
-        {% block content %}
-        {% endblock %}
+        <div class="container-xl">
+            {% block content %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+    {% block scripts %}
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen:300,700&amp;display=swap" media="screen,projection">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500,700" rel="stylesheet" type="text/css" media="screen,projection">
     {% endblock %}
 </body>
 </html>

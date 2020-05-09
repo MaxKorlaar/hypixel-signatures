@@ -32,7 +32,9 @@
 
     namespace App\Utilities\MinecraftAvatar;
 
+    use Cache;
     use Log;
+    use Psr\SimpleCache\InvalidArgumentException;
     use RuntimeException;
 
     /**
@@ -54,7 +56,6 @@
         public $size;
         public $imagepath;
         public $cacheInfo;
-        public $publicurl;
         public $helm = true;
         public $fetchError = null;
 
@@ -70,24 +71,26 @@
          * @param      $username
          * @param bool $save
          *
-         * @return string
+         * @return resource|string
          */
         public function getSkinFromCache($username, $save = true) {
-            $imagepath       = $this->imagepath . 'full_skin/' . strtolower($username) . '.png';
-            $this->publicurl = '/img/full_skin/' . strtolower($username) . '.png';
+            $imagepath = $this->imagepath . 'full_skin/' . strtolower($username) . '.png';
 
-            if (file_exists($imagepath)) {
-                if (filemtime($imagepath) < strtotime('-2 week')) {
-                    $this->cacheInfo = 'full skin expired, redownloading';
-                    unlink($imagepath);
-                    return $this->getSkin($username, $save);
+            return Cache::lock('minecraft.avatar.' . $imagepath)->block(5, function () use ($imagepath, $username, $save) {
+                if (file_exists($imagepath)) {
+                    if (filemtime($imagepath) < strtotime('-2 week')) {
+                        Log::debug('Full skin expired, redownloading', ['username' => $username]);
+
+                        return $this->getSkin($username, $save);
+                    }
+
+                    return $imagepath;
                 }
 
-                return $imagepath;
-            }
+                Log::debug('Full skin not yet downloaded, downloading', ['username' => $username]);
 
-            $this->cacheInfo = 'full skin image not yet downloaded';
-            return $this->getSkin($username, $save);
+                return $this->getSkin($username, $save);
+            });
         }
 
         /**
@@ -95,12 +98,9 @@
          * @param bool $save
          *
          * @return resource|string
+         * @throws InvalidArgumentException
          */
         public function getSkin($username, $save = false) {
-            $this->publicurl = '/img/full_skin/' . strtolower($username) . '.png';
-            $this->cacheInfo = 'Downloading skin from Minecraft.net...';
-            $skinURL         = 'https://minecraft.net/images/steve.png';
-            $this->cacheInfo = 'Downloaded from ' . $skinURL;
             if (strlen($username) === 32) {
                 $api  = new MojangAPI();
                 $data = $api->getProfile($username);
@@ -171,11 +171,9 @@
          */
         public function getFromCache($username, $size = 100, $helm = true): string {
             if ($helm) {
-                $imagepath       = $this->imagepath . $size . 'px/' . strtolower($username) . '.png';
-                $this->publicurl = '/img/' . $size . 'px/' . strtolower($username) . '.png';
+                $imagepath = $this->imagepath . $size . 'px/' . strtolower($username) . '.png';
             } else {
-                $imagepath       = $this->imagepath . $size . 'px-no-helm/' . strtolower($username) . '.png';
-                $this->publicurl = '/img/' . $size . 'px-no-helm/' . strtolower($username) . '.png';
+                $imagepath = $this->imagepath . $size . 'px-no-helm/' . strtolower($username) . '.png';
             }
             $this->name = $username;
             $this->size = $size;
@@ -203,16 +201,12 @@
          * @param bool $save
          *
          * @return string
+         * @throws InvalidArgumentException
          */
         public function getImage($username, $size = 100, $helm = true, $save = true): string {
             $this->name  = $username;
             $this->size  = $size;
             $defaultSkin = null;
-            if ($helm) {
-                $this->publicurl = '/img/' . $size . 'px/' . strtolower($username) . '.png';
-            } else {
-                $this->publicurl = '/img/' . $size . 'px-no-helm/' . strtolower($username) . '.png';
-            }
 
             if (strlen($username) === 32) {
                 $api  = new MojangAPI();

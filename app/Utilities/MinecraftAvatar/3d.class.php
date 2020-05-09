@@ -33,6 +33,7 @@
     namespace App\Utilities\MinecraftAvatar;
 
     use Illuminate\Support\Facades\Log;
+    use Psr\SimpleCache\InvalidArgumentException;
 
     /****** MINECRAFT 3D Skin Generator *****
      * The contents of this project were first developed by Pierre Gros on 17th April 2012.
@@ -138,6 +139,7 @@
         /** Function renders the 3d image
          *
          * @return resource|string
+         * @throws InvalidArgumentException
          */
         public function get3DRender() {
             $this->getPlayerSkin(); // Download and check the player skin
@@ -175,12 +177,13 @@
 
         /**
          * @return bool
+         * @throws InvalidArgumentException
          */
         private function getPlayerSkin(): bool {
             $this->fetchError = 0;
             if (trim($this->playerName) === '') {
                 Log::debug('Playername is empty');
-                $this->playerSkin = imageCreateFromPng($this->fallback_img);
+                $this->playerSkin = imagecreatefrompng($this->fallback_img);
                 return false;
             }
 
@@ -192,12 +195,13 @@
 
             if ($skinURL !== false) {
                 Log::debug('Getting skin from existing URL: ' . $skinURL);
-                $this->playerSkin = @imageCreateFromPng($skinURL);
+                $this->playerSkin = imagecreatefrompng($skinURL);
             } else {
+                Log::debug('skinURL is false', ['playerName' => $this->playerName]);
                 // Try again one more time
                 $skinURL = $MCa->getSkinFromCache($this->playerName);
                 if ($skinURL !== false) {
-                    $this->playerSkin = @imageCreateFromPng($skinURL);
+                    $this->playerSkin = imagecreatefrompng($skinURL);
                     Log::debug('Getting skin from existing URL, second try: ' . $skinURL);
                 }
             }
@@ -210,7 +214,7 @@
             if (!$this->playerSkin) {
                 // Player skin does not exist
                 Log::debug('Falling back on default...');
-                $this->playerSkin = imageCreateFromPng($this->fallback_img);
+                $this->playerSkin = imagecreatefrompng($this->fallback_img);
                 return false;
             }
 
@@ -218,7 +222,7 @@
                 // Bad ratio created
                 Log::debug('Ratio incorrect');
                 $this->fetchError = true;
-                $this->playerSkin = imageCreateFromPng($this->fallback_img);
+                $this->playerSkin = imagecreatefrompng($this->fallback_img);
                 return false;
             }
             return true;

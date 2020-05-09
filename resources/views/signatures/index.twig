@@ -1,0 +1,42 @@
+{% extends 'partials/page.twig' %}
+{% block page_title %}Dynamic Signatures{% endblock %}
+{% block content %}
+    <h1>Hypixel Dynamic Statistic Signatures</h1>
+    <div id="signature-app">
+        <div class="input" :class="{'has-error': errors.username }">
+            <label for="username">Minecraft username or UUID</label>
+            <input id="username" :disabled="loading" type="text" v-model="username" @change="getUuidFromUsername()" @input="clearError('username')">
+            <p class="error" v-if="errors.username">
+                {{ '{{ errors.username }}' }}
+            </p>
+            <p class="help">
+                Enter your Minecraft username or UUID here in order to allow us to look up your statistics via the Hypixel public API.
+                If you do not know what your UUID is, enter your username and it will be looked up for you.
+            </p>
+        </div>
+
+        <div class="signature-grid">
+            <div class="signature" v-for="signature in signatures">
+                <label :class="{ selected: selected_signature === signature }">
+                    <input type="radio" name="signature-type" :value="signature" v-model="selected_signature">
+                    <span class="overlay"></span>
+                    <span class="image-container">
+                        <img draggable="false" :src="getPreviewImageUrl(signature)" :alt="signature.name">
+                    </span>
+                    <span class="title">{{ '{{ signature.name }}' }}</span>
+                </label>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        window.Paniek            = window.Paniek || {};
+        window.Paniek.signatures = {{ signatures|json_encode|raw }};
+        window.Paniek.urls       = {{ urls|json_encode|raw }};
+    </script>
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/signatures.js') }}"></script>
+{% endblock %}

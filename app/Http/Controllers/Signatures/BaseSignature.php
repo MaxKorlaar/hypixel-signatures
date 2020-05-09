@@ -40,6 +40,7 @@
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
     use Image;
+    use Log;
     use Plancke\HypixelPHP\classes\HypixelObject;
     use Plancke\HypixelPHP\exceptions\BadResponseCodeException;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
@@ -90,7 +91,7 @@
          *
          * @return int[]
          */
-        protected function get2dAvatar(Player $player, &$image) {
+        protected function get2dAvatar(Player $player, &$image): array {
             $avatarWidth        = 0;
             $textX              = $avatarWidth + 5;
             $textBeneathAvatarX = $textX;
@@ -104,7 +105,7 @@
          *
          * @return int[]
          */
-        protected function get3dAvatar(Player $player, &$image) {
+        protected function get3dAvatar(Player $player, &$image): array {
             $threedAvatar = new ThreeDAvatar();
             $avatarImage  = $threedAvatar->getThreeDSkinFromCache($player->getUUID(), 4, 30, false, true, true);
 
@@ -138,6 +139,8 @@
                     }
                     return $player;
                 }
+
+                Log::debug('Unexpected API response', ['uuid' => $uuid, 'response' => $player]);
 
                 return self::generateErrorImage('Unexpected API response.');
             } catch (InvalidUUIDException $exception) {

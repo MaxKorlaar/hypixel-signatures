@@ -32,7 +32,9 @@
 
     namespace App\Utilities\MinecraftAvatar;
 
+    use Cache;
     use Exception;
+    use Log;
     use RuntimeException;
 
     require_once('MCAvatar.php');
@@ -55,7 +57,7 @@
         public $frames;
         public $filepath;
         public $invert;
-        public $debug = false;
+
         /** @var render3DPlayer $playerRender */
         private $playerRender = null;
 
@@ -81,18 +83,16 @@
             }
 
             if ($speed !== 3 || $rotation !== 5) {
-                $imagepath       = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$rotation}fms{$l}.gif";
-                $this->publicurl = '/img/rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$rotation}fms{$l}.gif";
+                $imagepath = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$rotation}fms{$l}.gif";
             } else {
-                $imagepath       = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x{$l}.gif";
-                $this->publicurl = '/img/rotate_gif/' . strtolower($username) . "-{$size}x{$l}.gif";
+                $imagepath = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x{$l}.gif";
             }
             $this->filepath = $imagepath;
 
             if (file_exists($imagepath)) {
                 if (filemtime($imagepath) < strtotime('-1 week')) {
                     $this->cacheInfo = '3d full skin expired, redownloading';
-                    unlink($imagepath);
+
                     if ($return === 'binary') {
                         return $this->getRotatingSkin($username, $size, $speed, $rotation, $headOnly, $helmet, $layers, 'save-binary');
                     }
@@ -149,7 +149,7 @@
              */
             $rotation = function ($angle) {
                 if ($this->invert) {
-                    $angle = $angle * -1;
+                    $angle *= -1;
                 }
                 $player         = new render3DPlayer($this->username, '0', $angle, '0', '0', '0', '0', '0', "{$this->helmet}", "{$this->headOnly}", 'png', $this->size, $this->layers);
                 $this->images[] = $player->get3DRender();
@@ -175,7 +175,10 @@
             foreach ($this->images as $img) {
                 imagedestroy($img);
             }
-            if ($return === 'binary') return $gifBinary;
+
+            if ($return === 'binary') {
+                return $gifBinary;
+            }
 
             if ($return === 'url' || $return === 'resource' || $return === 'save-binary') {
                 if ($layers) {
@@ -187,11 +190,9 @@
                     $frames *= -1;
                 }
                 if ($speed !== 3 || $frames !== 5) {
-                    $imagepath       = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$frames}fms{$l}.gif";
-                    $this->publicurl = '/img/rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$frames}fms{$l}.gif";
+                    $imagepath = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$frames}fms{$l}.gif";
                 } else {
-                    $imagepath       = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x{$l}.gif";
-                    $this->publicurl = '/img/rotate_gif/' . strtolower($username) . '.gif';
+                    $imagepath = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x{$l}.gif";
                 }
 
                 if (!file_exists($this->imagepath . 'rotate_gif/') && !mkdir($concurrentDirectory = $this->imagepath . 'rotate_gif/', 0777, true) && !is_dir($concurrentDirectory)) {
@@ -220,7 +221,7 @@
          * @param bool $helmet
          * @param bool $layers
          *
-         * @return resource
+         * @return bool|resource
          */
         public function getThreeDSkinFromCache($username, $size = 2, $angle = 0, $headOnly = false, $helmet = true, $layers = false) {
             if ($headOnly) {
@@ -239,35 +240,39 @@
                 $l = '';
             }
 
-            if (!file_exists($this->imagepath . '3d/') && !mkdir($concurrentDirectory = $this->imagepath . '3d/', 0777, true) && !is_dir($concurrentDirectory)) {
-                throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
-            }
+            $imagepath = $this->imagepath . '3d/' . strtolower($username) . "-{$size}x-{$angle}{$h}{$nh}{$l}.png";
 
-            $imagepath       = $this->imagepath . '3d/' . strtolower($username) . "-{$size}x-{$angle}{$h}{$nh}{$l}.png";
-            $this->publicurl = '/img/3d/' . strtolower($username) . "-{$size}x-{$angle}{$h}{$nh}{$l}.png";
-
-            if (file_exists($imagepath)) {
-                if (filemtime($imagepath) < strtotime('-3 days')) {
-                    $this->cacheInfo = '3d skin expired, regenerating';
-                    unlink($imagepath);
-                    $image = $this->getThreeDSkin($username, $size, $angle, $headOnly, $helmet, $layers);
-                    if ($this->playerRender->fetchError === null) {
-                        imagepng($image, $imagepath);
-                    } // Only cache the image if it's fetched successfully.
-                    return $image;
+            return Cache::lock('minecraft.avatar.' . $imagepath)->block(5, function () use ($layers, $helmet, $headOnly, $angle, $size, $username, $imagepath) {
+                if (!file_exists($this->imagepath . '3d/') && !mkdir($concurrentDirectory = $this->imagepath . '3d/', 0777, true) && !is_dir($concurrentDirectory)) {
+                    throw new RuntimeException("Directory \"{$concurrentDirectory}\" was not created");
                 }
 
-                $this->cacheInfo = '3d skin image exists and OK';
-                return imagecreatefrompng($imagepath);
-            }
+                if (file_exists($imagepath)) {
+                    if (filemtime($imagepath) < strtotime('-3 days')) {
+                        Log::debug('3d skin expired, regenerating', ['path' => $imagepath]);
 
-            $this->cacheInfo = '3d skin image not yet generated';
-            $image           = $this->getThreeDSkin($username, $size, $angle, $headOnly, $helmet, $layers);
+                        $image = $this->getThreeDSkin($username, $size, $angle, $headOnly, $helmet, $layers);
 
-            if ($this->playerRender->fetchError === null) {
-                imagepng($image, $imagepath);
-            } // Only cache the image if it's fetched successfully.
-            return $image;
+                        if ($this->playerRender->fetchError === null) {
+                            imagepng($image, $imagepath);
+                        } // Only cache the image if it's fetched successfully.
+
+                        return $image;
+                    }
+
+                    Log::debug('3d skin image exists and OK', ['path' => $imagepath]);
+                    return imagecreatefrompng($imagepath);
+                }
+
+                Log::debug('3d skin image not yet generated', ['path' => $imagepath]);
+                $image = $this->getThreeDSkin($username, $size, $angle, $headOnly, $helmet, $layers);
+
+                if ($this->playerRender->fetchError === null) {
+                    imagepng($image, $imagepath);
+                } // Only cache the image if it's fetched successfully.
+
+                return $image;
+            });
         }
 
         /**

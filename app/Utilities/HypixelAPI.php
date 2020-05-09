@@ -34,6 +34,7 @@
 
     use Plancke\HypixelPHP\classes\HypixelObject;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
+    use Plancke\HypixelPHP\fetch\FetchParams;
     use Plancke\HypixelPHP\fetch\Response;
     use Plancke\HypixelPHP\HypixelPHP;
     use Plancke\HypixelPHP\log\impl\NoLogger;
@@ -69,7 +70,7 @@
          * @throws HypixelPHPException
          */
         public function getPlayerByUuid(string $uuid) {
-            return $this->api->getPlayer(['uuid' => $uuid]);
+            return $this->api->getPlayer([FetchParams::PLAYER_BY_UUID => $uuid]);
         }
 
         /**

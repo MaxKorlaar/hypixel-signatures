@@ -33,7 +33,6 @@
     namespace App\Http\Controllers\Signatures;
 
     use App\Utilities\ColourHelper;
-    use App\Utilities\MinecraftAvatar\ThreeDAvatar;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
     use Image;
@@ -91,19 +90,9 @@
             }
 
             if ($request->has('no_3d_avatar')) {
-                $avatarWidth        = 0;
-                $textX              = $avatarWidth + 5;
-                $textBeneathAvatarX = $textX;
+                [$avatarWidth, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
             } else {
-                $threedAvatar = new ThreeDAvatar();
-                $avatarImage  = $threedAvatar->getThreeDSkinFromCache($player->getUUID(), 4, 30, false, true, true);
-
-                $avatarWidth        = imagesx($avatarImage);
-                $textX              = $avatarWidth + 5;
-                $textBeneathAvatarX = $textX;
-
-                imagecopy($image, $avatarImage, 0, 0, 0, 0, imagesx($avatarImage), imagesy($avatarImage));
-                imagedestroy($avatarImage);
+                [$avatarWidth, $textX, $textBeneathAvatarX] = $this->get3dAvatar($player, $image);
             }
 
             if ($request->has('guildTag')) {

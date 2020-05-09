@@ -44,8 +44,10 @@ require('laravel-mix-purgecss');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/signatures.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .version()
+    .extract(['vue'])
     .purgeCss()
     .browserSync({
         proxy: 'localhost:8000',

@@ -35,8 +35,12 @@
 
 @import "variables";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: $font-stack-system;
+  font-family: 'Lato', $font-stack-system;
   background-color: $color-background;
   font-size: 18px;
   color: $black;
@@ -52,7 +56,7 @@ h1 {
   color: $color-primary;
 }
 
-.container-lg {
+.container-xl {
   background: $color-white;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, .25) 0 3px 3px;
@@ -75,6 +79,14 @@ h1 {
     box-shadow: inset $color-grey 0 -1px 0;
     background: transparent;
 
+    &:disabled {
+      color: $color-grey;
+      animation: loading-bar .5s alternate infinite linear, loading-background 1.5s infinite reverse ease;
+      background: linear-gradient(to right, transparent 35%, rgba($color-primary, .5) 50%, transparent 65%);
+      background-size: 200% auto;
+      cursor: wait;
+    }
+
     &:active, &:focus {
       box-shadow: inset $color-primary 0 -2px 0;
 
@@ -84,9 +96,112 @@ h1 {
     }
   }
 
-  .help {
+  .help, .error {
     font-size: .8rem;
     color: $color-grey;
     transition: all $transition-time;
+  }
+
+  .error {
+    color: $red-400;
+  }
+
+  &.has-error {
+    color: $red-400;
+
+    input {
+      color: $red-400;
+      animation: shake .1s 5 alternate linear;
+    }
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(-3px);
+  }
+}
+
+@keyframes loading-background {
+  0% {
+    background-position-x: -25%;
+  }
+  100% {
+    background-position-x: 125%;
+  }
+}
+
+@keyframes loading-bar {
+  0% {
+    box-shadow: inset $color-primary 0 -2px 0;
+  }
+  100% {
+    box-shadow: inset $color-grey 0 -2px 0;
+  }
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+
+  .signature {
+    label {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      cursor: pointer;
+      border-radius: 3px;
+      border: 1px solid $color-grey;
+      padding: 1rem;
+      transition: all $transition-time;
+      box-shadow: rgba(0, 0, 0, 0) 0 3px 5px, inset $color-primary 0 0 0 0;
+
+      &.selected {
+        box-shadow: rgba(0, 0, 0, 0) 0 3px 5px, inset $color-primary 0 0 5px 0;
+
+        &:hover, &:focus {
+          box-shadow: rgba(0, 0, 0, .25) 0 3px 5px, inset $color-primary 0 0 5px 0;
+        }
+      }
+
+      &:hover, &:focus {
+        box-shadow: rgba(0, 0, 0, .25) 0 3px 5px;
+        transform: translateY(-3px);
+      }
+
+      &:hover, &:focus, &.selected {
+        border: 1px solid $color-primary;
+
+        .title {
+          color: $color-primary;
+        }
+      }
+
+      input {
+        display: none;
+      }
+
+      .image-container {
+        display: block;
+        margin: auto 0;
+
+        img {
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
+      }
+
+      .title {
+        text-align: center;
+        //margin: auto 0 0 ;
+        padding-top: 1rem;
+        transition: color $transition-time;
+      }
+    }
   }
 }

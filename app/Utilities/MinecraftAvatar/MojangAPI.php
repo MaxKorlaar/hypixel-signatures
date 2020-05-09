@@ -34,6 +34,7 @@
 
     use Cache;
     use Log;
+    use Psr\SimpleCache\InvalidArgumentException;
 
     /**
      * Class MojangAPI
@@ -60,6 +61,7 @@
          * @param $uuid
          *
          * @return array
+         * @throws InvalidArgumentException
          */
         public function getProfile($uuid): array {
             $cacheKey = 'mojangapi.uuid.' . $uuid;
@@ -109,7 +111,6 @@
          * @return array
          */
         private function request($url): array {
-
             /*
              * Set cURL properties
              */
@@ -121,13 +122,14 @@
             $curlOut = curl_exec($ch);
 
             if ($curlOut === false) {
-                return ['success' => false, 'statusCode' => null, 'error' => curl_error($ch)];
+                return ['success' => false, 'status_code' => null, 'error' => curl_error($ch)];
             }
+
             $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
 
             if ($status !== 200) {
-                return ['success' => false, 'statusCode' => $status, 'error' => null];
+                return ['success' => false, 'status_code' => $status, 'error' => null];
             }
             return ['success' => true, 'data' => $curlOut];
         }
@@ -144,7 +146,6 @@
                     if ($this->checkForThrottle($request)) {
                         return ['success' => false, 'throttle' => true];
                     }
-
                     return $request;
                 }
                 $jsonArray = json_decode($request['data'], true);
@@ -173,7 +174,7 @@
          * @return bool
          */
         public function checkForThrottle($request): bool {
-            return isset($request['statusCode']) && $request['statusCode'] === 429;
+            return isset($request['status_code']) && $request['status_code'] === 429;
         }
 
         /**

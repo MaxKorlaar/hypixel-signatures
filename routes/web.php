@@ -45,7 +45,7 @@
 
     Route::get('/signatures', 'IndexController@signatureIndex')->name('signatures');
 
-    Route::prefix('signature/{uuid}')->name('signatures.')->namespace('Signatures')->group(static function () {
+    Route::prefix('signature/{username}')->name('signatures.')->namespace('Signatures')->group(static function () {
         Route::get('general', 'GeneralSignatureController@render')->name('general');
         Route::get('general-small', 'SmallGeneralSignatureController@render')->name('general_small');
         Route::get('general-tooltip', 'TooltipSignatureController@render')->name('general_tooltip');
@@ -53,8 +53,11 @@
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
     });
 
-    Route::get('friends/{uuid}', 'Friends\FriendsController@getFriends')->where(['uuid' => '\w{32}']);
+    Route::get('/player/{username}/username', 'PlayerController@getUuid')->name('player.get_uuid');
+    Route::get('/player/{uuid}/profile', 'PlayerController@getProfile')->name('player.get_profile');
+
+    Route::get('friends/{username}', 'Friends\FriendsController@getFriends')->where(['username' => '\w{32}']);
 
     Route::prefix('status-sig')->group(static function () {
-        Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');
+        Route::get('get-{name}/{username}{other?}', 'RedirectOldSignaturesController@redirect');
     });

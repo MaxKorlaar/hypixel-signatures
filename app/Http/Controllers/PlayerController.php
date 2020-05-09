@@ -30,63 +30,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    use Illuminate\Contracts\View\Factory;
-    use Illuminate\View\View;
+    use App\Utilities\MinecraftAvatar\MojangAPI;
+    use Psr\SimpleCache\InvalidArgumentException;
 
     /**
-     * Class IndexController
+     * Class PlayerController
      *
      * @package App\Http\Controllers
      */
-    class IndexController extends Controller {
+    class PlayerController extends Controller {
         /**
-         * @return Factory|View
+         * @param string $username
+         *
+         * @return array
          */
-        public function index() {
-            return view('index');
+        public function getUuid(string $username): array {
+            $mojangAPI = new MojangAPI();
+
+            return $mojangAPI->getUUID($username);
         }
 
         /**
-         * @return Factory|View
+         * @param string $uuid
+         *
+         * @return array
+         * @throws InvalidArgumentException
          */
-        public function signatureIndex() {
-            $signatures = [
-                [
-                    'name'  => 'General statistics',
-                    'route' => 'general'
-                ],
-                [
-                    'name'  => 'General statistics (small)',
-                    'route' => 'general_small'
-                ],
-                [
-                    'name'  => 'General statistics (tooltip)',
-                    'route' => 'general_tooltip'
-                ],
-                [
-                    'name'  => 'SkyWars statistics',
-                    'route' => 'skywars'
-                ],
-                [
-                    'name'  => 'BedWars statistics',
-                    'route' => 'bedwars'
-                ]
-            ];
+        public function getProfile(string $uuid): array {
+            $mojangAPI = new MojangAPI();
 
-            foreach ($signatures as &$signature) {
-                $signature['url'] = route('signatures.' . $signature['route'], [':username']);
-            }
-
-            //route('signatures.' ~ signature.route, ['b876ec32e396476ba1158438d83c67d4'])
-
-            return view('signatures.index', [
-                'signatures' => $signatures,
-                'urls'       => [
-                    'get_uuid'    => route('player.get_uuid', [':username']),
-                    'get_profile' => route('player.get_profile', [':uuid'])
-                ]
-            ]);
+            return $mojangAPI->getProfile($uuid);
         }
     }
