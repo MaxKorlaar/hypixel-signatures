@@ -48,6 +48,9 @@ composer.phar
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
+.idea/deployment.xml
+.idea/sshConfigs.xml
+.idea/webServers.xml
 
 # Gradle
 .idea/**/gradle.xml

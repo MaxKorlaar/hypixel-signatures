@@ -33,6 +33,19 @@
             });
         </script>
     {% endblock %}
+    {% block analytics_scripts %}
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157532904-4"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {dataLayer.push(arguments);}
+
+            gtag('js', new Date());
+
+            gtag('config', '{{ config_get('app.google_analytics_tracking_id') }}');
+        </script>
+    {% endblock %}
 </head>
 <body>
     {% block body %}
