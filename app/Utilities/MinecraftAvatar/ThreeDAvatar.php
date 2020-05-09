@@ -37,9 +37,9 @@
     use Log;
     use RuntimeException;
 
-    require_once('MCAvatar.php');
-    require_once('GifCreator.php');
-    require_once('3d.class.php');
+    require_once(__DIR__ . '/MCAvatar.php');
+    require_once(__DIR__ . '/GifCreator.php');
+    require_once(__DIR__ . '/3d.class.php');
 
     /**
      * Class moreMCavatar
