@@ -135,7 +135,7 @@
 
                 if ($player instanceof Player) {
                     if (empty($player->getData())) {
-                        return self::generateErrorImage('Player has no public data.', 404);
+                        return self::generateErrorImage('Player has not played on Hypixel before!', 404);
                     }
                     return $player;
                 }
@@ -175,7 +175,7 @@
             $box->setTextAlign('center', 'top');
             $box->draw('Something went wrong');
 
-            $box->setBox(5, $height / 4 + 15, $width - 5, $height - 5);
+            $box->setBox(5, $height / 3 + 10, $width - 5, $height - 5);
             $box->setFontSize($height / 6);
             $box->setFontColor(new Color(0, 0, 0));
             $box->setTextShadow(new Color(0, 0, 0, 50), 1, 1);

@@ -127,7 +127,7 @@
                 } else {
                     $src             = imagecreatefrompng(self::STEVE_SKIN);
                     $this->cacheInfo = 'image not yet downloaded - unknown error while getting player profile';
-                    Log::debug('image not yet downloaded - unknown error while getting player profile', [$data]);
+                    Log::warning('image not yet downloaded - unknown error while getting player profile', [$data]);
                     $this->fetchError = true;
                     $save             = false;
                 }
@@ -142,7 +142,7 @@
 
                 $src             = imagecreatefrompng(self::STEVE_SKIN);
                 $this->cacheInfo = 'image not yet downloaded - unknown error while fetching skin from username. Last resort: ' . self::STEVE_SKIN;
-                Log::debug('image not yet downloaded - unknown error while fetching skin from username. Last resort: ' . self::STEVE_SKIN);
+                Log::warning('image not yet downloaded - unknown error while fetching skin from username. Last resort: ' . self::STEVE_SKIN);
                 $this->fetchError = true;
                 $save             = false;
             }
@@ -223,15 +223,15 @@
                     $this->fetchUrl = $imgURL;
                     $src            = imagecreatefrompng($imgURL);
                     if (!$src) {
-                        $src              = imagecreatefrompng(self::STEVE_SKIN);
-                        $this->cacheInfo  = 'image not yet downloaded - unknown error while downloading';
+                        $src = imagecreatefrompng(self::STEVE_SKIN);
+                        Log::warning('image not yet downloaded - unknown error while downloading', ['username' => $username]);
                         $defaultSkin      = 'steve';
                         $this->fetchError = true;
                         $save             = false;
                     }
                 } else {
-                    $src              = imagecreatefrompng(self::STEVE_SKIN);
-                    $this->cacheInfo  = 'image not yet downloaded - unknown error while getting player profile';
+                    $src = imagecreatefrompng(self::STEVE_SKIN);
+                    Log::warning('image not yet downloaded - unknown error while getting player profile', ['username' => $username]);
                     $defaultSkin      = 'steve';
                     $this->fetchError = true;
                     $save             = false;

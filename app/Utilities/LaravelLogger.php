@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,52 +30,37 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+    /**
+     * Created by Max in 2020
+     */
+
     namespace App\Utilities;
 
-    use Plancke\HypixelPHP\classes\HypixelObject;
-    use Plancke\HypixelPHP\exceptions\HypixelPHPException;
-    use Plancke\HypixelPHP\fetch\FetchParams;
-    use Plancke\HypixelPHP\fetch\Response;
-    use Plancke\HypixelPHP\HypixelPHP;
-    use Plancke\HypixelPHP\responses\player\Player;
+    use Log;
+    use Plancke\HypixelPHP\log\Logger as HypixelPHPLogger;
 
     /**
-     * Class HypixelAPI
+     * Class LaravelLogger
      *
      * @package App\Utilities
      */
-    class HypixelAPI {
-        /**
-         * @var HypixelPHP $api
-         */
-        protected $api;
+    class LaravelLogger extends HypixelPHPLogger {
+        protected $levels = [
+            LOG_DEBUG   => 'debug',
+            LOG_INFO    => 'info',
+            LOG_NOTICE  => 'notice',
+            LOG_WARNING => 'warning',
+            LOG_ERR     => 'error',
+            LOG_CRIT    => 'critical',
+            LOG_ALERT   => 'alert',
+            LOG_EMERG   => 'emergency'
+        ];
 
         /**
-         * HypixelAPI constructor.
-         *
-         * @throws HypixelPHPException
+         * @param int    $level
+         * @param string $line
          */
-        public function __construct() {
-            $this->api = new HypixelPHP(config('signatures.api_key'));
-            $this->api->setLogger(new LaravelLogger($this->api));
-            $this->api->getCacheHandler()->setBaseDirectory(storage_path('app/cache/hypixelphp'));
-            $this->api->getFetcher()->setTimeOut(config('signatures.api_timeout'));
-        }
-
-        /**
-         * @param string $uuid
-         *
-         * @return HypixelObject|Response|Player|null
-         * @throws HypixelPHPException
-         */
-        public function getPlayerByUuid(string $uuid) {
-            return $this->api->getPlayer([FetchParams::PLAYER_BY_UUID => $uuid]);
-        }
-
-        /**
-         * @return HypixelPHP
-         */
-        public function getApi(): HypixelPHP {
-            return $this->api;
+        protected function actuallyLog($level, $line) {
+            Log::log($this->levels[$level], $line);
         }
     }

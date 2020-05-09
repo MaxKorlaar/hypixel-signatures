@@ -71,10 +71,12 @@
             }
 
             $request = $this->request($this->sessionURL . $uuid);
+
             if ($request['success'] === false) {
                 Log::debug('Something went wrong while fetching profile data', [$request]);
                 return $request;
             }
+
             $jsonArray    = json_decode($request['data'], true);
             $texturesJSON = $jsonArray['properties'][0];
             $textures     = json_decode(base64_decode($texturesJSON['value']), true);
@@ -122,6 +124,7 @@
             $curlOut = curl_exec($ch);
 
             if ($curlOut === false) {
+                Log::warning('Something went wrong while fetching from the Mojang API', ['error' => curl_error($ch), 'url' => $url]);
                 return ['success' => false, 'status_code' => null, 'error' => curl_error($ch)];
             }
 
