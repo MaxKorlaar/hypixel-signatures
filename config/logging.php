@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -67,29 +67,29 @@
         'channels' => [
             'stack' => [
                 'driver'            => 'stack',
-                'channels'          => ['daily'],
+                'channels'          => ['daily', 'slack'],
                 'ignore_exceptions' => false,
             ],
 
             'single' => [
                 'driver' => 'single',
                 'path'   => storage_path('logs/laravel.log'),
-                'level'  => 'debug',
+                'level' => env('LOG_LEVEL', 'warning')
             ],
 
             'daily' => [
                 'driver' => 'daily',
                 'path'   => storage_path('logs/laravel.log'),
-                'level'  => 'debug',
+                'level'  => env('LOG_LEVEL', 'warning'),
                 'days'   => 14,
             ],
 
             'slack' => [
                 'driver'   => 'slack',
                 'url'      => env('LOG_SLACK_WEBHOOK_URL'),
-                'username' => 'Laravel Log',
+                'username' => config('app.name') . '-bot',
                 'emoji'    => ':boom:',
-                'level'    => 'critical',
+                'level'    => env('SLACK_LOG_LEVEL', 'warning'),
             ],
 
             'papertrail' => [
