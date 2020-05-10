@@ -59,5 +59,5 @@
     Route::get('friends/{username}', 'Friends\FriendsController@getFriends')->where(['username' => '\w{32}']);
 
     Route::prefix('status-sig')->group(static function () {
-        Route::get('get-{name}/{username}{other?}', 'RedirectOldSignaturesController@redirect');
+        Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');
     });

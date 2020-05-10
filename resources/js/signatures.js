@@ -105,8 +105,12 @@ new Vue({
             });
         },
 
+        getImageUrl(signature) {
+            return signature.url.replace(':username', this.uuid ? this.uuid : 'b876ec32e396476ba1158438d83c67d4');
+        },
+
         getPreviewImageUrl(signature) {
-            return signature.url.replace(':username', this.uuid ? this.uuid : 'b876ec32e396476ba1158438d83c67d4')
+            return this.getImageUrl(signature);
         },
 
         clearError(key) {
