@@ -205,3 +205,17 @@ h1 {
     }
   }
 }
+
+.results {
+  pre {
+    user-select: all;
+    white-space: normal;
+    background: $color-grey;
+    padding: .5rem;
+    transition: all $transition-time;
+
+    &:hover, &:focus {
+      color: $color-primary;
+    }
+  }
+}

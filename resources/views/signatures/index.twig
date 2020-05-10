@@ -27,6 +27,19 @@
                 </label>
             </div>
         </div>
+        <div class="results" v-if="selected_signature">
+            <h3>Your signature</h3>
+            <p>
+                Below you can find the signature that you have selected.
+                You can refer to it using the URL of the image, or copy and paste the BBcode on the forums in a forum post, or in your signature.
+            </p>
+            <img :src="getImageUrl(selected_signature)" alt="">
+
+            <pre>[URL='{{ config_get('app.url') }}'][IMG]{{ '{{ getImageUrl(selected_signature) }}' }}[/IMG][/URL]</pre>
+            <p>Copy and paste the above snippet of text in <a href="https://hypixel.net/account/signature">your forum signature</a> to automatically
+               display your chosen statistics below every post you
+               make on the forums. You can use the URL to the image to place this signature on other websites if you wish.</p>
+        </div>
     </div>
 {% endblock %}
 {% block scripts %}
