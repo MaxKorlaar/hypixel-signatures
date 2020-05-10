@@ -71,8 +71,8 @@
             [$black, $purple, $blue] = self::getColours($image);
             $fontSourceSansProLight = resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf');
 
-            $karma          = $player->get('karma', 0);
-            $vanityTokens   = $player->get('vanityTokens', 0);
+            $karma          = $player->getInt('karma', 0);
+            $vanityTokens   = $player->getInt('vanityTokens', 0);
             $mostRecentGame = $player->get('mostRecentGameType', 'None');
             $username       = $player->getName();
 
@@ -109,7 +109,7 @@
 
             ColourHelper::minecraftStringToTTFText($image, $fontSourceSansProLight, 20, $textX, 44, $rankNameWithColour); // Rank name (coloured)
 
-            imagettftext($image, 20, 0, $textX, $linesY[1], $purple, $fontSourceSansProLight, $karma . ' karma'); // Amount of karma
+            imagettftext($image, 20, 0, $textX, $linesY[1], $purple, $fontSourceSansProLight, number_format($karma) . ' karma'); // Amount of karma
 
             imagettftext($image, 20, 0, 380, $linesY[0], $black, $fontSourceSansProLight, 'Level ' . $player->getLevel()); // Network level
 
