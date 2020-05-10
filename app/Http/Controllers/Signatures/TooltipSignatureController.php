@@ -78,7 +78,7 @@
 
             ColourHelper::minecraftStringToTTFText($image, $fontMinecraftia, $fontSize, 10, $start + 3 * $spacing, '§7Hypixel Credits: §b' . $player->getInt('vanityTokens')); // Hypixel Credits
 
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftia, $fontSize, 10, $start + 4 * $spacing, '§7Karma: §d' . $player->getInt('karma')); // Karma
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftia, $fontSize, 10, $start + 4 * $spacing, '§7Karma: §d' . number_format($player->getInt('karma'))); // Karma
 
             return Image::make($image)->response('png');
         }
