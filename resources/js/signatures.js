@@ -117,6 +117,14 @@ new Vue({
             this.errors[key] = null;
         }
     },
+    watch:   {
+        selected_signature(signature) {
+            gtag('event', 'generate', {
+                'event_category': 'signature',
+                'event_label':    signature.name
+            });
+        }
+    },
     mounted() {
         this.signatures = window.Paniek.signatures;
         this.urls       = window.Paniek.urls;
