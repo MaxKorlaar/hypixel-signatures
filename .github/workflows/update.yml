@@ -18,3 +18,5 @@ jobs:
         uses: kawax/composer-update-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+          GIT_NAME: Max Korlaar
+          GIT_EMAIL: max@maxkorlaar.com
