@@ -35,6 +35,7 @@
     use Cache;
     use Exception;
     use Log;
+    use Psr\SimpleCache\InvalidArgumentException;
     use RuntimeException;
 
     require_once(__DIR__ . '/MCavatar.php');
@@ -83,24 +84,20 @@
             }
 
             if ($speed !== 3 || $rotation !== 5) {
-                $imagepath = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$rotation}fms{$l}.gif";
+                $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$rotation}fms{$l}.gif";
             } else {
-                $imagepath = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x{$l}.gif";
+                $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower($username) . "-{$size}x{$l}.gif";
             }
             $this->filepath = $imagepath;
 
             if (file_exists($imagepath)) {
                 if (filemtime($imagepath) < strtotime('-1 week')) {
-                    $this->cacheInfo = '3d full skin expired, redownloading';
-
                     if ($return === 'binary') {
                         return $this->getRotatingSkin($username, $size, $speed, $rotation, $headOnly, $helmet, $layers, 'save-binary');
                     }
                     return $this->getRotatingSkin($username, $size, $speed, $rotation, $headOnly, $helmet, $layers, $return);
-
                 }
 
-                $this->cacheInfo = '3d full skin image exists and OK';
                 if ($return === 'binary') {
                     return file_get_contents($imagepath);
                 }
@@ -114,7 +111,6 @@
                 return $imagepath;
             }
 
-            $this->cacheInfo = '3d full skin image not yet downloaded';
             if ($return === 'binary') {
                 return $this->getRotatingSkin($username, $size, $speed, $rotation, $headOnly, $helmet, $layers, 'save-binary');
             }
@@ -190,12 +186,12 @@
                     $frames *= -1;
                 }
                 if ($speed !== 3 || $frames !== 5) {
-                    $imagepath = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$frames}fms{$l}.gif";
+                    $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$frames}fms{$l}.gif";
                 } else {
-                    $imagepath = $this->imagepath . 'rotate_gif/' . strtolower($username) . "-{$size}x{$l}.gif";
+                    $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower($username) . "-{$size}x{$l}.gif";
                 }
 
-                if (!file_exists($this->imagepath . 'rotate_gif/') && !mkdir($concurrentDirectory = $this->imagepath . 'rotate_gif/', 0777, true) && !is_dir($concurrentDirectory)) {
+                if (!file_exists($this->imageStoragePath . 'rotate_gif/') && !mkdir($concurrentDirectory = $this->imageStoragePath . 'rotate_gif/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
                 }
                 @file_put_contents($imagepath, $gifBinary);
@@ -240,10 +236,10 @@
                 $l = '';
             }
 
-            $imagepath = $this->imagepath . '3d/' . strtolower($username) . "-{$size}x-{$angle}{$h}{$nh}{$l}.png";
+            $imagepath = $this->imageStoragePath . '3d/' . strtolower($username) . "-{$size}x-{$angle}{$h}{$nh}{$l}.png";
 
             return Cache::lock('minecraft.avatar.' . $imagepath)->block(5, function () use ($layers, $helmet, $headOnly, $angle, $size, $username, $imagepath) {
-                if (!file_exists($this->imagepath . '3d/') && !mkdir($concurrentDirectory = $this->imagepath . '3d/', 0777, true) && !is_dir($concurrentDirectory)) {
+                if (!file_exists($this->imageStoragePath . '3d/') && !mkdir($concurrentDirectory = $this->imageStoragePath . '3d/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException("Directory \"{$concurrentDirectory}\" was not created");
                 }
 
@@ -260,7 +256,6 @@
                         return $image;
                     }
 
-                    Log::debug('3d skin image exists and OK', ['path' => $imagepath]);
                     return imagecreatefrompng($imagepath);
                 }
 
@@ -284,6 +279,7 @@
          * @param bool $layers
          *
          * @return resource|string
+         * @throws InvalidArgumentException
          */
         public function getThreeDSkin($username, $size = 2, $angle = 0, $headOnly = false, $helmet = true, $layers = false) {
             $this->username     = $username;
@@ -292,6 +288,7 @@
             $this->helmet       = $helmet;
             $this->layers       = $layers;
             $this->playerRender = new render3DPlayer($this->username, '0', $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'png', $this->size, $this->layers, true);
+
             return $this->playerRender->get3DRender();
         }
 

@@ -34,7 +34,7 @@ const axios = require('axios').default;
 
 
 // noinspection ObjectAllocationIgnored
-new Vue({
+window.signaturesApp = new Vue({
     el:      '#signature-app',
     data:    {
         signatures:         {},
@@ -66,7 +66,10 @@ new Vue({
                         this.username        = data.data.name;
                         window.location.hash = data.data.name;
                     } else {
-                        if (data.status_code === 204) {
+                        if (data.throttle) {
+                            this.errors.username = "Unfortunately, we're using Mojang's API a bit too much right now. Please try again in a minute.";
+                            return;
+                        } else if (data.status_code === 204) {
                             this.errors.username = 'This username could not be found.';
                             // Username does not exist
                             return;
@@ -91,7 +94,10 @@ new Vue({
                     this.username        = data.data.username;
                     window.location.hash = data.data.username;
                 } else {
-                    if (data.status_code === 204) {
+                    if (data.throttle) {
+                        this.errors.username = "Unfortunately, we're using Mojang's API a bit too much right now. Please try again in a minute.";
+                        return;
+                    } else if (data.status_code === 204) {
                         this.errors.username = 'This UUID does not exist.';
                         return;
                     }
@@ -135,4 +141,4 @@ new Vue({
             this.getUuidFromUsername();
         }
     }
-})
+});

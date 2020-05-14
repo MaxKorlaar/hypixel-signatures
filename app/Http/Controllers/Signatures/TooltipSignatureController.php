@@ -57,10 +57,8 @@
             $fontMinecraftia = resource_path('fonts/minecraftia/Minecraftia.ttf');
             $green           = imagecolorallocate($image, 85, 255, 85);
 
-            $rank       = $player->getRank(false);
-            $rankPrefix = $rank->getPrefix($player);
-
-            $rankPrefix = substr($rankPrefix, 0, 3) . substr($rankPrefix, 4, -1);
+            $rank     = $player->getRank(false);
+            $rankName = $rank->getColor() . $rank->getCleanName();
 
             imagettftext($image, 14, 0, 10, 25, $green, $fontMinecraftia, 'Character Information');
 
@@ -68,7 +66,7 @@
             $start    = 50 - 16;
             $fontSize = 13;
 
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftia, $fontSize, 10, $start, '§7Rank: ' . $rankPrefix); // Rank
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftia, $fontSize, 10, $start, '§7Rank: ' . $rankName); // Rank
 
             ColourHelper::minecraftStringToTTFText($image, $fontMinecraftia, $fontSize, 10, $start + $spacing, '§7Level: §6' . ($player->getLevel())); // Level
 

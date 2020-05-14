@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -72,8 +72,6 @@
      */
     class render3DPlayer {
         public $fetchError = null;
-        public $fetchURL = null;
-        private $fallback_img = 'https://hypixel.maxkorlaar.com/img/Steve_skin.png';
         private $playerName = null;
         private $playerSkin = false;
         private $isNewSkinType = false;
@@ -177,44 +175,26 @@
 
         /**
          * @return bool
-         * @throws InvalidArgumentException
          */
         private function getPlayerSkin(): bool {
-            $this->fetchError = 0;
             if (trim($this->playerName) === '') {
-                Log::debug('Playername is empty');
-                $this->playerSkin = imagecreatefrompng($this->fallback_img);
-                return false;
+                throw new \InvalidArgumentException('Playername or UUID is empty');
             }
 
-            $MCa     = new MCavatar();
-            $skinURL = $MCa->getSkinFromCache($this->playerName);
+            $MCavatar = new MCavatar();
+            $skinURL  = $MCavatar->getSkinFromCache($this->playerName);
 
-            $this->fetchError = $MCa->fetchError;
-            $this->fetchURL   = $MCa->fetchUrl;
+            $this->fetchError = $MCavatar->fetchError;
 
-            if ($skinURL !== false) {
-                Log::debug('Getting skin from existing URL: ' . $skinURL);
-                $this->playerSkin = imagecreatefrompng($skinURL);
-            } else {
-                Log::debug('skinURL is false', ['playerName' => $this->playerName]);
-                // Try again one more time
-                $skinURL = $MCa->getSkinFromCache($this->playerName);
-                if ($skinURL !== false) {
-                    $this->playerSkin = imagecreatefrompng($skinURL);
-                    Log::debug('Getting skin from existing URL, second try: ' . $skinURL);
-                }
-            }
-            if ($MCa->fetchError === true) {
-                $this->fetchError = true;
-                Log::debug('An error has occurred while getting the skin file');
-            }
-            Log::debug('Skin URL:' . $skinURL);
+            Log::debug('Getting skin from existing URL: ' . $skinURL);
+            $this->playerSkin = imagecreatefrompng($skinURL);
+
+            Log::debug('Skin URL: ' . $skinURL);
 
             if (!$this->playerSkin) {
                 // Player skin does not exist
-                Log::debug('Falling back on default...');
-                $this->playerSkin = imagecreatefrompng($this->fallback_img);
+                Log::debug('Something went wrong while creating an image resource from the image path');
+                $this->playerSkin = imagecreatefrompng($MCavatar->getFallbackUrl());
                 return false;
             }
 
@@ -222,9 +202,10 @@
                 // Bad ratio created
                 Log::debug('Ratio incorrect');
                 $this->fetchError = true;
-                $this->playerSkin = imagecreatefrompng($this->fallback_img);
+                $this->playerSkin = imagecreatefrompng($MCavatar->getFallbackUrl());
                 return false;
             }
+
             return true;
         }
 
@@ -245,7 +226,7 @@
 
                     if ($tempValue === null) {
                         $tempValue = $pixelColor;
-                    } elseif ($tempValue != $pixelColor) {
+                    } elseif ($tempValue !== $pixelColor) {
                         // Cannot determine a background color, file is probably fine
                         $needRemove = false;
                     }
@@ -1553,53 +1534,6 @@
             return $display_order;
         }
 
-        /**
-         * Checks if given string is an UUID
-         *
-         * @param $candidate
-         *
-         * @return false|int
-         */
-        private function isUUID($candidate) {
-            return preg_match('/^[0-9A-Za-z]{8}(-[0-9A-Za-z]{4}){3}-[0-9A-Za-z]{12}$/', $candidate);
-        }
-
-
-        /**
-         * @param $UUID
-         *
-         * @return bool
-         */
-        private function getSkinURLViaUUIDViaMojang($UUID): bool {
-            $convertedUUID        = str_replace('-', '', $UUID);
-            $mojangServiceContent = file_get_contents('https://sessionserver.mojang.com/session/minecraft/profile/' . $convertedUUID);
-            $contentArray         = json_decode($mojangServiceContent, true);
-
-            if (!is_array($contentArray)) {
-                return false;
-            }
-
-            if (array_key_exists('properties', $contentArray)) {
-                foreach ($contentArray['properties'] as $element) {
-                    if (array_key_exists('name', $element) && $element['name'] === 'textures') {
-                        $content   = base64_decode($element['value']);
-                        $skinArray = json_decode($content, true);
-
-                        if (!array_key_exists('textures', $skinArray)) {
-                            break;
-                        }
-
-                        if (!array_key_exists('SKIN', $skinArray['textures'])) {
-                            break;
-                        }
-
-                        return $skinArray['textures']['SKIN']['url'];
-                    }
-                }
-            }
-
-            return false;
-        }
 
     }
 
@@ -1720,6 +1654,9 @@
             return $this->_destCoord;
         }
 
+        /**
+         * @return mixed
+         */
         public function getDepth() {
             if (!$this->_isProjected) {
                 $this->project();
@@ -1899,6 +1836,7 @@
                     $dot->project();
                 }
             }
+            unset($dot);
             $this->_isProjected = true;
         }
     }
