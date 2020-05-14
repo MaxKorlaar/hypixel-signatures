@@ -68,8 +68,8 @@
             $this->skinUrl          = 'http://skins.minecraft.net/MinecraftSkins/';
             $this->imageStoragePath = storage_path('app/public/minecraft-avatars') . '/';
 
-            $this->fallbackSkinRegular = storage_path('app/skins/steve.png');
-            $this->fallbackSkinThin    = storage_path('app/skins/alex.png');
+            $this->fallbackSkinRegular = resource_path('images/skins/steve.png');
+            $this->fallbackSkinThin    = resource_path('images/skins/alex.png');
             $this->fallbackUrl         = $this->fallbackSkinRegular;
         }
 
