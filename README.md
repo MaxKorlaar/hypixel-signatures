@@ -1,4 +1,5 @@
 # Hypixel.Paniek.de
+![Hypixel Signatures](https://github.com/MaxKorlaar/hypixel-signatures/workflows/Hypixel%20Signatures/badge.svg)
 ## Signatures (images) with statistics and other tools
 
 This project is the open source version of the 'new' hypixel.maxkorlaar.com, which will be moved over to hypixel.paniek.de.
