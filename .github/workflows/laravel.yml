@@ -1,4 +1,4 @@
-name: Laravel
+name: Hypixel Signatures
 
 on:
   push:
@@ -10,7 +10,7 @@ jobs:
   laravel-tests:
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v2
     - name: Copy .env
