@@ -33,6 +33,7 @@
     namespace App\Http\Controllers;
 
     use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\View\View;
 
     /**
@@ -42,10 +43,10 @@
      */
     class IndexController extends Controller {
         /**
-         * @return Factory|View
+         * @return RedirectResponse
          */
-        public function index() {
-            return view('index');
+        public function index(): RedirectResponse {
+            return redirect()->route('signatures');
         }
 
         /**

@@ -53,7 +53,7 @@
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
     });
 
-    Route::get('/player/{username}/username', 'PlayerController@getUuid')->name('player.get_uuid');
+    Route::get('/player/{username}/uuid', 'PlayerController@getUuid')->name('player.get_uuid');
     Route::get('/player/{uuid}/profile', 'PlayerController@getProfile')->name('player.get_profile');
 
     Route::get('friends/{username}', 'Friends\FriendsController@getFriends')->where(['username' => '\w{32}']);
