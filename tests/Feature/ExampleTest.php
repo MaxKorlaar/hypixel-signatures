@@ -48,6 +48,6 @@
         public function testBasicTest() {
             $response = $this->get('/');
 
-            $response->assertStatus(200);
+            $response->assertStatus(302)->assertRedirect(route('signatures')); // Temporarily redirect to /signatures because the site does not have any content
         }
     }
