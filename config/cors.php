@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,61 +30,35 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-    namespace App\Exceptions;
+    return [
 
-    use Exception;
-    use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-    use Illuminate\Http\Request;
-    use Illuminate\Http\Response;
-    use Throwable;
+        /*
+        |--------------------------------------------------------------------------
+        | Cross-Origin Resource Sharing (CORS) Configuration
+        |--------------------------------------------------------------------------
+        |
+        | Here you may configure your settings for cross-origin resource sharing
+        | or "CORS". This determines what cross-origin operations may execute
+        | in web browsers. You are free to adjust these settings as needed.
+        |
+        | To learn more: https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+        |
+        */
 
-    /**
-     * Class Handler
-     *
-     * @package App\Exceptions
-     */
-    class Handler extends ExceptionHandler {
-        /**
-         * A list of the exception types that are not reported.
-         *
-         * @var array
-         */
-        protected $dontReport = [
-            //
-        ];
+        'paths' => ['api/*'],
 
-        /**
-         * A list of the inputs that are never flashed for validation exceptions.
-         *
-         * @var array
-         */
-        protected $dontFlash = [
-            'password',
-            'password_confirmation',
-        ];
+        'allowed_methods' => ['*'],
 
-        /**
-         * Report or log an exception.
-         *
-         * @param Throwable $exception
-         *
-         * @return void
-         * @throws Exception
-         */
-        public function report(Throwable $exception) {
-            parent::report($exception);
-        }
+        'allowed_origins' => ['*'],
 
-        /**
-         * Render an exception into an HTTP response.
-         *
-         * @param Request   $request
-         * @param Throwable $exception
-         *
-         * @return Response
-         * @throws Throwable
-         */
-        public function render($request, Throwable $exception) {
-            return parent::render($request, $exception);
-        }
-    }
+        'allowed_origins_patterns' => [],
+
+        'allowed_headers' => ['*'],
+
+        'exposed_headers' => [],
+
+        'max_age' => 0,
+
+        'supports_credentials' => false,
+
+    ];
