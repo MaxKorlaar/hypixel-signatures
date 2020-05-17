@@ -108,9 +108,19 @@
         public function getSkin($username, $save = false) {
             $this->fallbackUrl = $this->fallbackSkinRegular;
 
-            if (strlen($username) === 32) {
-                $api  = new MojangAPI();
-                $data = $api->getProfile($username);
+            if (strlen($username) >= 32) {
+                if (strlen($username) === 32) {
+                    $api  = new MojangAPI();
+                    $data = $api->getProfile($username);
+                } else {
+                    $data = [
+                        'success' => true,
+                        'data'    => [
+                            'skinURL' => 'http://textures.minecraft.net/texture/' . $username,
+                            'isSteve' => true
+                        ]
+                    ];
+                }
 
                 if ($data['success'] === true) {
                     $skinData = $data['data'];

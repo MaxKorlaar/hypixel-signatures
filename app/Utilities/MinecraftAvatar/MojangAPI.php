@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -147,30 +147,12 @@
         }
 
         /**
-         * @param $username
+         * @param $request
          *
-         * @return array
+         * @return bool
          */
-        public function getUUID($username): array {
-            return Cache::remember('mojangapi.username.' . $username, $this->getCacheTime(), function () use ($username) {
-                $request = $this->request($this->profileURL . $username);
-
-                if ($request['success'] === false) {
-                    if ($this->checkForThrottle($request)) {
-                        Log::debug('Could not fetch UUID from Mojang API due to throttle', ['username' => $username]);
-
-                        return ['success' => false, 'throttle' => true];
-                    }
-                    return $request;
-                }
-
-                $jsonArray = json_decode($request['data'], true);
-
-                Log::debug('Fetched UUID from Mojang API', ['username' => $username, 'data' => $jsonArray]);
-
-                return ['success' => true, 'data' => $jsonArray];
-            });
-
+        public function checkForThrottle($request): bool {
+            return isset($request['status_code']) && $request['status_code'] === 429;
         }
 
         /**
@@ -188,12 +170,37 @@
         }
 
         /**
-         * @param $request
+         * @param $username
          *
-         * @return bool
+         * @return array
+         * @throws InvalidArgumentException
          */
-        public function checkForThrottle($request): bool {
-            return isset($request['status_code']) && $request['status_code'] === 429;
+        public function getUUID($username): array {
+            $cacheKey = 'mojangapi.username.' . $username;
+
+            if (Cache::has($cacheKey)) {
+                return Cache::get($cacheKey);
+            }
+
+            $request = $this->request($this->profileURL . $username);
+
+            if ($request['success'] === false) {
+                if ($this->checkForThrottle($request)) {
+                    Log::debug('Could not fetch UUID from Mojang API due to throttle', ['username' => $username]);
+
+                    return ['success' => false, 'throttle' => true];
+                }
+                return $request;
+            }
+
+            $jsonArray = json_decode($request['data'], true);
+            $return    = ['success' => true, 'data' => $jsonArray];
+
+            Log::debug('Fetched UUID from Mojang API', ['username' => $username, 'data' => $jsonArray]);
+
+            Cache::set($cacheKey, $return, $this->getCacheTime());
+
+            return $return;
         }
 
         /**

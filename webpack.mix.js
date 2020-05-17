@@ -50,20 +50,20 @@ mix.js('resources/js/app.js', 'public/js')
     .extract(['vue'])
     .purgeCss()
     .browserSync({
-        proxy:          'localhost:8000',
-        files:          [
+        proxy: 'localhost:8000',
+        files: [
             "resources/views/**/*.twig",
             'app/**/*.php',
             'public/js/**/*.js',
             'public/css/**/*.css'
         ],
-        snippetOptions: {
-            // Provide a custom Regex for inserting the snippet.
-            rule: {
-                match: /<\/body>/i,
-                fn:    function (snippet, match) {
-                    return snippet + match;
-                }
-            }
-        }
+        // snippetOptions: {
+        //     // Provide a custom Regex for inserting the snippet.
+        //     rule: {
+        //         match: /<\/body>/i,
+        //         fn:    function (snippet, match) {
+        //             return snippet + match;
+        //         }
+        //     }
+        // }
     });

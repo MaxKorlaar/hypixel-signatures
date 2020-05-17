@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Console\Commands;
+    namespace App\Console\Commands;
 
     use Cache;
     use File;
@@ -109,7 +109,15 @@ namespace App\Console\Commands;
                 'runecrafting_xp',
                 'bonus_stats',
                 'stat_template',
-                'base_stats'
+                'base_stats',
+                'slayer_xp',
+                'slayer_cost',
+                'pet_rarity_offset',
+                'pet_levels',
+                'pet_data',
+                'pet_items',
+                'pet_value',
+                'pet_rewards'
             ])->toJson());
             File::delete(resource_path('data/skyblock/constants.js'));
 

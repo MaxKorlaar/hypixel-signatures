@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -147,7 +147,7 @@
                 if ($this->invert) {
                     $angle *= -1;
                 }
-                $player         = new render3DPlayer($this->username, '0', $angle, '0', '0', '0', '0', '0', "{$this->helmet}", "{$this->headOnly}", 'png', $this->size, $this->layers);
+                $player         = new render3DPlayer($this->username, '0', $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'png', $this->size, $this->layers);
                 $this->images[] = $player->get3DRender();
             };
 
@@ -217,28 +217,30 @@
          * @param bool $helmet
          * @param bool $layers
          *
+         * @param int  $verticalAngle
+         *
          * @return bool|resource
          */
-        public function getThreeDSkinFromCache($username, $size = 2, $angle = 0, $headOnly = false, $helmet = true, $layers = false) {
+        public function getThreeDSkinFromCache($username, $size = 2, $angle = 0, bool $headOnly = false, bool $helmet = true, bool $layers = true, int $verticalAngle = 0) {
             if ($headOnly) {
-                $h = '-head';
+                $head = '-head';
             } else {
-                $h = '';
+                $head = '';
             }
             if (!$helmet) {
-                $nh = '-nohelm';
+                $noHelm = '-nohelm';
             } else {
-                $nh = '';
+                $noHelm = '';
             }
             if ($layers) {
-                $l = '-withlayers';
+                $withLayers = '-withlayers';
             } else {
-                $l = '';
+                $withLayers = '';
             }
 
-            $imagepath = $this->imageStoragePath . '3d/' . strtolower($username) . "-{$size}x-{$angle}{$h}{$nh}{$l}.png";
+            $imagepath = $this->imageStoragePath . '3d/' . strtolower($username) . "-{$size}x-{$angle}-{$verticalAngle}-{$head}{$noHelm}{$withLayers}.png";
 
-            return Cache::lock('minecraft.avatar.' . $imagepath)->block(5, function () use ($layers, $helmet, $headOnly, $angle, $size, $username, $imagepath) {
+            return Cache::lock('minecraft.avatar.' . $imagepath)->block(5, function () use ($verticalAngle, $layers, $helmet, $headOnly, $angle, $size, $username, $imagepath) {
                 if (!file_exists($this->imageStoragePath . '3d/') && !mkdir($concurrentDirectory = $this->imageStoragePath . '3d/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException("Directory \"{$concurrentDirectory}\" was not created");
                 }
@@ -247,7 +249,7 @@
                     if (filemtime($imagepath) < strtotime('-3 days')) {
                         Log::debug('3d skin expired, regenerating', ['path' => $imagepath]);
 
-                        $image = $this->getThreeDSkin($username, $size, $angle, $headOnly, $helmet, $layers);
+                        $image = $this->getThreeDSkin($username, $size, $angle, $headOnly, $helmet, $layers, $verticalAngle);
 
                         if ($this->playerRender->fetchError === null) {
                             imagepng($image, $imagepath);
@@ -260,7 +262,7 @@
                 }
 
                 Log::debug('3d skin image not yet generated', ['path' => $imagepath]);
-                $image = $this->getThreeDSkin($username, $size, $angle, $headOnly, $helmet, $layers);
+                $image = $this->getThreeDSkin($username, $size, $angle, $headOnly, $helmet, $layers, $verticalAngle);
 
                 if ($this->playerRender->fetchError === null) {
                     imagepng($image, $imagepath);
@@ -278,16 +280,18 @@
          * @param bool $helmet
          * @param bool $layers
          *
+         * @param int  $verticalAngle
+         *
          * @return resource|string
          * @throws InvalidArgumentException
          */
-        public function getThreeDSkin($username, $size = 2, $angle = 0, $headOnly = false, $helmet = true, $layers = false) {
+        public function getThreeDSkin($username, $size = 2, $angle = 0, bool $headOnly = false, bool $helmet = true, bool $layers = false, int $verticalAngle = 0) {
             $this->username     = $username;
             $this->size         = $size;
             $this->headOnly     = $headOnly;
             $this->helmet       = $helmet;
             $this->layers       = $layers;
-            $this->playerRender = new render3DPlayer($this->username, '0', $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'png', $this->size, $this->layers, true);
+            $this->playerRender = new render3DPlayer($this->username, $verticalAngle, $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'png', $this->size, $this->layers, true);
 
             return $this->playerRender->get3DRender();
         }

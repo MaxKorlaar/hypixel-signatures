@@ -207,7 +207,8 @@ h1 {
 }
 
 .results {
-  pre {
+  code {
+    display: block;
     user-select: all;
     white-space: normal;
     background: $color-grey;
