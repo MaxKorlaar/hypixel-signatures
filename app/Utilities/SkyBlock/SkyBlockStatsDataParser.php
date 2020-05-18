@@ -36,6 +36,7 @@
 
     namespace App\Utilities\SkyBlock;
 
+    use App\Models\SkyBlockItem;
     use Cache;
     use File;
     use Illuminate\Support\Arr;
@@ -46,9 +47,7 @@
     use Plancke\HypixelPHP\responses\player\Player;
     use Plancke\HypixelPHP\responses\Resource;
     use pocketmine\nbt\BigEndianNBTStream;
-    use pocketmine\nbt\tag\CompoundTag;
     use pocketmine\nbt\tag\ListTag;
-    use pocketmine\nbt\tag\NamedTag;
     use UnexpectedValueException;
 
     /**
@@ -280,7 +279,17 @@
 
             $items = $this->getItems($profile);
 
-            dd($items, $profile);
+            if ($items['talismans']->filter(static function (SkyBlockItem $item) {
+                    return $item->getTagId() === 'MELODY_HAIR';
+                })->count() === 1) {
+                $return['stats']['intelligence'] += 26;
+            }
+
+            foreach ($return['pet_score_bonus'] as $stat => $value) {
+                $return['stats'][$stat] += $value;
+            }
+
+            dd($items, $return);
 
             dd($return, $slayers, $profile, $requiredPetScore);
 
@@ -599,20 +608,24 @@
          * @link https://github.com/LeaPhant/skyblock-stats/blob/91a03c50f7b0d2ddf0ba50a6f170e1ea8b05fd6f/src/lib.js#L657
          *
          * @param Collection $profile
+         *
+         * @return Collection
          */
-        protected function getItems(Collection $profile) {
-            $armor       = isset($profile['inv_armor']) ? $this->getItemsFromData($profile['inv_armor']['data']) : [];
-            $inventory   = isset($profile['inv_contents']) ? $this->getItemsFromData($profile['inv_contents']['data']) : [];
-            $enderchest  = isset($profile['ender_chest_contents']) ? $this->getItemsFromData($profile['ender_chest_contents']['data']) : [];
-            $talismanBag = isset($profile['talisman_bag']) ? $this->getItemsFromData($profile['talisman_bag']['data']) : [];
-            $fishingBag  = isset ($profile['fishing_bag']) ? $this->getItemsFromData($profile['fishing_bag']['data']) : [];
-            $quiver      = isset($profile['quiver']) ? $this->getItemsFromData($profile['quiver']['data']) : [];
-            $potionBag   = isset($profile['potion_bag']) ? $this->getItemsFromData($profile['potion_bag']['data']) : [];
-            $candyBag    = isset($profile['candy_inventory_contents']) ? $this->getItemsFromData($profile['candy_inventory_contents']['data']) : [];
+        protected function getItems(Collection $profile): Collection {
+            $armor       = isset($profile['inv_armor']) ? $this->getItemsFromData($profile['inv_armor']['data']) : new Collection();
+            $inventory   = isset($profile['inv_contents']) ? $this->getItemsFromData($profile['inv_contents']['data']) : new Collection();
+            $enderchest  = isset($profile['ender_chest_contents']) ? $this->getItemsFromData($profile['ender_chest_contents']['data']) : new Collection();
+            $talismanBag = isset($profile['talisman_bag']) ? $this->getItemsFromData($profile['talisman_bag']['data']) : new Collection();
+            $fishingBag  = isset ($profile['fishing_bag']) ? $this->getItemsFromData($profile['fishing_bag']['data']) : new Collection();
+            $quiver      = isset($profile['quiver']) ? $this->getItemsFromData($profile['quiver']['data']) : new Collection();
+            $potionBag   = isset($profile['potion_bag']) ? $this->getItemsFromData($profile['potion_bag']['data']) : new Collection();
+            $candyBag    = isset($profile['candy_inventory_contents']) ? $this->getItemsFromData($profile['candy_inventory_contents']['data']) : new Collection();
+
+            $return = new Collection();
 
             $return['armor']        = $armor->filter(static function ($item) {
-                /** @var Collection $item */
-                return $item->isNotEmpty();
+                /** @var SkyBlockItem $item */
+                return $item->hasData();
             });
             $return['inventory']    = $inventory;
             $return['enderchest']   = $enderchest;
@@ -621,20 +634,294 @@
             $return['quiver']       = $quiver;
             $return['potion_bag']   = $potionBag;
 
+            /** @var Collection|SkyBlockItem[] $allItems */
             $allItems = $armor->concat($inventory)->concat($enderchest)->concat($talismanBag)
                 ->concat($fishingBag)->concat($quiver)->concat($potionBag)
                 ->filter(static function ($item) {
-                    /** @var Collection $item */
-                    return $item->isNotEmpty();
+                    /** @var SkyBlockItem $item */
+                    return $item->hasData();
                 });
 
             $enderchest = $enderchest->map(static function ($item) {
                 $item['is_inactive'] = true;
                 return $item;
             });
-            //https://github.com/LeaPhant/skyblock-stats/blob/91a03c50f7b0d2ddf0ba50a6f170e1ea8b05fd6f/src/lib.js#L692
 
-            dd($return, $allItems);
+            foreach ($allItems as $item) {
+                if ($item->getTagId() === 'TRICK_OR_TREAT_BAG') {
+                    $item['contains_items'] = $candyBag;
+                }
+            }
+
+            /**
+             * Talismans
+             */
+
+            $talismans = new Collection();
+
+            /** @var SkyBlockItem $talisman */
+            foreach ($inventory->where('type', 'accessory')->concat($talismanBag) as $talisman) {
+                $id = $talisman->getTagId();
+
+                if ($id === null) {
+                    continue;
+                }
+
+                $talisman['is_unique']   = true;
+                $talisman['is_inactive'] = false;
+
+                if ($talismans->filter(static function (SkyBlockItem $talisman) use ($id) {
+                    return !$talisman['is_inactive'] && $talisman->getTagId() === $id;
+                })->isNotEmpty()) {
+                    $talisman['is_inactive'] = true;
+                }
+
+                if ($talismans->filter(static function (SkyBlockItem $talisman) use ($id) {
+                    return $talisman->getTagId() === $id;
+                })->isNotEmpty()) {
+                    $talisman['is_unique'] = false;
+                }
+
+                $talismans->push($talisman);
+            }
+
+            /** @var SkyBlockItem $item */
+            foreach ($inventory->concat($enderchest) as $item) {
+                $items = new Collection([$item]);
+
+                if ($item['type'] !== 'accessory' && isset($item['contains_items'])) {
+                    $items = $item['contains_items'];
+                }
+
+                foreach ($items->where('type', 'accessory') as $talisman) {
+                    $id = $talisman->getTagId();
+
+                    $talisman['is_unique']   = true;
+                    $talisman['is_inactive'] = true;
+
+                    if ($talismans->filter(static function (SkyBlockItem $talisman) use ($id) {
+                        return $talisman->getTagId() === $id;
+                    })->isNotEmpty()) {
+                        $talisman['is_unique'] = false;
+                    }
+
+                    $talismans->push($talisman);
+                }
+            }
+
+            foreach ($talismans as $talisman) {
+                $id = $talisman->getTagId();
+
+                $talismanUpgradesTable = $this->get('talisman_upgrades');
+
+                if ($talismanUpgradesTable->has($id)) {
+                    $talismanUpgrades = new Collection($talismanUpgradesTable->get($id));
+
+                    if ($talismans->filter(static function (SkyBlockItem $talisman) use ($talismanUpgrades) {
+                        return !$talisman['is_inactive'] && $talismanUpgrades->contains($talisman->getTagId());
+                    })->isNotEmpty()) {
+                        $talisman['is_inactive'] = true;
+                    }
+
+                    if ($talismans->filter(static function (SkyBlockItem $talisman) use ($talismanUpgrades) {
+                        return $talismanUpgrades->contains($talisman->getTagId());
+                    })->isNotEmpty()) {
+                        $talisman['is_unique'] = false;
+                    }
+                }
+
+                $talismanDuplicatesTable = $this->get('talisman_duplicates');
+
+                if ($talismanDuplicatesTable->has($id)) {
+                    $talismanDuplicates = new Collection($talismanDuplicatesTable->get($id));
+
+                    if ($talismans->filter(static function (SkyBlockItem $talisman) use ($talismanDuplicates) {
+                        return $talismanDuplicates->contains($talisman->getTagId());
+                    })->isNotEmpty()) {
+                        $talisman['is_unique'] = false;
+                    }
+                }
+
+                /**
+                 * New Year Cake Bag health bonus
+                 */
+
+                $cakes = [];
+
+                if ($id === 'NEW_YEAR_CAKE_BAG' && isset($talisman['contains_items'])) {
+                    $talisman['stats']['health'] = 0;
+
+                    foreach ($talisman['contains_items'] as $item) {
+                        if (Arr::has($item, 'tag.ExtraAttributes.new_years_cake') && !in_array($item['tag']['ExtraAttributes']['new_years_cake'], $cakes, true)) {
+                            $talisman['stats']['health'] += 1;
+                            $cakes[]                     = $item['tag']['ExtraAttributes']['new_years_cake'];
+                        }
+                    }
+                }
+
+                /**
+                 * Base name without reforge
+                 */
+
+                $talisman['base_name'] = $talisman['display_name'];
+
+                if (Arr::has($talisman, 'tag.ExtraAttributes.modifier')) {
+                    $talisman['base_name'] = Str::after($talisman['display_name'], ' ');
+                    $talisman['reforge']   = $talisman['tag']['ExtraAttributes']['modifier'];
+                }
+            }
+
+            $return['talismans'] = $talismans;
+            $return['weapons']   = $allItems->filter(static function (SkyBlockItem $item) {
+                return $item['type'] === 'sword' || $item['type'] === 'bow';
+            });
+            $return['rods']      = $allItems->where('type', 'fishing rod');
+
+            foreach ($allItems as $item) {
+                if (!isset($item['contains_items'])) {
+                    continue;
+                }
+
+                $return['weapons']->push(...$item['contains_items']->filter(static function (SkyBlockItem $item) {
+                    return $item['type'] === 'sword' || $item['type'] === 'bow';
+                }));
+                $return['rods']->push(...$item['contains_items']->where('type', 'fishing rod'));
+            }
+
+            $return['no_inventory'] = $inventory->isEmpty();
+
+            $return['weapons'] = $return['weapons']->sort(static function ($a, $b) {
+                if ($a['rarity'] === $b['rarity']) {
+                    if ($b['in_backpack']) {
+                        return -1;
+                    }
+
+                    return $b['item_index'] - $a['item_index'];
+                }
+
+                return array_search($a['rarity'], self::RARITY_ORDER, true) - array_search($b['rarity'], self::RARITY_ORDER, true);
+            });
+
+            $return['rods'] = $return['rods']->sort(static function ($a, $b) {
+                if ($a['rarity'] === $b['rarity']) {
+                    if ($b['in_backpack']) {
+                        return -1;
+                    }
+
+                    return $b['item_index'] - $a['item_index'];
+                }
+
+                return array_search($a['rarity'], self::RARITY_ORDER, true) - array_search($b['rarity'], self::RARITY_ORDER, true);
+            });
+
+            $countsOfWeaponId = [];
+
+            /** @var SkyBlockItem $weapon */
+            foreach ($return['weapons'] as $weapon) {
+                $id = $weapon->getTagId();
+
+                $countsOfWeaponId[$id] = ($countsOfWeaponId[$id] ?? 0) + 1;
+
+                if ($countsOfWeaponId[$id] > 2) {
+                    $weapon['hidden'] = true;
+                }
+            }
+
+            $return['talismans'] = $return['talismans']->sort(static function ($a, $b) {
+                $rarityOrder = array_search($a['rarity'], self::RARITY_ORDER, true) - array_search($b['rarity'], self::RARITY_ORDER, true);
+
+                if ($rarityOrder === 0) {
+                    if ($a['is_inactive'] === $b['is_inactive']) {
+                        return 0;
+                    }
+
+                    return $a['is_inactive'] ? 1 : -1;
+                }
+
+                return $rarityOrder;
+            });
+
+            $armorWithData = $armor->filter(static function (SkyBlockItem $item) {
+                return $item->hasData();
+            });
+
+            if ($armorWithData->count() === 1) {
+                /** @var SkyBlockItem $armorPiece */
+                $armorPiece = $armorWithData->first();
+
+                $return['armor_set']        = $armorPiece['display_name'];
+                $return['armor_set_rarity'] = $armorPiece['rarity'];
+            } elseif ($armorWithData->count() === 4) {
+                $reforgeName = null;
+
+                foreach ($armor as $armorPiece) {
+                    $name = $armorPiece['display_name'];
+
+                    if (Arr::has($armorPiece, 'tag.ExtraAttributes.modifier')) {
+                        $name = Str::after($name, ' ');
+                    }
+
+                    $armorPiece['armor_name'] = $name;
+                }
+
+                $reforgedArmorSet = $armor->filter(static function (SkyBlockItem $armorPiece) use ($armor) {
+                    return Arr::has($armorPiece, 'tag.ExtraAttributes.modifier') && $armorPiece['tag']['ExtraAttributes']['modifier'] === $armor[0]['tag']['ExtraAttributes']['modifier'];
+                });
+
+                if ($reforgedArmorSet->count() === 4) {
+                    $reforgeName = Str::before($armor[0]['display_name'], ' ');
+                }
+
+                $isMonsterSet = $armor->filter(static function (SkyBlockItem $armorPiece) {
+                        return Str::is(['SKELETON_HELMET', 'GUARDIAN_CHESTPLATE', 'CREEPER_LEGGINGS', 'SPIDER_BOOTS', 'TARANTULA_BOOTS'], $armorPiece->getTagId());
+                    })->count() === 4;
+
+                $isPerfectSet = $armor->filter(static function (SkyBlockItem $armorPiece) {
+                        return Str::startsWith($armorPiece->getTagId(), '_PERFECT');
+                    })->count() === 4;
+
+                if ($isMonsterSet || $armor->filter(static function (SkyBlockItem $armorPiece) use ($armor) {
+                        return Str::before($armorPiece['armor_name'], ' ') === Str::before($armor[0]['armor_name'], ' ');
+                    })->count() === 4) {
+                    $outputName = Str::beforeLast($armor[0]['armor_name'], ' ');
+
+                    if (!Str::endsWith($outputName, 'Armor') && !Str::startsWith($outputName, 'Armor')) {
+                        $outputName .= ' Armor';
+                    }
+
+                    $return['armor_set']        = $outputName;
+                    $return['armor_set_rarity'] = $armor[0]['rarity'];
+
+                    if ($isMonsterSet) {
+                        $return['armor_set_rarity'] = 'rare';
+
+                        if ($armor[0]->getTagId() === 'SPIDER_BOOTS') {
+                            $return['armor_set'] = 'Monster Hunter Armor';
+                        } elseif ($armor[0]->getTagId() === 'TARANTULA_BOOTS') {
+                            $return['armor_set'] = 'Monster Raider Armor';
+                        }
+                    }
+
+                    if ($isPerfectSet) {
+                        $sameTier = $armor->filter(static function (SkyBlockItem $armorPiece) use ($armor) {
+                            return Str::afterLast($armorPiece->getTagId(), '_') === Str::afterLast($armor[0]->getTagId(), '_');
+                        });
+
+                        if ($sameTier->isNotEmpty()) {
+                            $return['armor_set'] = 'Perfect Armor - Tier ' . Str::afterLast($armor[0]->getTagId(), '_');
+                        } else {
+                            $return['armor_set'] = 'Perfect Armor';
+                        }
+                    }
+
+                    if ($reforgeName !== null) {
+                        $return['armor_set'] = $reforgeName . ' ' . $return['armor_set'];
+                    }
+
+                }
+            }
+
+            return $return;
         }
 
         /**
@@ -642,7 +929,7 @@
          *
          * @param $dataBase64
          *
-         * @return Collection
+         * @return Collection|SkyBlockItem[]
          */
         private function getItemsFromData($dataBase64): Collection {
             $data = gzdecode(base64_decode($dataBase64));
@@ -657,149 +944,11 @@
             $items = new Collection();
 
             foreach ($nbtItems as $index => $nbtItem) {
-                $item = $this->simplify($nbtItem);
-
-                if (Arr::has($item, 'tag.display.Name') &&
-                    Str::endsWith($item['tag']['display']['Name'], ['Backpack', 'New Year Cake Bag'])) {
-                    // Item is a backpack
-
-                    $extraAttributes = $item['tag']['ExtraAttributes'];
-                    $backpackData    = null;
-
-                    foreach ($extraAttributes as $name => $attribute) {
-                        if (Str::endsWith($name, ['backpack_data', 'new_year_cake_bag_data'])) {
-                            $backpackData = $attribute;
-                        }
-                    }
-
-                    if ($backpackData === null) {
-                        continue;
-                    }
-
-                    $item['contains_items'] = $this->getBackpackContents($backpackData);
-                }
+                $item = new SkyBlockItem($nbtItem, $this);
 
                 $items[] = $item;
             }
 
-            foreach ($items as $item) {
-
-                if (Arr::has($item, 'tag.display.Name')) {
-                    $item['display_name'] = $this->cleanLore($item['tag']['display']['Name']);
-                }
-
-                /**
-                 * @link https://github.com/LeaPhant/skyblock-stats/blob/91a03c50f7b0d2ddf0ba50a6f170e1ea8b05fd6f/src/lib.js#L285
-                 */
-                if (isset($item['display_name']) && $item['display_name'] === 'Water Bottle') {
-                    $item['Damage'] = 17;
-                }
-
-                $rarity   = null;
-                $itemType = null;
-
-                if (Arr::has($item, 'tag.display.Lore')) {
-                    $item['stats'] = new Collection();
-
-                    foreach ($item['tag']['display']['Lore'] as $line) {
-                        $split = explode(':', $this->cleanLore($line));
-
-                        if (count($split) < 2) {
-                            continue;
-                        }
-
-                        $statType  = $split[0];
-                        $statValue = (float)trim(str_replace(',', '', $split[1]));
-
-                        $item['stats'][Str::snake($statType)] = $statValue;
-                    }
-
-                    /**
-                     * @link https://github.com/LeaPhant/skyblock-stats/blob/91a03c50f7b0d2ddf0ba50a6f170e1ea8b05fd6f/src/lib.js#L447
-                     */
-                    if (Arr::has($item, 'tag.ExtraAttributes.id') && $item['tag']['ExtraAttributes']['id'] === 'SPEED_TALISMAN') {
-                        foreach ($item['tag']['display']['Lore'] as $line) {
-                            $line = $this->cleanLore($line);
-
-                            if (Str::startsWith($line, 'Gives')) {
-                                $split = explode('Gives +', $line);
-
-                                if (count($split) < 2) {
-                                    continue;
-                                }
-
-                                $speed = (int)$split[1];
-
-                                if ($speed !== 0) {
-                                    $item['stats']['speed'] = $speed;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
             return $items;
-        }
-
-        /**
-         * @param NamedTag $item
-         *
-         * @return mixed|Collection
-         */
-        private function simplify(NamedTag $item) {
-            if ($item instanceof CompoundTag || $item instanceof ListTag) {
-                return (new Collection($item->getValue()))->mapWithKeys(function ($mapItem, $key) {
-                    /** @var NamedTag $mapItem */
-                    return [$key => $this->simplify($mapItem)];
-                });
-            }
-
-            return $item->getValue();
-        }
-
-        /**
-         * @link https://github.com/LeaPhant/skyblock-stats/blob/91a03c50f7b0d2ddf0ba50a6f170e1ea8b05fd6f/src/lib.js#L204
-         *
-         * @param string $backpackData
-         *
-         * @return array
-         */
-        private function getBackpackContents($backpackData): array {
-            $data = gzdecode($backpackData);
-
-            $nbtStream = new BigEndianNBTStream();
-            $nbtData   = $nbtStream->read($data);
-
-            /** @var ListTag $itemsTag */
-            $itemsTag = $nbtData->getValue()['i'];
-            $items    = $itemsTag->getValue();
-
-            $return = [];
-
-            /** @var CompoundTag $itemNbt */
-            foreach ($items as $index => $itemNbt) {
-                $item                = $this->simplify($itemNbt);
-                $item['is_inactive'] = true;
-                $item['item_index']  = $index;
-                $return[]            = $item;
-            }
-
-            return $return;
-        }
-
-        /**
-         * @param $rawLore
-         *
-         * @return string
-         */
-        private function cleanLore($rawLore): string {
-            $return = '';
-
-            foreach (preg_split('/§/u', $rawLore, -1, PREG_SPLIT_NO_EMPTY) as $part) {
-                $return .= substr($part, 1);
-            }
-
-            return $return;
         }
     }

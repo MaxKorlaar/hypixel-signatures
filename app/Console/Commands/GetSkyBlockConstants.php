@@ -117,7 +117,10 @@
                 'pet_data',
                 'pet_items',
                 'pet_value',
-                'pet_rewards'
+                'pet_rewards',
+                'item_types',
+                'talisman_upgrades',
+                'talisman_duplicates',
             ])->toJson());
             File::delete(resource_path('data/skyblock/constants.js'));
 
