@@ -131,7 +131,8 @@
         'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_cache'),
 
         'times' => [
-            'mojang_api' => 86400 // 1 day
+            'mojang_api'       => 86400, // 1 day
+            'skyblock_profile' => 3600 // 1 hour
         ],
 
     ];

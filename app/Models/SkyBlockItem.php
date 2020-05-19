@@ -44,6 +44,7 @@
     use pocketmine\nbt\tag\CompoundTag;
     use pocketmine\nbt\tag\ListTag;
     use pocketmine\nbt\tag\NamedTag;
+    use Ramsey\Uuid\UuidFactory;
 
     /**
      * Class SkyBlockItem
@@ -52,22 +53,46 @@
      */
     class SkyBlockItem implements Arrayable, ArrayAccess, Jsonable, JsonSerializable {
         private $data;
-        private $dataParser;
+        private static SkyBlockStatsDataParser $dataParser;
+        private static UuidFactory $uuidFactory;
 
         /**
          * SkyBlockItem constructor.
          *
          * @param                         $nbtItem
-         * @param SkyBlockStatsDataParser $dataParser
          */
-        public function __construct($nbtItem, SkyBlockStatsDataParser $dataParser) {
-            $this->data       = $this->simplify($nbtItem);
-            $this->dataParser = $dataParser;
+        public function __construct($nbtItem) {
+            $this->data        = $this->simplify($nbtItem);
+            $this['item_uuid'] = self::$uuidFactory->uuid4()->toString();
 
             $this->checkIfBackpack();
             $this->parseDisplayName();
             $this->parseStats();
             $this->parseItemType();
+        }
+
+        public function __clone() {
+            $this->data = $this->cloneObject($this->data);
+        }
+
+        /**
+         * @param $object
+         *
+         * @return mixed
+         */
+        private function cloneObject($object) {
+            if (!is_object($object)) {
+                return $object;
+            }
+
+            $clonedObject = clone $object;
+
+            if (method_exists($clonedObject, 'transform')) {
+                $clonedObject->transform(function ($item) {
+                    return $this->cloneObject($item);
+                });
+            }
+            return $clonedObject;
         }
 
         /**
@@ -127,7 +152,7 @@
 
             /** @var CompoundTag $itemNbt */
             foreach ($items as $index => $itemNbt) {
-                $item                = new self($itemNbt, $this->dataParser);
+                $item                = new self($itemNbt);
                 $item['is_inactive'] = true;
                 $item['item_index']  = $index;
                 $item['in_backpack'] = true;
@@ -179,7 +204,21 @@
                     $statType  = $split[0];
                     $statValue = (float)trim(str_replace(',', '', $split[1]));
 
-                    $this['stats'][Str::snake($statType)] = $statValue;
+                    if (Str::is([
+                        'damage',
+                        'health',
+                        'defense',
+                        'strength',
+                        'speed',
+                        'crit_chance',
+                        'crit_damage',
+                        'intelligence',
+                        'sea_creature_chance',
+                        'magic_find',
+                        'pet_luck',
+                    ], Str::snake($statType))) {
+                        $this['stats'][Str::snake($statType)] = $statValue;
+                    }
                 }
 
                 /**
@@ -225,7 +264,7 @@
                 $this['type'] = 'bow';
             }
 
-            if (Arr::has($this, 'tag.ExtraAttributes.enchantments') && $this->getTagId() !== 'ENCHANTED_BOOK' && !$this->dataParser->get('item_types')->contains($this['type'])) {
+            if (Arr::has($this, 'tag.ExtraAttributes.enchantments') && $this->getTagId() !== 'ENCHANTED_BOOK' && !self::$dataParser->get('item_types')->contains($this['type'])) {
                 /** @var Collection $enchantments */
                 $enchantments = $this['tag']['ExtraAttributes']['enchantments'];
 
@@ -285,6 +324,20 @@
             return null;
         }
 
+        /**
+         * @param SkyBlockStatsDataParser $dataParser
+         */
+        public static function setDataParser(SkyBlockStatsDataParser $dataParser): void {
+            self::$dataParser = $dataParser;
+        }
+
+        /**
+         * @param UuidFactory $uuidFactory
+         */
+        public static function setUuidFactory(UuidFactory $uuidFactory): void {
+            self::$uuidFactory = $uuidFactory;
+        }
+
         public function hasData(): bool {
             return $this->data->isNotEmpty();
         }
@@ -328,6 +381,10 @@
          * @return mixed Can return all value types.
          */
         public function offsetGet($offset) {
+            if ($offset === 'tag_id') {
+                return $this->getTagId();
+            }
+
             return $this->data->offsetExists($offset) ? $this->data->offsetGet($offset) : null;
         }
 
@@ -385,5 +442,15 @@
          */
         public function jsonSerialize() {
             return $this->data->jsonSerialize();
+        }
+
+        /**
+         * @param $name
+         * @param $arguments
+         *
+         * @return mixed
+         */
+        public function __call($name, $arguments) {
+            return $this->data->{$name}(...$arguments);
         }
     }
