@@ -80,9 +80,11 @@
                display your chosen statistics below every post you
                make on the forums. You can use the URL to the image to place this signature on other websites if you wish.</p>
 
-            <h4>Signature options</h4>
-            <p>This signature offers options that you may set to alter the looks of it:</p>
-            <p v-html="selected_signature.options_text"></p>
+            <div v-if="selected_signature.options_text">
+                <h4>Signature options</h4>
+                <p>This signature offers options that you may set to alter the looks of it:</p>
+                <p v-html="selected_signature.options_text"></p>
+            </div>
         </div>
     </div>
 {% endblock %}
