@@ -1181,7 +1181,7 @@
                 }
 
                 $reforgedArmorSet = $armor->filter(static function (SkyBlockItem $armorPiece) use ($armor) {
-                    return Arr::has($armorPiece, 'tag.ExtraAttributes.modifier') && $armorPiece['tag']['ExtraAttributes']['modifier'] === $armor[0]['tag']['ExtraAttributes']['modifier'];
+                    return Arr::has($armorPiece, 'tag.ExtraAttributes.modifier') && Arr::has($armor[0], 'tag.ExtraAttributes.modifier') && $armorPiece['tag']['ExtraAttributes']['modifier'] === $armor[0]['tag']['ExtraAttributes']['modifier'];
                 });
 
                 if ($reforgedArmorSet->count() === 4) {
