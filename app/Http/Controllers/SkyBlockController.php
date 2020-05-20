@@ -32,36 +32,44 @@
 
 namespace App\Http\Controllers;
 
-    use App\Utilities\MinecraftAvatar\MojangAPI;
-    use Psr\SimpleCache\InvalidArgumentException;
+    use App\Utilities\HypixelAPI;
+    use Plancke\HypixelPHP\classes\gameType\GameTypes;
+    use Plancke\HypixelPHP\exceptions\HypixelPHPException;
+    use Plancke\HypixelPHP\responses\player\GameStats;
+    use Plancke\HypixelPHP\responses\player\Player;
 
     /**
-     * Class PlayerController
+     * Class SkyBlockController
      *
      * @package App\Http\Controllers
      */
-    class PlayerController extends Controller {
-        /**
-         * @param string $username
-         *
-         * @return array
-         * @throws InvalidArgumentException
-         */
-        public function getUuid(string $username): array {
-            $mojangAPI = new MojangAPI();
-
-            return $mojangAPI->getUUID($username);
-        }
-
+    class SkyBlockController extends Controller {
         /**
          * @param string $uuid
          *
          * @return array
-         * @throws InvalidArgumentException
+         * @throws HypixelPHPException
          */
-        public function getProfile(string $uuid): array {
-            $mojangAPI = new MojangAPI();
+        public function getProfiles(string $uuid): array {
+            $api = new HypixelAPI();
 
-            return $mojangAPI->getProfile($uuid);
+            $player = $api->getPlayerByUuid($uuid);
+
+            if ($player instanceof Player) {
+                $mainStats = $player->getStats();
+
+                /** @var GameStats $stats */
+                $stats    = $mainStats->getGameFromID(GameTypes::SKYBLOCK);
+                $profiles = $stats->get('profiles', []);
+
+                return [
+                    'success'  => true,
+                    'profiles' => array_values($profiles)
+                ];
+            }
+
+            return [
+                'success' => false
+            ];
         }
     }

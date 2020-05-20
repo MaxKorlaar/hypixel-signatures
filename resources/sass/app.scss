@@ -56,10 +56,22 @@ h1 {
   color: $color-primary;
 }
 
+h2, h3, h4 {
+  margin: 1rem 0 .5rem;
+}
+
+p {
+  margin: .5rem 0 1rem;
+}
+
 .container-xl {
   background: $color-white;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, .25) 0 3px 3px;
+}
+
+.error {
+  color: $red-400;
 }
 
 .input {
@@ -102,10 +114,6 @@ h1 {
     transition: all $transition-time;
   }
 
-  .error {
-    color: $red-400;
-  }
-
   &.has-error {
     color: $red-400;
 
@@ -141,6 +149,49 @@ h1 {
   100% {
     box-shadow: inset $color-grey 0 -2px 0;
   }
+}
+
+.signature-groups, .profiles {
+  display: flex;
+  margin-bottom: 1rem;
+  margin-top: .5rem;
+
+  > div {
+    & + div {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.button {
+  cursor: pointer;
+  display: block;
+  padding: .5rem 1rem;
+  border-radius: 3px;
+  border: 1px solid $color-grey;
+  transition: all $transition-time;
+
+  input[type=radio] {
+    display: none;
+  }
+
+  &.selected {
+    background: $color-primary;
+    box-shadow: lighten($color-primary, 20%) 0 0 0 2px;
+    border: 1px solid $color-primary;
+  }
+}
+
+.signature-group-info {
+  p {
+    margin: .5rem 0 1rem;
+  }
+}
+
+.center-text {
+  font-weight: bold;
+  text-align: center;
+  padding: 0 20%;
 }
 
 .signature-grid {
@@ -214,9 +265,17 @@ h1 {
     background: $color-grey;
     padding: .5rem;
     transition: all $transition-time;
+    line-break: anywhere;
 
     &:hover, &:focus {
       color: $color-primary;
     }
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
   }
 }

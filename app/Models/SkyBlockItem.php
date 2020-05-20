@@ -52,9 +52,9 @@
      * @package App\Models
      */
     class SkyBlockItem implements Arrayable, ArrayAccess, Jsonable, JsonSerializable {
-        private $data;
         private static SkyBlockStatsDataParser $dataParser;
         private static UuidFactory $uuidFactory;
+        private $data;
 
         /**
          * SkyBlockItem constructor.
@@ -62,37 +62,16 @@
          * @param                         $nbtItem
          */
         public function __construct($nbtItem) {
-            $this->data        = $this->simplify($nbtItem);
-            $this['item_uuid'] = self::$uuidFactory->uuid4()->toString();
+            $this->data = $this->simplify($nbtItem);
+
+            if ($this->hasData()) {
+                $this['item_uuid'] = self::$uuidFactory->uuid4()->toString();
+            }
 
             $this->checkIfBackpack();
             $this->parseDisplayName();
             $this->parseStats();
             $this->parseItemType();
-        }
-
-        public function __clone() {
-            $this->data = $this->cloneObject($this->data);
-        }
-
-        /**
-         * @param $object
-         *
-         * @return mixed
-         */
-        private function cloneObject($object) {
-            if (!is_object($object)) {
-                return $object;
-            }
-
-            $clonedObject = clone $object;
-
-            if (method_exists($clonedObject, 'transform')) {
-                $clonedObject->transform(function ($item) {
-                    return $this->cloneObject($item);
-                });
-            }
-            return $clonedObject;
         }
 
         /**
@@ -109,6 +88,10 @@
             }
 
             return $item->getValue();
+        }
+
+        public function hasData(): bool {
+            return $this->data->isNotEmpty();
         }
 
         private function checkIfBackpack(): void {
@@ -338,8 +321,28 @@
             self::$uuidFactory = $uuidFactory;
         }
 
-        public function hasData(): bool {
-            return $this->data->isNotEmpty();
+        public function __clone() {
+            $this->data = $this->cloneObject($this->data);
+        }
+
+        /**
+         * @param $object
+         *
+         * @return mixed
+         */
+        private function cloneObject($object) {
+            if (!is_object($object)) {
+                return $object;
+            }
+
+            $clonedObject = clone $object;
+
+            if (method_exists($clonedObject, 'transform')) {
+                $clonedObject->transform(function ($item) {
+                    return $this->cloneObject($item);
+                });
+            }
+            return $clonedObject;
         }
 
         /**

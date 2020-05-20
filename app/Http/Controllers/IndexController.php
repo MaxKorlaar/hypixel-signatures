@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -54,30 +54,56 @@
          */
         public function signatureIndex() {
             $signatures = [
-                [
-                    'name'  => 'General statistics',
-                    'route' => 'general'
+                'generic'  => [
+                    'name'        => 'Generic Signatures',
+                    'short_name'  => 'Generic',
+                    'description' => 'Generic statistics for the most popular Hypixel games or your Hypixel profile.',
+                    'signatures'  => [
+                        [
+                            'name'  => 'General statistics',
+                            'route' => 'general'
+                        ],
+                        [
+                            'name'  => 'General statistics (small)',
+                            'route' => 'general_small'
+                        ],
+                        [
+                            'name'  => 'General statistics (tooltip)',
+                            'route' => 'general_tooltip'
+                        ],
+                        [
+                            'name'  => 'SkyWars statistics',
+                            'route' => 'skywars'
+                        ],
+                        [
+                            'name'  => 'BedWars statistics',
+                            'route' => 'bedwars'
+                        ],
+                    ]
                 ],
-                [
-                    'name'  => 'General statistics (small)',
-                    'route' => 'general_small'
-                ],
-                [
-                    'name'  => 'General statistics (tooltip)',
-                    'route' => 'general_tooltip'
-                ],
-                [
-                    'name'  => 'SkyWars statistics',
-                    'route' => 'skywars'
-                ],
-                [
-                    'name'  => 'BedWars statistics',
-                    'route' => 'bedwars'
+                'skyblock' => [
+                    'name'        => 'SkyBlock Signatures',
+                    'short_name'  => 'SkyBlock',
+                    'description' => 'Hypixel SkyBlock statistics, custom made to parse all SkyBlock data per SkyBlock profile on your account!',
+                    'signatures'  => [
+                        [
+                            'name'         => 'SkyBlock pet levels',
+                            'route'        => 'skyblock.pets',
+                            'parameters'   => [':skyblock_profile'],
+                            'options_text' => "By default the pets are ordered by rarity, with the currently active pet always as the first pet shown.
+                             If you would like to sort your pets based on their level regardless of their rarity, add the parameter
+                             'sort' to the image URL and set it to 'level'. For example: <code>" .
+                                route('signatures.skyblock.pets', ['uuid', 'profile-id', 'sort' => 'level'])
+                                . "</code>",
+                        ]
+                    ]
                 ]
             ];
 
-            foreach ($signatures as &$signature) {
-                $signature['url'] = route('signatures.' . $signature['route'], [':username']);
+            foreach ($signatures as &$signatureGroup) {
+                foreach ($signatureGroup['signatures'] as &$signature) {
+                    $signature['url'] = route('signatures.' . $signature['route'], [':username', ... $signature['parameters'] ?? []]);
+                }
             }
 
             //route('signatures.' ~ signature.route, ['b876ec32e396476ba1158438d83c67d4'])
@@ -85,8 +111,9 @@
             return view('signatures.index', [
                 'signatures' => $signatures,
                 'urls'       => [
-                    'get_uuid'    => route('player.get_uuid', [':username']),
-                    'get_profile' => route('player.get_profile', [':uuid'])
+                    'get_uuid'              => route('player.get_uuid', [':username']),
+                    'get_profile'           => route('player.get_profile', [':uuid']),
+                    'get_skyblock_profiles' => route('skyblock.get_profiles', [':uuid'])
                 ]
             ]);
         }

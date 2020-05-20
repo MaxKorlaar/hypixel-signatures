@@ -30,13 +30,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-    /**
-     * Created by Max in 2020
-     */
-
     namespace App\Utilities\SkyBlock;
 
     use App\Exceptions\HypixelFetchException;
+    use App\Exceptions\SkyBlockEmptyProfileException;
     use App\Models\SkyBlockItem;
     use Cache;
     use File;
@@ -86,10 +83,30 @@
          * @param string $id
          *
          * @return Collection
+         * @throws HypixelFetchException
+         * @throws SkyBlockEmptyProfileException
+         * @noinspection PhpDocRedundantThrowsInspection
          */
-        public function getStats(Player $player, string $id): Collection {
-            return Cache::remember('skyblock.profile.' . $player->getUUID() . '.' . $id . '.stats', config('cache.times.skyblock_profile'), function () use ($id, $player) {
-                return $this->getSkyBlockProfile($player, $id)->get('stats');
+        public static function getSkyBlockStats(Player $player, string $id): Collection {
+            return Cache::remember('skyblock.profile.' . $player->getUUID() . '.' . $id . '.stats', config('cache.times.skyblock_profile'), static function () use ($id, $player) {
+                $dataparser = new self();
+                return $dataparser->getSkyBlockProfile($player, $id)->only(['stats', 'stats_with_sword', 'weapon_stats']);
+            });
+        }
+
+        /**
+         * @param Player $player
+         * @param string $id
+         *
+         * @return Collection
+         * @throws HypixelFetchException
+         * @throws SkyBlockEmptyProfileException
+         * @noinspection PhpDocRedundantThrowsInspection
+         */
+        public static function getSkyBlockPets(Player $player, string $id): Collection {
+            return Cache::remember('skyblock.profile.' . $player->getUUID() . '.' . $id . '.pets', config('cache.times.skyblock_profile'), function () use ($id, $player) {
+                $dataparser = new self();
+                return $dataparser->getSkyBlockProfile($player, $id)->get('pets');
             });
         }
 
@@ -99,6 +116,9 @@
          * @param string $id
          *
          * @return Collection
+         * @throws HypixelFetchException
+         * @throws SkyBlockEmptyProfileException
+         * @noinspection PhpDocRedundantThrowsInspection
          */
         public function getSkyBlockProfile(Player $player, string $id): Collection {
             return Cache::remember('skyblock.profile.' . $player->getUUID() . '.' . $id, config('cache.times.skyblock_profile'), function () use ($id, $player) {
@@ -108,7 +128,12 @@
                     throw new HypixelFetchException('SkyBlock profile for user ' . $player->getUUID() . ' is null');
                 }
 
-                $members       = $skyBlockProfile->getMembers();
+                $members = $skyBlockProfile->getMembers();
+
+                if (empty($skyBlockProfile->getData())) {
+                    throw new SkyBlockEmptyProfileException('SkyBlock profile ' . $id . ' has no data');
+                }
+
                 $playerProfile = $members[$player->getUUID()];
 
                 return $this->getSkyBlockData(new Collection($playerProfile), $player);
@@ -123,7 +148,6 @@
          * @param Player     $player
          *
          * @return Collection
-         * @todo implement caching
          */
         protected function getSkyBlockData(Collection $profile, Player $player): Collection {
             $return = new Collection([
@@ -372,6 +396,7 @@
                     $return['stats'][$stat] += $value;
                 }
             }
+
             foreach ($items['talismans']->where('is_inactive', false) as $talisman) {
                 foreach ($talisman['stats'] as $stat => $value) {
                     $return['stats'][$stat] += $value;
@@ -869,7 +894,11 @@
             $potionBag   = isset($profile['potion_bag']) ? $this->getItemsFromData($profile['potion_bag']['data']) : new Collection();
             $candyBag    = isset($profile['candy_inventory_contents']) ? $this->getItemsFromData($profile['candy_inventory_contents']['data']) : new Collection();
 
-            $return = new Collection();
+            $return = new Collection([
+                'highest_rarity_sword' => null,
+                'highest_rarity_bow'   => null,
+                'highest_rarity_rod'   => null
+            ]);
 
             $return['armor']        = $armor->filter(static function ($item) {
                 /** @var SkyBlockItem $item */
@@ -896,6 +925,10 @@
             });
 
             foreach ($allItems as $index => $item) {
+                if (!$item->hasData()) {
+                    continue;
+                }
+
                 $item['item_index'] = $index;
                 if ($item->getTagId() === 'TRICK_OR_TREAT_BAG') {
                     $item['contains_items'] = $candyBag;

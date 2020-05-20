@@ -30,38 +30,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Http\Controllers;
+namespace App\Exceptions;
 
-    use App\Utilities\MinecraftAvatar\MojangAPI;
-    use Psr\SimpleCache\InvalidArgumentException;
+    use Exception;
 
     /**
-     * Class PlayerController
+     * Class SkyBlockEmptyProfileException
      *
-     * @package App\Http\Controllers
+     * @package App\Exceptions
      */
-    class PlayerController extends Controller {
-        /**
-         * @param string $username
-         *
-         * @return array
-         * @throws InvalidArgumentException
-         */
-        public function getUuid(string $username): array {
-            $mojangAPI = new MojangAPI();
-
-            return $mojangAPI->getUUID($username);
-        }
-
-        /**
-         * @param string $uuid
-         *
-         * @return array
-         * @throws InvalidArgumentException
-         */
-        public function getProfile(string $uuid): array {
-            $mojangAPI = new MojangAPI();
-
-            return $mojangAPI->getProfile($uuid);
-        }
+    class SkyBlockEmptyProfileException extends Exception {
+        //
     }

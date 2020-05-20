@@ -51,11 +51,14 @@
         Route::get('general-tooltip', 'TooltipSignatureController@render')->name('general_tooltip');
         Route::get('bedwars', 'BedWarsSignatureController@render')->name('bedwars');
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
-        Route::get('skyblock/{profile_id?}', 'SkyBlockSignatureController@render')->name('skyblock');
+        //        Route::get('skyblock/general/{profile_id}', 'SkyBlockSignatureController@render')->name('skyblock');
+        Route::get('skyblock/pets/{profile_id}', 'SkyBlockPetsSignatureController@render')->name('skyblock.pets');
     });
 
     Route::get('/player/{username}/uuid', 'PlayerController@getUuid')->name('player.get_uuid');
     Route::get('/player/{uuid}/profile', 'PlayerController@getProfile')->name('player.get_profile');
+
+    Route::get('/player/{uuid}/skyblock/profiles', 'SkyBlockController@getProfiles')->name('skyblock.get_profiles');
 
     Route::get('friends/{username}', 'Friends\FriendsController@getFriends')->where(['username' => '\w{32}']);
 
