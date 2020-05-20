@@ -49,9 +49,10 @@ window.signaturesApp = new Vue({
         uuid:                    null,
         loading:                 true,
         errors:                  {},
-        skyblock:                {
+        skyblock: {
             profile:  null,
-            profiles: []
+            profiles: [],
+            loading:  true
         }
     },
     methods:  {
@@ -85,9 +86,10 @@ window.signaturesApp = new Vue({
                     }
                 }).catch(error => {
                     console.error(error);
+                    this.loading = false;
                 }).finally(() => {
                     this.loading = false;
-                })
+                });
             }
         },
 
@@ -121,14 +123,18 @@ window.signaturesApp = new Vue({
             return this.uuid ? this.uuid : 'b876ec32e396476ba1158438d83c67d4';
         },
 
-        getImageUrl(signature) {
-            let url = signature.url.replace(':username', this.getUuidOrFallback);
+        replaceParameters(text) {
+            text = text.replace(':uuid', this.getUuidOrFallback);
 
             if (this.skyblock.profile !== null) {
-                url = url.replace(':skyblock_profile', this.skyblock.profile.profile_id);
+                text = text.replace(':skyblock_profile', this.skyblock.profile.profile_id);
             }
 
-            return url;
+            return text;
+        },
+
+        getImageUrl(signature) {
+            return this.replaceParameters(signature.url);
         },
 
         getPreviewImageUrl(signature) {
@@ -140,7 +146,9 @@ window.signaturesApp = new Vue({
         },
 
         getSkyBlockProfiles() {
-            this.loading = true;
+            this.loading          = true;
+            this.skyblock.loading = true;
+
             axios.get(this.urls.get_skyblock_profiles.replace(':uuid', this.getUuidOrFallback)).then(response => {
                 const data = response.data;
 
@@ -156,7 +164,8 @@ window.signaturesApp = new Vue({
             }).catch(error => {
                 console.error(error);
             }).finally(() => {
-                this.loading = false;
+                this.loading          = false;
+                this.skyblock.loading = false;
             });
         }
     },
@@ -193,7 +202,7 @@ window.signaturesApp = new Vue({
             }
 
             return true;
-        }
+        },
     },
     mounted() {
         this.signatures = window.Paniek.signatures;

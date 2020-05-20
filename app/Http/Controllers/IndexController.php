@@ -68,8 +68,9 @@
                             'route' => 'general_small'
                         ],
                         [
-                            'name'  => 'General statistics (tooltip)',
-                            'route' => 'general_tooltip'
+                            'name'      => 'General statistics (tooltip)',
+                            'route'     => 'general_tooltip',
+                            'pixelated' => true
                         ],
                         [
                             'name'  => 'SkyWars statistics',
@@ -87,13 +88,19 @@
                     'description' => 'Hypixel SkyBlock statistics, custom made to parse all SkyBlock data per SkyBlock profile on your account!',
                     'signatures'  => [
                         [
+                            'name'       => 'SkyBlock character stats',
+                            'route'      => 'skyblock.stats',
+                            'parameters' => [':skyblock_profile'],
+                        ],
+                        [
                             'name'         => 'SkyBlock pet levels',
                             'route'        => 'skyblock.pets',
                             'parameters'   => [':skyblock_profile'],
                             'options_text' => "By default the pets are ordered by rarity, with the currently active pet always as the first pet shown.
                              If you would like to sort your pets based on their level regardless of their rarity, add the parameter
-                             'sort' to the image URL and set it to 'level'. For example: <code>" .
-                                route('signatures.skyblock.pets', ['uuid', 'profile-id', 'sort' => 'level'])
+                             'sort' to the image URL and set it to 'level'. To disable the highlighting of your active pet,
+                             set the parameter 'highlight_active' to 'false'. For example: <code>" .
+                                route('signatures.skyblock.pets', [':uuid', ':skyblock_profile', 'sort' => 'level', 'highlight_active' => 'false'])
                                 . "</code>",
                         ]
                     ]
@@ -102,7 +109,7 @@
 
             foreach ($signatures as &$signatureGroup) {
                 foreach ($signatureGroup['signatures'] as &$signature) {
-                    $signature['url'] = route('signatures.' . $signature['route'], [':username', ... $signature['parameters'] ?? []]);
+                    $signature['url'] = route('signatures.' . $signature['route'], [':uuid', ... $signature['parameters'] ?? []]);
                 }
             }
 

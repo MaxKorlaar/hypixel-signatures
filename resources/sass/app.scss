@@ -42,13 +42,13 @@
 body {
   font-family: 'Lato', $font-stack-system;
   background-color: $color-background;
-  font-size: 18px;
+  font-size: 14px;
   color: $black;
 }
 
 ::selection {
   background: $color-primary;
-  color: $color-white;
+  //color: $color-white;
 }
 
 h1 {
@@ -66,7 +66,7 @@ p {
 
 .container-xl {
   background: $color-white;
-  padding: 1rem;
+  padding: 10px 30px;
   box-shadow: rgba(0, 0, 0, .25) 0 3px 3px;
 }
 
@@ -180,6 +180,12 @@ p {
     box-shadow: lighten($color-primary, 20%) 0 0 0 2px;
     border: 1px solid $color-primary;
   }
+
+  &:hover, &:focus {
+    background: lighten($color-primary, 20%);
+    border: 1px solid $color-primary;
+    //transform: translateY(-3px);
+  }
 }
 
 .signature-group-info {
@@ -244,6 +250,10 @@ p {
           display: block;
           max-width: 100%;
           height: auto;
+
+          &.pixelated {
+            image-rendering: pixelated;
+          }
         }
       }
 
@@ -258,18 +268,31 @@ p {
 }
 
 .results {
+  .links {
+    display: grid;
+    grid-template-columns: auto auto;
+
+    .title {
+      margin-right: 1rem;
+
+      h3 {
+        margin: 0;
+        text-align: right;
+        font-size: 1.5rem;
+      }
+    }
+  }
+
   code {
     display: block;
     user-select: all;
     white-space: normal;
-    background: $color-grey;
+    background: $gray-300;
     padding: .5rem;
     transition: all $transition-time;
     line-break: anywhere;
-
-    &:hover, &:focus {
-      color: $color-primary;
-    }
+    font-size: .8rem;
+    border-radius: 3px;
   }
 
   img {
@@ -277,5 +300,9 @@ p {
     max-width: 100%;
     height: auto;
     margin: 1rem 0;
+
+    &.pixelated {
+      image-rendering: pixelated;
+    }
   }
 }

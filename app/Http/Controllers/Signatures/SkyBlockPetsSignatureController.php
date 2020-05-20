@@ -81,7 +81,7 @@
             $avatarHeight          = 0;
             $size                  = 5;
             $distanceBetweenImages = $size;
-            $textDistance          = $size;
+            $textDistance          = 0;
 
             // By default, pets are sorted based on rarity, and the active pet is the first pet.
             // This can be overridden using the sort=levels parameter.
@@ -101,9 +101,9 @@
             $imageWidth  = count($pets) * ($avatarWidth + $distanceBetweenImages);
             $imageHeight = $avatarHeight * 1.75;
 
-            $image           = BaseSignature::getImage($imageWidth, $imageHeight);
-            $black           = new Color(0, 0, 0);
-            $fontMinecraftia = resource_path('fonts/minecraftia/Minecraftia.ttf');
+            $image                = BaseSignature::getImage($imageWidth, $imageHeight);
+            $black                = new Color(0, 0, 0);
+            $fontMinecraftRegular = resource_path('fonts/Minecraft/1_Minecraft-Regular.otf');
 
             $colors = [
                 'legendary' => new Color(221, 152, 14),
@@ -119,9 +119,15 @@
                 imagedestroy($petImage);
 
                 $box = new Box($image);
-                $box->setFontFace($fontMinecraftia);
+
+                $box->setFontFace($fontMinecraftRegular);
                 $box->setFontColor($colors[$pet['rarity']] ?? $black);
-                $box->setFontSize($avatarHeight / 3);
+                $box->setFontSize($avatarHeight / 2.4);
+
+                if ($pet['active'] && $request->get('highlight_active') !== 'false') {
+                    $box->setStrokeSize(round($avatarHeight / 35));
+                }
+
                 $box->setBox($currentX, $currentY + $avatarHeight + $textDistance, $avatarWidth, $avatarHeight / 2);
                 $box->setTextAlign('center', 'top');
                 $box->draw($pet['level']['level']);
@@ -129,10 +135,7 @@
                 $currentX += $avatarWidth + $distanceBetweenImages;
             }
 
-            //            dd($petsAndImages);
-            //            dd($stats);
-
-            $this->addWatermark($image, $fontMinecraftia, $imageWidth, $imageHeight, $size * 2.5); // Watermark/advertisement
+            $this->addWatermark($image, $fontMinecraftRegular, $imageWidth, $imageHeight, $size * 2.5); // Watermark/advertisement
 
             return Image::make($image)->response('png');
         }

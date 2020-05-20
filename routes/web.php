@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -51,7 +51,7 @@
         Route::get('general-tooltip', 'TooltipSignatureController@render')->name('general_tooltip');
         Route::get('bedwars', 'BedWarsSignatureController@render')->name('bedwars');
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
-        //        Route::get('skyblock/general/{profile_id}', 'SkyBlockSignatureController@render')->name('skyblock');
+        Route::get('skyblock/stats/{profile_id}', 'SkyBlockSignatureController@render')->name('skyblock.stats');
         Route::get('skyblock/pets/{profile_id}', 'SkyBlockPetsSignatureController@render')->name('skyblock.pets');
     });
 

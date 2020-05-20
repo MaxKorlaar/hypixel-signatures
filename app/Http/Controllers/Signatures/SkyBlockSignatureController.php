@@ -34,12 +34,11 @@
 
     use App\Exceptions\HypixelFetchException;
     use App\Exceptions\SkyBlockEmptyProfileException;
+    use App\Utilities\ColourHelper;
     use App\Utilities\SkyBlock\SkyBlockStatsDataParser;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
     use Image;
-    use Plancke\HypixelPHP\classes\gameType\GameTypes;
-    use Plancke\HypixelPHP\responses\player\GameStats;
     use Plancke\HypixelPHP\responses\player\Player;
 
     /**
@@ -63,23 +62,8 @@
          * @return Response
          */
         protected function signature(Request $request, Player $player): Response {
-            $image                  = BaseSignature::getImage(650, 160);
-            $fontSourceSansProLight = resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf');
-
             if ($this->profileId === null) {
-                $mainStats = $player->getStats();
-
-                /** @var GameStats $stats */
-                $stats    = $mainStats->getGameFromID(GameTypes::SKYBLOCK);
-                $profiles = $stats->get('profiles', []);
-                //dd($profiles);
-
-                $firstProfile = array_shift($profiles);
-                if ($firstProfile === null) {
-                    return self::generateErrorImage('Player does not have any SkyBlock profiles on their account, or they may have disabled API access for SkyBlock.');
-                }
-
-                $this->profileId = $firstProfile['profile_id'];
+                return self::generateErrorImage('Player does not have any SkyBlock profiles on their account, or they may have disabled API access for SkyBlock.');
             }
 
             try {
@@ -90,12 +74,138 @@
                 return self::generateErrorImage('This SkyBlock profile has no data. It may have been deleted.');
             }
 
-            //dd($stats);
-            //            dd($stats);
+            $image = $this->getTooltipImage(325, 260);
 
-            $this->addWatermark($image, $fontSourceSansProLight, 650, 160); // Watermark/advertisement
+            $fontMinecraftRegular = resource_path('fonts/Minecraft/1_Minecraft-Regular.otf');
+            $unifont              = resource_path('fonts/Unifont/unifont-13.0.02.ttf');
+
+            $calculatedStats = $stats->get('stats_with_sword') ?? $stats->get('stats');
+
+            $bbox          = ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, 16, 10, 9, '§aYour SkyBlock Profile');
+            $spacing       = 22;
+            $start         = $bbox[0] + $spacing;
+            $fontSize      = 15;
+            $fontSizeGlyph = 13;
+
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start, "§c  ♥ Health §f{$calculatedStats['health']} HP", true);
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + $spacing, "§a  ☼ Defense §f{$calculatedStats['defense']}", true);
+
+            ColourHelper::minecraftStringToTTFText($image, $unifont, $fontSizeGlyph, 26, $start + $spacing * 2, '§c❁', true);
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 52, $start + $spacing * 2, "§cStrength §f{$calculatedStats['strength']}", true);
+
+            ColourHelper::minecraftStringToTTFText($image, $unifont, $fontSizeGlyph, 26, $start + $spacing * 3, '§f✦', true);
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 52, $start + $spacing * 3, "§fSpeed §f{$calculatedStats['speed']}", true);
+
+            ColourHelper::minecraftStringToTTFText($image, $unifont, $fontSizeGlyph, 26, $start + $spacing * 4, '§9☣', true);
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 52, $start + $spacing * 4, "§9Crit Chance §f{$calculatedStats['crit_chance']}%", true);
+
+            $this->copyIcon('skull_blue', $image, 27, $start + $spacing * 5 + 2, 2.2);
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 52, $start + $spacing * 5, "§9Crit Damage §f{$calculatedStats['crit_damage']}%", true);
+
+            ColourHelper::minecraftStringToTTFText($image, $unifont, $fontSizeGlyph, 26, $start + $spacing * 6, '§b✎', true);
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 52, $start + $spacing * 6, "§bIntelligence §f{$calculatedStats['intelligence']}", true);
+
+            $this->copyIcon('alpha', $image, 27, $start + $spacing * 7 + 5, 2);
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 52, $start + $spacing * 7, "§3Sea Creature Chance §f{$calculatedStats['sea_creature_chance']}%", true);
+
+            ColourHelper::minecraftStringToTTFText($image, $unifont, $fontSizeGlyph, 26, $start + $spacing * 8, '§b✯', true);
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 52, $start + $spacing * 8, "§bMagic Find §f{$calculatedStats['magic_find']}", true);
+
+            $this->copyIcon('clubs', $image, 29, $start + $spacing * 9 + 4, 2);
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 52, $start + $spacing * 9, "§dPet Luck §f{$calculatedStats['pet_luck']}", true);
+
+            $this->addWatermark($image, $fontMinecraftRegular, 320, 255, 8);
 
             return Image::make($image)->response('png');
+        }
+
+        /**
+         * @param     $imageName
+         * @param     $image
+         * @param     $destX
+         * @param     $destY
+         * @param int $size
+         */
+        private function copyIcon($imageName, &$image, $destX, $destY, $size = 2): void {
+            $icon  = imagecreatefrompng(resource_path("images/{$imageName}.png"));
+            $iconX = imagesx($icon);
+            $iconY = imagesy($icon);
+
+            imagecopyresized($image, $icon, $destX, $destY, 0, 0, $iconX * $size, $iconY * $size, $iconX, $iconY);
+
+            $icon  = imagecreatefrompng(resource_path("images/{$imageName}_shadow.png"));
+            $iconX = imagesx($icon);
+            $iconY = imagesy($icon);
+
+            imagecopyresized($image, $icon, $destX + 2, $destY + 2, 0, 0, $iconX * $size, $iconY * $size, $iconX, $iconY);
+        }
+
+        /**
+         * @param int $imageWidth
+         *
+         * @param int $imageHeight
+         *
+         * @return false|resource
+         */
+        protected function getTooltipImage(int $imageWidth, int $imageHeight) {
+            $tooltipImage = imagecreatefrompng(resource_path('images/Tooltip.png'));
+
+            $cornerSize = 10;
+
+            $image = BaseSignature::getImage($imageWidth, $imageHeight);
+
+            $tooltipWidth  = imagesx($tooltipImage);
+            $tooltipHeight = imagesy($tooltipImage);
+
+            $copyY = $tooltipHeight - ($cornerSize * 2);
+
+            $timesToCopyY    = floor(($imageHeight - ($cornerSize * 2)) / $copyY);
+            $remainingHeight = ($imageHeight - ($cornerSize * 2)) % $copyY;
+
+            $copyPosY = $cornerSize;
+
+            for ($i = 0; $i < $timesToCopyY; $i++) {
+                $copyPosY = $cornerSize + ($i * $copyY);
+                imagecopy($image, $tooltipImage, 0, $copyPosY, 0, $cornerSize, $cornerSize, $copyY);
+                imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, $copyPosY, $tooltipWidth - $cornerSize, $cornerSize, $cornerSize, $copyY);
+                $copyPosY += $copyY;
+            }
+
+            if ($remainingHeight > 0) {
+                imagecopy($image, $tooltipImage, 0, $copyPosY, 0, $cornerSize, $cornerSize, $remainingHeight);
+                imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, $copyPosY, $tooltipWidth - $cornerSize, $cornerSize, $cornerSize, $remainingHeight);
+            }
+
+            $copyX = $tooltipWidth - ($cornerSize * 2);
+
+            $timesToCopyX   = floor(($imageWidth - ($cornerSize * 2)) / $copyX);
+            $remainingWidth = ($imageWidth - ($cornerSize * 2)) % $copyX;
+
+            $copyPosX = $cornerSize;
+
+            for ($i = 0; $i < $timesToCopyX; $i++) {
+                $copyPosX = $cornerSize + ($i * $copyX);
+                imagecopy($image, $tooltipImage, $copyPosX, 0, $cornerSize, 0, $copyX, $cornerSize);
+                imagecopy($image, $tooltipImage, $copyPosX, $imageHeight - $cornerSize, $cornerSize, $tooltipHeight - $cornerSize, $copyX, $cornerSize);
+                $copyPosX += $copyX;
+            }
+
+            if ($remainingWidth > 0) {
+                imagecopy($image, $tooltipImage, $copyPosX, 0, $cornerSize, 0, $remainingWidth, $cornerSize); // Top border
+                imagecopy($image, $tooltipImage, $copyPosX, $imageHeight - $cornerSize, $cornerSize, $tooltipHeight - $cornerSize, $remainingWidth, $cornerSize); // Bottom border
+            }
+
+            imagecopy($image, $tooltipImage, 0, 0, 0, 0, $cornerSize, $cornerSize); // Top left
+            imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, 0, $tooltipWidth - $cornerSize, 0, $cornerSize, $cornerSize); // Top right
+
+            imagecopy($image, $tooltipImage, 0, $imageHeight - $cornerSize, 0, $tooltipHeight - $cornerSize, $cornerSize, $cornerSize); // Bottom left
+            imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, $imageHeight - $cornerSize, $tooltipWidth - $cornerSize, $tooltipHeight - $cornerSize, $cornerSize, $cornerSize); // Bottom right
+
+            $purple = imagecolorallocate($image, 16, 1, 16);
+
+            imagefill($image, $cornerSize + 1, $cornerSize + 1, $purple);
+
+            return $image;
         }
 
 
