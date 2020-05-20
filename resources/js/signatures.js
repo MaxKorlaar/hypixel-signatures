@@ -117,8 +117,12 @@ window.signaturesApp = new Vue({
             });
         },
 
+        getUuidOrFallback() {
+            return this.uuid ? this.uuid : 'b876ec32e396476ba1158438d83c67d4';
+        },
+
         getImageUrl(signature) {
-            let url = signature.url.replace(':username', this.uuid ? this.uuid : 'b876ec32e396476ba1158438d83c67d4');
+            let url = signature.url.replace(':username', this.getUuidOrFallback);
 
             if (this.skyblock.profile !== null) {
                 url = url.replace(':skyblock_profile', this.skyblock.profile.profile_id);
@@ -137,7 +141,7 @@ window.signaturesApp = new Vue({
 
         getSkyBlockProfiles() {
             this.loading = true;
-            axios.get(this.urls.get_skyblock_profiles.replace(':uuid', this.uuid)).then(response => {
+            axios.get(this.urls.get_skyblock_profiles.replace(':uuid', this.getUuidOrFallback)).then(response => {
                 const data = response.data;
 
                 if (data.success) {
