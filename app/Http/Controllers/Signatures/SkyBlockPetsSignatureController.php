@@ -137,7 +137,10 @@
 
             $this->addWatermark($image, $fontMinecraftRegular, $imageWidth, $imageHeight, $size * 2.5); // Watermark/advertisement
 
-            return Image::make($image)->response('png');
+            return Image::make($image)->response('png')->setCache([
+                'public'  => true,
+                'max_age' => 600
+            ]);
         }
 
 

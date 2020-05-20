@@ -129,7 +129,10 @@
 
             $this->addWatermark($image, $fontSourceSansProLight, 520, 160); // Watermark/advertisement
 
-            return Image::make($image)->response('png');
+            return Image::make($image)->response('png')->setCache([
+                'public'  => true,
+                'max_age' => 600
+            ]);
         }
 
     }

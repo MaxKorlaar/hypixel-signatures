@@ -116,7 +116,10 @@
 
             $this->addWatermark($image, $fontMinecraftRegular, 320, 255, 8);
 
-            return Image::make($image)->response('png');
+            return Image::make($image)->response('png')->setCache([
+                'public'  => true,
+                'max_age' => 600
+            ]);
         }
 
         /**

@@ -77,7 +77,10 @@
 
             ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 4 * $spacing, '§7Karma: §d' . number_format($player->getInt('karma')), true); // Karma
 
-            return Image::make($image)->response('png');
+            return Image::make($image)->response('png')->setCache([
+                'public'  => true,
+                'max_age' => 600
+            ]);
         }
 
     }
