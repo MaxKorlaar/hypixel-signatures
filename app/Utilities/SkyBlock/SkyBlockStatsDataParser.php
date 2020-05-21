@@ -134,6 +134,10 @@
                     throw new SkyBlockEmptyProfileException('SkyBlock profile ' . $id . ' has no data');
                 }
 
+                if (!isset($members[$player->getUUID()])) {
+                    throw new SkyBlockEmptyProfileException('SkyBlock profile ' . $id . ' does not contain profile data for ' . $player->getUUID());
+                }
+
                 $playerProfile = $members[$player->getUUID()];
 
                 return $this->getSkyBlockData(new Collection($playerProfile), $player);
