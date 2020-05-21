@@ -33,7 +33,6 @@
     namespace App\Http\Controllers;
 
     use Illuminate\Contracts\View\Factory;
-    use Illuminate\Http\RedirectResponse;
     use Illuminate\View\View;
 
     /**
@@ -43,10 +42,10 @@
      */
     class IndexController extends Controller {
         /**
-         * @return RedirectResponse
+         * @return View
          */
-        public function index(): RedirectResponse {
-            return redirect()->route('signatures');
+        public function index(): View {
+            return view('index');
         }
 
         /**
@@ -54,7 +53,7 @@
          */
         public function signatureIndex() {
             $signatures = [
-                'generic'  => [
+                'generic' => [
                     'name'        => 'Generic Signatures',
                     'short_name'  => 'Generic',
                     'description' => 'Generic statistics for the most popular Hypixel games or your Hypixel profile.',

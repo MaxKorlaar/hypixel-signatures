@@ -50,11 +50,23 @@
     {% endblock %}
 </head>
 <body>
+    {% block navigation %}
+        <nav>
+            <ul class="container-xl">
+                <li class="{{ app.request.routeIs('home') ? 'active' }}">
+                    <a href="{{ route('home') }}">Home</a>
+                </li>
+                <li class="{{ app.request.routeIs('signatures') ? 'active' }}">
+                    <a href="{{ route('signatures') }}">Dynamic Signatures</a>
+                </li>
+            </ul>
+        </nav>
+    {% endblock %}
     {% block body %}
-        <div class="container-xl">
+        <main class="container-xl">
             {% block content %}
             {% endblock %}
-        </div>
+        </main>
     {% endblock %}
     {% block scripts %}
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen:300,700&amp;display=swap" media="screen,projection">

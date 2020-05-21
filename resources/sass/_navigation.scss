@@ -29,12 +29,41 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-$color-primary: #ffd800;
-$color-secondary: #004BA8;
-$color-background: #E0FBFC;
-$color-grey: #233D4D; //#a2a2a2;
-$color-white: #fff;
+nav {
+  background: $color-secondary;
+  box-shadow: rgba(0, 0, 0, .25) 0 2px 3px;
+  position: relative;
+  z-index: 20;
 
-$transition-time: 0.4s;
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
 
-// https://coolors.co/ffd800-233d4d-98c1d9-004ba8-e0fbfc
+    li {
+      transition: all $transition-time;
+
+      a {
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: $color-white;
+        text-decoration: none;
+        padding: 25px;
+        display: block;
+      }
+
+      &:hover, &:focus, &.active {
+        background: darken($color-secondary, 10%);
+        box-shadow: inset rgba(0, 0, 0, .25) 0 0 5px 0;
+      }
+
+      &.active {
+        a {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+}

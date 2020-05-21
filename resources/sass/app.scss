@@ -34,6 +34,7 @@
 @import '~@primer/css/layout/container';
 
 @import "variables";
+@import "navigation";
 
 * {
   box-sizing: border-box;
@@ -44,11 +45,12 @@ body {
   background-color: $color-background;
   font-size: 14px;
   color: $black;
+  margin: 0;
 }
 
 ::selection {
   background: $color-primary;
-  //color: $color-white;
+  color: $color-grey;
 }
 
 h1 {
@@ -64,10 +66,23 @@ p {
   margin: .5rem 0 1rem;
 }
 
-.container-xl {
-  background: $color-white;
-  padding: 10px 30px;
-  box-shadow: rgba(0, 0, 0, .25) 0 3px 3px;
+main {
+  &.container-xl {
+    //background: $color-white;
+    //padding: 10px 30px;
+    //box-shadow: rgba(0, 0, 0, .25) 0 2px 3px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $color-secondary;
+  box-shadow: inset rgba($color-secondary, 0) 0 -1px 0;
+  transition: all $transition-time;
+
+  &:focus, &:hover {
+    box-shadow: inset rgba($color-secondary, 1) 0 -1px 0;
+  }
 }
 
 .error {
