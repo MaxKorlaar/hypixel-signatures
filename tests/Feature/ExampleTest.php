@@ -45,9 +45,9 @@
          *
          * @return void
          */
-        public function testBasicTest() {
+        public function testBasicTest(): void {
             $response = $this->get('/');
 
-            $response->assertStatus(302)->assertRedirect(route('signatures')); // Temporarily redirect to /signatures because the site does not have any content
+            $response->assertStatus(200);
         }
     }
