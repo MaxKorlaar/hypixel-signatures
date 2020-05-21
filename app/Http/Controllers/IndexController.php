@@ -32,7 +32,11 @@
 
     namespace App\Http\Controllers;
 
+    use Illuminate\Contracts\Foundation\Application;
     use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
+    use Illuminate\Http\Request;
+    use Illuminate\Routing\Redirector;
     use Illuminate\View\View;
 
     /**
@@ -53,7 +57,7 @@
          */
         public function signatureIndex() {
             $signatures = [
-                'generic' => [
+                'generic'  => [
                     'name'        => 'Generic Signatures',
                     'short_name'  => 'Generic',
                     'description' => 'Generic statistics for the most popular Hypixel games or your Hypixel profile.',
@@ -122,5 +126,15 @@
                     'get_skyblock_profiles' => route('skyblock.get_profiles', [':uuid'])
                 ]
             ]);
+        }
+
+        /**
+         * @param Request $request
+         *
+         *
+         * @return Application|RedirectResponse|Redirector
+         */
+        public function redirectToSignatures(Request $request): RedirectResponse {
+            return redirect(route('signatures') . '#' . $request->input('username'));
         }
     }

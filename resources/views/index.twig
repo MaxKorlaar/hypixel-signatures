@@ -1,5 +1,51 @@
 {% extends 'partials/page.twig' %}
-{% block title %}Hypixel Signatures{% endblock %}
+{% block page_title %}Hypixel Signatures{% endblock %}
 {% block content %}
-    <h1>Work in progress</h1>
+    <div class="home">
+        <div class="callout">
+            <p>
+                Showcase <b>live</b> Hypixel minigame and SkyBlock statistics for everyone to see just by putting an image in your forum signature
+                or forum posts. Select your signature once and we'll take care of the rest.
+            </p>
+            <p>
+                It's easy – You only have to enter your username to get started.
+            </p>
+            <form class="input has-button" method="get" action="{{ route('signatures.form_redirect') }}">
+                <input title="Username" type="search" autocomplete="nickname" name="username" placeholder="Enter your username to get started">
+                <button class="button hide-sm" type="submit">Choose a signature &longrightarrow;</button>
+                <button class="button hide-md hide-lg hide-xl" type="submit">&longrightarrow;</button>
+            </form>
+        </div>
+        <div class="columns">
+            <div>
+                <h2>Featured</h2>
+                <div class="featured">
+                    <a href="{{ route('signatures') }}">
+                        <img src="{{ route('signatures.skyblock.stats', ['b876ec32e396476ba1158438d83c67d4', 'b876ec32e396476ba1158438d83c67d4']) }}" alt="">
+                        <i>SkyBlock character stats</i>
+                    </a>
+                </div>
+                <h2>About</h2>
+                <p>
+                    I've created this website for the players and fans of the 'Hypixel' Minecraft server. It is the most popular Minecraft server in
+                    the world,
+                    with lots of public statistics you can do fun stuff with. I've done exactly that on my website: You can view
+                    people their minigame statistics in the form of dynamic 'signatures': Images that you can place in forum posts and your forum
+                    signature,
+                    so that others can view your latest achievements with ease.
+                </p>
+                <p>
+                    The <i>dynamic</i> part means that these signatures automatically update themselves, meaning you only have to select and use your
+                    signature once and we'll automatically make sure its contents are up to date.
+                </p>
+                <p>
+                    I'm always open to suggestions! Missing something? Feel free to <a href="https://twitter.com/MaxKorlaar">hit me up on Twitter</a>,
+                    or <a href="https://github.com/MaxKorlaar/hypixel-signatures">check out the source code for yourself on GitHub</a>.
+                </p>
+            </div>
+            <div>
+                <iframe src="https://www.strawpoll.me/embed_1/20018435" style="width:100%;height:75vh;border:0;">Loading poll...</iframe>
+            </div>
+        </div>
+    </div>
 {% endblock %}

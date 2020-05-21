@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>
             {% block page_title %}
-            {% endblock %}
+            {% endblock %} – Hypixel.Paniek.de
         </title>
         <meta name="keywords" content="Hypixel, Hypixel Statistics, Hypixel Signatures, Hypixel guild members">
         {% block social_meta_tags %}
@@ -36,17 +36,19 @@
         {% endif %}
     {% endblock %}
     {% block analytics_scripts %}
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157532904-4"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
+        {% if config_get('app.google_analytics_tracking_id') %}
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157532904-4"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
 
-            function gtag() {dataLayer.push(arguments);}
+                function gtag() {dataLayer.push(arguments);}
 
-            gtag('js', new Date());
+                gtag('js', new Date());
 
-            gtag('config', '{{ config_get('app.google_analytics_tracking_id') }}');
-        </script>
+                gtag('config', '{{ config_get('app.google_analytics_tracking_id') }}');
+            </script>
+        {% endif %}
     {% endblock %}
 </head>
 <body>
@@ -67,6 +69,22 @@
             {% block content %}
             {% endblock %}
         </main>
+    {% endblock %}
+    {% block footer %}
+        <footer>
+            <div class="container-xl">
+                <div>
+                    Copyright {{ 'now'|date('Y') }} <a href="https://maxkorlaar.com">Max Korlaar</a> &centerdot;
+                    <a class="icon twitter" href="https://twitter.com/MaxKorlaar"><img src="{{ asset('images/Twitter_Logo_WhiteOnImage.svg') }}" alt="@MaxKorlaar on Twitter"></a>
+                    &centerdot;
+                    <a class="icon" href="https://github.com/MaxKorlaar/hypixel-signatures"><img src="{{ asset('images/GitHub-logomark.svg') }}" alt="This project on GitHub"></a>
+                </div>
+                <div>
+                    <a href="{{ route('privacy') }}">Privacy</a> &centerdot;
+                    <a href="https://github.com/MaxKorlaar/hypixel-signatures#acknowledgements">Acknowledgements</a>
+                </div>
+            </div>
+        </footer>
     {% endblock %}
     {% block scripts %}
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen:300,700&amp;display=swap" media="screen,projection">

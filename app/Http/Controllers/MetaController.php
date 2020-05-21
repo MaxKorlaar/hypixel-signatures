@@ -1,4 +1,5 @@
-/*!
+<?php
+/**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -29,13 +30,28 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-$color-primary: #ffd800;
-$color-secondary: #004BA8;
-$color-background: #FDFFFC;
-$color-gray: #a2a2a2;
-$color-white: #fff;
+namespace App\Http\Controllers;
 
-$transition-time: 0.4s;
-$border-radius: 5px;
+    use Illuminate\Contracts\Foundation\Application;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\View\View;
 
-// https://coolors.co/ffd800-004ba8-a2a2a2-fdfffc-c1292e
+    /**
+     * Class MetaController
+     *
+     * @package App\Http\Controllers
+     */
+    class MetaController extends Controller {
+        /**
+         * @return Application|Factory|View
+         */
+        public function getPrivacyPage(): View {
+            return view('privacy');
+        }
+
+        /**
+         * @todo Implement sitemap generator
+         */
+        public function getSitemap() {
+        }
+    }

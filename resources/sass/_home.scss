@@ -29,13 +29,74 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-$color-primary: #ffd800;
-$color-secondary: #004BA8;
-$color-background: #FDFFFC;
-$color-gray: #a2a2a2;
-$color-white: #fff;
+.home {
+  .callout {
+    background: lighten($color-secondary, 60%);
+    border-radius: $border-radius;
+    padding: 30px 20px;
 
-$transition-time: 0.4s;
-$border-radius: 5px;
+    p {
+      margin-top: 0;
+      font-size: 1.2rem;
+      font-family: 'Oxygen', $font-stack-system;
+    }
 
-// https://coolors.co/ffd800-004ba8-a2a2a2-fdfffc-c1292e
+    .input {
+      input {
+        font-size: 1rem;
+
+        &:active, &:focus {
+          box-shadow: inset $color-secondary 0 -2px 0;
+        }
+      }
+    }
+
+    @include breakpoint(md) {
+      padding: 60px 40px;
+
+      p {
+        font-size: 1.5rem;
+      }
+
+      .input {
+        input {
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  .columns {
+    margin-top: 20px;
+    display: grid;
+    grid-gap: 25px;
+
+    @include breakpoint(md) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .featured {
+      margin-bottom: 20px;
+      text-align: center;
+
+      a {
+        display: inline-block;
+
+        img {
+          margin: 10px 0;
+          box-shadow: rgba(0, 0, 0, .25) 0 3px 5px;
+          transition: all $transition-time;
+        }
+
+        &:focus, &:hover {
+          box-shadow: none;
+          transform: translateY(-3px);
+
+          img {
+            box-shadow: rgba(0, 0, 0, .25) 0 6px 5px;
+          }
+        }
+      }
+    }
+  }
+}

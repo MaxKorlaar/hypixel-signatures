@@ -32,9 +32,12 @@
 @import "~bourbon";
 @import '~@primer/css/utilities/index.scss';
 @import '~@primer/css/layout/container';
+@import '~@primer/css/utilities/visibility-display';
 
 @import "variables";
 @import "navigation";
+@import "footer";
+@import "home";
 
 * {
   box-sizing: border-box;
@@ -50,16 +53,19 @@ body {
 
 ::selection {
   background: $color-primary;
-  color: $color-grey;
+  color: $color-gray;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Oxygen', $font-stack-system;
 }
 
 h1 {
-  font-family: 'Oxygen', $font-stack-system;
   color: $color-primary;
 }
 
 h2, h3, h4 {
-  margin: 1rem 0 .5rem;
+  margin: 0;
 }
 
 p {
@@ -67,7 +73,10 @@ p {
 }
 
 main {
+  margin-top: 20px;
+
   &.container-xl {
+    padding: 0 10px;
     //background: $color-white;
     //padding: 10px 30px;
     //box-shadow: rgba(0, 0, 0, .25) 0 2px 3px;
@@ -95,6 +104,26 @@ a {
     font-size: .8rem;
   }
 
+  &.has-button {
+    display: flex;
+    flex-direction: row;
+
+    .button {
+      flex: 1 0 auto;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      background: $color-secondary;
+      color: $white;
+      font-size: 1rem;
+      border-color: darken($color-secondary, 20%);
+
+      &:hover, &:focus {
+        background: lighten($color-secondary, 20%);
+        border-color: $color-secondary;
+      }
+    }
+  }
+
   input {
     display: block;
     font-size: 1rem;
@@ -103,11 +132,16 @@ a {
     transition: all $transition-time;
     outline: none;
     border: none;
-    box-shadow: inset $color-grey 0 -1px 0;
+    box-shadow: inset $color-gray 0 -1px 0;
     background: transparent;
 
+    &::placeholder {
+      color: $color-gray;
+      transition: all $transition-time;
+    }
+
     &:disabled {
-      color: $color-grey;
+      color: $color-gray;
       animation: loading-bar .5s alternate infinite linear, loading-background 1.5s infinite reverse ease;
       background: linear-gradient(to right, transparent 35%, rgba($color-primary, .5) 50%, transparent 65%);
       background-size: 200% auto;
@@ -120,12 +154,16 @@ a {
       & ~ .help {
         color: $black;
       }
+
+      &::placeholder {
+        color: rgba($color-gray, 0);
+      }
     }
   }
 
   .help, .error {
     font-size: .8rem;
-    color: $color-grey;
+    color: $color-gray;
     transition: all $transition-time;
   }
 
@@ -135,6 +173,10 @@ a {
     input {
       color: $red-400;
       animation: shake .1s 5 alternate linear;
+    }
+
+    .error {
+      color: $red-400;
     }
   }
 }
@@ -162,7 +204,7 @@ a {
     box-shadow: inset $color-primary 0 -2px 0;
   }
   100% {
-    box-shadow: inset $color-grey 0 -2px 0;
+    box-shadow: inset $color-gray 0 -2px 0;
   }
 }
 
@@ -178,12 +220,13 @@ a {
   }
 }
 
+
 .button {
   cursor: pointer;
   display: block;
   padding: .5rem 1rem;
-  border-radius: 3px;
-  border: 1px solid $color-grey;
+  border-radius: $border-radius;
+  border: 1px solid $color-gray;
   transition: all $transition-time;
 
   input[type=radio] {
@@ -215,10 +258,24 @@ a {
   padding: 0 20%;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 .signature-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 1rem;
+
+  @include breakpoint(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include breakpoint(md) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
   .signature {
     label {
@@ -226,8 +283,8 @@ a {
       flex-direction: column;
       height: 100%;
       cursor: pointer;
-      border-radius: 3px;
-      border: 1px solid $color-grey;
+      border-radius: $border-radius;
+      border: 1px solid $color-gray;
       padding: 1rem;
       transition: all $transition-time;
       box-shadow: rgba(0, 0, 0, 0) 0 3px 5px, inset $color-primary 0 0 0 0;
@@ -262,9 +319,7 @@ a {
         margin: auto 0;
 
         img {
-          display: block;
-          max-width: 100%;
-          height: auto;
+          margin: 0 auto;
 
           &.pixelated {
             image-rendering: pixelated;
@@ -283,6 +338,8 @@ a {
 }
 
 .results {
+  margin-top: 20px;
+
   .links {
     display: grid;
     grid-template-columns: auto auto;
@@ -293,7 +350,7 @@ a {
       h3 {
         margin: 0;
         text-align: right;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
       }
     }
   }
@@ -307,13 +364,10 @@ a {
     transition: all $transition-time;
     line-break: anywhere;
     font-size: .8rem;
-    border-radius: 3px;
+    border-radius: $border-radius;
   }
 
   img {
-    display: block;
-    max-width: 100%;
-    height: auto;
     margin: 1rem 0;
 
     &.pixelated {

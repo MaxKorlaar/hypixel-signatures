@@ -43,6 +43,7 @@
 
     Route::get('/', 'IndexController@index')->name('home');
 
+    Route::get('/signatures/generate-from-index', 'IndexController@redirectToSignatures')->name('signatures.form_redirect');
     Route::get('/signatures', 'IndexController@signatureIndex')->name('signatures');
 
     Route::prefix('signature/{username}')->name('signatures.')->namespace('Signatures')->group(static function () {
@@ -60,8 +61,10 @@
 
     Route::get('/player/{uuid}/skyblock/profiles', 'SkyBlockController@getProfiles')->name('skyblock.get_profiles');
 
-    Route::get('friends/{username}', 'Friends\FriendsController@getFriends')->where(['username' => '\w{32}']);
+    Route::get('/friends/{username}', 'Friends\FriendsController@getFriends')->where(['username' => '\w{32}']);
 
     Route::prefix('status-sig')->group(static function () {
         Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');
     });
+
+    Route::get('/privacy', 'MetaController@getPrivacyPage')->name('privacy');

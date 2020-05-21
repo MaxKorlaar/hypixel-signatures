@@ -5,7 +5,7 @@
     <div id="signature-app">
         <div class="input" :class="{'has-error': errors.username }">
             <label for="username">Minecraft username or UUID</label>
-            <input id="username" :disabled="loading" type="text" v-model="username" @change="getUuidFromUsername()" @input="clearError('username')">
+            <input id="username" autocomplete="nickname" :disabled="loading" type="text" v-model="username" @change="getUuidFromUsername()" @input="clearError('username')">
             <p class="error" v-if="errors.username">
                 {{ '{{ errors.username }}' }}
             </p>
@@ -72,6 +72,10 @@
             <p>
                 Below you can find the signature that you have selected.
                 You can refer to it using the URL of the image, or copy and paste the BBcode on the forums in a forum post, or in your signature.
+            </p>
+            <p>
+                It's important to use the BBcode or image URL below to refer to your signature. If you download your signature,
+                or copy and paste the image itself, then it won't automatically be updated.
             </p>
             <img :class="{ pixelated: selected_signature.pixelated }" :src="getImageUrl(selected_signature)" alt="">
 
