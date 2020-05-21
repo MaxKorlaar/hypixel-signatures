@@ -185,7 +185,8 @@ window.signaturesApp = new Vue({
         },
 
         uuid() {
-            this.skyblock.profile = null;
+            this.skyblock.profile  = null;
+            this.skyblock.profiles = [];
 
             if (this.current_signature_group.short_name === 'SkyBlock') {
                 this.getSkyBlockProfiles();

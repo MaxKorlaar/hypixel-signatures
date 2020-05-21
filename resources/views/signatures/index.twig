@@ -37,7 +37,7 @@
                 if you've disabled them.
             </p>
             <p class="center-text error" v-if="skyblock.profiles.length > 0 && skyblock.profile === null && !skyblock.loading">
-                Please select a SkyBlock profile to use for generating your signatures. {{ '{{ loading }}' }}
+                Please select a SkyBlock profile to use for generating your signatures.
             </p>
             <div class="input" v-if="skyblock.profiles.length > 0" :class="{'has-error': errors.skyblock_profiles }">
                 <label>SkyBlock profile</label>
