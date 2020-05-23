@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@primer/css": "^14.3.0",
-    "bourbon": "^7.0.0"
+    "bourbon": "^7.0.0",
+    "vue-lazyload": "^1.3.3"
   }
 }

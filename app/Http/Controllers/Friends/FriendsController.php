@@ -32,15 +32,25 @@
 
     namespace App\Http\Controllers\Friends;
 
+    use App\Exceptions\HypixelFetchException;
     use App\Http\Controllers\Controller;
+    use App\Http\Requests\Friends\ViewListByUsernameRequest;
     use App\Jobs\Friends\LoadPlayerData;
     use App\Utilities\HypixelAPI;
+    use App\Utilities\MinecraftAvatar\MojangAPI;
     use Cache;
+    use Illuminate\Contracts\Foundation\Application;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
+    use Illuminate\Support\Collection;
+    use Illuminate\Support\Facades\Redis;
+    use Illuminate\View\View;
+    use JsonException;
     use Plancke\HypixelPHP\classes\HypixelObject;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\exceptions\InvalidUUIDException;
-    use Plancke\HypixelPHP\fetch\Response;
     use Plancke\HypixelPHP\responses\player\Player;
+    use Psr\SimpleCache\InvalidArgumentException;
 
     /**
      * Class FriendsController
@@ -49,54 +59,158 @@
      */
     class FriendsController extends Controller {
         /**
+         * @return View
+         */
+        public function getIndex(): View {
+            $recentlyViewed = (new Collection(Redis::hGetAll('recent_friends')))->sortDesc()->map(static function ($value, $key) {
+                return ['uuid' => $key, 'views' => $value] + Cache::get('recent_friends.' . $key, []);
+            })->slice(0, 20);
+
+            return view('friends.index', [
+                'recently_viewed' => $recentlyViewed
+            ]);
+        }
+
+        /**
+         * @param ViewListByUsernameRequest $request
+         *
+         * @return RedirectResponse
+         * @throws InvalidArgumentException
+         * @throws JsonException
+         */
+        public function redirectToList(ViewListByUsernameRequest $request): ?RedirectResponse {
+            $mojangAPI = new MojangAPI();
+
+            $data = $mojangAPI->getUUID($request->input('username'));
+
+            if (!$data['success']) {
+                if ($data['status_code'] === 204) {
+                    return back()->withInput()->withErrors([
+                        'username' => 'This username does not exist'
+                    ]);
+                }
+
+                return back()->withInput()->withErrors([
+                    'username' => ($data['throttle'] ?? false) ? 'We\'re trying to use Mojang\'s API a bit too much right now, please try again later' : 'An unknown error has occurred while trying to retrieve your UUID from Mojang\'s servers'
+                ]);
+            }
+
+            return redirect()->route('friends.list', [$data['data']['id']]);
+        }
+
+        /**
          * @param $uuid
          *
-         * @return HypixelObject|Response|Player|string[]|null
-         * @throws HypixelPHPException
+         * @return Application|Factory|RedirectResponse|View
+         * @throws InvalidArgumentException
          */
         public function getFriends($uuid) {
-            $api    = new HypixelAPI();
-            $player = $api->getPlayerByUuid($uuid);
+            $api = new HypixelAPI();
             try {
                 $player = $api->getPlayerByUuid($uuid);
 
                 /** @var HypixelObject $player */
                 if (($player instanceof HypixelObject) && $player->getResponse() !== null && !$player->getResponse()->wasSuccessful()) {
-                    return ["Bad API response.\n{$player->getResponse()->getData()['cause']}"];
+                    return back(302, [], route('friends'))->withInput()->withErrors([
+                        'username' => 'An unknown error has occurred while trying to fetch your profile from Hypixel'
+                    ]);
                 }
 
                 if ($player instanceof Player) {
-                    if (empty($player->getData())) {
-                        return ['Player has no public data.'];
-                    }
-                    $friends = $player->getFriends();
-                    if ($friends === null) {
-                        return ['Something went wrong'];
-                    }
-                    $totalFriends = count($friends->getList());
+                    $friendsList = $this->getFriendsListJSON($uuid);
 
-                    $loaded = 0;
-                    foreach ($friends->getRawList() as $friend) {
-                        $friendUuid = $friend['uuidSender'] === $player->getUUID() ? $friend['uuidReceiver'] : $friend['uuidSender'];
-                        if (Cache::has('hypixel.player.' . $friendUuid)) {
-                            $loaded++;
-                            echo Cache::get('hypixel.player.' . $friendUuid) . '<br>';
-                        } else {
-                            Cache::remember('hypixel.player_load.' . $friendUuid, 300, static function () use ($friendUuid) {
-                                LoadPlayerData::dispatch($friendUuid);
-                            });
-                            echo $friendUuid . '<br>';
-                        }
-                    }
+                    Redis::hIncrBy('recent_friends', $uuid, 1);
+                    Redis::expire('recent_friends', 600);
+                    Cache::set('recent_friends.' . $uuid, [
+                        'username'      => $player->getName(),
+                        'friends_count' => $friendsList['meta']['total_friends']
+                    ]);
 
-                    dd($totalFriends, $loaded . '/' . $totalFriends);
+                    return view('friends.list', [
+                            'username' => $player->getName(),
+                            'player'   => $player,
+                            'urls'     => [
+                                'get_friends' => route('friends.list.json', [$player->getUUID()])
+                            ]
+                        ] + $friendsList);
+                }
+            } catch (HypixelFetchException | HypixelPHPException | InvalidUUIDException $e) {
+            }
+
+            return back(302, [], route('friends'))->withInput()->withErrors([
+                'username' => 'An unknown error has occurred while trying to fetch your profile from Hypixel'
+            ]);
+        }
+
+        /**
+         * @param string $uuid
+         *
+         * @param int    $max
+         *
+         * @return array[]|string[]
+         * @throws HypixelFetchException
+         * @throws HypixelPHPException
+         */
+        public function getFriendsListJSON(string $uuid, int $max = 60): ?array {
+            $api = new HypixelAPI();
+
+            $player = $api->getPlayerByUuid($uuid);
+
+            /** @var HypixelObject $player */
+            if (($player instanceof HypixelObject) && $player->getResponse() !== null && !$player->getResponse()->wasSuccessful()) {
+                throw new HypixelFetchException('An unknown error has occurred while trying to fetch a Hypixel profile for ' . $uuid);
+            }
+
+            if ($player instanceof Player) {
+                $friends = $player->getFriends();
+
+                if ($friends === null) {
+                    throw new HypixelFetchException('Friend list of player ' . $uuid . ' is empty');
                 }
 
-                return ['Unexpected API response.'];
-            } catch (InvalidUUIDException $exception) {
-                return ['UUID is invalid.'];
-            } catch (HypixelPHPException $e) {
-                return ['Unknown: ' . $e->getMessage()];
+                $totalFriends = count($friends->getRawList());
+
+                $loaded      = 0;
+                $queued      = 0;
+                $friendsList = [];
+
+                foreach ($friends->getRawList() as $index => $friend) {
+                    $friendUuid = $friend['uuidSender'] === $player->getUUID() ? $friend['uuidReceiver'] : $friend['uuidSender'];
+
+                    $friendArray = [
+                        'uuid'        => $friendUuid,
+                        'since'       => $friend['started'],
+                        'skin_url'    => route('player.skin.head', [$friendUuid]),
+                        'friends_url' => route('friends.list', [$friendUuid]),
+                    ];
+
+                    if (Cache::has('hypixel.player.' . $friendUuid)) {
+                        $loaded++;
+                        $friendArray += Cache::get('hypixel.player.' . $friendUuid);
+                    } else {
+                        $friendArray['loading'] = true;
+
+                        if ($queued < $max) {
+                            Cache::remember('hypixel.player_load.' . $friendUuid, 60, static function () use ($friendUuid) {
+                                LoadPlayerData::dispatch($friendUuid);
+                            });
+                        }
+
+                        $queued++;
+                    }
+
+                    $friendsList[] = $friendArray;
+                }
+
+                return [
+                    'friends' => $friendsList,
+                    'meta'    => [
+                        'total_friends' => $totalFriends,
+                        'loaded'        => $loaded
+                    ]
+                ];
             }
+
+            throw new HypixelFetchException('Player data of player ' . $uuid . ' is null');
         }
     }

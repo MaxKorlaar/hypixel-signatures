@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash": "4365573f6f8f864c9537d21167a47353",
+  "content-hash": "76ea50ba0edc868648eb8ef51f89f75b",
   "packages": [
     {
       "name": "barryvdh/laravel-ide-helper",
@@ -45,26 +45,26 @@
         "laravel": {
           "providers": [
             "Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Barryvdh\\LaravelIdeHelper\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Barry vd. Heuvel",
-                    "email": "barryvdh@gmail.com"
-                }
-            ],
-            "description": "Laravel IDE Helper, generates correct PHPDocs for all Facade classes, to improve auto-completion.",
-            "keywords": [
+          ]
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Barryvdh\\LaravelIdeHelper\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Barry vd. Heuvel",
+          "email": "barryvdh@gmail.com"
+        }
+      ],
+      "description": "Laravel IDE Helper, generates correct PHPDocs for all Facade classes, to improve auto-completion.",
+      "keywords": [
                 "autocomplete",
                 "codeintel",
                 "helper",
@@ -81,22 +81,22 @@
             "name": "barryvdh/reflection-docblock",
             "version": "v2.0.6",
             "source": {
-                "type": "git",
-                "url": "https://github.com/barryvdh/ReflectionDocBlock.git",
-                "reference": "6b69015d83d3daf9004a71a89f26e27d27ef6a16"
+              "type": "git",
+              "url": "https://github.com/barryvdh/ReflectionDocBlock.git",
+              "reference": "6b69015d83d3daf9004a71a89f26e27d27ef6a16"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/ReflectionDocBlock/zipball/6b69015d83d3daf9004a71a89f26e27d27ef6a16",
-                "reference": "6b69015d83d3daf9004a71a89f26e27d27ef6a16",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~4.0,<4.5"
-            },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/barryvdh/ReflectionDocBlock/zipball/6b69015d83d3daf9004a71a89f26e27d27ef6a16",
+            "reference": "6b69015d83d3daf9004a71a89f26e27d27ef6a16",
+            "shasum": ""
+          },
+          "require": {
+            "php": ">=5.3.3"
+          },
+          "require-dev": {
+            "phpunit/phpunit": "~4.0,<4.5"
+          },
           "suggest": {
             "dflydev/markdown": "~1.0",
             "erusev/parsedown": "~1.0"
@@ -216,17 +216,17 @@
         {
           "name": "The CakePHP Team",
           "homepage": "http://cakephp.org"
-                }
-            ],
-            "description": "A simple API extension for DateTime.",
-            "homepage": "http://cakephp.org",
-            "keywords": [
-                "date",
-                "datetime",
-                "time"
-            ],
+        }
+      ],
+      "description": "A simple API extension for DateTime.",
+      "homepage": "http://cakephp.org",
+      "keywords": [
+        "date",
+        "datetime",
+        "time"
+      ],
       "time": "2020-04-21T14:14:05+00:00"
-        },
+    },
         {
             "name": "composer/ca-bundle",
             "version": "1.2.7",
@@ -1069,25 +1069,25 @@
             "name": "fideloper/proxy",
             "version": "4.3.0",
             "source": {
-                "type": "git",
-                "url": "https://github.com/fideloper/TrustedProxy.git",
-                "reference": "ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a"
+              "type": "git",
+              "url": "https://github.com/fideloper/TrustedProxy.git",
+              "reference": "ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fideloper/TrustedProxy/zipball/ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a",
-                "reference": "ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/contracts": "^5.0|^6.0|^7.0|^8.0",
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "illuminate/http": "^5.0|^6.0|^7.0|^8.0",
-                "mockery/mockery": "^1.0",
-              "phpunit/phpunit": "^6.0"
-            },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fideloper/TrustedProxy/zipball/ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a",
+            "reference": "ec38ad69ee378a1eec04fb0e417a97cfaf7ed11a",
+            "shasum": ""
+          },
+          "require": {
+            "illuminate/contracts": "^5.0|^6.0|^7.0|^8.0",
+            "php": ">=5.4.0"
+          },
+          "require-dev": {
+            "illuminate/http": "^5.0|^6.0|^7.0|^8.0",
+            "mockery/mockery": "^1.0",
+            "phpunit/phpunit": "^6.0"
+          },
           "type": "library",
           "extra": {
             "laravel": {
@@ -1278,26 +1278,26 @@
         },
         "files": [
           "src/functions_include.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Dowling",
-                    "email": "mtdowling@gmail.com",
-                    "homepage": "https://github.com/mtdowling"
-                },
-                {
-                    "name": "Tobias Schultze",
-                    "homepage": "https://github.com/Tobion"
-                }
-            ],
-            "description": "PSR-7 message implementation that also provides common utility methods",
-            "keywords": [
-                "http",
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Michael Dowling",
+          "email": "mtdowling@gmail.com",
+          "homepage": "https://github.com/mtdowling"
+        },
+        {
+          "name": "Tobias Schultze",
+          "homepage": "https://github.com/Tobion"
+        }
+      ],
+      "description": "PSR-7 message implementation that also provides common utility methods",
+      "keywords": [
+        "http",
                 "message",
                 "psr-7",
                 "request",
@@ -1532,43 +1532,43 @@
         "moontoast/math": "^1.1",
         "orchestra/testbench-core": "^5.0",
         "pda/pheanstalk": "^4.0",
-              "phpunit/phpunit": "^8.4|^9.0",
-              "predis/predis": "^1.1.1",
-              "symfony/cache": "^5.0"
-            },
-            "suggest": {
-              "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.0).",
-              "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.6).",
-              "ext-gd": "Required to use Illuminate\\Http\\Testing\\FileFactory::image().",
-              "ext-memcached": "Required to use the memcache cache driver.",
-              "ext-pcntl": "Required to use all features of the queue worker.",
-              "ext-posix": "Required to use all features of the queue worker.",
-              "ext-redis": "Required to use the Redis cache and queue drivers (^4.0|^5.0).",
-              "filp/whoops": "Required for friendly error pages in development (^2.4).",
-              "fzaninotto/faker": "Required to use the eloquent factory builder (^1.9.1).",
-              "guzzlehttp/guzzle": "Required to use the HTTP Client, Mailgun mail driver and the ping methods on schedules (^6.3.1|^7.0).",
-              "laravel/tinker": "Required to use the tinker console command (^2.0).",
-              "league/flysystem-aws-s3-v3": "Required to use the Flysystem S3 driver (^1.0).",
-              "league/flysystem-cached-adapter": "Required to use the Flysystem cache (^1.0).",
-              "league/flysystem-sftp": "Required to use the Flysystem SFTP driver (^1.0).",
-              "mockery/mockery": "Required to use mocking (^1.3.1).",
-              "moontoast/math": "Required to use ordered UUIDs (^1.1).",
-              "nyholm/psr7": "Required to use PSR-7 bridging features (^1.2).",
-              "pda/pheanstalk": "Required to use the beanstalk queue driver (^4.0).",
-              "phpunit/phpunit": "Required to use assertions and run tests (^8.4|^9.0).",
-              "psr/http-message": "Required to allow Storage::put to accept a StreamInterface (^1.0).",
-              "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^4.0).",
-              "symfony/cache": "Required to PSR-6 cache bridge (^5.0).",
-              "symfony/filesystem": "Required to create relative storage directory symbolic links (^5.0).",
-              "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^2.0).",
-              "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                  "dev-master": "7.x-dev"
-                }
-            },
+        "phpunit/phpunit": "^8.4|^9.0",
+        "predis/predis": "^1.1.1",
+        "symfony/cache": "^5.0"
+      },
+      "suggest": {
+        "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.0).",
+        "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.6).",
+        "ext-gd": "Required to use Illuminate\\Http\\Testing\\FileFactory::image().",
+        "ext-memcached": "Required to use the memcache cache driver.",
+        "ext-pcntl": "Required to use all features of the queue worker.",
+        "ext-posix": "Required to use all features of the queue worker.",
+        "ext-redis": "Required to use the Redis cache and queue drivers (^4.0|^5.0).",
+        "filp/whoops": "Required for friendly error pages in development (^2.4).",
+        "fzaninotto/faker": "Required to use the eloquent factory builder (^1.9.1).",
+        "guzzlehttp/guzzle": "Required to use the HTTP Client, Mailgun mail driver and the ping methods on schedules (^6.3.1|^7.0).",
+        "laravel/tinker": "Required to use the tinker console command (^2.0).",
+        "league/flysystem-aws-s3-v3": "Required to use the Flysystem S3 driver (^1.0).",
+        "league/flysystem-cached-adapter": "Required to use the Flysystem cache (^1.0).",
+        "league/flysystem-sftp": "Required to use the Flysystem SFTP driver (^1.0).",
+        "mockery/mockery": "Required to use mocking (^1.3.1).",
+        "moontoast/math": "Required to use ordered UUIDs (^1.1).",
+        "nyholm/psr7": "Required to use PSR-7 bridging features (^1.2).",
+        "pda/pheanstalk": "Required to use the beanstalk queue driver (^4.0).",
+        "phpunit/phpunit": "Required to use assertions and run tests (^8.4|^9.0).",
+        "psr/http-message": "Required to allow Storage::put to accept a StreamInterface (^1.0).",
+        "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^4.0).",
+        "symfony/cache": "Required to PSR-6 cache bridge (^5.0).",
+        "symfony/filesystem": "Required to create relative storage directory symbolic links (^5.0).",
+        "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^2.0).",
+        "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "7.x-dev"
+        }
+      },
       "autoload": {
         "files": [
           "src/Illuminate/Foundation/helpers.php",
@@ -1715,24 +1715,24 @@
         }
       },
       "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylor@laravel.com"
-                }
-            ],
-            "description": "Powerful REPL for the Laravel framework.",
-            "keywords": [
-                "REPL",
-                "Tinker",
-                "laravel",
-                "psysh"
-            ],
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Taylor Otwell",
+          "email": "taylor@laravel.com"
+        }
+      ],
+      "description": "Powerful REPL for the Laravel framework.",
+      "keywords": [
+        "REPL",
+        "Tinker",
+        "laravel",
+        "psysh"
+      ],
       "time": "2020-04-07T15:01:31+00:00"
-        },
+    },
         {
             "name": "league/commonmark",
             "version": "1.4.3",
@@ -2232,25 +2232,25 @@
                 "ext-json": "*",
                 "php": "^7.0"
             },
-            "require-dev": {
-                "ext-mongodb": "^1.4.2",
-                "mongodb/mongodb": "^1.4.2",
-                "phpunit/phpunit": "8.0.6"
-            },
-            "suggest": {
-                "ext-mongodb": "^1.4.2",
-                "mongodb/mongodb": "^1.4.2"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Plancke\\HypixelPHP\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-              "MIT"
-            ],
+          "require-dev": {
+            "ext-mongodb": "^1.4.2",
+            "mongodb/mongodb": "^1.4.2",
+            "phpunit/phpunit": "8.0.6"
+          },
+          "suggest": {
+            "ext-mongodb": "^1.4.2",
+            "mongodb/mongodb": "^1.4.2"
+          },
+          "type": "library",
+          "autoload": {
+            "psr-4": {
+              "Plancke\\HypixelPHP\\": "src/"
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
           "authors": [
             {
               "name": "Plancke",
@@ -2475,26 +2475,26 @@
       "description": "Common interface for HTTP messages",
       "homepage": "https://github.com/php-fig/http-message",
       "keywords": [
-                "http",
-                "http-message",
-                "psr",
-                "psr-7",
-                "request",
-                "response"
-            ],
-            "time": "2016-08-06T14:39:51+00:00"
-        },
-        {
-            "name": "psr/log",
-            "version": "1.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
+        "http",
+        "http-message",
+        "psr",
+        "psr-7",
+        "request",
+        "response"
+      ],
+      "time": "2016-08-06T14:39:51+00:00"
+    },
+    {
+      "name": "psr/log",
+      "version": "1.1.3",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/php-fig/log.git",
+        "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
                 "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
                 "shasum": ""
             },
@@ -2531,34 +2531,34 @@
             ],
             "time": "2020-03-23T09:12:05+00:00"
         },
-        {
-            "name": "psr/simple-cache",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/simple-cache.git",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
-                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-          "extra": {
-            "branch-alias": {
-              "dev-master": "1.0.x-dev"
-            }
-          },
-          "autoload": {
-            "psr-4": {
-              "Psr\\SimpleCache\\": "src/"
-            }
-          },
+    {
+      "name": "psr/simple-cache",
+      "version": "1.0.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/php-fig/simple-cache.git",
+        "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+        "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=5.3.0"
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "1.0.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Psr\\SimpleCache\\": "src/"
+        }
+      },
           "notification-url": "https://packagist.org/downloads/",
           "license": [
             "MIT"
@@ -2623,74 +2623,74 @@
         }
       },
       "autoload": {
-                "files": [
-                    "src/functions.php"
-                ],
-                "psr-4": {
-                    "Psy\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Justin Hileman",
-                    "email": "justin@justinhileman.info",
-                    "homepage": "http://justinhileman.com"
-                }
-            ],
-            "description": "An interactive shell for modern PHP.",
-            "homepage": "http://psysh.org",
-            "keywords": [
-                "REPL",
-                "console",
-                "interactive",
-                "shell"
-            ],
-      "time": "2020-05-03T19:32:03+00:00"
-        },
+        "files": [
+          "src/functions.php"
+        ],
+        "psr-4": {
+          "Psy\\": "src/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
         {
-            "name": "ralouphie/getallheaders",
-            "version": "3.0.3",
-            "source": {
-              "type": "git",
-              "url": "https://github.com/ralouphie/getallheaders.git",
-              "reference": "120b605dfeb996808c31b6477290a714d356e822"
-            },
-          "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
-            "reference": "120b605dfeb996808c31b6477290a714d356e822",
-            "shasum": ""
-          },
-          "require": {
-            "php": ">=5.6"
-          },
-          "require-dev": {
-            "php-coveralls/php-coveralls": "^2.1",
-            "phpunit/phpunit": "^5 || ^6.5"
-          },
-          "type": "library",
-          "autoload": {
-            "files": [
-              "src/getallheaders.php"
-            ]
-          },
-          "notification-url": "https://packagist.org/downloads/",
-          "license": [
-            "MIT"
-          ],
-          "authors": [
-            {
-              "name": "Ralph Khattar",
-              "email": "ralph.khattar@gmail.com"
-            }
-          ],
-          "description": "A polyfill for getallheaders.",
-          "time": "2019-03-08T08:55:37+00:00"
-        },
+          "name": "Justin Hileman",
+          "email": "justin@justinhileman.info",
+          "homepage": "http://justinhileman.com"
+        }
+      ],
+      "description": "An interactive shell for modern PHP.",
+      "homepage": "http://psysh.org",
+      "keywords": [
+        "REPL",
+        "console",
+        "interactive",
+        "shell"
+      ],
+      "time": "2020-05-03T19:32:03+00:00"
+    },
+    {
+      "name": "ralouphie/getallheaders",
+      "version": "3.0.3",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/ralouphie/getallheaders.git",
+        "reference": "120b605dfeb996808c31b6477290a714d356e822"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/ralouphie/getallheaders/zipball/120b605dfeb996808c31b6477290a714d356e822",
+        "reference": "120b605dfeb996808c31b6477290a714d356e822",
+        "shasum": ""
+      },
+      "require": {
+        "php": ">=5.6"
+      },
+      "require-dev": {
+        "php-coveralls/php-coveralls": "^2.1",
+        "phpunit/phpunit": "^5 || ^6.5"
+      },
+      "type": "library",
+      "autoload": {
+        "files": [
+          "src/getallheaders.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Ralph Khattar",
+          "email": "ralph.khattar@gmail.com"
+        }
+      ],
+      "description": "A polyfill for getallheaders.",
+      "time": "2019-03-08T08:55:37+00:00"
+    },
     {
       "name": "ramsey/collection",
       "version": "1.0.1",
@@ -2863,26 +2863,26 @@
       "suggest": {
         "laravelcollective/html": "For bringing back html/form in Laravel 5.x",
         "twig/extensions": "~1.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "0.11-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "TwigBridge\\ServiceProvider"
-                    ],
-                    "aliases": {
-                        "Twig": "TwigBridge\\Facade\\Twig"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "TwigBridge\\": "src",
-                    "TwigBridge\\Tests\\": "tests"
-                }
+      },
+      "type": "library",
+      "extra": {
+        "branch-alias": {
+          "dev-master": "0.11-dev"
+        },
+        "laravel": {
+          "providers": [
+            "TwigBridge\\ServiceProvider"
+          ],
+          "aliases": {
+            "Twig": "TwigBridge\\Facade\\Twig"
+          }
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "TwigBridge\\": "src",
+          "TwigBridge\\Tests\\": "tests"
+        }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2982,43 +2982,112 @@
                     "Seld\\PharUtils\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jordi Boggiano",
-                    "email": "j.boggiano@seld.be"
-                }
-            ],
-            "description": "PHAR file format utilities, for when PHP phars you up",
-            "keywords": [
-                "phar"
-            ],
-            "time": "2020-02-14T15:25:33+00:00"
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
+          "authors": [
+            {
+              "name": "Jordi Boggiano",
+              "email": "j.boggiano@seld.be"
+            }
+          ],
+          "description": "PHAR file format utilities, for when PHP phars you up",
+          "keywords": [
+            "phar"
+          ],
+          "time": "2020-02-14T15:25:33+00:00"
+        },
+    {
+      "name": "spatie/laravel-directory-cleanup",
+      "version": "1.5.1",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/spatie/laravel-directory-cleanup.git",
+        "reference": "cbc9a701161b47d68f6a351ca5f32509b20bfc73"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/spatie/laravel-directory-cleanup/zipball/cbc9a701161b47d68f6a351ca5f32509b20bfc73",
+        "reference": "cbc9a701161b47d68f6a351ca5f32509b20bfc73",
+        "shasum": ""
+      },
+      "require": {
+        "illuminate/support": "~5.8.0|^6.0|^7.0",
+        "nesbot/carbon": "^1.0|^2.0",
+        "php": "^7.2"
+      },
+      "require-dev": {
+        "mockery/mockery": "^1.3",
+        "orchestra/testbench": "~3.8.0|^4.0|^5.0",
+        "phpunit/phpunit": "^8.0|^9.0"
+      },
+      "type": "library",
+      "extra": {
+        "laravel": {
+          "providers": [
+            "Spatie\\DirectoryCleanup\\DirectoryCleanupServiceProvider"
+          ]
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Spatie\\DirectoryCleanup\\": "src"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Freek Van der Herten",
+          "email": "freek@spatie.be",
+          "homepage": "https://spatie.be",
+          "role": "Developer"
         },
         {
-            "name": "stil/gd-text",
-            "version": "v1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/stil/gd-text.git",
-                "reference": "ae2bd5736dbd6d45a4af1e4b9c573dd4d8d06b11"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/stil/gd-text/zipball/ae2bd5736dbd6d45a4af1e4b9c573dd4d8d06b11",
-                "reference": "ae2bd5736dbd6d45a4af1e4b9c573dd4d8d06b11",
-                "shasum": ""
-            },
-            "require": {
-                "ext-gd": "*",
-                "php": ">=5.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.4"
-            },
+          "name": "Jolita Grazyte",
+          "email": "jolita@spatie.be",
+          "homepage": "https://spatie.be",
+          "role": "Developer"
+        }
+      ],
+      "description": "This package will remove the expired files from the given directories. ",
+      "homepage": "https://github.com/spatie/laravel-directory-cleanup",
+      "keywords": [
+        "laravel-directory-cleanup",
+        "spatie"
+      ],
+      "funding": [
+        {
+          "url": "https://spatie.be/open-source/support-us",
+          "type": "custom"
+        }
+      ],
+      "time": "2020-05-01T17:54:18+00:00"
+    },
+    {
+      "name": "stil/gd-text",
+      "version": "v1.1.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/stil/gd-text.git",
+        "reference": "ae2bd5736dbd6d45a4af1e4b9c573dd4d8d06b11"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/stil/gd-text/zipball/ae2bd5736dbd6d45a4af1e4b9c573dd4d8d06b11",
+        "reference": "ae2bd5736dbd6d45a4af1e4b9c573dd4d8d06b11",
+        "shasum": ""
+      },
+      "require": {
+        "ext-gd": "*",
+        "php": ">=5.3"
+      },
+      "require-dev": {
+        "phpunit/phpunit": "^5.4"
+      },
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -3048,26 +3117,26 @@
                 "shasum": ""
             },
             "require": {
-                "egulias/email-validator": "~2.0",
-                "php": ">=7.0.0",
-                "symfony/polyfill-iconv": "^1.0",
-                "symfony/polyfill-intl-idn": "^1.10",
-                "symfony/polyfill-mbstring": "^1.0"
+              "egulias/email-validator": "~2.0",
+              "php": ">=7.0.0",
+              "symfony/polyfill-iconv": "^1.0",
+              "symfony/polyfill-intl-idn": "^1.10",
+              "symfony/polyfill-mbstring": "^1.0"
             },
-            "require-dev": {
-                "mockery/mockery": "~0.9.1",
-                "symfony/phpunit-bridge": "^3.4.19|^4.1.8"
-            },
-            "suggest": {
-                "ext-intl": "Needed to support internationalized email addresses",
-                "true/punycode": "Needed to support internationalized email addresses, if ext-intl is not installed"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "6.2-dev"
-                }
-            },
+          "require-dev": {
+            "mockery/mockery": "~0.9.1",
+            "symfony/phpunit-bridge": "^3.4.19|^4.1.8"
+          },
+          "suggest": {
+            "ext-intl": "Needed to support internationalized email addresses",
+            "true/punycode": "Needed to support internationalized email addresses, if ext-intl is not installed"
+          },
+          "type": "library",
+          "extra": {
+            "branch-alias": {
+              "dev-master": "6.2-dev"
+            }
+          },
           "autoload": {
             "files": [
               "lib/swift_required.php"
@@ -3143,26 +3212,26 @@
       "extra": {
         "branch-alias": {
           "dev-master": "5.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Console\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Component\\Console\\": ""
+        },
+        "exclude-from-classmap": [
+          "/Tests/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Fabien Potencier",
+          "email": "fabien@symfony.com"
+        },
+        {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
@@ -3323,14 +3392,14 @@
           "dev-master": "5.0-dev"
         }
       },
-            "autoload": {
-                "psr-4": {
-                  "Symfony\\Component\\EventDispatcher\\": ""
-                },
-              "exclude-from-classmap": [
-                "/Tests/"
-              ]
-            },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Component\\EventDispatcher\\": ""
+        },
+        "exclude-from-classmap": [
+          "/Tests/"
+        ]
+      },
       "notification-url": "https://packagist.org/downloads/",
       "license": [
         "MIT"
@@ -3394,19 +3463,19 @@
           "name": "Symfony Community",
           "homepage": "https://symfony.com/contributors"
         }
-            ],
-            "description": "Generic abstractions related to dispatching event",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "abstractions",
-                "contracts",
-                "decoupling",
-                "interfaces",
-                "interoperability",
-                "standards"
-            ],
+      ],
+      "description": "Generic abstractions related to dispatching event",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "abstractions",
+        "contracts",
+        "decoupling",
+        "interfaces",
+        "interoperability",
+        "standards"
+      ],
       "time": "2019-11-18T17:27:11+00:00"
-        },
+    },
         {
             "name": "symfony/filesystem",
             "version": "v5.0.8",
@@ -3421,24 +3490,24 @@
                 "reference": "7cd0dafc4353a0f62e307df90b48466379c8cc91",
                 "shasum": ""
             },
-            "require": {
-                "php": "^7.2.5",
-                "symfony/polyfill-ctype": "~1.8"
+          "require": {
+            "php": "^7.2.5",
+            "symfony/polyfill-ctype": "~1.8"
+          },
+          "type": "library",
+          "extra": {
+            "branch-alias": {
+              "dev-master": "5.0-dev"
+            }
+          },
+          "autoload": {
+            "psr-4": {
+              "Symfony\\Component\\Filesystem\\": ""
             },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                  "Symfony\\Component\\Filesystem\\": ""
-                },
-              "exclude-from-classmap": [
-                "/Tests/"
-              ]
-            },
+            "exclude-from-classmap": [
+              "/Tests/"
+            ]
+          },
           "notification-url": "https://packagist.org/downloads/",
           "license": [
             "MIT"
@@ -3630,26 +3699,26 @@
       "extra": {
         "branch-alias": {
           "dev-master": "5.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\HttpKernel\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Component\\HttpKernel\\": ""
+        },
+        "exclude-from-classmap": [
+          "/Tests/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Fabien Potencier",
+          "email": "fabien@symfony.com"
+        },
+        {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
@@ -4037,12 +4106,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php73\\": ""
-                },
-                "files": [
-                  "bootstrap.php"
-                ],
+              "psr-4": {
+                "Symfony\\Polyfill\\Php73\\": ""
+              },
+              "files": [
+                "bootstrap.php"
+              ],
               "classmap": [
                 "Resources/stubs"
               ]
@@ -4172,26 +4241,26 @@
           "/Tests/"
         ]
       },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Routing Component",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "router",
-                "routing",
-                "uri",
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Fabien Potencier",
+          "email": "fabien@symfony.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony Routing Component",
+      "homepage": "https://symfony.com",
+      "keywords": [
+        "router",
+        "routing",
+        "uri",
                 "url"
             ],
       "time": "2020-04-21T21:02:50+00:00"
@@ -4214,24 +4283,24 @@
                 "php": "^7.2.5",
                 "psr/container": "^1.0"
             },
-            "suggest": {
-                "symfony/service-implementation": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Contracts\\Service\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
+          "suggest": {
+            "symfony/service-implementation": ""
+          },
+          "type": "library",
+          "extra": {
+            "branch-alias": {
+              "dev-master": "2.0-dev"
+            }
+          },
+          "autoload": {
+            "psr-4": {
+              "Symfony\\Contracts\\Service\\": ""
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
           "authors": [
             {
               "name": "Nicolas Grekas",
@@ -4304,26 +4373,26 @@
         "branch-alias": {
           "dev-master": "5.0-dev"
         }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Translation\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
+      },
+      "autoload": {
+        "psr-4": {
+          "Symfony\\Component\\Translation\\": ""
+        },
+        "exclude-from-classmap": [
+          "/Tests/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Fabien Potencier",
+          "email": "fabien@symfony.com"
+        },
+        {
+          "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
@@ -4348,24 +4417,24 @@
             "require": {
                 "php": "^7.2.5"
             },
-            "suggest": {
-                "symfony/translation-implementation": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Contracts\\Translation\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
+          "suggest": {
+            "symfony/translation-implementation": ""
+          },
+          "type": "library",
+          "extra": {
+            "branch-alias": {
+              "dev-master": "2.0-dev"
+            }
+          },
+          "autoload": {
+            "psr-4": {
+              "Symfony\\Contracts\\Translation\\": ""
+            }
+          },
+          "notification-url": "https://packagist.org/downloads/",
+          "license": [
+            "MIT"
+          ],
           "authors": [
             {
               "name": "Nicolas Grekas",
@@ -4436,26 +4505,26 @@
         ],
         "psr-4": {
           "Symfony\\Component\\VarDumper\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony mechanism for exploring and dumping PHP variables",
+        },
+        "exclude-from-classmap": [
+          "/Tests/"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Nicolas Grekas",
+          "email": "p@tchwork.com"
+        },
+        {
+          "name": "Symfony Community",
+          "homepage": "https://symfony.com/contributors"
+        }
+      ],
+      "description": "Symfony mechanism for exploring and dumping PHP variables",
             "homepage": "https://symfony.com",
             "keywords": [
                 "debug",
@@ -4721,26 +4790,26 @@
       "type": "library",
       "extra": {
         "branch-alias": {
-                    "dev-master": "1.2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marco Pivetta",
-                    "email": "ocramius@gmail.com",
-                    "homepage": "http://ocramius.github.com/"
-                }
-            ],
-            "description": "A small, lightweight utility to instantiate objects in PHP without invoking their constructors",
+          "dev-master": "1.2.x-dev"
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Doctrine\\Instantiator\\": "src/Doctrine/Instantiator/"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
+        {
+          "name": "Marco Pivetta",
+          "email": "ocramius@gmail.com",
+          "homepage": "http://ocramius.github.com/"
+        }
+      ],
+      "description": "A small, lightweight utility to instantiate objects in PHP without invoking their constructors",
             "homepage": "https://www.doctrine-project.org/projects/instantiator.html",
             "keywords": [
                 "constructor",
@@ -4764,22 +4833,22 @@
             },
             "require": {
                 "facade/ignition-contracts": "~1.0",
-                "illuminate/pipeline": "^5.5|^6.0|^7.0",
-                "php": "^7.1",
-                "symfony/http-foundation": "^3.3|^4.1|^5.0",
-                "symfony/var-dumper": "^3.4|^4.0|^5.0"
+              "illuminate/pipeline": "^5.5|^6.0|^7.0",
+              "php": "^7.1",
+              "symfony/http-foundation": "^3.3|^4.1|^5.0",
+              "symfony/var-dumper": "^3.4|^4.0|^5.0"
             },
-            "require-dev": {
-                "larapack/dd": "^1.1",
-                "phpunit/phpunit": "^7.5.16",
-                "spatie/phpunit-snapshot-assertions": "^2.0"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
+          "require-dev": {
+            "larapack/dd": "^1.1",
+            "phpunit/phpunit": "^7.5.16",
+            "spatie/phpunit-snapshot-assertions": "^2.0"
+          },
+          "type": "library",
+          "extra": {
+            "branch-alias": {
+              "dev-master": "1.0-dev"
+            }
+          },
           "autoload": {
             "psr-4": {
               "Facade\\FlareClient\\": "src"
@@ -4849,26 +4918,26 @@
           "aliases": {
             "Flare": "Facade\\Ignition\\Facades\\Flare"
           }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Facade\\Ignition\\": "src"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A beautiful error page for Laravel applications.",
-            "homepage": "https://github.com/facade/ignition",
-            "keywords": [
-                "error",
-                "flare",
-                "laravel",
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "Facade\\Ignition\\": "src"
+        },
+        "files": [
+          "src/helpers.php"
+        ]
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "description": "A beautiful error page for Laravel applications.",
+      "homepage": "https://github.com/facade/ignition",
+      "keywords": [
+        "error",
+        "flare",
+        "laravel",
                 "page"
             ],
       "time": "2020-03-18T19:20:44+00:00"
@@ -5194,23 +5263,23 @@
                 "url": "https://github.com/myclabs/DeepCopy.git",
                 "reference": "b2c28789e80a97badd14145fda39b545d83ca3ef"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/b2c28789e80a97badd14145fda39b545d83ca3ef",
-                "reference": "b2c28789e80a97badd14145fda39b545d83ca3ef",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1"
-            },
-            "replace": {
-                "myclabs/deep-copy": "self.version"
-            },
-            "require-dev": {
-                "doctrine/collections": "^1.0",
-                "doctrine/common": "^2.6",
-                "phpunit/phpunit": "^7.1"
-            },
+          "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/b2c28789e80a97badd14145fda39b545d83ca3ef",
+            "reference": "b2c28789e80a97badd14145fda39b545d83ca3ef",
+            "shasum": ""
+          },
+          "require": {
+            "php": "^7.1"
+          },
+          "replace": {
+            "myclabs/deep-copy": "self.version"
+          },
+          "require-dev": {
+            "doctrine/collections": "^1.0",
+            "doctrine/common": "^2.6",
+            "phpunit/phpunit": "^7.1"
+          },
           "type": "library",
           "autoload": {
             "psr-4": {
@@ -5286,24 +5355,24 @@
       "authors": [
         {
           "name": "Nuno Maduro",
-                    "email": "enunomaduro@gmail.com"
-                }
-            ],
-            "description": "Cli error handling for console/command-line PHP applications.",
-            "keywords": [
-                "artisan",
-                "cli",
-                "command-line",
-                "console",
-                "error",
-                "handling",
-                "laravel",
-                "laravel-zero",
-                "php",
-                "symfony"
-            ],
+          "email": "enunomaduro@gmail.com"
+        }
+      ],
+      "description": "Cli error handling for console/command-line PHP applications.",
+      "keywords": [
+        "artisan",
+        "cli",
+        "command-line",
+        "console",
+        "error",
+        "handling",
+        "laravel",
+        "laravel-zero",
+        "php",
+        "symfony"
+      ],
       "time": "2020-04-04T19:56:08+00:00"
-        },
+    },
         {
             "name": "phar-io/manifest",
             "version": "1.0.3",
@@ -7048,24 +7117,25 @@
             "keywords": [
                 "assert",
                 "check",
-                "validate"
+              "validate"
             ],
-            "time": "2020-04-18T12:12:48+00:00"
+          "time": "2020-04-18T12:12:48+00:00"
         }
-    ],
-    "aliases": [],
-    "minimum-stability": "dev",
-    "stability-flags": {
-        "roave/security-advisories": 20
-    },
-    "prefer-stable": true,
-    "prefer-lowest": false,
-    "platform": {
-      "php": "^7.2.5",
-      "ext-curl": "*",
-      "ext-gd": "*",
-      "ext-json": "*",
-      "ext-zlib": "*"
-    },
-  "platform-dev": []
+  ],
+  "aliases": [],
+  "minimum-stability": "dev",
+  "stability-flags": {
+    "roave/security-advisories": 20
+  },
+  "prefer-stable": true,
+  "prefer-lowest": false,
+  "platform": {
+    "php": "^7.4",
+    "ext-curl": "*",
+    "ext-gd": "*",
+    "ext-json": "*",
+    "ext-zlib": "*"
+  },
+  "platform-dev": [],
+  "plugin-api-version": "1.1.0"
 }

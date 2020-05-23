@@ -1,4 +1,5 @@
-/*!
+<?php
+/**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -29,53 +30,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-.home {
+namespace App\Http\Requests\Friends;
 
-  .columns {
-    margin-top: 20px;
-    display: grid;
-    grid-gap: 25px;
+    use Illuminate\Foundation\Http\FormRequest;
 
-    @include breakpoint(md) {
-      grid-template-columns: 1fr 1fr;
+    /**
+     * Class ViewListByUsernameRequest
+     *
+     * @package App\Http\Requests\Friends
+     */
+    class ViewListByUsernameRequest extends FormRequest {
+        /**
+         * Determine if the user is authorized to make this request.
+         *
+         * @return bool
+         */
+        public function authorize(): bool {
+            return true;
+        }
+
+        /**
+         * Get the validation rules that apply to the request.
+         *
+         * @return array
+         */
+        public function rules(): array {
+            return [
+                'username' => 'required|string|max:32'
+            ];
+        }
     }
-
-    .featured {
-      margin-bottom: 20px;
-      text-align: center;
-
-      a {
-        display: inline-block;
-
-        img {
-          margin: 10px 0;
-          box-shadow: rgba(0, 0, 0, .25) 0 3px 5px;
-          transition: all $transition-time;
-        }
-
-        &:focus, &:hover {
-          box-shadow: none;
-          transform: translateY(-3px);
-
-          img {
-            box-shadow: rgba(0, 0, 0, .25) 0 6px 5px;
-          }
-        }
-      }
-    }
-
-    .overview {
-      .item {
-        padding: 1rem 0;
-
-        &:first-child {
-          padding-top: 0;
-        }
-
-        + .item {
-          border-top: 1px solid $color-gray;
-        }
-      }
-    }
-  }
-}

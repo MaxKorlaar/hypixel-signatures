@@ -38,6 +38,9 @@
 @import "navigation";
 @import "footer";
 @import "home";
+@import "friends";
+
+@import "components/callout";
 
 * {
   box-sizing: border-box;
@@ -94,6 +97,10 @@ a {
   }
 }
 
+[v-cloak] {
+  display: none !important;
+}
+
 .error {
   color: $red-400;
 }
@@ -105,21 +112,23 @@ a {
   }
 
   &.has-button {
-    display: flex;
-    flex-direction: row;
+    .fields {
+      display: flex;
+      flex-direction: row;
 
-    .button {
-      flex: 1 0 auto;
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 0;
-      background: $color-secondary;
-      color: $white;
-      font-size: 1rem;
-      border-color: darken($color-secondary, 20%);
+      .button {
+        flex: 1 0 auto;
+        border-bottom-left-radius: 0;
+        border-top-left-radius: 0;
+        background: $color-secondary;
+        color: $white;
+        font-size: 1rem;
+        border-color: darken($color-secondary, 20%);
 
-      &:hover, &:focus {
-        background: lighten($color-secondary, 20%);
-        border-color: $color-secondary;
+        &:hover, &:focus {
+          background: lighten($color-secondary, 20%);
+          border-color: $color-secondary;
+        }
       }
     }
   }

@@ -32,9 +32,8 @@ import Vue from 'vue';
 
 const axios = require('axios').default;
 
-
 // noinspection ObjectAllocationIgnored
-window.signaturesApp = new Vue({
+new Vue({
     el:       '#signature-app',
     data:     {
         signatures:              {},

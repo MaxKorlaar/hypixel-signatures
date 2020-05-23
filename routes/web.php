@@ -56,12 +56,16 @@
         Route::get('skyblock/pets/{profile_id}', 'SkyBlockPetsSignatureController@render')->name('skyblock.pets');
     });
 
-    Route::get('/player/{username}/uuid', 'PlayerController@getUuid')->name('player.get_uuid');
-    Route::get('/player/{uuid}/profile', 'PlayerController@getProfile')->name('player.get_profile');
+    Route::get('/player/{username}/uuid', 'Player\PlayerController@getUuid')->name('player.get_uuid');
+    Route::get('/player/{uuid}/profile', 'Player\PlayerController@getProfile')->name('player.get_profile');
+    Route::get('/player/{uuid}/skin/head.png', 'Player\ImageController@getHead')->name('player.skin.head');
 
     Route::get('/player/{uuid}/skyblock/profiles', 'SkyBlockController@getProfiles')->name('skyblock.get_profiles');
 
-    Route::get('/friends/{username}', 'Friends\FriendsController@getFriends')->where(['username' => '\w{32}']);
+    Route::get('/friends/', 'Friends\FriendsController@getIndex')->name('friends');
+    Route::post('/friends/', 'Friends\FriendsController@redirectToList')->name('friends.form_redirect');
+    Route::get('/friends/{uuid}', 'Friends\FriendsController@getFriends')->name('friends.list');
+    Route::get('/friends/{uuid}/json', 'Friends\FriendsController@getFriendsListJSON')->name('friends.list.json');
 
     Route::prefix('status-sig')->group(static function () {
         Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');

@@ -1,4 +1,5 @@
-/*!
+<?php
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -29,53 +30,42 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-.home {
+    namespace App\Http\Controllers\Player;
 
-  .columns {
-    margin-top: 20px;
-    display: grid;
-    grid-gap: 25px;
+    use App\Http\Controllers\Controller;
+    use App\Utilities\MinecraftAvatar\MojangAPI;
+    use JsonException;
+    use Psr\SimpleCache\InvalidArgumentException;
 
-    @include breakpoint(md) {
-      grid-template-columns: 1fr 1fr;
+    /**
+     * Class PlayerController
+     *
+     * @package App\Http\Controllers
+     */
+    class PlayerController extends Controller {
+        /**
+         * @param string $username
+         *
+         * @return array
+         * @throws InvalidArgumentException
+         * @throws JsonException
+         */
+        public function getUuid(string $username): array {
+            $mojangAPI = new MojangAPI();
+
+            return $mojangAPI->getUUID($username);
+        }
+
+        /**
+         * @param string $uuid
+         *
+         * @return array
+         * @throws InvalidArgumentException
+         * @throws JsonException
+         */
+        public function getProfile(string $uuid): array {
+            $mojangAPI = new MojangAPI();
+
+            return $mojangAPI->getProfile($uuid);
+        }
     }
-
-    .featured {
-      margin-bottom: 20px;
-      text-align: center;
-
-      a {
-        display: inline-block;
-
-        img {
-          margin: 10px 0;
-          box-shadow: rgba(0, 0, 0, .25) 0 3px 5px;
-          transition: all $transition-time;
-        }
-
-        &:focus, &:hover {
-          box-shadow: none;
-          transform: translateY(-3px);
-
-          img {
-            box-shadow: rgba(0, 0, 0, .25) 0 6px 5px;
-          }
-        }
-      }
-    }
-
-    .overview {
-      .item {
-        padding: 1rem 0;
-
-        &:first-child {
-          padding-top: 0;
-        }
-
-        + .item {
-          border-top: 1px solid $color-gray;
-        }
-      }
-    }
-  }
-}

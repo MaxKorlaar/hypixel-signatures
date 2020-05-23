@@ -1,0 +1,62 @@
+{% extends 'partials/page.twig' %}
+{% block page_title %}{{ username }}'s Hypixel Friends List{% endblock %}
+
+{% block social_image %}{{ route('player.skin.head', { uuid: player.getUUID(), size: 10 }) }}{% endblock %}
+{% block social_title %}{{ username }}'s friends on Hypixel – Hypixel.Paniek.de{% endblock %}
+{% block social_description %}View all of {{ meta.total_friends }} friends of {{ username }} on the Hypixel Minecraft server. You can browse through the list and navigate to other Hypixel players.{% endblock %}
+
+{% block content %}
+    <div class="friends-list" id="friends-list-app">
+        <h1>{{ username }}'s friends on Hypixel</h1>
+
+        <div class="progress-info" v-if="meta.loaded < meta.total_friends" v-cloak>
+            <h2>Loading friends ({{ "{{ meta.loaded }}" }} / {{ "{{ meta.total_friends }}" }})&hellip;</h2>
+
+            <div class="bar">
+                <div class="inner" :style="{ '--percentage': Math.round(meta.loaded/meta.total_friends * 100) + '%' }"></div>
+            </div>
+        </div>
+
+        <div class="social-share">
+            <a href="https://twitter.com/share" data-url="{{ route('friends.list', [player.getUUID()]) }}" class="twitter-share-button" data-text="I'm browsing {{ username }}'s friend list on Hypixel!" data-via="MaxKorlaar" data-size="small" data-related="MaxKorlaar" data-hashtags="Hypixel">Tweet</a>
+        </div>
+
+        <div class="friends-grid players-grid" v-cloak>
+            <a v-for="player in friends.slice(0, visible_friends_count)" :class="{ loading: player.loading }" class="item" :href="player.friends_url">
+                <div class="image-container">
+                    <img loading="lazy" data-src="/player/{{ player.getUUID() }}/skin/head.png" v-lazy="player.skin_url" width="71" height="64" alt="">
+                </div>
+                <div class="name-container">
+                    <div class="loader" v-if="player.loading">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <h3 v-html="player.formatted_name"></h3>
+                    since {{ "{{ new Date(player.since).toLocaleDateString() }}" }}
+                </div>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        window.Paniek         = window.Paniek || {};
+        window.Paniek.friends = {{ friends|json_encode|raw }};
+        window.Paniek.meta    = {{ meta|json_encode|raw }};
+        window.Paniek.urls    = {{ urls|json_encode|raw }};
+    </script>
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/friends.js') }}"></script>
+    <script>!function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+            if (!d.getElementById(id)) {
+                js     = d.createElement(s);
+                js.id  = id;
+                js.src = p + '://platform.twitter.com/widgets.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        }(document, 'script', 'twitter-wjs');</script>
+{% endblock %}

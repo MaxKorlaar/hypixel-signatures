@@ -30,38 +30,39 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Http\Controllers;
+use Spatie\DirectoryCleanup\Policies\DeleteEverything;
 
-    use App\Utilities\MinecraftAvatar\MojangAPI;
-    use Psr\SimpleCache\InvalidArgumentException;
+    return [
 
-    /**
-     * Class PlayerController
-     *
-     * @package App\Http\Controllers
-     */
-    class PlayerController extends Controller {
-        /**
-         * @param string $username
+        'directories'    => [
+
+            /*
+             * Here you can specify which directories need to be cleanup. All files older than
+             * the specified amount of minutes will be deleted.
+             */
+
+            storage_path('app/public/minecraft-avatars') => [
+                'deleteAllOlderThanMinutes' => 60 * 24 * 14
+            ],
+
+            storage_path('app/cache') => [
+                'deleteAllOlderThanMinutes' => 60 * 24 * 30
+            ]
+
+            /*
+            'path/to/a/directory' => [
+                'deleteAllOlderThanMinutes' => 60 * 24,
+            ],
+            */
+        ],
+
+        /*
+         * If a file is older than the amount of minutes specified, a cleanup policy will decide if that file
+         * should be deleted. By default every file that is older that the specified amount of minutes
+         * will be deleted.
          *
-         * @return array
-         * @throws InvalidArgumentException
+         * You can customize this behaviour by writing your own clean up policy.  A valid policy
+         * is any class that implements `Spatie\DirectoryCleanup\Policies\CleanupPolicy`.
          */
-        public function getUuid(string $username): array {
-            $mojangAPI = new MojangAPI();
-
-            return $mojangAPI->getUUID($username);
-        }
-
-        /**
-         * @param string $uuid
-         *
-         * @return array
-         * @throws InvalidArgumentException
-         */
-        public function getProfile(string $uuid): array {
-            $mojangAPI = new MojangAPI();
-
-            return $mojangAPI->getProfile($uuid);
-        }
-    }
+        'cleanup_policy' => DeleteEverything::class,
+    ];

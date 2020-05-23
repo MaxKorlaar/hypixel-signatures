@@ -1,0 +1,39 @@
+{% extends 'partials/page.twig' %}
+{% block page_title %}Hypixel Friends List{% endblock %}
+{% block content %}
+    <div class="friends-list">
+        <div class="callout">
+            <p>
+                View a list of your or someone else's friends on Hypixel, how long you've been friends with them and more.
+            </p>
+            <p>
+                It's easy – You only have to enter your username to get started.
+            </p>
+            <form class="input has-button {{ errors.has('username') ? 'has-error' }}" method="post" action="{{ route('friends.form_redirect') }}">
+                {{ csrf_field() }}
+                <div class="fields">
+                    <input value="{{ old('username') }}" title="Username" type="text" autocomplete="nickname" name="username" placeholder="Enter your username to get started">
+                    <button class="button hide-sm" type="submit">View friends &longrightarrow;</button>
+                    <button class="button hide-md hide-lg hide-xl" type="submit">&longrightarrow;</button>
+                </div>
+                <p class="error">
+                    {{ errors.first('username') }}
+                </p>
+            </form>
+        </div>
+        <h1>Recently viewed</h1>
+        <div class="recently-viewed-grid players-grid">
+            {% for player in recently_viewed %}
+                <a class="item" href="{{ route('friends.list', [player.uuid]) }}">
+                    <div class="image-container">
+                        <img loading="lazy" src="{{ route('player.skin.head', [player.uuid]) }}" alt="">
+                    </div>
+                    <div class="name-container">
+                        <h3>{{ player.username }}</h3>
+                        {{ player.friends_count }} friends - {{ player.views }} views
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

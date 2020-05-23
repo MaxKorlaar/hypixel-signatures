@@ -36,12 +36,14 @@
     use Cache;
     use Illuminate\Bus\Queueable;
     use Illuminate\Contracts\Queue\ShouldQueue;
+    use Illuminate\Contracts\Redis\LimiterTimeoutException;
     use Illuminate\Foundation\Bus\Dispatchable;
     use Illuminate\Queue\InteractsWithQueue;
     use Illuminate\Queue\SerializesModels;
+    use Illuminate\Support\Facades\Redis;
+    use Log;
     use Plancke\HypixelPHP\classes\HypixelObject;
-    use Plancke\HypixelPHP\exceptions\HypixelPHPException;
-    use Psr\SimpleCache\InvalidArgumentException;
+    use Plancke\HypixelPHP\color\ColorUtils;
 
     /**
      * Class LoadPlayerData
@@ -51,14 +53,14 @@
     class LoadPlayerData implements ShouldQueue {
         use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-        private $uuid;
+        private string $uuid;
 
         /**
          * Create a new job instance.
          *
          * @param $uuid
          */
-        public function __construct($uuid) {
+        public function __construct(string $uuid) {
             $this->queue = 'hypixel-api';
             $this->uuid  = $uuid;
         }
@@ -67,23 +69,36 @@
          * Execute the job.
          *
          * @return void
-         * @throws HypixelPHPException
-         * @throws InvalidArgumentException
+         * @throws LimiterTimeoutException
          */
         public function handle(): void {
-            $api = new HypixelAPI();
+            Redis::throttle('friends.request_data')->allow(250)->every(30)->then(function () {
+                $api = new HypixelAPI();
 
-            $player = $api->getPlayerByUuid($this->uuid);
+                $player = $api->getPlayerByUuid($this->uuid);
 
-            /** @var HypixelObject $player */
-            if (($player instanceof HypixelObject) && $player->getResponse() !== null && !$player->getResponse()->wasSuccessful()) {
-                $this->fail("Bad API response.\n{$player->getResponse()->getData()['cause']}");
-            }
+                /** @var HypixelObject $player */
+                if (($player instanceof HypixelObject) && $player->getResponse() !== null && !$player->getResponse()->wasSuccessful()) {
+                    Log::error('Bad API response in LoadPlayerData', [$player->getResponse()->getData()]);
 
-            if ($player !== null) {
-                Cache::set('hypixel.player.' . $player->getUUID(), $player->getName(), 600);
-            }
+                    return $this->release(120);
+                }
 
-            $this->fail('Player is null');
+                if ($player !== null) {
+                    Cache::set('hypixel.player.' . $this->uuid, [
+                        'username'       => $player->getName(),
+                        'formatted_name' => ColorUtils::getColorParser()->parse($player->getRawFormattedName()),
+                        'loading'        => false,
+                    ], config('cache.times.friends_profiles'));
+
+                    return null;
+                }
+
+                return null;
+            }, static function () {
+                // Could not obtain lock...
+
+                return null;
+            });
         }
     }
