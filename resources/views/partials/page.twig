@@ -7,7 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>
             {% block page_title %}
-            {% endblock %}
+            {% endblock %} – Hypixel.Paniek.de
         </title>
         <meta name="keywords" content="Hypixel, Hypixel Statistics, Hypixel Signatures, Hypixel guild members">
         {% block social_meta_tags %}
@@ -25,34 +25,67 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     {% endblock %}
     {% block ad_scripts %}
-        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({
-                google_ad_client:      "{{ config_get('app.google_ad_client') }}",
-                enable_page_level_ads: true
-            });
-        </script>
+        {% if config_get('app.google_ads_client_id') %}
+            {#            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>#}
+            {#            <script>#}
+            {#                (adsbygoogle = window.adsbygoogle || []).push({#}
+            {#                    google_ad_client:      "{{ config_get('app.google_ads_client_id') }}",#}
+            {#                    enable_page_level_ads: true#}
+            {#                });#}
+            {#            </script>#}
+            <script data-ad-client="ca-pub-9570587520778628" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        {% endif %}
     {% endblock %}
     {% block analytics_scripts %}
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157532904-4"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
+        {% if config_get('app.google_analytics_tracking_id') %}
+            <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157532904-4"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
 
-            function gtag() {dataLayer.push(arguments);}
+                function gtag() {dataLayer.push(arguments);}
 
-            gtag('js', new Date());
+                gtag('js', new Date());
 
-            gtag('config', '{{ config_get('app.google_analytics_tracking_id') }}');
-        </script>
+                gtag('config', '{{ config_get('app.google_analytics_tracking_id') }}');
+            </script>
+        {% endif %}
     {% endblock %}
 </head>
 <body>
+    {% block navigation %}
+        <nav>
+            <ul class="container-xl">
+                <li class="{{ app.request.routeIs('home') ? 'active' }}">
+                    <a href="{{ route('home') }}">Home</a>
+                </li>
+                <li class="{{ app.request.routeIs('signatures') ? 'active' }}">
+                    <a href="{{ route('signatures') }}">Dynamic Signatures</a>
+                </li>
+            </ul>
+        </nav>
+    {% endblock %}
     {% block body %}
-        <div class="container-xl">
+        <main class="container-xl">
             {% block content %}
             {% endblock %}
-        </div>
+        </main>
+    {% endblock %}
+    {% block footer %}
+        <footer>
+            <div class="container-xl">
+                <div>
+                    Copyright {{ 'now'|date('Y') }} <a href="https://maxkorlaar.com">Max Korlaar</a> &centerdot;
+                    <a class="icon twitter" href="https://twitter.com/MaxKorlaar"><img src="{{ asset('images/Twitter_Logo_WhiteOnImage.svg') }}" alt="@MaxKorlaar on Twitter"></a>
+                    &centerdot;
+                    <a class="icon" href="https://github.com/MaxKorlaar/hypixel-signatures"><img src="{{ asset('images/GitHub-logomark.svg') }}" alt="This project on GitHub"></a>
+                </div>
+                <div>
+                    <a href="{{ route('privacy') }}">Privacy</a> &centerdot;
+                    <a href="https://github.com/MaxKorlaar/hypixel-signatures#acknowledgements">Acknowledgements</a>
+                </div>
+            </div>
+        </footer>
     {% endblock %}
     {% block scripts %}
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen:300,700&amp;display=swap" media="screen,projection">

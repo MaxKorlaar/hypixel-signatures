@@ -34,21 +34,28 @@ const axios = require('axios').default;
 
 
 // noinspection ObjectAllocationIgnored
-new Vue({
-    el:      '#signature-app',
-    data:    {
-        signatures:         {},
-        urls:               {
-            get_uuid:    '',
-            get_profile: '',
+window.signaturesApp = new Vue({
+    el:       '#signature-app',
+    data:     {
+        signatures:              {},
+        current_signature_group: {},
+        urls:                    {
+            get_uuid:              '',
+            get_profile:           '',
+            get_skyblock_profiles: '',
         },
-        selected_signature: null,
-        username:           null,
-        uuid:               null,
-        loading:            true,
-        errors:             {},
+        selected_signature:      null,
+        username:                null,
+        uuid:                    null,
+        loading:                 true,
+        errors:                  {},
+        skyblock: {
+            profile:  null,
+            profiles: [],
+            loading:  true
+        }
     },
-    methods: {
+    methods:  {
         getUuidFromUsername() {
             this.username        = this.username.trim().replace(/-/g, '');
             window.location.hash = this.username;
@@ -66,7 +73,10 @@ new Vue({
                         this.username        = data.data.name;
                         window.location.hash = data.data.name;
                     } else {
-                        if (data.status_code === 204) {
+                        if (data.throttle) {
+                            this.errors.username = "Unfortunately, we're using Mojang's API a bit too much right now. Please try again in a minute.";
+                            return;
+                        } else if (data.status_code === 204) {
                             this.errors.username = 'This username could not be found.';
                             // Username does not exist
                             return;
@@ -76,9 +86,10 @@ new Vue({
                     }
                 }).catch(error => {
                     console.error(error);
+                    this.loading = false;
                 }).finally(() => {
                     this.loading = false;
-                })
+                });
             }
         },
 
@@ -91,7 +102,10 @@ new Vue({
                     this.username        = data.data.username;
                     window.location.hash = data.data.username;
                 } else {
-                    if (data.status_code === 204) {
+                    if (data.throttle) {
+                        this.errors.username = "Unfortunately, we're using Mojang's API a bit too much right now. Please try again in a minute.";
+                        return;
+                    } else if (data.status_code === 204) {
                         this.errors.username = 'This UUID does not exist.';
                         return;
                     }
@@ -105,8 +119,22 @@ new Vue({
             });
         },
 
+        getUuidOrFallback() {
+            return this.uuid ? this.uuid : 'b876ec32e396476ba1158438d83c67d4';
+        },
+
+        replaceParameters(text) {
+            text = text.replace(':uuid', this.getUuidOrFallback);
+
+            if (this.skyblock.profile !== null) {
+                text = text.replace(':skyblock_profile', this.skyblock.profile.profile_id);
+            }
+
+            return text;
+        },
+
         getImageUrl(signature) {
-            return signature.url.replace(':username', this.uuid ? this.uuid : 'b876ec32e396476ba1158438d83c67d4');
+            return this.replaceParameters(signature.url);
         },
 
         getPreviewImageUrl(signature) {
@@ -115,16 +143,80 @@ new Vue({
 
         clearError(key) {
             this.errors[key] = null;
+        },
+
+        getSkyBlockProfiles() {
+            this.loading          = true;
+            this.skyblock.loading = true;
+
+            axios.get(this.urls.get_skyblock_profiles.replace(':uuid', this.getUuidOrFallback)).then(response => {
+                const data = response.data;
+
+                if (data.success) {
+                    this.skyblock.profiles = data.profiles;
+
+                    if (data.profiles.length > 0) {
+                        this.skyblock.profile = this.skyblock.profiles[0];
+                    }
+                } else {
+                    this.errors.skyblock_profiles = 'Unfortunately, something has went wrong while fetching your SkyBlock profiles. Please try again later.';
+                }
+            }).catch(error => {
+                console.error(error);
+            }).finally(() => {
+                this.loading          = false;
+                this.skyblock.loading = false;
+            });
         }
+    },
+    watch:    {
+        selected_signature(signature) {
+            gtag('event', 'generate', {
+                'event_category': 'signature',
+                'event_label':    signature.name
+            });
+        },
+        current_signature_group(signatureGroup) {
+            if (signatureGroup.short_name === 'SkyBlock') {
+                if (this.skyblock.profiles.length === 0) {
+                    this.getSkyBlockProfiles();
+                }
+            }
+        },
+
+        uuid() {
+            this.skyblock.profile  = null;
+            this.skyblock.profiles = [];
+
+            if (this.current_signature_group.short_name === 'SkyBlock') {
+                this.getSkyBlockProfiles();
+            }
+        }
+
+    },
+    computed: {
+        show_signatures() {
+            if (this.current_signature_group.short_name === 'SkyBlock') {
+                if (this.skyblock.profile === null) {
+                    return false;
+                }
+            }
+
+            return true;
+        },
     },
     mounted() {
         this.signatures = window.Paniek.signatures;
         this.urls       = window.Paniek.urls;
-        this.loading    = false;
+
+        let [currentSignatureGroup]  = Object.values(this.signatures);
+        this.current_signature_group = currentSignatureGroup;
+
+        this.loading = false;
 
         if (window.location.hash.trim() !== '') {
             this.username = window.location.hash.substr(1);
             this.getUuidFromUsername();
         }
     }
-})
+});

@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -129,5 +129,10 @@
         */
 
         'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_cache'),
+
+        'times' => [
+            'mojang_api'       => 86400, // 1 day
+            'skyblock_profile' => 3600 // 1 hour
+        ],
 
     ];

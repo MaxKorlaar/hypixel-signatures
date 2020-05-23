@@ -59,7 +59,7 @@
         /**
          * @var HypixelAPI $api
          */
-        protected $api;
+        protected HypixelAPI $api;
 
         /**
          * BaseSignature constructor.
@@ -90,6 +90,7 @@
          * @param        $image
          *
          * @return int[]
+         * @todo Add functionality
          */
         protected function get2dAvatar(Player $player, &$image): array {
             $avatarWidth        = 0;
@@ -140,7 +141,7 @@
                     return $player;
                 }
 
-                Log::debug('Unexpected API response', ['uuid' => $uuid, 'response' => $player]);
+                Log::debug('Unexpected API response', ['uuid' => $uuid, 'response' => $player, 'api' => $this->api]);
 
                 return self::generateErrorImage('Unexpected API response.');
             } catch (InvalidUUIDException $exception) {
@@ -196,7 +197,7 @@
          */
         protected static function getImage($width, $height) {
             $image       = imagecreatetruecolor($width, $height);
-            $transparent = imagecolorallocatealpha($image, 250, 100, 100, config('app.debug') ? 0 : self::FULLY_TRANSPARENT);
+            $transparent = imagecolorallocatealpha($image, 250, 100, 100, config('app.signature_debug_background') ? 0 : self::FULLY_TRANSPARENT);
             imagefill($image, 0, 0, $transparent);
             imagesavealpha($image, true);
             return $image;

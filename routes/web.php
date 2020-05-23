@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -43,6 +43,7 @@
 
     Route::get('/', 'IndexController@index')->name('home');
 
+    Route::get('/signatures/generate-from-index', 'IndexController@redirectToSignatures')->name('signatures.form_redirect');
     Route::get('/signatures', 'IndexController@signatureIndex')->name('signatures');
 
     Route::prefix('signature/{username}')->name('signatures.')->namespace('Signatures')->group(static function () {
@@ -51,13 +52,19 @@
         Route::get('general-tooltip', 'TooltipSignatureController@render')->name('general_tooltip');
         Route::get('bedwars', 'BedWarsSignatureController@render')->name('bedwars');
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
+        Route::get('skyblock/stats/{profile_id}', 'SkyBlockSignatureController@render')->name('skyblock.stats');
+        Route::get('skyblock/pets/{profile_id}', 'SkyBlockPetsSignatureController@render')->name('skyblock.pets');
     });
 
-    Route::get('/player/{username}/username', 'PlayerController@getUuid')->name('player.get_uuid');
+    Route::get('/player/{username}/uuid', 'PlayerController@getUuid')->name('player.get_uuid');
     Route::get('/player/{uuid}/profile', 'PlayerController@getProfile')->name('player.get_profile');
 
-    Route::get('friends/{username}', 'Friends\FriendsController@getFriends')->where(['username' => '\w{32}']);
+    Route::get('/player/{uuid}/skyblock/profiles', 'SkyBlockController@getProfiles')->name('skyblock.get_profiles');
+
+    Route::get('/friends/{username}', 'Friends\FriendsController@getFriends')->where(['username' => '\w{32}']);
 
     Route::prefix('status-sig')->group(static function () {
         Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');
     });
+
+    Route::get('/privacy', 'MetaController@getPrivacyPage')->name('privacy');

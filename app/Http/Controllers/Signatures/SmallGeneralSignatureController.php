@@ -82,7 +82,7 @@
 
             imagettftext($image, 19, 0, $textX, $linesY[0], $blue, $fontSourceSansProLight, $vanityTokens . ' Hypixel Credits'); // Hypixel Credits
 
-            imagettftext($image, 19, 0, $textX, $linesY[1], $purple, $fontSourceSansProLight, $karma . ' karma'); // Amount of karma
+            imagettftext($image, 19, 0, $textX, $linesY[1], $purple, $fontSourceSansProLight, number_format($karma) . ' karma'); // Amount of karma
 
             imagettftext($image, 19, 0, 315, $linesY[0], $black, $fontSourceSansProLight, 'Level ' . $player->getLevel()); // Network level
 
@@ -90,7 +90,10 @@
 
             $this->addWatermark($image, $fontSourceSansProLight, 630, 100, 14); // Watermark/advertisement
 
-            return Image::make($image)->response('png');
+            return Image::make($image)->response('png')->setCache([
+                'public'  => true,
+                'max_age' => 600
+            ]);
         }
 
     }

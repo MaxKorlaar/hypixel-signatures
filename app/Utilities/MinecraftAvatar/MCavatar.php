@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -51,37 +51,42 @@
     class MCavatar {
         public const STEVE_SKIN = 'https://hypixel.maxkorlaar.com/img/Steve_skin.png';
         public $name;
-        public $skinurl;
-        public $fetchUrl;
+        public $skinUrl;
         public $size;
-        public $imagepath;
-        public $cacheInfo;
+        public $imageStoragePath;
         public $helm = true;
         public $fetchError = null;
+
+        protected $fallbackUrl;
+        protected $fallbackSkinRegular;
+        protected $fallbackSkinThin;
 
         /**
          * Defines url
          */
         public function __construct() {
-            $this->skinurl   = 'http://skins.minecraft.net/MinecraftSkins/';
-            $this->imagepath = storage_path('app/public/minecraft-avatars') . '/';
+            $this->skinUrl          = 'http://skins.minecraft.net/MinecraftSkins/';
+            $this->imageStoragePath = storage_path('app/public/minecraft-avatars') . '/';
+
+            $this->fallbackSkinRegular = resource_path('images/skins/steve.png');
+            $this->fallbackSkinThin    = resource_path('images/skins/alex.png');
+            $this->fallbackUrl         = $this->fallbackSkinRegular;
         }
 
         /**
          * @param      $username
-         * @param bool $save
          *
-         * @return resource|string
+         * @return string Path to skin image
          */
-        public function getSkinFromCache($username, $save = true) {
-            $imagepath = $this->imagepath . 'full_skin/' . strtolower($username) . '.png';
+        public function getSkinFromCache($username): string {
+            $imagepath = $this->imageStoragePath . 'full_skin/' . strtolower($username) . '.png';
 
-            return Cache::lock('minecraft.avatar.' . $imagepath)->block(5, function () use ($imagepath, $username, $save) {
+            return Cache::lock('minecraft.avatar.' . $imagepath)->block(5, function () use ($imagepath, $username) {
                 if (file_exists($imagepath)) {
                     if (filemtime($imagepath) < strtotime('-2 week')) {
                         Log::debug('Full skin expired, redownloading', ['username' => $username]);
 
-                        return $this->getSkin($username, $save);
+                        return $this->getSkin($username, true);
                     }
 
                     return $imagepath;
@@ -89,7 +94,7 @@
 
                 Log::debug('Full skin not yet downloaded, downloading', ['username' => $username]);
 
-                return $this->getSkin($username, $save);
+                return $this->getSkin($username, true);
             });
         }
 
@@ -101,57 +106,68 @@
          * @throws InvalidArgumentException
          */
         public function getSkin($username, $save = false) {
-            if (strlen($username) === 32) {
-                $api  = new MojangAPI();
-                $data = $api->getProfile($username);
+            $this->fallbackUrl = $this->fallbackSkinRegular;
+
+            if (strlen($username) >= 32) {
+                if (strlen($username) === 32) {
+                    $api  = new MojangAPI();
+                    $data = $api->getProfile($username);
+                } else {
+                    $data = [
+                        'success' => true,
+                        'data'    => [
+                            'skinURL' => 'http://textures.minecraft.net/texture/' . $username,
+                            'isSteve' => true
+                        ]
+                    ];
+                }
+
                 if ($data['success'] === true) {
                     $skinData = $data['data'];
-                    if ($skinData['skinURL'] === null) {
-                        $imgURL          = $skinData['isSteve'] ? self::STEVE_SKIN : 'https://minecraft.net/images/alex.png';
-                        $this->cacheInfo = 'image not yet downloaded - default';
-                        Log::debug('image not yet downloaded - default');
-                    } else {
-                        $imgURL = $skinData['skinURL'];
 
+                    $this->fallbackUrl = $skinData['isSteve'] ? $this->fallbackSkinRegular : $this->fallbackSkinThin;
+
+                    if ($skinData['skinURL'] === null) {
+                        $skinURL = $this->fallbackUrl;
+                        Log::debug('Player has not set a skin', [$skinData]);
+                    } else {
+                        $skinURL = $skinData['skinURL'];
                     }
-                    $this->fetchUrl = $imgURL;
-                    $src            = imagecreatefrompng($imgURL);
+
+                    $src = imagecreatefrompng($skinURL);
+
                     if (!$src) {
-                        Log::debug('Source is false', [$this->fetchUrl]);
-                        $src              = imagecreatefrompng(self::STEVE_SKIN);
+                        Log::debug('Could not create skin image from url, falling back on default', ['url' => $skinURL]);
                         $this->fetchError = true;
-                        $save             = false;
+
+                        return $this->fallbackUrl;
                     }
-                    $this->cacheInfo = 'Downloaded from ' . $imgURL;
-                    Log::debug('Downloaded from ' . $imgURL);
+                    Log::debug('Downloaded from ' . $skinURL);
                 } else {
-                    $src             = imagecreatefrompng(self::STEVE_SKIN);
-                    $this->cacheInfo = 'image not yet downloaded - unknown error while getting player profile';
-                    Log::warning('image not yet downloaded - unknown error while getting player profile', [$data]);
+                    Log::warning('Falling back on steve skin, could not fetch player profile from Mojang', ['data' => $data]);
                     $this->fetchError = true;
-                    $save             = false;
+
+                    return $this->fallbackUrl;
                 }
             } else {
-                //$src            = @imagecreatefrompng("http://skins.minecraft.net/MinecraftSkins/{$username}.png");
-                //$this->fetchUrl = "http://skins.minecraft.net/MinecraftSkins/{$username}.png";
                 $api  = new MojangAPI();
                 $uuid = $api->getUUID($username);
                 if ($uuid['success']) {
                     return $this->getSkin($uuid['data']['id'], $save);
                 }
 
-                $src             = imagecreatefrompng(self::STEVE_SKIN);
-                $this->cacheInfo = 'image not yet downloaded - unknown error while fetching skin from username. Last resort: ' . self::STEVE_SKIN;
-                Log::warning('image not yet downloaded - unknown error while fetching skin from username. Last resort: ' . self::STEVE_SKIN);
+                Log::warning('Falling back on steve skin, could not fetch player UUID from Mojang.', ['username' => $username, 'data' => $uuid]);
                 $this->fetchError = true;
-                $save             = false;
+
+                return $this->fallbackUrl;
             }
 
             imageAlphaBlending($src, true);
             imageSaveAlpha($src, true);
+
             if ($save) {
-                $imagepath = $this->imagepath . 'full_skin/' . strtolower($username) . '.png';
-                if (!file_exists($this->imagepath . 'full_skin/') && !mkdir($concurrentDirectory = $this->imagepath . 'full_skin/', 0777, true) && !is_dir($concurrentDirectory)) {
+                $imagepath = $this->imageStoragePath . 'full_skin/' . strtolower($username) . '.png';
+                if (!file_exists($this->imageStoragePath . 'full_skin/') && !mkdir($concurrentDirectory = $this->imageStoragePath . 'full_skin/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
                 }
                 imagepng($src, $imagepath);
@@ -171,9 +187,9 @@
          */
         public function getFromCache($username, $size = 100, $helm = true): string {
             if ($helm) {
-                $imagepath = $this->imagepath . $size . 'px/' . strtolower($username) . '.png';
+                $imagepath = $this->imageStoragePath . $size . 'px/' . strtolower($username) . '.png';
             } else {
-                $imagepath = $this->imagepath . $size . 'px-no-helm/' . strtolower($username) . '.png';
+                $imagepath = $this->imageStoragePath . $size . 'px-no-helm/' . strtolower($username) . '.png';
             }
             $this->name = $username;
             $this->size = $size;
@@ -181,16 +197,12 @@
 
             if (file_exists($imagepath)) {
                 if (filemtime($imagepath) < strtotime('-2 week')) {
-                    $this->cacheInfo = 'expired, redownloading';
-                    unlink($imagepath);
                     return $this->getImage($username, $size, $helm);
                 }
 
-                $this->cacheInfo = 'not expired';
                 return $imagepath;
             }
 
-            $this->cacheInfo = 'image not yet downloaded';
             return $this->getImage($username, $size, $helm);
         }
 
@@ -201,52 +213,13 @@
          * @param bool $save
          *
          * @return string
-         * @throws InvalidArgumentException
          */
         public function getImage($username, $size = 100, $helm = true, $save = true): string {
-            $this->name  = $username;
-            $this->size  = $size;
-            $defaultSkin = null;
+            $this->name = $username;
+            $this->size = $size;
 
-            if (strlen($username) === 32) {
-                $api  = new MojangAPI();
-                $data = $api->getProfile($username);
-                if ($data['success'] === true) {
-                    $skinData = $data['data'];
-                    if ($skinData['skinURL'] === null) {
-                        $imgURL          = $skinData['isSteve'] ? self::STEVE_SKIN : 'https://minecraft.net/images/alex.png';
-                        $this->cacheInfo = 'image not yet downloaded - default';
-                    } else {
-                        $imgURL = $skinData['skinURL'];
-
-                    }
-                    $this->fetchUrl = $imgURL;
-                    $src            = imagecreatefrompng($imgURL);
-                    if (!$src) {
-                        $src = imagecreatefrompng(self::STEVE_SKIN);
-                        Log::warning('image not yet downloaded - unknown error while downloading', ['username' => $username]);
-                        $defaultSkin      = 'steve';
-                        $this->fetchError = true;
-                        $save             = false;
-                    }
-                } else {
-                    $src = imagecreatefrompng(self::STEVE_SKIN);
-                    Log::warning('image not yet downloaded - unknown error while getting player profile', ['username' => $username]);
-                    $defaultSkin      = 'steve';
-                    $this->fetchError = true;
-                    $save             = false;
-                }
-            } else {
-                $src            = imagecreatefrompng("http://skins.minecraft.net/MinecraftSkins/{$username}.png");
-                $this->fetchUrl = "http://skins.minecraft.net/MinecraftSkins/{$username}.png";
-                if (!$src) {
-                    $src              = imagecreatefrompng(self::STEVE_SKIN);
-                    $this->cacheInfo  = 'image not yet downloaded - unknown error while fetching skin from username';
-                    $defaultSkin      = 'steve';
-                    $this->fetchError = true;
-                    $save             = false;
-                }
-            }
+            $skinPath = $this->getSkinFromCache($username);
+            $src      = imagecreatefrompng($skinPath);
 
             $dest = imagecreatetruecolor(8, 8);
             imagecopy($dest, $src, 0, 0, 8, 8, 8, 8);
@@ -270,25 +243,23 @@
             }
             $final = imagecreatetruecolor($size, $size);
             imagecopyresized($final, $dest, 0, 0, 0, 0, $size, $size, 8, 8);
+
             if ($helm) {
-                if (!file_exists($this->imagepath . $size . 'px/') && !mkdir($concurrentDirectory = $this->imagepath . $size . 'px/', 0777, true) && !is_dir($concurrentDirectory)) {
+                if (!file_exists($this->imageStoragePath . $size . 'px/') && !mkdir($concurrentDirectory = $this->imageStoragePath . $size . 'px/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
                 }
-                $imagepath = $this->imagepath . $size . 'px/' . strtolower($username) . '.png';
+                $imagepath = $this->imageStoragePath . $size . 'px/' . strtolower($username) . '.png';
             } else {
-                if (!file_exists($this->imagepath . $size . 'px-no-helm/') && !mkdir($concurrentDirectory = $this->imagepath . $size . 'px-no-helm/', 0777, true) && !is_dir($concurrentDirectory)) {
+                if (!file_exists($this->imageStoragePath . $size . 'px-no-helm/') && !mkdir($concurrentDirectory = $this->imageStoragePath . $size . 'px-no-helm/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
                 }
-                $imagepath = $this->imagepath . $size . 'px-no-helm/' . strtolower($username) . '.png';
+                $imagepath = $this->imageStoragePath . $size . 'px-no-helm/' . strtolower($username) . '.png';
             }
 
             if ($save) {
                 imagepng($final, $imagepath);
             }
-            if ($defaultSkin !== null) {
-                $imagepath = $this->imagepath . $size . 'px/' . $defaultSkin . '.png';
-                imagepng($final, $imagepath);
-            }
+
             return $imagepath;
         }
 
@@ -304,6 +275,13 @@
          */
         public function setName($name): void {
             $this->name = $name;
+        }
+
+        /**
+         * @return string
+         */
+        public function getFallbackUrl(): string {
+            return $this->fallbackUrl;
         }
     }
 

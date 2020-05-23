@@ -5,7 +5,7 @@
     <div id="signature-app">
         <div class="input" :class="{'has-error': errors.username }">
             <label for="username">Minecraft username or UUID</label>
-            <input id="username" :disabled="loading" type="text" v-model="username" @change="getUuidFromUsername()" @input="clearError('username')">
+            <input id="username" autocomplete="nickname" :disabled="loading" type="text" v-model="username" @change="getUuidFromUsername()" @input="clearError('username')">
             <p class="error" v-if="errors.username">
                 {{ '{{ errors.username }}' }}
             </p>
@@ -15,13 +15,53 @@
             </p>
         </div>
 
-        <div class="signature-grid">
-            <div class="signature" v-for="signature in signatures">
+        <div class="signature-groups">
+            <div v-for="( signatureGroup) in signatures">
+                <label class="button" :class="{ selected: current_signature_group === signatureGroup }">
+                    <input type="radio" name="signature-group-name" :value="signatureGroup" v-model="current_signature_group">
+                    <span class="title">{{ '{{ signatureGroup.short_name }}' }}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="signature-group-info">
+            <h3>{{ '{{ current_signature_group.name }}' }}</h3>
+            <p>
+                {{ '{{ current_signature_group.description }}' }}
+            </p>
+        </div>
+
+        <div class="skyblock-data" v-if="current_signature_group.short_name === 'SkyBlock'">
+            <p class="center-text error" v-if="skyblock.profiles.length === 0 && !skyblock.loading">
+                You don't seem to have any SkyBlock profiles on your account. Please play SkyBlock and try again later, or enable your API statistics
+                if you've disabled them.
+            </p>
+            <p class="center-text error" v-if="skyblock.profiles.length > 0 && skyblock.profile === null && !skyblock.loading">
+                Please select a SkyBlock profile to use for generating your signatures.
+            </p>
+            <div class="input" v-if="skyblock.profiles.length > 0" :class="{'has-error': errors.skyblock_profiles }">
+                <label>SkyBlock profile</label>
+                <div class="profiles">
+                    <div v-for="profile in skyblock.profiles">
+                        <label class="button" :class="{ selected: skyblock.profile === profile }">
+                            <input type="radio" name="skyblock-profile" :value="profile" v-model="skyblock.profile">
+                            <span class="title">{{ '{{ profile.cute_name }}' }}</span>
+                        </label>
+                    </div>
+                </div>
+                <p class="error" v-if="errors.skyblock_profiles">
+                    {{ '{{ errors.skyblock_profiles }}' }}
+                </p>
+            </div>
+        </div>
+
+        <div v-if="show_signatures" class="signature-grid">
+            <div class="signature" v-for="signature in current_signature_group.signatures">
                 <label :class="{ selected: selected_signature === signature }">
                     <input type="radio" name="signature-type" :value="signature" v-model="selected_signature">
                     <span class="overlay"></span>
                     <span class="image-container">
-                        <img draggable="false" :src="getPreviewImageUrl(signature)" :alt="signature.name">
+                        <img draggable="false" :src="getPreviewImageUrl(signature)" :class="{ pixelated: signature.pixelated }" :alt="signature.name">
                     </span>
                     <span class="title">{{ '{{ signature.name }}' }}</span>
                 </label>
@@ -33,12 +73,39 @@
                 Below you can find the signature that you have selected.
                 You can refer to it using the URL of the image, or copy and paste the BBcode on the forums in a forum post, or in your signature.
             </p>
-            <img :src="getImageUrl(selected_signature)" alt="">
+            <p>
+                It's important to use the BBcode or image URL below to refer to your signature. If you download your signature,
+                or copy and paste the image itself, then it won't automatically be updated.
+            </p>
+            <img :class="{ pixelated: selected_signature.pixelated }" :src="getImageUrl(selected_signature)" alt="">
 
-            <pre>[URL='{{ config_get('app.url') }}'][IMG]{{ '{{ getImageUrl(selected_signature) }}' }}[/IMG][/URL]</pre>
-            <p>Copy and paste the above snippet of text in <a href="https://hypixel.net/account/signature">your forum signature</a> to automatically
-               display your chosen statistics below every post you
-               make on the forums. You can use the URL to the image to place this signature on other websites if you wish.</p>
+            <div class="links">
+                <div class="title">
+                    <h3>BBCode</h3>
+                </div>
+                <div>
+                    <code class="bbcode">[URL='{{ config_get('app.url') }}'][IMG]{{ '{{ getImageUrl(selected_signature) }}' }}[/IMG][/URL]</code>
+                    <p>Copy and paste the above snippet of text in <a href="https://hypixel.net/account/signature">your forum signature</a> to
+                       automatically
+                       display your chosen statistics below every post you
+                       make on the forums. You can use the URL to the image to place this signature on other websites if you wish.</p>
+                </div>
+                <div class="title">
+                    <h3>
+                        Direct link
+                    </h3>
+                </div>
+                <div>
+                    <code><a :href="getImageUrl(selected_signature)">{{ '{{ getImageUrl(selected_signature) }}' }}</a></code>
+                </div>
+            </div>
+
+
+            <div v-if="selected_signature.options_text">
+                <h4>Signature options</h4>
+                <p>This signature offers options that you may set to alter the looks of it:</p>
+                <p v-html="replaceParameters(this.selected_signature.options_text)"></p>
+            </div>
         </div>
     </div>
 {% endblock %}

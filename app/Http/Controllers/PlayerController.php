@@ -45,6 +45,7 @@ namespace App\Http\Controllers;
          * @param string $username
          *
          * @return array
+         * @throws InvalidArgumentException
          */
         public function getUuid(string $username): array {
             $mojangAPI = new MojangAPI();

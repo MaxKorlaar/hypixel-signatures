@@ -1,0 +1,136 @@
+{% extends 'partials/page.twig' %}
+{% block page_title %}Privacy{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+{% block content %}
+    <div class="privacy">
+        <h1>Privacy policy</h1>
+        <p>Welcome to {{ config_get('app.url') }} ("The Service(s)", "The Site"). Please read the privacy
+           policy carefully before using The Service.</p>
+        <h3>Cookies</h3>
+        <p>On this website, these cookies are required for storing analytics data, like session time. If you would disable cookies, these
+           analytics would not work.</p>
+        <p>You are free to use the site without having cookies enabled. The site may not work fully as intended, but we do strive to make it
+           fully-compatible with not having cookies enabled.</p>
+        <p>Cookies are small text files stored on your computer, and do not contain any personal information, here on The Site.
+           You have full control over cookies, and to see how to disable or delete them, visit
+            <a href="http://www.allaboutcookies.org/">http://www.allaboutcookies.org/</a>.</p>
+        <p>If you prefer not to use cookies, please disable them in your browser settings. Please refer to your browser documentation to see
+           how you can disable cookies.</p>
+        <h3>Logs and analytics</h3>
+        {% if config_get('app.google_analytics_tracking_id') %}
+            <p>This website uses Google Analytics. Google Analytics is a web analysis service provided by Google. Google utilizes the data collected
+               to track and examine the use of
+               our Service, to prepare reports on its activities and share them with other Google services.
+               Google may use the data collected to contextualize and personalize the ads of its own advertising network.
+               Personal data collected: Cookie and Usage Data. Place of processing: USA. You may find Google's privacy policy
+                <a href="https://www.google.com/intl/en/policies/privacy/">located here</a>.</p>
+            <h3>Opting-out of Google Analytics tracking</h3>
+            <p>You may optionally opt-out from Google Analytics at
+                <a href="https://tools.google.com/dlpage/gaoptout?hl=en-GB">this location</a>.</p>
+        {% endif %}
+        <p>It may be possible that traffic to this website may be routed through Cloudflare for performance reasons. Please view their
+            <a href="https://www.cloudflare.com/security-policy/">privacy policy</a> for more information on how Cloudflare collects and uses
+           your data.</p>
+        <p>In order to make it as easy as possible to share content on this website on social media, we might make use of Facebook and Twitter share
+           buttons. For both buttons,
+            <a href="https://www.facebook.com/about/privacy/your-info-on-other#socialplugin">Facebook's privacy policy</a> or
+            <a href="https://twitter.com/privacy">Twitter's privacy policy</a> applies, respectively.
+           More information can be found by reading those privacy policies.</p>
+        {% if config_get('app.google_ads_client_id') %}
+            <h3>Advertisements</h3>
+            <p>
+                We also use third party advertisements on The Site in order to lower the costs of operating The Service. Currently, we are using
+                Google AdSense.
+                External advertisement providers, including Google, use cookies to display advertisements based on earlier visits of an user
+                to The Site or other websites. Advertisement cookies may be used by Google and its partners to display advertisements based on
+                previous visits to The Site and other websites
+                on the internet, to visitors of The Site. These advertisement providers may collect information from your visit. For more
+                information on how Google collects your data, visit
+                <a href="https://www.google.com/intl/en/privacy/ads/privacy-policy.html">Google's Privacy Policy.</a>
+                Visitors of The Site may choose to opt-out of personalised advertisements by visiting Google's
+                <a href="https://www.google.com/settings/ads">Advertisement-settings</a>.
+                Visitors of The Site may also choose to opt-out of personalised advertisements by other advertisement providers by visiting the
+                <a href="http://www.aboutads.info/choices/">aboutads.info website</a>.
+                External providers and advertisement networks may also display advertisements on The Website.
+            </p>
+        {% endif %}
+        <h2>Data collection in addition to the above clauses</h2>
+        <h3>What data do we collect?</h3>
+        <p>The Service collects the following data:</p>
+        <ul>
+            <li>Minecraft username and UUID</li>
+        </ul>
+        <h3>How do we collect your data?</h3>
+        <p>The Service collects your data based on the information you provide to The Service. We collect and process this data when you:</p>
+        <ul>
+            <li>Enter your Minecraft username or UUID when generating a signature or using one of our Minecraft related tools</li>
+            <li>Use or view The Site via your browser's cookies or local storage.</li>
+        </ul>
+        <h3>How do we use your data?</h3>
+        <p>The Service uses your data for the purposes of:</p>
+        <ul>
+            <li>Retrieving data about your Minecraft account, such as your username, UUID or URL to the texture of your chosen Minecraft skin.</li>
+            <li>Retrieving data about your profile on the Hypixel Minecraft server (<a href="https://hypixel.net/help/privacy-policy/">privacy
+                                                                                                                                       policy</a>)
+            </li>
+        </ul>
+        <h3>How do we store your data?</h3>
+        <p>The Service stores your data in Amsterdam, The Netherlands, on (a) virtual server(s) provided by Scaleway.
+           Access to these server(s) is restricted to the core contributor(s) of the project for hosting and development purposes.
+        </p>
+        <p>Your data will be stored for a limited amount of time on our server(s) in order to optimize our processes and reduce server load.
+           This time period varies per functionality on The Service, but is at most 90 days, after which your data will be deleted from our
+           server(s).</p>
+        <h3>What are your data protection rights?</h3>
+        <p>
+            Our Company would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:
+        </p>
+        <ul>
+            <li>
+                The right to access – You have the right to request The Service for copies of your personal data. We may charge you a small fee for
+                this service.
+            </li>
+            <li>
+                The right to rectification – You have the right to request that The Service correct any information you believe is inaccurate. You
+                also
+                have the right to request The Service to complete the information you believe is incomplete.
+            </li>
+            <li>
+                The right to erasure – You have the right to request that The Service erase your personal data, under certain conditions.
+            </li>
+            <li>
+                The right to restrict processing – You have the right to request that The Service restrict the processing of your personal data, under
+                certain conditions.
+            </li>
+            <li>
+                The right to object to processing – You have the right to object to The Service’s processing of your personal data, under certain
+                conditions.
+            </li>
+            <li>
+                The right to data portability – You have the right to request that The Service transfer the data that we have collected to another
+                organization, or directly to you, under certain conditions.
+            </li>
+        </ul>
+        <p>
+            If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us at our
+            email
+            <a href="https://maxkorlaar.com/contact">using our contact form</a>.
+        </p>
+        <h3>Third-Party Sites</h3>
+        <p>
+            The Services may include links to other websites.
+            You should consult the respective privacy policies of these third-party sites.
+            This Privacy Policy does not apply to, and we cannot control the activities of, such other websites.
+        </p>
+        <h3>Changes and Updates to this Privacy Policy</h3>
+        <p>
+            We may occasionally update this Privacy Policy.
+            We encourage you to periodically review this Privacy Policy to stay informed about how we are protecting the personal information
+            we collect.
+            Your continued use of the Services constitutes your agreement to this Privacy Policy and any updates.
+        </p>
+    </div>
+{% endblock %}

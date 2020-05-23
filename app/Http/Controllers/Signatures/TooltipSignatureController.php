@@ -54,33 +54,33 @@
         protected function signature(Request $request, Player $player): Response {
             $image = imagecreatefrompng(resource_path('images/Tooltip.png'));
 
-            $fontMinecraftia = resource_path('fonts/minecraftia/Minecraftia.ttf');
-            $green           = imagecolorallocate($image, 85, 255, 85);
+            $fontMinecraftRegular = resource_path('fonts/Minecraft/1_Minecraft-Regular.otf');
 
-            $rank       = $player->getRank(false);
-            $rankPrefix = $rank->getPrefix($player);
+            $rank     = $player->getRank(false);
+            $rankName = $rank->getColor() . $rank->getCleanName();
 
-            $rankPrefix = substr($rankPrefix, 0, 3) . substr($rankPrefix, 4, -1);
-
-            imagettftext($image, 14, 0, 10, 25, $green, $fontMinecraftia, 'Character Information');
+            $bbox = ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, 16, 10, 9, '§aCharacter Information', true);
 
             $spacing  = 22;
-            $start    = 50 - 16;
-            $fontSize = 13;
+            $start    = $bbox[0] + $spacing;
+            $fontSize = 15;
 
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftia, $fontSize, 10, $start, '§7Rank: ' . $rankPrefix); // Rank
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start, '§7Rank: ' . $rankName, true); // Rank
 
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftia, $fontSize, 10, $start + $spacing, '§7Level: §6' . ($player->getLevel())); // Level
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + $spacing, '§7Level: §6' . ($player->getLevel()), true); // Level
 
             $level     = $player->getLevel();
             $expNeeded = ($level - 1) * 2500 + 10000;
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftia, $fontSize, 10, $start + 2 * $spacing, '§7Experience until next Level: §6' . $expNeeded); // Experience until next level
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 2 * $spacing, '§7Experience until next Level: §6' . $expNeeded, true); // Experience until next level
 
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftia, $fontSize, 10, $start + 3 * $spacing, '§7Hypixel Credits: §b' . $player->getInt('vanityTokens')); // Hypixel Credits
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 3 * $spacing, '§7Hypixel Credits: §b' . $player->getInt('vanityTokens'), true); // Hypixel Credits
 
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftia, $fontSize, 10, $start + 4 * $spacing, '§7Karma: §d' . $player->getInt('karma')); // Karma
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 4 * $spacing, '§7Karma: §d' . number_format($player->getInt('karma')), true); // Karma
 
-            return Image::make($image)->response('png');
+            return Image::make($image)->response('png')->setCache([
+                'public'  => true,
+                'max_age' => 600
+            ]);
         }
 
     }

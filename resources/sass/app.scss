@@ -32,8 +32,12 @@
 @import "~bourbon";
 @import '~@primer/css/utilities/index.scss';
 @import '~@primer/css/layout/container';
+@import '~@primer/css/utilities/visibility-display';
 
 @import "variables";
+@import "navigation";
+@import "footer";
+@import "home";
 
 * {
   box-sizing: border-box;
@@ -42,30 +46,82 @@
 body {
   font-family: 'Lato', $font-stack-system;
   background-color: $color-background;
-  font-size: 18px;
+  font-size: 14px;
   color: $black;
+  margin: 0;
 }
 
 ::selection {
   background: $color-primary;
-  color: $color-white;
+  color: $color-gray;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Oxygen', $font-stack-system;
 }
 
 h1 {
-  font-family: 'Oxygen', $font-stack-system;
   color: $color-primary;
 }
 
-.container-xl {
-  background: $color-white;
-  padding: 1rem;
-  box-shadow: rgba(0, 0, 0, .25) 0 3px 3px;
+h2, h3, h4 {
+  margin: 0;
+}
+
+p {
+  margin: .5rem 0 1rem;
+}
+
+main {
+  margin-top: 20px;
+
+  &.container-xl {
+    padding: 0 10px;
+    //background: $color-white;
+    //padding: 10px 30px;
+    //box-shadow: rgba(0, 0, 0, .25) 0 2px 3px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $color-secondary;
+  box-shadow: inset rgba($color-secondary, 0) 0 -1px 0;
+  transition: all $transition-time;
+
+  &:focus, &:hover {
+    box-shadow: inset rgba($color-secondary, 1) 0 -1px 0;
+  }
+}
+
+.error {
+  color: $red-400;
 }
 
 .input {
   label {
     font-weight: bold;
     font-size: .8rem;
+  }
+
+  &.has-button {
+    display: flex;
+    flex-direction: row;
+
+    .button {
+      flex: 1 0 auto;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      background: $color-secondary;
+      color: $white;
+      font-size: 1rem;
+      border-color: darken($color-secondary, 20%);
+
+      &:hover, &:focus {
+        background: lighten($color-secondary, 20%);
+        border-color: $color-secondary;
+      }
+    }
   }
 
   input {
@@ -76,11 +132,16 @@ h1 {
     transition: all $transition-time;
     outline: none;
     border: none;
-    box-shadow: inset $color-grey 0 -1px 0;
+    box-shadow: inset $color-gray 0 -1px 0;
     background: transparent;
 
+    &::placeholder {
+      color: $color-gray;
+      transition: all $transition-time;
+    }
+
     &:disabled {
-      color: $color-grey;
+      color: $color-gray;
       animation: loading-bar .5s alternate infinite linear, loading-background 1.5s infinite reverse ease;
       background: linear-gradient(to right, transparent 35%, rgba($color-primary, .5) 50%, transparent 65%);
       background-size: 200% auto;
@@ -93,17 +154,17 @@ h1 {
       & ~ .help {
         color: $black;
       }
+
+      &::placeholder {
+        color: rgba($color-gray, 0);
+      }
     }
   }
 
   .help, .error {
     font-size: .8rem;
-    color: $color-grey;
+    color: $color-gray;
     transition: all $transition-time;
-  }
-
-  .error {
-    color: $red-400;
   }
 
   &.has-error {
@@ -112,6 +173,10 @@ h1 {
     input {
       color: $red-400;
       animation: shake .1s 5 alternate linear;
+    }
+
+    .error {
+      color: $red-400;
     }
   }
 }
@@ -139,14 +204,104 @@ h1 {
     box-shadow: inset $color-primary 0 -2px 0;
   }
   100% {
-    box-shadow: inset $color-grey 0 -2px 0;
+    box-shadow: inset $color-gray 0 -2px 0;
   }
+}
+
+.signature-groups, .profiles {
+  display: flex;
+  margin-bottom: 1rem;
+  margin-top: .5rem;
+
+  > div {
+
+    label {
+      &.button {
+        display: block;
+      }
+    }
+
+    & + div {
+      margin-left: 1rem;
+    }
+  }
+}
+
+
+.button {
+  display: inline-block;
+  cursor: pointer;
+  padding: .5rem 1rem;
+  border-radius: $border-radius;
+  border: 1px solid $color-gray;
+  transition: all $transition-time;
+
+  &.primary {
+    background: $color-primary;
+    color: $black;
+    border-color: darken($color-primary, 20%);
+
+    &:hover, &:focus {
+      background: lighten($color-primary, 20%);
+      border-color: $color-primary;
+    }
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+
+  &.selected {
+    background: $color-primary;
+    box-shadow: lighten($color-primary, 20%) 0 0 0 2px;
+    border: 1px solid $color-primary;
+  }
+
+  &:hover, &:focus {
+    background: lighten($color-primary, 20%);
+    border: 1px solid $color-primary;
+    //transform: translateY(-3px);
+  }
+}
+
+a.button {
+  box-shadow: none;
+
+  &:hover, &:focus {
+    text-decoration: none;
+  }
+}
+
+.signature-group-info {
+  p {
+    margin: .5rem 0 1rem;
+  }
+}
+
+.center-text {
+  font-weight: bold;
+  text-align: center;
+  padding: 0 20%;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .signature-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 1rem;
+
+  @include breakpoint(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include breakpoint(md) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
   .signature {
     label {
@@ -154,8 +309,8 @@ h1 {
       flex-direction: column;
       height: 100%;
       cursor: pointer;
-      border-radius: 3px;
-      border: 1px solid $color-grey;
+      border-radius: $border-radius;
+      border: 1px solid $color-gray;
       padding: 1rem;
       transition: all $transition-time;
       box-shadow: rgba(0, 0, 0, 0) 0 3px 5px, inset $color-primary 0 0 0 0;
@@ -190,9 +345,11 @@ h1 {
         margin: auto 0;
 
         img {
-          display: block;
-          max-width: 100%;
-          height: auto;
+          margin: 0 auto;
+
+          &.pixelated {
+            image-rendering: pixelated;
+          }
         }
       }
 
@@ -207,15 +364,40 @@ h1 {
 }
 
 .results {
-  pre {
+  margin-top: 20px;
+
+  .links {
+    display: grid;
+    grid-template-columns: auto auto;
+
+    .title {
+      margin-right: 1rem;
+
+      h3 {
+        margin: 0;
+        text-align: right;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  code {
+    display: block;
     user-select: all;
     white-space: normal;
-    background: $color-grey;
+    background: $gray-300;
     padding: .5rem;
     transition: all $transition-time;
+    line-break: anywhere;
+    font-size: .8rem;
+    border-radius: $border-radius;
+  }
 
-    &:hover, &:focus {
-      color: $color-primary;
+  img {
+    margin: 1rem 0;
+
+    &.pixelated {
+      image-rendering: pixelated;
     }
   }
 }

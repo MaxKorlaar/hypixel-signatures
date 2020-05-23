@@ -46,16 +46,20 @@
         /**
          * Add a Minecraft colour coded string to an image.
          *
-         * @param $image
-         * @param $font
-         * @param $fontSize
-         * @param $startX
-         * @param $startY
-         * @param $string
+         * @param      $image
+         * @param      $font
+         * @param      $fontSize
+         * @param      $startX
+         * @param      $startY
+         * @param      $string
+         *
+         * @param bool $shadow
+         *
+         * @param bool $antiAlias
          *
          * @return array
          */
-        public static function minecraftStringToTTFText($image, $font, $fontSize, $startX, $startY, $string): array {
+        public static function minecraftStringToTTFText($image, $font, $fontSize, $startX, $startY, $string, $shadow = false, $antiAlias = true): array {
             $minecraftColours = [
                 '0' => '#000000',
                 '1' => '#0000AA',
@@ -83,13 +87,19 @@
             $currentY = $startY + 16;
             $bbox     = [];
             foreach (preg_split('/§/u', $string, -1, PREG_SPLIT_NO_EMPTY) as $part) {
-                $hexColour = $minecraftColours[$part[0]] ?? $minecraftColours['7'];
-                $rgb       = self::hexToRGB($hexColour);
-                $colour    = imagecolorallocate($image, $rgb[0], $rgb[1], $rgb[2]);
+                $hexColour    = $minecraftColours[$part[0]] ?? $minecraftColours['7'];
+                $rgb          = self::hexToRGB($hexColour);
+                $colour       = imagecolorallocate($image, $rgb[0], $rgb[1], $rgb[2]) * ($antiAlias ? 1 : -1);
+                $shadowColour = imagecolorallocate($image, $rgb[0] * 0.21, $rgb[1] * 0.21, $rgb[2] * 0.21) * ($antiAlias ? 1 : -1);
 
                 $part = substr($part, 1);
 
-                $bbox     = imagettftext($image, $fontSize, 0, $currentX, $currentY, $colour, $font, $part);
+                if ($shadow) {
+                    imagettftext($image, $fontSize, 0, $currentX + 2, $currentY + 2, $shadowColour, $font, $part);
+                }
+
+                $bbox = imagettftext($image, $fontSize, 0, $currentX, $currentY, $colour, $font, $part);
+
                 $currentX += ($bbox[4] - $bbox[0]);
             }
             return $bbox;
