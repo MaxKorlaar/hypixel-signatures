@@ -33,6 +33,7 @@
     namespace App\Utilities\MinecraftAvatar;
 
     use Cache;
+    use JsonException;
     use Log;
     use Psr\SimpleCache\InvalidArgumentException;
 
@@ -43,8 +44,8 @@
      * @license MIT
      */
     class MojangAPI {
-        private $sessionURL;
-        private $profileURL;
+        private string $sessionURL;
+        private string $profileURL;
         private $timeout;
         private $cacheTime;
 
@@ -62,6 +63,7 @@
          *
          * @return array
          * @throws InvalidArgumentException
+         * @throws JsonException
          */
         public function getProfile($uuid): array {
             $cacheKey = 'mojangapi.uuid.' . $uuid;
@@ -83,9 +85,9 @@
                 return $request;
             }
 
-            $jsonArray    = json_decode($request['data'], true);
+            $jsonArray    = json_decode($request['data'], true, 512, JSON_THROW_ON_ERROR);
             $texturesJSON = $jsonArray['properties'][0];
-            $textures     = json_decode(base64_decode($texturesJSON['value']), true);
+            $textures     = json_decode(base64_decode($texturesJSON['value']), true, 512, JSON_THROW_ON_ERROR);
             if (isset($textures['textures']['SKIN'])) {
                 $skinArray = $textures['textures']['SKIN'];
                 if (isset($skinArray['metadata']['model'])) {
@@ -94,16 +96,15 @@
                     $isSteve = true;
                 }
                 $skinURL = $skinArray['url'];
-            } else { // https://github.com/mapcrafter/mapcrafter-playermarkers/blob/master/playermarkers/player.php#L8-L19
+            } else { // https://github.com/crafatar/crafatar/blob/9d2fe0c45424de3ebc8e0b10f9446e7d5c3738b2/lib/skins.js#L90-L108
                 $skinURL = null;
-                for ($i = 0; $i < 4; $i++) {
-                    $sub[$i] = intval('0x' . substr($uuid, $i * 8, 8) + 0, 16);
-                }
-                if ((bool)((($sub[0] ^ $sub[1]) ^ ($sub[2] ^ $sub[3])) % 2) === true) {
-                    $isSteve = false;
-                } else {
-                    $isSteve = true;
-                }
+
+                $leastSignificantBits = (intval($uuid[7], 16) ^
+                    intval($uuid[15], 16) ^
+                    intval($uuid[23], 16) ^
+                    intval($uuid[31], 16));
+
+                $isSteve = $leastSignificantBits ? false : true;
             }
             $profileData = ['skinURL' => $skinURL, 'isSteve' => $isSteve, 'username' => $jsonArray['name'], 'uuid' => $jsonArray['id']];
             $return      = ['success' => true, 'data' => $profileData];
@@ -174,6 +175,7 @@
          *
          * @return array
          * @throws InvalidArgumentException
+         * @throws JsonException
          */
         public function getUUID($username): array {
             $cacheKey = 'mojangapi.username.' . $username;
@@ -188,12 +190,12 @@
                 if ($this->checkForThrottle($request)) {
                     Log::debug('Could not fetch UUID from Mojang API due to throttle', ['username' => $username]);
 
-                    return ['success' => false, 'throttle' => true];
+                    return ['success' => false, 'throttle' => true, 'status_code' => null, 'error' => 'throttle'];
                 }
                 return $request;
             }
 
-            $jsonArray = json_decode($request['data'], true);
+            $jsonArray = json_decode($request['data'], true, 512, JSON_THROW_ON_ERROR);
             $return    = ['success' => true, 'data' => $jsonArray];
 
             Log::debug('Fetched UUID from Mojang API', ['username' => $username, 'data' => $jsonArray]);

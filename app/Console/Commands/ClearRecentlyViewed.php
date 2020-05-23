@@ -1,4 +1,5 @@
-/*!
+<?php
+/**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -29,53 +30,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-.home {
+namespace App\Console\Commands;
 
-  .columns {
-    margin-top: 20px;
-    display: grid;
-    grid-gap: 25px;
+    use Illuminate\Console\Command;
+    use Illuminate\Support\Facades\Redis;
 
-    @include breakpoint(md) {
-      grid-template-columns: 1fr 1fr;
+    /**
+     * Class ClearRecentlyViewed
+     *
+     * @package App\Console\Commands
+     */
+    class ClearRecentlyViewed extends Command {
+        /**
+         * The name and signature of the console command.
+         *
+         * @var string
+         */
+        protected $signature = 'friends:clear-recent';
+
+        /**
+         * The console command description.
+         *
+         * @var string
+         */
+        protected $description = 'Clear list of recently viewed players by site visitors';
+
+        /**
+         * Execute the console command.
+         *
+         * @return mixed
+         */
+        public function handle() {
+            Redis::del('recent_friends');
+            $this->info('Cleared recently viewed players');
+        }
     }
-
-    .featured {
-      margin-bottom: 20px;
-      text-align: center;
-
-      a {
-        display: inline-block;
-
-        img {
-          margin: 10px 0;
-          box-shadow: rgba(0, 0, 0, .25) 0 3px 5px;
-          transition: all $transition-time;
-        }
-
-        &:focus, &:hover {
-          box-shadow: none;
-          transform: translateY(-3px);
-
-          img {
-            box-shadow: rgba(0, 0, 0, .25) 0 6px 5px;
-          }
-        }
-      }
-    }
-
-    .overview {
-      .item {
-        padding: 1rem 0;
-
-        &:first-child {
-          padding-top: 0;
-        }
-
-        + .item {
-          border-top: 1px solid $color-gray;
-        }
-      }
-    }
-  }
-}

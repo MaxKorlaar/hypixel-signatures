@@ -29,52 +29,43 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-.home {
+.callout {
+  background: lighten($color-secondary, 60%);
+  border-radius: $border-radius;
+  padding: 30px 20px;
 
-  .columns {
-    margin-top: 20px;
-    display: grid;
-    grid-gap: 25px;
+  p {
+    margin-top: 0;
+    font-size: 1.2rem;
+    font-family: 'Oxygen', $font-stack-system;
+  }
 
-    @include breakpoint(md) {
-      grid-template-columns: 1fr 1fr;
-    }
+  .input {
+    input {
+      font-size: 1rem;
 
-    .featured {
-      margin-bottom: 20px;
-      text-align: center;
-
-      a {
-        display: inline-block;
-
-        img {
-          margin: 10px 0;
-          box-shadow: rgba(0, 0, 0, .25) 0 3px 5px;
-          transition: all $transition-time;
-        }
-
-        &:focus, &:hover {
-          box-shadow: none;
-          transform: translateY(-3px);
-
-          img {
-            box-shadow: rgba(0, 0, 0, .25) 0 6px 5px;
-          }
-        }
+      &:active, &:focus {
+        box-shadow: inset $color-secondary 0 -2px 0;
       }
     }
 
-    .overview {
-      .item {
-        padding: 1rem 0;
+    .error {
+      font-size: 1rem;
+      margin-top: .5rem;
+      margin-bottom: 0;
+    }
+  }
 
-        &:first-child {
-          padding-top: 0;
-        }
+  @include breakpoint(md) {
+    padding: 60px 40px;
 
-        + .item {
-          border-top: 1px solid $color-gray;
-        }
+    p {
+      font-size: 1.5rem;
+    }
+
+    .input {
+      input {
+        font-size: 1.2rem;
       }
     }
   }

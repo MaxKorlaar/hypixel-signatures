@@ -11,9 +11,11 @@
                 It's easy – You only have to enter your username to get started.
             </p>
             <form class="input has-button" method="get" action="{{ route('signatures.form_redirect') }}">
-                <input title="Username" type="search" autocomplete="nickname" name="username" placeholder="Enter your username to get started">
-                <button class="button hide-sm" type="submit">Choose a signature &longrightarrow;</button>
-                <button class="button hide-md hide-lg hide-xl" type="submit">&longrightarrow;</button>
+                <div class="fields">
+                    <input title="Username" type="search" autocomplete="nickname" name="username" placeholder="Enter your username to get started">
+                    <button class="button hide-sm" type="submit">Choose a signature &longrightarrow;</button>
+                    <button class="button hide-md hide-lg hide-xl" type="submit">&longrightarrow;</button>
+                </div>
             </form>
         </div>
         <div class="columns">
@@ -54,6 +56,14 @@
                         and will automatically show your latest data – generate your signature once, forget the rest.
                     </p>
                     <a href="{{ route('signatures') }}" class="button primary">Get your own signature</a>
+                </div>
+                <div class="item">
+                    <h2>Hypixel Friends list</h2>
+                    <p>
+                        An overview of your or someone else's friends list on Hypixel, and how long you've already been friends with them.
+                        This allows you to easily see which game your friends currently are playing!
+                    </p>
+                    <a href="{{ route('friends') }}" class="button primary">See your friends list</a>
                 </div>
 
                 <iframe src="https://www.strawpoll.me/embed_1/20018435" style="width:100%;height:75vh;border:0;">Loading poll...</iframe>

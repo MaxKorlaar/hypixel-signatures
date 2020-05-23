@@ -1,0 +1,176 @@
+/*!
+ * Copyright (c) 2020 Max Korlaar
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *  Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ *  Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions, a visible attribution to the original author(s)
+ *   of the software available to the public, and the following disclaimer
+ *   in the documentation and/or other materials provided with the distribution.
+ *
+ *  Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+.friends-list {
+  .players-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-gap: 1rem;
+
+    @include breakpoint(sm) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @include breakpoint(md) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include breakpoint(lg) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .item {
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      cursor: pointer;
+      border-radius: $border-radius;
+      //border: 1px solid $color-gray;
+      padding: 1rem;
+      transition: all $transition-time;
+      align-items: center;
+      box-shadow: rgba(0, 0, 0, 0) 0 3px 5px, inset $color-secondary 0 0 0 0;
+      background: lighten($color-secondary, 60%);
+
+      &:hover, &:focus {
+        box-shadow: rgba(0, 0, 0, .25) 0 3px 5px;
+        //border: 1px solid $color-secondary;
+        transform: translateY(-3px);
+      }
+
+      .image-container {
+        display: block;
+        margin: auto 0;
+        flex-shrink: 0;
+
+        img {
+          max-height: 50px;
+          width: auto;
+        }
+      }
+
+      .name-container {
+        flex: 1;
+        margin-left: 25px;
+        transition: color $transition-time;
+
+        h3 {
+          font-weight: bold;
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+
+  .progress-info {
+    text-align: center;
+    margin: 0 auto 1rem;
+    max-width: $container-sm;
+    position: sticky;
+    background: $color-background;
+    padding: 1rem;
+    top: 0;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    z-index: 10;
+    --percentage: 0%;
+
+    .bar {
+      height: 20px;
+      margin: .5rem 0;
+      background: lighten($color-primary, 40%);
+      border-radius: $border-radius;
+      overflow: hidden;
+
+      .inner {
+        height: 100%;
+        width: var(--percentage);
+        transition: all $transition-time;
+        background: $color-primary;
+
+        //animation: loading-bar-background 1.5s infinite reverse ease-in-out;
+        //background: linear-gradient(to right, transparent 0%, rgba($color-primary, 1) 5%, rgba($color-primary, 1) calc(var(--percentage)/2), transparent calc(var(--percentage)/2 + 5%));
+        //background-size: 200% auto;
+        //
+        //@keyframes loading-bar-background {
+        //  0% {
+        //    background-position-x: 5%;
+        //  }
+        //
+        //  100% {
+        //    background-position-x: 205%;
+        //  }
+        //}
+      }
+    }
+  }
+
+  .social-share {
+    margin-bottom: .5rem;
+    text-align: right;
+  }
+
+  .friends-grid {
+    .loading {
+      color: $color-gray;
+
+      .loader {
+        span {
+          height: 1.3rem;
+          width: 1.3rem;
+          display: inline-block;
+          background: $color-gray;
+          border-radius: $border-radius;
+          animation: block-loader 2s ease infinite;
+
+          &:nth-child(2) {
+            animation-delay: .5s;
+          }
+
+          &:nth-child(3) {
+            animation-delay: 1s;
+          }
+        }
+
+        @keyframes block-loader {
+          0%, 75%, 100% {
+            background: $color-gray;
+          }
+          25% {
+            //border-radius: 100%;
+            background: $color-secondary;
+          }
+        }
+      }
+    }
+  }
+}

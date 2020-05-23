@@ -1,4 +1,5 @@
-/*!
+<?php
+/**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -29,53 +30,32 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-.home {
+namespace App\Http\Controllers\Player;
 
-  .columns {
-    margin-top: 20px;
-    display: grid;
-    grid-gap: 25px;
+    use App\Http\Controllers\Controller;
+    use App\Utilities\MinecraftAvatar\ThreeDAvatar;
+    use Illuminate\Http\Request;
+    use Image;
 
-    @include breakpoint(md) {
-      grid-template-columns: 1fr 1fr;
+    /**
+     * Class ImageController
+     *
+     * @package App\Http\Controllers\Player
+     */
+    class ImageController extends Controller {
+        /**
+         * @param Request $request
+         * @param string  $uuid
+         *
+         * @return mixed
+         */
+        public function getHead(Request $request, string $uuid) {
+            $threedAvatar = new ThreeDAvatar();
+            $headImage    = $threedAvatar->getThreeDSkinFromCache($uuid, max((int)$request->input('size', 5), 20), 45, true, true, true, -30);
+
+            return Image::make($headImage)->response('png')->setCache([
+                'public'  => true,
+                'max_age' => config('cache.times.public.player_skin')
+            ]);
+        }
     }
-
-    .featured {
-      margin-bottom: 20px;
-      text-align: center;
-
-      a {
-        display: inline-block;
-
-        img {
-          margin: 10px 0;
-          box-shadow: rgba(0, 0, 0, .25) 0 3px 5px;
-          transition: all $transition-time;
-        }
-
-        &:focus, &:hover {
-          box-shadow: none;
-          transform: translateY(-3px);
-
-          img {
-            box-shadow: rgba(0, 0, 0, .25) 0 6px 5px;
-          }
-        }
-      }
-    }
-
-    .overview {
-      .item {
-        padding: 1rem 0;
-
-        &:first-child {
-          padding-top: 0;
-        }
-
-        + .item {
-          border-top: 1px solid $color-gray;
-        }
-      }
-    }
-  }
-}

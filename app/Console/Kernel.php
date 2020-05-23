@@ -58,6 +58,8 @@
          * @return void
          */
         protected function schedule(Schedule $schedule) {
+            $schedule->command('friends:clear-recent')->weekly();
+            $schedule->command('clean:directories')->daily();
             // $schedule->command('inspire')
             //          ->hourly();
         }
