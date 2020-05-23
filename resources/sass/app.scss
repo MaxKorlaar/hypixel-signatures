@@ -214,6 +214,13 @@ a {
   margin-top: .5rem;
 
   > div {
+
+    label {
+      &.button {
+        display: block;
+      }
+    }
+
     & + div {
       margin-left: 1rem;
     }
@@ -222,12 +229,23 @@ a {
 
 
 .button {
+  display: inline-block;
   cursor: pointer;
-  display: block;
   padding: .5rem 1rem;
   border-radius: $border-radius;
   border: 1px solid $color-gray;
   transition: all $transition-time;
+
+  &.primary {
+    background: $color-primary;
+    color: $black;
+    border-color: darken($color-primary, 20%);
+
+    &:hover, &:focus {
+      background: lighten($color-primary, 20%);
+      border-color: $color-primary;
+    }
+  }
 
   input[type=radio] {
     display: none;
@@ -243,6 +261,14 @@ a {
     background: lighten($color-primary, 20%);
     border: 1px solid $color-primary;
     //transform: translateY(-3px);
+  }
+}
+
+a.button {
+  box-shadow: none;
+
+  &:hover, &:focus {
+    text-decoration: none;
   }
 }
 

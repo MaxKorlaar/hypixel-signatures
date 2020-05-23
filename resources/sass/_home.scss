@@ -98,5 +98,19 @@
         }
       }
     }
+
+    .overview {
+      .item {
+        padding: 1rem 0;
+
+        &:first-child {
+          padding-top: 0;
+        }
+
+        + .item {
+          border-top: 1px solid $color-gray;
+        }
+      }
+    }
   }
 }

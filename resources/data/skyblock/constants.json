@@ -497,11 +497,17 @@
     "50": {
       "magic_find": 3
     },
-    "85": {
+    "75": {
       "magic_find": 4
     },
-    "125": {
+    "100": {
       "magic_find": 5
+    },
+    "130": {
+      "magic_find": 6
+    },
+    "175": {
+      "magic_find": 7
     }
   },
   "pet_items": {
@@ -1123,9 +1129,7 @@
     "BAT_TALISMAN": [
       "BAT_RING",
       "BAT_ARTIFACT"
-    ]
-  },
-  "talisman_duplicates": {
+    ],
     "BROKEN_PIGGY_BANK": [
       "CRACKED_PIGGY_BANK",
       "PIGGY_BANK"
@@ -1140,5 +1144,6 @@
     "SPEED_RING": [
       "SPEED_ARTIFACT"
     ]
-  }
+  },
+  "talisman_duplicates": {}
 }
