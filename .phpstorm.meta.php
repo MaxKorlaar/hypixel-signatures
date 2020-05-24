@@ -1,42 +1,11 @@
 <?php
-/**
- * Copyright (c) 2020 Max Korlaar
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- *  Redistributions of source code must retain the above copyright notice, this
- *   list of conditions and the following disclaimer.
- *
- *  Redistributions in binary form must reproduce the above copyright notice,
- *   this list of conditions, a visible attribution to the original author(s)
- *   of the software available to the public, and the following disclaimer
- *   in the documentation and/or other materials provided with the distribution.
- *
- *  Neither the name of the copyright holder nor the names of its
- *   contributors may be used to endorse or promote products derived from
- *   this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
 // @formatter:off
 
 namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-05-17 19:32:53.
+    * Generated on 2020-05-24 16:54:04.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -83,6 +52,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -98,6 +68,7 @@ namespace PHPSTORM_META {
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
         'command.cast.make' => \Illuminate\Foundation\Console\CastMakeCommand::class,
         'command.channel.make' => \Illuminate\Foundation\Console\ChannelMakeCommand::class,
+        'command.clean:directories' => \Spatie\DirectoryCleanup\DirectoryCleanupCommand::class,
         'command.clear-compiled' => \Illuminate\Foundation\Console\ClearCompiledCommand::class,
         'command.component.make' => \Illuminate\Foundation\Console\ComponentMakeCommand::class,
         'command.config.cache' => \Illuminate\Foundation\Console\ConfigCacheCommand::class,
@@ -262,6 +233,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -277,6 +249,7 @@ namespace PHPSTORM_META {
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
         'command.cast.make' => \Illuminate\Foundation\Console\CastMakeCommand::class,
         'command.channel.make' => \Illuminate\Foundation\Console\ChannelMakeCommand::class,
+        'command.clean:directories' => \Spatie\DirectoryCleanup\DirectoryCleanupCommand::class,
         'command.clear-compiled' => \Illuminate\Foundation\Console\ClearCompiledCommand::class,
         'command.component.make' => \Illuminate\Foundation\Console\ComponentMakeCommand::class,
         'command.config.cache' => \Illuminate\Foundation\Console\ConfigCacheCommand::class,
@@ -441,6 +414,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -456,6 +430,7 @@ namespace PHPSTORM_META {
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
         'command.cast.make' => \Illuminate\Foundation\Console\CastMakeCommand::class,
         'command.channel.make' => \Illuminate\Foundation\Console\ChannelMakeCommand::class,
+        'command.clean:directories' => \Spatie\DirectoryCleanup\DirectoryCleanupCommand::class,
         'command.clear-compiled' => \Illuminate\Foundation\Console\ClearCompiledCommand::class,
         'command.component.make' => \Illuminate\Foundation\Console\ComponentMakeCommand::class,
         'command.config.cache' => \Illuminate\Foundation\Console\ConfigCacheCommand::class,
@@ -620,6 +595,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -635,6 +611,7 @@ namespace PHPSTORM_META {
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
         'command.cast.make' => \Illuminate\Foundation\Console\CastMakeCommand::class,
         'command.channel.make' => \Illuminate\Foundation\Console\ChannelMakeCommand::class,
+        'command.clean:directories' => \Spatie\DirectoryCleanup\DirectoryCleanupCommand::class,
         'command.clear-compiled' => \Illuminate\Foundation\Console\ClearCompiledCommand::class,
         'command.component.make' => \Illuminate\Foundation\Console\ComponentMakeCommand::class,
         'command.config.cache' => \Illuminate\Foundation\Console\ConfigCacheCommand::class,
@@ -799,6 +776,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -814,6 +792,7 @@ namespace PHPSTORM_META {
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
         'command.cast.make' => \Illuminate\Foundation\Console\CastMakeCommand::class,
         'command.channel.make' => \Illuminate\Foundation\Console\ChannelMakeCommand::class,
+        'command.clean:directories' => \Spatie\DirectoryCleanup\DirectoryCleanupCommand::class,
         'command.clear-compiled' => \Illuminate\Foundation\Console\ClearCompiledCommand::class,
         'command.component.make' => \Illuminate\Foundation\Console\ComponentMakeCommand::class,
         'command.config.cache' => \Illuminate\Foundation\Console\ConfigCacheCommand::class,
@@ -978,6 +957,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -993,6 +973,7 @@ namespace PHPSTORM_META {
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
         'command.cast.make' => \Illuminate\Foundation\Console\CastMakeCommand::class,
         'command.channel.make' => \Illuminate\Foundation\Console\ChannelMakeCommand::class,
+        'command.clean:directories' => \Spatie\DirectoryCleanup\DirectoryCleanupCommand::class,
         'command.clear-compiled' => \Illuminate\Foundation\Console\ClearCompiledCommand::class,
         'command.component.make' => \Illuminate\Foundation\Console\ComponentMakeCommand::class,
         'command.config.cache' => \Illuminate\Foundation\Console\ConfigCacheCommand::class,
@@ -1157,6 +1138,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -1172,6 +1154,7 @@ namespace PHPSTORM_META {
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
         'command.cast.make' => \Illuminate\Foundation\Console\CastMakeCommand::class,
         'command.channel.make' => \Illuminate\Foundation\Console\ChannelMakeCommand::class,
+        'command.clean:directories' => \Spatie\DirectoryCleanup\DirectoryCleanupCommand::class,
         'command.clear-compiled' => \Illuminate\Foundation\Console\ClearCompiledCommand::class,
         'command.component.make' => \Illuminate\Foundation\Console\ComponentMakeCommand::class,
         'command.config.cache' => \Illuminate\Foundation\Console\ConfigCacheCommand::class,
@@ -1336,6 +1319,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Listeners\TrimRecentJobs' => \Laravel\Horizon\Listeners\TrimRecentJobs::class,
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
+        'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -1351,6 +1335,7 @@ namespace PHPSTORM_META {
         'command.cache.table' => \Illuminate\Cache\Console\CacheTableCommand::class,
         'command.cast.make' => \Illuminate\Foundation\Console\CastMakeCommand::class,
         'command.channel.make' => \Illuminate\Foundation\Console\ChannelMakeCommand::class,
+        'command.clean:directories' => \Spatie\DirectoryCleanup\DirectoryCleanupCommand::class,
         'command.clear-compiled' => \Illuminate\Foundation\Console\ClearCompiledCommand::class,
         'command.component.make' => \Illuminate\Foundation\Console\ComponentMakeCommand::class,
         'command.config.cache' => \Illuminate\Foundation\Console\ConfigCacheCommand::class,

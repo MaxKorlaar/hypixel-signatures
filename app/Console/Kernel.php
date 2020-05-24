@@ -61,6 +61,8 @@
             $schedule->command('friends:clear-recent')->weekly();
             $schedule->command('clean:directories')->daily();
             $schedule->command('horizon:snapshot')->everyFiveMinutes();
+            $schedule->command('cloudflare:reload')->weekly();
+
             // $schedule->command('inspire')
             //          ->hourly();
         }
