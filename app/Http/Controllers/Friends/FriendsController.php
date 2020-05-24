@@ -37,6 +37,7 @@
     use App\Http\Requests\Friends\ViewListByUsernameRequest;
     use App\Jobs\Friends\LoadPlayerData;
     use App\Utilities\HypixelAPI;
+    use App\Utilities\HypixelPHP\DatabaseCacheHandler;
     use App\Utilities\MinecraftAvatar\MojangAPI;
     use Cache;
     use Illuminate\Contracts\Foundation\Application;
@@ -154,7 +155,43 @@
         public function getFriendsListJSON(string $uuid, int $max = 60): ?array {
             $api = new HypixelAPI();
 
-            $player = $api->getPlayerByUuid($uuid);
+            $player  = $api->getPlayerByUuid($uuid);
+            $friends = $player->getFriends();
+
+            dump('Players: ' . count($friends->getRawList()));
+
+            $time_start = microtime(true);
+
+            foreach ($friends->getList() as $friend) {
+                $p = $friend->getOtherPlayer();
+                dump(['uuid' => $p->getUUID(), 'name' => $p->getName()]);
+            }
+
+            $time_end = microtime(true);
+
+            $execution_time = ($time_end - $time_start);
+
+            dump($player, $execution_time . 's');
+
+            $api->getApi()->setCacheHandler(new DatabaseCacheHandler($api->getApi()));
+
+            $time_start = microtime(true);
+
+            foreach ($friends->getRawList() as $friend) {
+                $friendUuid = $friend['uuidSender'] === $player->getUUID() ? $friend['uuidReceiver'] : $friend['uuidSender'];
+
+                if (Cache::has('hypixel.player.' . $friendUuid)) {
+                    dump(Cache::get('hypixel.player.' . $friendUuid));
+                }
+            }
+
+            $time_end = microtime(true);
+
+            $execution_time = ($time_end - $time_start);
+
+            dump($player, 'met db ' . $execution_time . 's');
+
+            dd();
 
             /** @var HypixelObject $player */
             if (($player instanceof HypixelObject) && $player->getResponse() !== null && !$player->getResponse()->wasSuccessful()) {
@@ -182,6 +219,7 @@
                         'since'       => $friend['started'],
                         'skin_url'    => route('player.skin.head', [$friendUuid]),
                         'friends_url' => route('friends.list', [$friendUuid]),
+                        'index' => $index
                     ];
 
                     if (Cache::has('hypixel.player.' . $friendUuid)) {
