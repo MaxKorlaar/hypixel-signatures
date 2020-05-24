@@ -120,7 +120,7 @@
                     $friendsList = $this->getFriendsListJSON($uuid);
 
                     Redis::hIncrBy('recent_friends', $uuid, 1);
-                    Redis::expire('recent_friends', 600);
+                    Redis::expire('recent_friends', config('cache.times.recent_players'));
                     Cache::set('recent_friends.' . $uuid, [
                         'username'      => $player->getName(),
                         'friends_count' => $friendsList['meta']['total_friends']

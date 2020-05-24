@@ -36,7 +36,7 @@ const axios = require('axios').default;
 Vue.use(VueLazyload, {
     observer:        true,
     observerOptions: {
-        rootMargin: '100px',
+        rootMargin: '250px',
         threshold:  0.1
     }
 })
