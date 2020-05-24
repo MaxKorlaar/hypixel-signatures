@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -32,7 +32,9 @@
 
     namespace App\Providers;
 
+    use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Gate;
+    use Laravel\Horizon\Horizon;
     use Laravel\Horizon\HorizonApplicationServiceProvider;
 
     /**
@@ -46,14 +48,18 @@
          *
          * @return void
          */
-        public function boot() {
+        public function boot(): void {
             parent::boot();
 
             // Horizon::routeSmsNotificationsTo('15556667777');
             // Horizon::routeMailNotificationsTo('example@example.com');
-            // Horizon::routeSlackNotificationsTo('slack-webhook-url', '#channel');
+            Horizon::routeSlackNotificationsTo(config('logging.channels.slack.url'), null);
 
-            // Horizon::night();
+            Horizon::night();
+
+            Horizon::auth(static function (Request $request) {
+                return app()->environment('local') || config('horizon.production_allow_ip') === $request->ip();
+            });
         }
 
         /**
@@ -63,11 +69,9 @@
          *
          * @return void
          */
-        protected function gate() {
-            Gate::define('viewHorizon', static function ($user) {
-                return in_array($user->email, [
-                    //
-                ], true);
+        protected function gate(): void {
+            Gate::define('viewHorizon', static function ($user = null) {
+                return false;
             });
         }
     }

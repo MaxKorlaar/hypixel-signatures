@@ -157,7 +157,7 @@
         |
         */
 
-        'memory_limit' => 64,
+        'memory_limit' => 128,
 
         /*
         |--------------------------------------------------------------------------
@@ -173,11 +173,13 @@
         'environments' => [
             'production' => [
                 'supervisor-1' => [
-                    'connection' => 'redis',
-                    'queue'      => ['default'],
-                    'balance'    => 'simple',
-                    'processes'  => 10,
-                    'tries'      => 1,
+                    'connection'  => 'redis',
+                    'queue'       => ['default', 'hypixel-api'],
+                    'balance'     => 'auto',
+                    'processes'   => 20,
+                    'tries'       => 5,
+                    'retry_after' => 60,
+                    'timeout'     => 30
                 ],
             ],
 
@@ -202,4 +204,6 @@
                 ],
             ],
         ],
+
+        'production_allow_ip' => env('HORIZON_ALLOW_IP', false)
     ];

@@ -60,6 +60,7 @@
         protected function schedule(Schedule $schedule) {
             $schedule->command('friends:clear-recent')->weekly();
             $schedule->command('clean:directories')->daily();
+            $schedule->command('horizon:snapshot')->everyFiveMinutes();
             // $schedule->command('inspire')
             //          ->hourly();
         }
