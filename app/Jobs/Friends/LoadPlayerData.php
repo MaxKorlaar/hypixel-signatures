@@ -86,9 +86,11 @@
 
                 if ($player !== null) {
                     Cache::set('hypixel.player.' . $this->uuid, [
-                        'username'       => $player->getName(),
-                        'formatted_name' => ColorUtils::getColorParser()->parse($player->getRawFormattedName()),
-                        'loading'        => false,
+                        'username'              => $player->getName(),
+                        'formatted_name'        => ColorUtils::getColorParser()->parse($player->getRawFormattedName()),
+                        'loading'               => false,
+                        'last_login'            => $player->getInt('lastLogin', null),
+                        'most_recent_game_type' => $player->get('mostRecentGameType', null)
                     ], config('cache.times.friends_profiles'));
 
                     return null;
