@@ -134,9 +134,15 @@
     }
   }
 
-  .social-share {
-    margin-bottom: .5rem;
-    text-align: right;
+  .description {
+    display: flex;
+
+    .social-share {
+      align-self: center;
+      margin-bottom: .5rem;
+      text-align: right;
+      margin-left: auto;
+    }
   }
 
   .friends-grid {

@@ -47,6 +47,7 @@
     use Illuminate\View\View;
     use JsonException;
     use Plancke\HypixelPHP\classes\HypixelObject;
+    use Plancke\HypixelPHP\color\ColorUtils;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\exceptions\InvalidUUIDException;
     use Plancke\HypixelPHP\responses\player\Player;
@@ -127,9 +128,10 @@
                     ]);
 
                     return view('friends.list', [
-                            'username' => $player->getName(),
-                            'player'   => $player,
-                            'urls'     => [
+                            'username'           => $player->getName(),
+                            'formatted_username' => ColorUtils::getColorParser()->parse($player->getRawFormattedName()),
+                            'player'             => $player,
+                            'urls'               => [
                                 'get_friends' => route('friends.list.json', [$player->getUUID()])
                             ]
                         ] + $friendsList);
