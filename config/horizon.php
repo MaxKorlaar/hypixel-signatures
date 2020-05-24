@@ -157,7 +157,7 @@
         |
         */
 
-        'memory_limit' => 128,
+        'memory_limit' => 64,
 
         /*
         |--------------------------------------------------------------------------
@@ -176,7 +176,7 @@
                     'connection'  => 'redis',
                     'queue'       => ['default', 'hypixel-api'],
                     'balance'     => 'auto',
-                    'processes'   => 20,
+                    'processes'   => 15,
                     'tries'       => 5,
                     'retry_after' => 60,
                     'timeout'     => 30
