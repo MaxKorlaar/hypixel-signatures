@@ -34,7 +34,11 @@ import VueLazyload from 'vue-lazyload';
 const axios = require('axios').default;
 
 Vue.use(VueLazyload, {
-    observer: true,
+    observer:        true,
+    observerOptions: {
+        rootMargin: '100px',
+        threshold:  0.1
+    }
 })
 // noinspection ObjectAllocationIgnored
 new Vue({
