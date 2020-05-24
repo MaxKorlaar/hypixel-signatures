@@ -63,7 +63,7 @@ new Vue({
                 this.getFriends().finally(() => {
                     setTimeout(() => {
                         this.getFriendsInterval();
-                    }, this.meta.loaded === previousCount ? 7500 : 0);
+                    }, this.meta.loaded === previousCount ? 7500 : 750);
                 });
             }
         },

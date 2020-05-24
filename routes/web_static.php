@@ -32,32 +32,26 @@
 
     /*
     |--------------------------------------------------------------------------
-    | Web Routes
+    | Static Web Routes
     |--------------------------------------------------------------------------
     |
     | Here is where you can register web routes for your application. These
     | routes are loaded by the RouteServiceProvider within a group which
-    | contains the "web" middleware group. Now create something great!
+    | contains the "static" middleware group.
+    |
+    | These static routes do not do anything regarding sessions nor CSRF verification, and should not create any cookies.
     |
     */
 
-    Route::get('/', 'IndexController@index')->name('home');
-
-    Route::get('/signatures/generate-from-index', 'IndexController@redirectToSignatures')->name('signatures.form_redirect');
-    Route::get('/signatures', 'IndexController@signatureIndex')->name('signatures');
-
-    Route::get('/player/{username}/uuid', 'Player\PlayerController@getUuid')->name('player.get_uuid');
-    Route::get('/player/{uuid}/profile', 'Player\PlayerController@getProfile')->name('player.get_profile');
-
-    Route::get('/player/{uuid}/skyblock/profiles', 'SkyBlockController@getProfiles')->name('skyblock.get_profiles');
-
-    Route::get('/friends/', 'Friends\FriendsController@getIndex')->name('friends');
-    Route::post('/friends/', 'Friends\FriendsController@redirectToList')->name('friends.form_redirect');
-    Route::get('/friends/{uuid}', 'Friends\FriendsController@getFriends')->name('friends.list');
-    Route::get('/friends/{uuid}/json', 'Friends\FriendsController@getFriendsListJSON')->name('friends.list.json');
-
-    Route::prefix('status-sig')->group(static function () {
-        Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');
+    Route::prefix('signature/{username}')->name('signatures.')->namespace('Signatures')->group(static function () {
+        Route::get('general', 'GeneralSignatureController@render')->name('general');
+        Route::get('general-small', 'SmallGeneralSignatureController@render')->name('general_small');
+        Route::get('general-tooltip', 'TooltipSignatureController@render')->name('general_tooltip');
+        Route::get('bedwars', 'BedWarsSignatureController@render')->name('bedwars');
+        Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
+        Route::get('skyblock/stats/{profile_id}', 'SkyBlockSignatureController@render')->name('skyblock.stats');
+        Route::get('skyblock/pets/{profile_id}', 'SkyBlockPetsSignatureController@render')->name('skyblock.pets');
     });
 
-    Route::get('/privacy', 'MetaController@getPrivacyPage')->name('privacy');
+    Route::get('/player/{uuid}/skin/head.png', 'Player\ImageController@getHead')->name('player.skin.head');
+

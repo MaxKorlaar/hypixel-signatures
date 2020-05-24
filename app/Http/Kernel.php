@@ -92,6 +92,10 @@
                 SubstituteBindings::class,
             ],
 
+            'static' => [
+                'bindings'
+            ],
+
             'api' => [
                 'throttle:60,1',
                 'bindings',
