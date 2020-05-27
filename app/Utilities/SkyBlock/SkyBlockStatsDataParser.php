@@ -72,13 +72,6 @@
         }
 
         /**
-         * @return Collection
-         */
-        public function getConstants(): Collection {
-            return $this->constants;
-        }
-
-        /**
          * @param Player $player
          * @param string $id
          *
@@ -91,22 +84,6 @@
             return Cache::remember('skyblock.profile.' . $player->getUUID() . '.' . $id . '.stats', config('cache.times.skyblock_profile'), static function () use ($id, $player) {
                 $dataparser = new self();
                 return $dataparser->getSkyBlockProfile($player, $id)->only(['stats', 'stats_with_sword', 'weapon_stats']);
-            });
-        }
-
-        /**
-         * @param Player $player
-         * @param string $id
-         *
-         * @return Collection
-         * @throws HypixelFetchException
-         * @throws SkyBlockEmptyProfileException
-         * @noinspection PhpDocRedundantThrowsInspection
-         */
-        public static function getSkyBlockPets(Player $player, string $id): Collection {
-            return Cache::remember('skyblock.profile.' . $player->getUUID() . '.' . $id . '.pets', config('cache.times.skyblock_profile'), function () use ($id, $player) {
-                $dataparser = new self();
-                return $dataparser->getSkyBlockProfile($player, $id)->get('pets');
             });
         }
 
@@ -145,7 +122,7 @@
         }
 
         /**
-         * @link https://github.com/LeaPhant/skyblock-stats/blob/master/src/lib.js#L1018
+         * @link https://github.com/LeaPhant/skyblock-stats/blob/dd1f50231218a52eb0e66637a7827ef45e1963da/src/lib.js
          *
          *
          * @param Collection $profile
@@ -396,6 +373,10 @@
              * @var SkyBlockItem $armorPiece
              */
             foreach ($items['armor'] as $armorPiece) {
+                if ($armorPiece['is_inactive']) {
+                    $armorPiece['stats'] = [];
+                }
+
                 foreach ($armorPiece['stats'] as $stat => $value) {
                     $return['stats'][$stat] += $value;
                 }
@@ -941,6 +922,34 @@
             $talismans = new Collection();
 
             /** @var SkyBlockItem $talisman */
+            foreach ($armor->where('type', 'accessory') as $talisman) {
+                $id = $talisman->getTagId();
+
+                if ($id === null) {
+                    continue;
+                }
+
+                $talisman['is_unique']   = true;
+                $talisman['is_inactive'] = false;
+
+                if ($talismans->filter(static function (SkyBlockItem $talisman) use ($id) {
+                    return !$talisman['is_inactive'] && $talisman->getTagId() === $id;
+                })->isNotEmpty()) {
+                    $talisman['is_inactive'] = true;
+                }
+
+                if ($talismans->filter(static function (SkyBlockItem $talisman) use ($id) {
+                    return $talisman->getTagId() === $id;
+                })->isNotEmpty()) {
+                    $talisman['is_unique'] = false;
+                }
+            }
+
+            /**
+             * Adds the talismans from the inventory to the collection
+             *
+             * @var SkyBlockItem $talisman
+             */
             foreach ($inventory->where('type', 'accessory')->concat($talismanBag) as $talisman) {
                 $id = $talisman->getTagId();
 
@@ -999,7 +1008,7 @@
             /**
              * @link https://github.com/LeaPhant/skyblock-stats/blob/master/src/lib.js#L771
              */
-            foreach ($talismans as $index => $talisman) {
+            foreach ($talismans->concat($armor) as $index => $talisman) {
                 $id = $talisman->getTagId();
 
                 if (Str::startsWith($id, 'CAMPFIRE_TALISMAN_')) {
@@ -1319,5 +1328,28 @@
             }
 
             return round($health * (1 + $defense / 100));
+        }
+
+        /**
+         * @param Player $player
+         * @param string $id
+         *
+         * @return Collection
+         * @throws HypixelFetchException
+         * @throws SkyBlockEmptyProfileException
+         * @noinspection PhpDocRedundantThrowsInspection
+         */
+        public static function getSkyBlockPets(Player $player, string $id): Collection {
+            return Cache::remember('skyblock.profile.' . $player->getUUID() . '.' . $id . '.pets', config('cache.times.skyblock_profile'), function () use ($id, $player) {
+                $dataparser = new self();
+                return $dataparser->getSkyBlockProfile($player, $id)->get('pets');
+            });
+        }
+
+        /**
+         * @return Collection
+         */
+        public function getConstants(): Collection {
+            return $this->constants;
         }
     }
