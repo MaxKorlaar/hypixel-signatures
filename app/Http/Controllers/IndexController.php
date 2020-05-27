@@ -85,6 +85,17 @@
                         ],
                     ]
                 ],
+                'guild'    => [
+                    'name'        => 'Guild Signatures',
+                    'short_name'  => 'Guild',
+                    'description' => 'Generic statistics for the guild you\'re part of on Hypixel. The general guild statistics image also shows the guild\'s banner if they have one!',
+                    'signatures'  => [
+                        [
+                            'name'  => 'General guild statistics',
+                            'route' => 'guild.general'
+                        ]
+                    ]
+                ],
                 'skyblock' => [
                     'name'        => 'SkyBlock Signatures',
                     'short_name'  => 'SkyBlock',

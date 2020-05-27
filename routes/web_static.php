@@ -47,10 +47,14 @@
         Route::get('general', 'GeneralSignatureController@render')->name('general');
         Route::get('general-small', 'SmallGeneralSignatureController@render')->name('general_small');
         Route::get('general-tooltip', 'TooltipSignatureController@render')->name('general_tooltip');
+
         Route::get('bedwars', 'BedWarsSignatureController@render')->name('bedwars');
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
+
         Route::get('skyblock/stats/{profile_id}', 'SkyBlockSignatureController@render')->name('skyblock.stats');
         Route::get('skyblock/pets/{profile_id}', 'SkyBlockPetsSignatureController@render')->name('skyblock.pets');
+
+        Route::get('guild/general', 'GuildSignatureController@render')->name('guild.general');
     });
 
     Route::get('/player/{uuid}/skin/head.png', 'Player\ImageController@getHead')->name('player.skin.head');
