@@ -1227,7 +1227,7 @@
                             return Str::afterLast($armorPiece->getTagId(), '_') === Str::afterLast($armor[0]->getTagId(), '_');
                         });
 
-                        if ($sameTier->isNotEmpty()) {
+                        if ($sameTier->count() === 4) {
                             $return['armor_set'] = 'Perfect Armor - Tier ' . Str::afterLast($armor[0]->getTagId(), '_');
                         } else {
                             $return['armor_set'] = 'Perfect Armor';
