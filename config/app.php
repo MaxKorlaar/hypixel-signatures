@@ -85,10 +85,6 @@
         'url'         => env('APP_URL', 'http://localhost'),
         'force_https' => env('FORCE_HTTPS', true),
 
-        'signature_debug_background'   => env('SIGNATURE_DEBUG_BACKGROUND', false),
-        'google_analytics_tracking_id' => 'UA-157532904-4',
-        'google_ads_client_id'         => 'ca-pub-9570587520778628',
-
         'asset_url' => env('ASSET_URL', null),
 
         /*

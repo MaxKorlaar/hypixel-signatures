@@ -25,11 +25,11 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     {% endblock %}
     {% block ad_scripts %}
-        {% if config_get('app.google_ads_client_id') %}
+        {% if config_get('signatures.google_ads_client_id') %}
             {#            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>#}
             {#            <script>#}
             {#                (adsbygoogle = window.adsbygoogle || []).push({#}
-            {#                    google_ad_client:      "{{ config_get('app.google_ads_client_id') }}",#}
+            {#                    google_ad_client:      "{{ config_get('signatures.google_ads_client_id') }}",#}
             {#                    enable_page_level_ads: true#}
             {#                });#}
             {#            </script>#}
@@ -37,7 +37,7 @@
         {% endif %}
     {% endblock %}
     {% block analytics_scripts %}
-        {% if config_get('app.google_analytics_tracking_id') %}
+        {% if config_get('signatures.google_analytics_tracking_id') %}
             <!-- Global site tag (gtag.js) - Google Analytics -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157532904-4"></script>
             <script>
@@ -47,7 +47,7 @@
 
                 gtag('js', new Date());
 
-                gtag('config', '{{ config_get('app.google_analytics_tracking_id') }}');
+                gtag('config', '{{ config_get('signatures.google_analytics_tracking_id') }}');
             </script>
         {% endif %}
     {% endblock %}
