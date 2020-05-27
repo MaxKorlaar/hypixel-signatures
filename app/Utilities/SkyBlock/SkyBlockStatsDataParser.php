@@ -971,7 +971,11 @@
                 $talismans->push($talisman);
             }
 
-            /** @var SkyBlockItem $item */
+            /**
+             * Add inactive talismans from the enderchest and backpacks to the talismans collection
+             *
+             * @var SkyBlockItem $item
+             */
             foreach ($inventory->concat($enderchest) as $index => $item) {
                 $items = new Collection([$item]);
 
@@ -997,9 +1001,41 @@
                 }
             }
 
+            /**
+             * @link https://github.com/LeaPhant/skyblock-stats/blob/master/src/lib.js#L771
+             */
             foreach ($talismans as $index => $talisman) {
-
                 $id = $talisman->getTagId();
+
+                if (Str::startsWith($id, 'CAMPFIRE_TALISMAN_')) {
+                    $tier = (int)Str::afterLast($id, '_');
+
+                    $maxTier = $talismans->filter(static function (SkyBlockItem $talisman) {
+                        return Str::startsWith($talisman->getTagId(), 'CAMPFIRE_TALISMAN_');
+                    })->map(static function (SkyBlockItem $talisman) {
+                        return (int)Str::afterLast($talisman->getTagId(), '_');
+                    })->max();
+
+                    if ($tier < $maxTier) {
+                        $talisman['is_unique']   = false;
+                        $talisman['is_inactive'] = true;
+                    }
+                }
+
+                if (Str::startsWith($id, 'WEDDING_RING_')) {
+                    $tier = (int)Str::afterLast($id, '_');
+
+                    $maxTier = $talismans->filter(static function (SkyBlockItem $talisman) {
+                        return Str::startsWith($talisman->getTagId(), 'WEDDING_RING_');
+                    })->map(static function (SkyBlockItem $talisman) {
+                        return (int)Str::afterLast($talisman->getTagId(), '_');
+                    })->max();
+
+                    if ($tier < $maxTier) {
+                        $talisman['is_unique']   = false;
+                        $talisman['is_inactive'] = true;
+                    }
+                }
 
                 $talismanUpgradesTable = $this->get('talisman_upgrades');
 
