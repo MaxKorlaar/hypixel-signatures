@@ -416,14 +416,9 @@
                 })->count() === 4) {
                 $return['stats']['health']            += 50 * $return['stats']['crit_damage'];
                 $items['armor'][0]['stats']['health'] += 50 * $return['stats']['crit_damage'];
-            } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return Str::startsWith($armorPiece->getTagId(), 'ANGLER_');
-                })->count() === 4) {
-                $return['stats']['sea_creature_chance']            += 4;
-                $items['armor'][0]['stats']['sea_creature_chance'] = 4;
             }
 
-            if ($items['talismans']->where('is_inactive', false)->filter(function (SkyBlockItem $talisman) {
+            if ($items['talismans']->where('is_inactive', false)->filter(static function (SkyBlockItem $talisman) {
                     return Str::is(['DAY_CRYSTAL', 'NIGHT_CRYSTAL'], $talisman->getTagId());
                 })->count() === 2) {
                 $return['stats']['defense']  += 5;
