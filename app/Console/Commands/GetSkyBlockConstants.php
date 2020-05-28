@@ -38,6 +38,7 @@
     use Illuminate\Http\Client\RequestException;
     use Illuminate\Support\Collection;
     use Illuminate\Support\Facades\Http;
+    use JsonException;
     use Symfony\Component\Process\Exception\ProcessFailedException;
     use Symfony\Component\Process\Process;
 
@@ -53,8 +54,8 @@
          * @var string
          */
         protected $signature = 'skyblock:get-constants';
-        protected $constantsUrl = 'https://github.com/LeaPhant/skyblock-stats/raw/master/src/constants.js';
-        protected $licenseUrl = 'https://github.com/LeaPhant/skyblock-stats/raw/master/LICENSE';
+        protected string $constantsUrl = 'https://github.com/LeaPhant/skyblock-stats/raw/master/src/constants.js';
+        protected string $licenseUrl = 'https://github.com/LeaPhant/skyblock-stats/raw/master/LICENSE';
 
         /**
          * The console command description.
@@ -67,7 +68,7 @@
          * Execute the console command.
          *
          * @return int
-         * @throws RequestException
+         * @throws RequestException|JsonException
          */
         public function handle(): int {
             $this->info('Now attempting to download SkyBlock constants from ' . $this->constantsUrl);
@@ -102,7 +103,7 @@
                 throw new ProcessFailedException($process);
             }
 
-            $constants = new Collection(json_decode($process->getOutput(), false));
+            $constants = new Collection(json_decode($process->getOutput(), false, 512, JSON_THROW_ON_ERROR));
 
             File::put(resource_path('data/skyblock/constants.json'), $constants->only([
                 'leveling_xp',
@@ -121,6 +122,7 @@
                 'item_types',
                 'talisman_upgrades',
                 'talisman_duplicates',
+                'minions'
             ])->toJson());
             File::delete(resource_path('data/skyblock/constants.js'));
 

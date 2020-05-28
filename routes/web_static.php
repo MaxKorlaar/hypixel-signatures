@@ -51,8 +51,9 @@
         Route::get('bedwars', 'BedWarsSignatureController@render')->name('bedwars');
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
 
-        Route::get('skyblock/stats/{profile_id}', 'SkyBlockSignatureController@render')->name('skyblock.stats');
-        Route::get('skyblock/pets/{profile_id}', 'SkyBlockPetsSignatureController@render')->name('skyblock.pets');
+        Route::get('skyblock/stats/{profile_id}', 'SkyBlock\SkyBlockSignatureController@render')->name('skyblock.stats');
+        Route::get('skyblock/pets/{profile_id}', 'SkyBlock\PetsSignatureController@render')->name('skyblock.pets');
+        Route::get('skyblock/minions/{profile_id}', 'SkyBlock\MinionsSignatureController@render')->name('skyblock.minions');
 
         Route::get('guild/general', 'Guild\GuildSignatureController@render')->name('guild.general');
         Route::get('guild/banner', 'Guild\BannerSignatureController@render')->name('guild.banner');
