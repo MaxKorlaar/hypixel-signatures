@@ -20,7 +20,7 @@
         <p>If you prefer not to use cookies, please disable them in your browser settings. Please refer to your browser documentation to see
            how you can disable cookies.</p>
         <h3>Logs and analytics</h3>
-        {% if config_get('app.google_analytics_tracking_id') %}
+        {% if config_get('signatures.google_analytics_tracking_id') %}
             <p>This website uses Google Analytics. Google Analytics is a web analysis service provided by Google. Google utilizes the data collected
                to track and examine the use of
                our Service, to prepare reports on its activities and share them with other Google services.
@@ -39,7 +39,7 @@
             <a href="https://www.facebook.com/about/privacy/your-info-on-other#socialplugin">Facebook's privacy policy</a> or
             <a href="https://twitter.com/privacy">Twitter's privacy policy</a> applies, respectively.
            More information can be found by reading those privacy policies.</p>
-        {% if config_get('app.google_ads_client_id') %}
+        {% if config_get('signatures.google_ads_client_id') %}
             <h3>Advertisements</h3>
             <p>
                 We also use third party advertisements on The Site in order to lower the costs of operating The Service. Currently, we are using

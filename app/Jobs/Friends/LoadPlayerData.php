@@ -72,7 +72,7 @@
          * @throws LimiterTimeoutException
          */
         public function handle(): void {
-            Redis::throttle('friends.request_data')->allow(250)->every(30)->then(function () {
+            Redis::throttle('friends.request_data')->allow(400)->every(60)->then(function () {
                 $api = new HypixelAPI();
 
                 $player = $api->getPlayerByUuid($this->uuid);

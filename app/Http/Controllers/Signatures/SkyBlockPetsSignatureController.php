@@ -107,7 +107,7 @@
 
             $colors = [
                 'legendary' => new Color(221, 152, 14),
-                'epic'      => new  Color(170, 0, 170),
+                'epic'      => new Color(170, 0, 170),
                 'rare'      => new Color(85, 85, 255),
                 'uncommon'  => new Color(60, 189, 60),
                 'common'    => new Color(85, 85, 85)
