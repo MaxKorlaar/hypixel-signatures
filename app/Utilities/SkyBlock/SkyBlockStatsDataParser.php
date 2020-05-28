@@ -1367,7 +1367,7 @@
                             'id'        => $minionName,
                             'max_level' => 0,
                             'levels'    => new Collection([$minionLevel])
-                        ] + $minionsTable[$minionName] ?? []));
+                        ] + ($minionsTable[$minionName] ?? [])));
                 } else {
                     $minion->first()['levels']->push($minionLevel);
                 }
@@ -1393,7 +1393,7 @@
                     $minion['name'] = ucfirst(strtolower($minion['id']));
                 }
 
-                $minion['texture_name'] = Str::afterLast($minion['head'], '/head/');
+                $minion['texture_name'] = isset($minion['head']) ? Str::afterLast($minion['head'], '/head/') : 'bc8ea1f51f253ff5142ca11ae45193a4ad8c3ab5e9c6eec8ba7a4fcb7bac40';
             }
 
             return $minions;
