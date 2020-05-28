@@ -100,7 +100,7 @@
             'mr'  => 'rhombus',
             'bo'  => 'border',
             'cbo' => 'curly_border',
-            'bri' => 'brick',
+            'bri' => 'bricks',
             'gra' => 'gradient',
             'gru' => 'gradient_up',
             'cre' => 'creeper',
