@@ -1367,7 +1367,7 @@
                             'id'        => $minionName,
                             'max_level' => 0,
                             'levels'    => new Collection([$minionLevel])
-                        ] + $minionsTable[$minionName]));
+                        ] + $minionsTable[$minionName] ?? []));
                 } else {
                     $minion->first()['levels']->push($minionLevel);
                 }
