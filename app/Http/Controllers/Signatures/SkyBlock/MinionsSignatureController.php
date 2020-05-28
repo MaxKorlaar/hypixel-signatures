@@ -104,8 +104,10 @@
             $imageWidth  = min(count($minions), $perRow) * ($avatarWidth + $distanceBetweenImages);
             $imageHeight = $avatarHeight * 1.5 * $rowCount + 15;
 
-            $image                = BaseSignature::getImage($imageWidth, $imageHeight);
-            $black                = new Color(0, 0, 0);
+            $image = BaseSignature::getImage($imageWidth, $imageHeight);
+            $black = new Color(0, 0, 0);
+            $gold  = new Color(221, 152, 14);
+
             $fontMinecraftRegular = resource_path('fonts/Minecraft/1_Minecraft-Regular.otf');
 
             foreach ($minionsAndImages as $index => $minion) {
@@ -126,7 +128,7 @@
 
                 $box = new Box($image);
                 $box->setFontFace($fontMinecraftRegular);
-                $box->setFontColor($black);
+                $box->setFontColor($minion['max_level'] === 11 ? $gold : $black);
                 $box->setFontSize($avatarHeight / 2.4);
                 $box->setBox($currentX, $currentY + $avatarHeight + $textDistance, $avatarWidth, $avatarHeight / 2);
                 $box->setTextAlign('center', 'top');
