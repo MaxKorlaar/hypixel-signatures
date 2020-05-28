@@ -93,6 +93,10 @@
                         [
                             'name'  => 'General guild statistics',
                             'route' => 'guild.general'
+                        ],
+                        [
+                            'name'  => 'Guild banner and name',
+                            'route' => 'guild.banner'
                         ]
                     ]
                 ],
