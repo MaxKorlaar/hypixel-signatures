@@ -67,7 +67,6 @@
             }
 
             $bannerData = $guild->getBanner();
-            $textX      = 0;
 
             if (!empty($bannerData)) {
                 $imageWidth  = 740;
@@ -91,6 +90,8 @@
                 $imageHeight = 200;
 
                 $image = BaseSignature::getImage($imageWidth, $imageHeight);
+
+                [, $textX] = $this->get3dAvatar($player, $image);
             }
 
             $black                  = imagecolorallocate($image, 0, 0, 0);
