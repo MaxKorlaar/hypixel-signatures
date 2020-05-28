@@ -1331,6 +1331,92 @@
         }
 
         /**
+         * @link https://github.com/LeaPhant/skyblock-stats/blob/9dc08903dff003c059cb52aef3be32ff51e84871/src/lib.js#L594
+         *
+         * @param Player $player
+         * @param string $id
+         *
+         * @return Collection
+         * @throws HypixelFetchException
+         */
+        public static function getSkyBlockMinions(Player $player, string $id): Collection {
+            $dataparser     = new self();
+            $profileMembers = $dataparser->getSkyBlockProfileMembers($player, $id);
+
+            $minions           = new Collection();
+            $craftedGenerators = new Collection();
+
+            foreach ($profileMembers as $member) {
+                if (!isset($member['crafted_generators'])) {
+                    continue;
+                }
+
+                $craftedGenerators->push(...$member['crafted_generators']);
+            }
+
+            $minionsTable = $dataparser->get('minions');
+
+            foreach ($craftedGenerators as $generator) {
+                $minionLevel = Str::afterLast($generator, '_');
+                $minionName  = Str::beforeLast($generator, '_');
+
+                $minion = $minions->where('id', $minionName);
+
+                if ($minion->isEmpty()) {
+                    $minions->push(new Collection([
+                            'id'        => $minionName,
+                            'max_level' => 0,
+                            'levels'    => new Collection([$minionLevel])
+                        ] + $minionsTable[$minionName]));
+                } else {
+                    $minion->first()['levels']->push($minionLevel);
+                }
+            }
+
+            foreach ($minionsTable as $minionName => $minion) {
+                if ($minions->where('id', $minionName)->isEmpty()) {
+                    $minions->push(new Collection([
+                            'id'        => $minionName,
+                            'max_level' => 0,
+                            'levels'    => new Collection()
+                        ] + $minion));
+                }
+            }
+
+            foreach ($minions as $minion) {
+                /** @var Collection $levels */
+                $levels              = $minion['levels'];
+                $minion['levels']    = $levels->sort()->unique();
+                $minion['max_level'] = (int)($minion['levels']->max() ?? 0);
+
+                if (!isset($minion['name'])) {
+                    $minion['name'] = ucfirst(strtolower($minion['id']));
+                }
+
+                $minion['texture_name'] = Str::afterLast($minion['head'], '/head/');
+            }
+
+            return $minions;
+        }
+
+        /**
+         * @param Player $player
+         * @param string $id
+         *
+         * @return array
+         * @throws HypixelFetchException
+         */
+        public function getSkyBlockProfileMembers(Player $player, string $id): array {
+            $skyBlockProfile = $player->getHypixelPHP()->getSkyBlockProfile($id);
+
+            if ($skyBlockProfile === null) {
+                throw new HypixelFetchException('SkyBlock profile for user ' . $player->getUUID() . ' is null');
+            }
+
+            return $skyBlockProfile->getMembers();
+        }
+
+        /**
          * @param Player $player
          * @param string $id
          *

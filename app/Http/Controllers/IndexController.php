@@ -116,6 +116,17 @@
                              set the parameter 'highlight_active' to 'false'. For example: <code>" .
                                 route('signatures.skyblock.pets', [':uuid', ':skyblock_profile', 'sort' => 'level', 'highlight_active' => 'false'])
                                 . "</code>",
+                        ],
+                        [
+                            'name'         => 'SkyBlock minion levels',
+                            'route'        => 'skyblock.minions',
+                            'parameters'   => [':skyblock_profile'],
+                            'options_text' => "For people with a large amount of minions, this signature defaults to a smaller size.
+                            To override this, you may optionally set the parameter 'size' to a number between 1 and 5.
+                            You may also specify how many minions are shown per row with the parameter 'per_row', which defaults to 15, and should be a number between 5 and 50.
+                            For example: <code>" .
+                                route('signatures.skyblock.minions', [':uuid', ':skyblock_profile', 'size' => 4, 'per_row' => 20])
+                                . "</code>",
                         ]
                     ]
                 ]

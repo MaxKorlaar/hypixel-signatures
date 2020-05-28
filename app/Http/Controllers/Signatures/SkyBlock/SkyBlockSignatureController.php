@@ -30,10 +30,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-    namespace App\Http\Controllers\Signatures;
+    namespace App\Http\Controllers\Signatures\SkyBlock;
 
     use App\Exceptions\HypixelFetchException;
     use App\Exceptions\SkyBlockEmptyProfileException;
+    use App\Http\Controllers\Signatures\BaseSignature;
     use App\Utilities\ColourHelper;
     use App\Utilities\SkyBlock\SkyBlockStatsDataParser;
     use Illuminate\Http\Request;
