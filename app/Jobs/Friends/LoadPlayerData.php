@@ -72,7 +72,7 @@
          * @throws LimiterTimeoutException
          */
         public function handle(): void {
-            Redis::throttle('friends.request_data')->allow(400)->every(60)->then(function () {
+            Redis::throttle('friends.request_data')->allow(500)->every(60)->block(0)->then(function () {
                 $api = new HypixelAPI();
 
                 $player = $api->getPlayerByUuid($this->uuid);
@@ -92,15 +92,11 @@
                         'last_login'            => $player->getInt('lastLogin', null),
                         'most_recent_game_type' => $player->get('mostRecentGameType', null)
                     ], config('cache.times.friends_profiles'));
-
-                    return null;
                 }
 
                 return null;
             }, static function () {
                 // Could not obtain lock...
-
-                return null;
             });
         }
     }

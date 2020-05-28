@@ -55,7 +55,8 @@
         Route::get('skyblock/pets/{profile_id}', 'SkyBlock\PetsSignatureController@render')->name('skyblock.pets');
         Route::get('skyblock/minions/{profile_id}', 'SkyBlock\MinionsSignatureController@render')->name('skyblock.minions');
 
-        Route::get('guild/general', 'GuildSignatureController@render')->name('guild.general');
+        Route::get('guild/general', 'Guild\GuildSignatureController@render')->name('guild.general');
+        Route::get('guild/banner', 'Guild\BannerSignatureController@render')->name('guild.banner');
     });
 
     Route::get('/player/{uuid}/skin/head.png', 'Player\ImageController@getHead')->name('player.skin.head');

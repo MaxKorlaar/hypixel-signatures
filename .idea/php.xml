@@ -121,6 +121,7 @@
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-directory-cleanup" />
       <path value="$PROJECT_DIR$/vendor/laravel/slack-notification-channel" />
       <path value="$PROJECT_DIR$/vendor/monicahq/laravel-cloudflare" />
+      <path value="$PROJECT_DIR$/vendor/morrislaptop/laravel-queue-clear" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />

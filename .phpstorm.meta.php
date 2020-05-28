@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-05-27 20:23:07.
+    * Generated on 2020-05-28 20:40:26.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -54,6 +54,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
         'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
+        'Morrislaptop\LaravelQueueClear\Contracts\Clearer' => \Morrislaptop\LaravelQueueClear\Clearer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -236,6 +237,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
         'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
+        'Morrislaptop\LaravelQueueClear\Contracts\Clearer' => \Morrislaptop\LaravelQueueClear\Clearer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -418,6 +420,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
         'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
+        'Morrislaptop\LaravelQueueClear\Contracts\Clearer' => \Morrislaptop\LaravelQueueClear\Clearer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -600,6 +603,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
         'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
+        'Morrislaptop\LaravelQueueClear\Contracts\Clearer' => \Morrislaptop\LaravelQueueClear\Clearer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -782,6 +786,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
         'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
+        'Morrislaptop\LaravelQueueClear\Contracts\Clearer' => \Morrislaptop\LaravelQueueClear\Clearer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -964,6 +969,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
         'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
+        'Morrislaptop\LaravelQueueClear\Contracts\Clearer' => \Morrislaptop\LaravelQueueClear\Clearer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -1146,6 +1152,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
         'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
+        'Morrislaptop\LaravelQueueClear\Contracts\Clearer' => \Morrislaptop\LaravelQueueClear\Clearer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,
@@ -1328,6 +1335,7 @@ namespace PHPSTORM_META {
         'Laravel\Horizon\Lock' => \Laravel\Horizon\Lock::class,
         'Laravel\Horizon\Stopwatch' => \Laravel\Horizon\Stopwatch::class,
         'Monicahq\Cloudflare\CloudflareProxies' => \Monicahq\Cloudflare\CloudflareProxies::class,
+        'Morrislaptop\LaravelQueueClear\Contracts\Clearer' => \Morrislaptop\LaravelQueueClear\Clearer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
         'Whoops\Handler\HandlerInterface' => \Facade\Ignition\ErrorPage\IgnitionWhoopsHandler::class,
         'auth' => \Illuminate\Auth\AuthManager::class,

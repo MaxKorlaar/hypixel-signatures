@@ -174,12 +174,21 @@
             'production' => [
                 'supervisor-1' => [
                     'connection'  => 'redis',
-                    'queue'       => ['default', 'hypixel-api'],
+                    'queue'       => ['default'],
                     'balance'     => 'auto',
-                    'processes'   => 10,
+                    'processes'   => 1,
                     'tries'       => 5,
                     'retry_after' => 60,
-                    'timeout'     => 30
+                    'timeout'     => 600
+                ],
+                'supervisor-2' => [
+                    'connection'  => 'redis',
+                    'queue'       => ['hypixel-api'],
+                    'balance'     => 'auto',
+                    'processes'   => 10,
+                    'tries'       => 1,
+                    'retry_after' => 60,
+                    'timeout'     => 15
                 ],
             ],
 
