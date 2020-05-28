@@ -30,8 +30,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-    namespace App\Http\Controllers\Signatures;
+    namespace App\Http\Controllers\Signatures\Guild;
 
+    use App\Http\Controllers\Signatures\BaseSignature;
     use App\Utilities\ColourHelper;
     use App\Utilities\Minecraft\Banner;
     use GDText\Box;
@@ -114,7 +115,7 @@
             $guildMasterPlayer = $guildMaster->getPlayer();
 
             if ($guildMasterPlayer instanceof Player) {
-                imagettftext($image, 20, 0, $textX, $linesY[0], $black, $fontSourceSansProLight, 'Guild Master: ' . $player->getName());
+                imagettftext($image, 20, 0, $textX, $linesY[0], $black, $fontSourceSansProLight, 'Guild Master: ' . $guildMasterPlayer->getName());
             } else {
                 imagettftext($image, 20, 0, $textX, $linesY[0], $black, $fontSourceSansProLight, 'Guild Master: (unknown)');
             }
