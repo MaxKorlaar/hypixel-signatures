@@ -33,6 +33,7 @@
     namespace App\Http\Controllers\Signatures\SkyBlock;
 
     use App\Exceptions\HypixelFetchException;
+    use App\Exceptions\SkyBlockEmptyProfileException;
     use App\Http\Controllers\Signatures\BaseSignature;
     use App\Utilities\MinecraftAvatar\ThreeDAvatar;
     use App\Utilities\SkyBlock\SkyBlockStatsDataParser;
@@ -65,6 +66,8 @@
                 $minions = SkyBlockStatsDataParser::getSkyBlockMinions($player, $this->profileId)->where('max_level', '>', 0)->sortByDesc('max_level');
             } catch (HypixelFetchException $exception) {
                 return self::generateErrorImage('An error has occurred while trying to fetch this SkyBlock profile. Please try again later.');
+            } catch (SkyBlockEmptyProfileException $e) {
+                return self::generateErrorImage('This SkyBlock profile has no data. It may have been deleted.');
             }
 
             if ($minions->isEmpty()) {
