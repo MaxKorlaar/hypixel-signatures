@@ -120,8 +120,11 @@
 
                     if (ceil(($index + 1) / $perRow) === $rowCount) { // Calculate x coordinate for the final row, centering the images
                         $remainingMinionsCount = count($minions) % $perRow;
-                        $remainingMinionsWidth = (($avatarWidth + $distanceBetweenImages) * $remainingMinionsCount) - $distanceBetweenImages;
-                        $currentX              = $imageWidth / 2 - $remainingMinionsWidth / 2;
+
+                        if ($remainingMinionsCount > 0) {
+                            $remainingMinionsWidth = (($avatarWidth + $distanceBetweenImages) * $remainingMinionsCount) - $distanceBetweenImages;
+                            $currentX              = $imageWidth / 2 - $remainingMinionsWidth / 2;
+                        }
                     }
                 }
 

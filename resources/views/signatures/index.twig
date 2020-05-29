@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div class="results" v-if="selected_signature">
-                <h3>Your signature</h3>
+                <h2>Your signature</h2>
                 <p>
                     Below you can find the signature that you have selected.
                     You can refer to it using the URL of the image, or copy and paste the BBcode on the forums in a forum post, or in your signature.
@@ -103,8 +103,8 @@
                 </div>
 
 
-                <div v-if="selected_signature.options_text">
-                    <h4>Signature options</h4>
+                <div v-if="selected_signature.options_text" class="signature-options">
+                    <h3>Signature options</h3>
                     <p>This signature offers options that you may set to alter the looks of it:</p>
                     <p v-html="replaceParameters(this.selected_signature.options_text)"></p>
                 </div>
