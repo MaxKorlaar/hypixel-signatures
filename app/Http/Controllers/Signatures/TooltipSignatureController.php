@@ -148,7 +148,7 @@
             ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 2 * $spacing, '§7Experience until next Level: §6' . number_format($expNeeded), true);
 
             // Achievement Points
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 3 * $spacing, '§7Achievement Points: §e' . Arr::get($player->getAchievementData(), 'standard.points.current', 0), true);
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 3 * $spacing, '§7Achievement Points: §e' . number_format(Arr::get($player->getAchievementData(), 'standard.points.current', 0)), true);
 
             $quests          = new Collection($player->getArray('quests'));
             $questsCompleted = $quests->whereNotNull('completions')->map(static function ($quest) {
