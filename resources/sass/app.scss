@@ -402,6 +402,14 @@ img {
     border-radius: $border-radius;
   }
 
+  .signature-options {
+    margin-top: 1rem;
+
+    code {
+      margin: .5rem 0;
+    }
+  }
+
   img {
     margin: 1rem 0;
 
