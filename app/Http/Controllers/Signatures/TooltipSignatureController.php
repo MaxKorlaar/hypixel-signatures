@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -67,11 +67,11 @@
 
             ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start, '§7Rank: ' . $rankName, true); // Rank
 
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + $spacing, '§7Level: §6' . ($player->getLevel()), true); // Level
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + $spacing, '§7Level: §6' . number_format($player->getLevel()), true); // Level
 
             $level     = $player->getLevel();
             $expNeeded = ($level - 1) * 2500 + 10000;
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 2 * $spacing, '§7Experience until next Level: §6' . $expNeeded, true); // Experience until next level
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 2 * $spacing, '§7Experience until next Level: §6' . number_format($expNeeded), true); // Experience until next level
 
             ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 3 * $spacing, '§7Hypixel Credits: §b' . $player->getInt('vanityTokens'), true); // Hypixel Credits
 

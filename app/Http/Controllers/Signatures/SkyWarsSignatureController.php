@@ -93,9 +93,9 @@
             }
 
             if ($request->has('no_3d_avatar')) {
-                [$avatarWidth, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
+                [, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
             } else {
-                [$avatarWidth, $textX, $textBeneathAvatarX] = $this->get3dAvatar($player, $image);
+                [, $textX, $textBeneathAvatarX] = $this->get3dAvatar($player, $image);
             }
 
             if ($request->has('guildTag')) {
@@ -114,13 +114,13 @@
 
             ColourHelper::minecraftStringToTTFText($image, $fontSourceSansProLight, 20, $textX, 44, $rankNameWithColour); // Rank name (coloured)
 
-            imagettftext($image, 20, 0, $textX, $linesY[1], $black, $fontSourceSansProLight, $wins . ' wins'); // Total wins
+            imagettftext($image, 20, 0, $textX, $linesY[1], $black, $fontSourceSansProLight, number_format($wins) . ' wins'); // Total wins
 
-            imagettftext($image, 20, 0, 350, $linesY[0], $black, $fontSourceSansProLight, $kills . ' kills'); // Total kills
+            imagettftext($image, 20, 0, 350, $linesY[0], $black, $fontSourceSansProLight, number_format($kills) . ' kills'); // Total kills
 
             imagettftext($image, 20, 0, 350, $linesY[1], $black, $fontSourceSansProLight, 'KD: ' . $kd); // kill/death ratio
 
-            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, "Survived {$survived} players"); // SkyWars level
+            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, "Survived " . number_format($survived) . " players"); // SkyWars level
 
             imagettftext($image, 20, 0, 350, $linesY[2], $black, $fontSourceSansProLight, "Wins percentage: {$winsPercentage}%"); // Percentage of games won
 

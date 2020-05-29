@@ -84,7 +84,7 @@
 
             imagettftext($image, 19, 0, $textX, $linesY[1], $purple, $fontSourceSansProLight, number_format($karma) . ' karma'); // Amount of karma
 
-            imagettftext($image, 19, 0, 315, $linesY[0], $black, $fontSourceSansProLight, 'Level ' . $player->getLevel()); // Network level
+            imagettftext($image, 19, 0, 315, $linesY[0], $black, $fontSourceSansProLight, 'Level ' . number_format($player->getLevel())); // Network level
 
             imagettftext($image, 19, 0, 315, $linesY[1], $black, $fontSourceSansProLight, 'Daily Reward High Score: ' . $player->getInt('rewardHighScore')); // Daily reward high score
 

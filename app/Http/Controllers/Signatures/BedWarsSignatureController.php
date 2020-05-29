@@ -96,9 +96,9 @@
             }
 
             if ($request->has('no_3d_avatar')) {
-                [$avatarWidth, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
+                [, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
             } else {
-                [$avatarWidth, $textX, $textBeneathAvatarX] = $this->get3dAvatar($player, $image);
+                [, $textX, $textBeneathAvatarX] = $this->get3dAvatar($player, $image);
             }
 
             if ($request->has('guildTag')) {
@@ -111,19 +111,19 @@
                 $usernameBoundingBox = imagettftext($image, 25, 0, $textX, 30, $black, $fontSourceSansProLight, $username);
             }
 
-            imagettftext($image, 17, 0, $usernameBoundingBox[2] + 10, 30, $grey, $fontSourceSansProLight, 'BedWars statistics');
+            imagettftext($image, 17, 0, $usernameBoundingBox[2] + 10, 30, $grey, $fontSourceSansProLight, 'Bed Wars statistics');
 
             $linesY = [60, 95, 130]; // Y starting points of the various text lines
 
             ColourHelper::minecraftStringToTTFText($image, $fontSourceSansProLight, 20, $textX, 44, $rankNameWithColour); // Rank name (coloured)
 
-            imagettftext($image, 20, 0, $textX, $linesY[1], $black, $fontSourceSansProLight, $wins . ' wins'); // Total wins
+            imagettftext($image, 20, 0, $textX, $linesY[1], $black, $fontSourceSansProLight, number_format($wins) . ' wins'); // Total wins
 
-            imagettftext($image, 20, 0, 250, $linesY[0], $black, $fontSourceSansProLight, ($kills + $finalKills) . ' kills'); // Total kills
+            imagettftext($image, 20, 0, 250, $linesY[0], $black, $fontSourceSansProLight, number_format($kills + $finalKills) . ' kills'); // Total kills
 
             imagettftext($image, 20, 0, 250, $linesY[1], $black, $fontSourceSansProLight, 'Final KD: ' . $kd); // Final kill/death ratio
 
-            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, 'Level ' . $level); // BedWars level
+            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, 'Level ' . number_format($level)); // BedWars level
 
             imagettftext($image, 20, 0, 250, $linesY[2], $black, $fontSourceSansProLight, "Wins percentage: {$winsPercentage}%"); // Percentage of games won
 

@@ -90,9 +90,9 @@
             }
 
             if ($request->has('no_3d_avatar')) {
-                [$avatarWidth, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
+                [, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
             } else {
-                [$avatarWidth, $textX, $textBeneathAvatarX] = $this->get3dAvatar($player, $image);
+                [, $textX, $textBeneathAvatarX] = $this->get3dAvatar($player, $image);
             }
 
             if ($request->has('guildTag')) {
@@ -111,7 +111,7 @@
 
             imagettftext($image, 20, 0, $textX, $linesY[1], $purple, $fontSourceSansProLight, number_format($karma) . ' karma'); // Amount of karma
 
-            imagettftext($image, 20, 0, 380, $linesY[0], $black, $fontSourceSansProLight, 'Level ' . $player->getLevel()); // Network level
+            imagettftext($image, 20, 0, 380, $linesY[0], $black, $fontSourceSansProLight, 'Level ' . number_format($player->getLevel())); // Network level
 
             imagettftext($image, 20, 0, 380, $linesY[1], $black, $fontSourceSansProLight, 'Daily Reward High Score: ' . $player->getInt('rewardHighScore')); // Daily reward high score
 
