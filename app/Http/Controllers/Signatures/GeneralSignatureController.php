@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -35,6 +35,8 @@
     use App\Utilities\ColourHelper;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
+    use Illuminate\Support\Arr;
+    use Illuminate\Support\Collection;
     use Image;
     use Plancke\HypixelPHP\classes\gameType\GameTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
@@ -48,18 +50,6 @@
     class GeneralSignatureController extends BaseSignature {
 
         /**
-         * @param $image
-         *
-         * @return array
-         */
-        protected static function getColours($image): array {
-            $black  = imagecolorallocate($image, 0, 0, 0);
-            $purple = imagecolorallocate($image, 204, 0, 204);
-            $blue   = imagecolorallocate($image, 0, 204, 204);
-            return [$black, $purple, $blue];
-        }
-
-        /**
          * @param Request $request
          * @param Player  $player
          *
@@ -68,13 +58,13 @@
          */
         protected function signature(Request $request, Player $player): Response {
             $image = BaseSignature::getImage(740, 160);
-            [$black, $purple, $blue] = self::getColours($image);
+            [$black, $purple, $yellow] = self::getColours($image);
             $fontSourceSansProLight = resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf');
 
-            $karma          = $player->getInt('karma', 0);
-            $vanityTokens   = $player->getInt('vanityTokens', 0);
-            $mostRecentGame = $player->get('mostRecentGameType', 'None');
-            $username       = $player->getName();
+            $karma             = $player->getInt('karma', 0);
+            $achievementPoints = Arr::get($player->getAchievementData(), 'standard.points.current', 0);
+            $mostRecentGame    = $player->get('mostRecentGameType', 'None');
+            $username          = $player->getName();
 
             $rank       = $player->getRank(false);
             $rankColour = $rank->getColor();
@@ -88,6 +78,11 @@
             if ($lastgameType !== null) {
                 $mostRecentGame = $lastgameType->getName();
             }
+
+            $quests          = new Collection($player->getArray('quests'));
+            $questsCompleted = $quests->whereNotNull('completions')->map(static function ($quest) {
+                return $quest['completions'];
+            })->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
 
             if ($request->has('no_3d_avatar')) {
                 [, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
@@ -113,9 +108,9 @@
 
             imagettftext($image, 20, 0, 380, $linesY[0], $black, $fontSourceSansProLight, 'Level ' . number_format($player->getLevel())); // Network level
 
-            imagettftext($image, 20, 0, 380, $linesY[1], $black, $fontSourceSansProLight, 'Daily Reward High Score: ' . $player->getInt('rewardHighScore')); // Daily reward high score
+            imagettftext($image, 20, 0, 380, $linesY[1], $black, $fontSourceSansProLight, 'Quests Completed: ' . number_format($questsCompleted)); // Quests Completed
 
-            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $blue, $fontSourceSansProLight, $vanityTokens . ' Hypixel Credits'); // Hypixel Credits
+            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $yellow, $fontSourceSansProLight, number_format($achievementPoints) . ' Achievement Points'); // Hypixel Credits
 
             imagettftext($image, 20, 0, 380, $linesY[2], $black, $fontSourceSansProLight, 'Recently played: ' . $mostRecentGame); // Last game played
 
@@ -125,6 +120,18 @@
                 'public'  => true,
                 'max_age' => 600
             ]);
+        }
+
+        /**
+         * @param $image
+         *
+         * @return array
+         */
+        protected static function getColours($image): array {
+            $black  = imagecolorallocate($image, 0, 0, 0);
+            $purple = imagecolorallocate($image, 204, 0, 204);
+            $yellow = imagecolorallocate($image, 199, 199, 0);
+            return [$black, $purple, $yellow];
         }
 
     }

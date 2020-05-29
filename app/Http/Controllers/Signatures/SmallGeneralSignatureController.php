@@ -36,6 +36,8 @@
     use App\Utilities\MinecraftAvatar\ThreeDAvatar;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
+    use Illuminate\Support\Arr;
+    use Illuminate\Support\Collection;
     use Image;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\player\Player;
@@ -56,11 +58,16 @@
          */
         protected function signature(Request $request, Player $player): Response {
             $image = BaseSignature::getImage(630, 100);
-            [$black, $purple, $blue] = self::getColours($image);
+            [$black, $purple, $yellow] = self::getColours($image);
             $fontSourceSansProLight = resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf');
 
-            $karma        = $player->get('karma', 0);
-            $vanityTokens = $player->get('vanityTokens', 0);
+            $karma             = $player->get('karma', 0);
+            $achievementPoints = Arr::get($player->getAchievementData(), 'standard.points.current', 0);
+
+            $quests          = new Collection($player->getArray('quests'));
+            $questsCompleted = $quests->whereNotNull('completions')->map(static function ($quest) {
+                return $quest['completions'];
+            })->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
 
             if ($request->has('no_3d_avatar')) {
                 $avatarWidth = 0;
@@ -80,13 +87,13 @@
 
             $linesY = [50, 75]; // Y starting points of the various text lines
 
-            imagettftext($image, 19, 0, $textX, $linesY[0], $blue, $fontSourceSansProLight, $vanityTokens . ' Hypixel Credits'); // Hypixel Credits
+            imagettftext($image, 19, 0, $textX, $linesY[0], $yellow, $fontSourceSansProLight, number_format($achievementPoints) . ' Achievement Points'); // Achievement Points
 
             imagettftext($image, 19, 0, $textX, $linesY[1], $purple, $fontSourceSansProLight, number_format($karma) . ' karma'); // Amount of karma
 
-            imagettftext($image, 19, 0, 315, $linesY[0], $black, $fontSourceSansProLight, 'Level ' . number_format($player->getLevel())); // Network level
+            imagettftext($image, 19, 0, 340, $linesY[0], $black, $fontSourceSansProLight, 'Level ' . number_format($player->getLevel())); // Network level
 
-            imagettftext($image, 19, 0, 315, $linesY[1], $black, $fontSourceSansProLight, 'Daily Reward High Score: ' . $player->getInt('rewardHighScore')); // Daily reward high score
+            imagettftext($image, 19, 0, 340, $linesY[1], $black, $fontSourceSansProLight, number_format($questsCompleted) . ' Quests Completed'); // Quests Completed
 
             $this->addWatermark($image, $fontSourceSansProLight, 630, 100, 14); // Watermark/advertisement
 
