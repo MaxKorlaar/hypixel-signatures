@@ -132,7 +132,7 @@
 
                     if ($skinData['skinURL'] === null) {
                         $skinURL = $this->fallbackUrl;
-                        Log::debug('Player has not set a skin', [$skinData]);
+                        Log::debug('Player has not set a skin', [$skinData, 'url' => $skinURL]);
                     } else {
                         $skinURL = $skinData['skinURL'];
                     }
@@ -170,10 +170,14 @@
 
             if ($save) {
                 $imagepath = $this->imageStoragePath . 'full_skin/' . strtolower($username) . '.webp';
+
                 if (!file_exists($this->imageStoragePath . 'full_skin/') && !mkdir($concurrentDirectory = $this->imageStoragePath . 'full_skin/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
                 }
+
+                imagepalettetotruecolor($src);
                 imagewebp($src, $imagepath, $this->imageQuality);
+
                 return $imagepath;
             }
 
