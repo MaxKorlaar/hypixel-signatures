@@ -59,8 +59,7 @@
         public $filepath;
         public $invert;
 
-        /** @var render3DPlayer $playerRender */
-        private $playerRender = null;
+        private ?render3DPlayer $playerRender = null;
 
         /**
          * @param        $username
@@ -74,6 +73,7 @@
          *
          * @return bool|resource|string
          * @throws Exception
+         * @throws InvalidArgumentException
          */
         public function getRotatingSkinFromCache($username, $size = 2, $speed = 3, $rotation = 5, $headOnly = false, $helmet = true, $layers = false, $return = 'binary') {
 
@@ -129,6 +129,7 @@
          *
          * @return bool|resource|string
          * @throws Exception
+         * @throws InvalidArgumentException
          * @internal param int $rotation
          */
         public function getRotatingSkin($username, $size = 2, $speed = 3, $frames = 5, $headOnly = false, $helmet = true, $layers = false, $return = 'binary') {
@@ -142,12 +143,13 @@
             $this->frames   = $frames;
             /**
              * @param $angle
+             *
              */
             $rotation = function ($angle) {
                 if ($this->invert) {
                     $angle *= -1;
                 }
-                $player         = new render3DPlayer($this->username, '0', $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'png', $this->size, $this->layers);
+                $player         = new render3DPlayer($this->username, '0', $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'webp', $this->size, $this->layers);
                 $this->images[] = $player->get3DRender();
             };
 
@@ -238,7 +240,7 @@
                 $withLayers = '';
             }
 
-            $imagepath = $this->imageStoragePath . '3d/' . strtolower($username) . "-{$size}x-{$angle}-{$verticalAngle}-{$head}{$noHelm}{$withLayers}.png";
+            $imagepath = $this->imageStoragePath . '3d/' . strtolower($username) . "-{$size}x-{$angle}-{$verticalAngle}-{$head}{$noHelm}{$withLayers}.webp";
 
             return Cache::lock('minecraft.avatar.' . $imagepath)->block(5, function () use ($verticalAngle, $layers, $helmet, $headOnly, $angle, $size, $username, $imagepath) {
                 if (!file_exists($this->imageStoragePath . '3d/') && !mkdir($concurrentDirectory = $this->imageStoragePath . '3d/', 0777, true) && !is_dir($concurrentDirectory)) {
@@ -252,20 +254,20 @@
                         $image = $this->getThreeDSkin($username, $size, $angle, $headOnly, $helmet, $layers, $verticalAngle);
 
                         if ($this->playerRender->fetchError === null) {
-                            imagepng($image, $imagepath);
+                            imagewebp($image, $imagepath, $this->imageQuality);
                         } // Only cache the image if it's fetched successfully.
 
                         return $image;
                     }
 
-                    return imagecreatefrompng($imagepath);
+                    return imagecreatefromwebp($imagepath);
                 }
 
                 Log::debug('3d skin image not yet generated', ['path' => $imagepath]);
                 $image = $this->getThreeDSkin($username, $size, $angle, $headOnly, $helmet, $layers, $verticalAngle);
 
                 if ($this->playerRender->fetchError === null) {
-                    imagepng($image, $imagepath);
+                    imagewebp($image, $imagepath, $this->imageQuality);
                 } // Only cache the image if it's fetched successfully.
 
                 return $image;
@@ -291,7 +293,7 @@
             $this->headOnly     = $headOnly;
             $this->helmet       = $helmet;
             $this->layers       = $layers;
-            $this->playerRender = new render3DPlayer($this->username, $verticalAngle, $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'png', $this->size, $this->layers, true);
+            $this->playerRender = new render3DPlayer($this->username, $verticalAngle, $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'webp', $this->size, $this->layers, true);
 
             return $this->playerRender->get3DRender();
         }

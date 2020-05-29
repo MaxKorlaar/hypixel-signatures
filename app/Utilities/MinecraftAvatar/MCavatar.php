@@ -33,6 +33,7 @@
     namespace App\Utilities\MinecraftAvatar;
 
     use Cache;
+    use JsonException;
     use Log;
     use Psr\SimpleCache\InvalidArgumentException;
     use RuntimeException;
@@ -56,6 +57,7 @@
         public $imageStoragePath;
         public $helm = true;
         public $fetchError = null;
+        public int $imageQuality = 80;
 
         protected $fallbackUrl;
         protected $fallbackSkinRegular;
@@ -79,7 +81,7 @@
          * @return string Path to skin image
          */
         public function getSkinFromCache($username): string {
-            $imagepath = $this->imageStoragePath . 'full_skin/' . strtolower($username) . '.png';
+            $imagepath = $this->imageStoragePath . 'full_skin/' . strtolower($username) . '.webp';
 
             return Cache::lock('minecraft.avatar.' . $imagepath)->block(5, function () use ($imagepath, $username) {
                 if (file_exists($imagepath)) {
@@ -104,6 +106,7 @@
          *
          * @return resource|string
          * @throws InvalidArgumentException
+         * @throws JsonException
          */
         public function getSkin($username, $save = false) {
             $this->fallbackUrl = $this->fallbackSkinRegular;
@@ -166,11 +169,11 @@
             imageSaveAlpha($src, true);
 
             if ($save) {
-                $imagepath = $this->imageStoragePath . 'full_skin/' . strtolower($username) . '.png';
+                $imagepath = $this->imageStoragePath . 'full_skin/' . strtolower($username) . '.webp';
                 if (!file_exists($this->imageStoragePath . 'full_skin/') && !mkdir($concurrentDirectory = $this->imageStoragePath . 'full_skin/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
                 }
-                imagepng($src, $imagepath);
+                imagewebp($src, $imagepath, $this->imageQuality);
                 return $imagepath;
             }
 
@@ -187,9 +190,9 @@
          */
         public function getFromCache($username, $size = 100, $helm = true): string {
             if ($helm) {
-                $imagepath = $this->imageStoragePath . $size . 'px/' . strtolower($username) . '.png';
+                $imagepath = $this->imageStoragePath . $size . 'px/' . strtolower($username) . '.webp';
             } else {
-                $imagepath = $this->imageStoragePath . $size . 'px-no-helm/' . strtolower($username) . '.png';
+                $imagepath = $this->imageStoragePath . $size . 'px-no-helm/' . strtolower($username) . '.webp';
             }
             $this->name = $username;
             $this->size = $size;
@@ -219,7 +222,7 @@
             $this->size = $size;
 
             $skinPath = $this->getSkinFromCache($username);
-            $src      = imagecreatefrompng($skinPath);
+            $src      = imagecreatefromwebp($skinPath);
 
             $dest = imagecreatetruecolor(8, 8);
             imagecopy($dest, $src, 0, 0, 8, 8, 8, 8);
@@ -248,16 +251,16 @@
                 if (!file_exists($this->imageStoragePath . $size . 'px/') && !mkdir($concurrentDirectory = $this->imageStoragePath . $size . 'px/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
                 }
-                $imagepath = $this->imageStoragePath . $size . 'px/' . strtolower($username) . '.png';
+                $imagepath = $this->imageStoragePath . $size . 'px/' . strtolower($username) . '.webp';
             } else {
                 if (!file_exists($this->imageStoragePath . $size . 'px-no-helm/') && !mkdir($concurrentDirectory = $this->imageStoragePath . $size . 'px-no-helm/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
                 }
-                $imagepath = $this->imageStoragePath . $size . 'px-no-helm/' . strtolower($username) . '.png';
+                $imagepath = $this->imageStoragePath . $size . 'px-no-helm/' . strtolower($username) . '.webp';
             }
 
             if ($save) {
-                imagepng($final, $imagepath);
+                imagewebp($final, $imagepath, $this->imageQuality);
             }
 
             return $imagepath;

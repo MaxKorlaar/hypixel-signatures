@@ -51,9 +51,9 @@ namespace App\Http\Controllers\Player;
          */
         public function getHead(Request $request, string $uuid) {
             $threedAvatar = new ThreeDAvatar();
-            $headImage    = $threedAvatar->getThreeDSkinFromCache($uuid, max((int)$request->input('size', 5), 20), 45, true, true, true, -30);
+            $headImage    = $threedAvatar->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, true, true, true, -30);
 
-            return Image::make($headImage)->response('png')->setCache([
+            return Image::make($headImage)->response('webp')->setCache([
                 'public'  => true,
                 'max_age' => config('cache.times.public.player_skin')
             ]);
