@@ -1338,6 +1338,7 @@
          *
          * @return Collection
          * @throws HypixelFetchException
+         * @throws SkyBlockEmptyProfileException
          */
         public static function getSkyBlockMinions(Player $player, string $id): Collection {
             $dataparser     = new self();
@@ -1405,6 +1406,7 @@
          *
          * @return array
          * @throws HypixelFetchException
+         * @throws SkyBlockEmptyProfileException
          */
         public function getSkyBlockProfileMembers(Player $player, string $id): array {
             $skyBlockProfile = $player->getHypixelPHP()->getSkyBlockProfile($id);
@@ -1413,7 +1415,13 @@
                 throw new HypixelFetchException('SkyBlock profile for user ' . $player->getUUID() . ' is null');
             }
 
-            return $skyBlockProfile->getMembers();
+            $members = $skyBlockProfile->getMembers();
+
+            if ($members === null) {
+                throw new SkyBlockEmptyProfileException('SkyBlock profile ' . $id . ' is empty');
+            }
+
+            return $members;
         }
 
         /**
