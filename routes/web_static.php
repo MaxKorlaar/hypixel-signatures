@@ -59,5 +59,5 @@
         Route::get('guild/banner', 'Guild\BannerSignatureController@render')->name('guild.banner');
     });
 
-    Route::get('/player/{uuid}/skin/head.png', 'Player\ImageController@getHead')->name('player.skin.head');
+    Route::get('/player/{uuid}/skin/head.webp', 'Player\ImageController@getHead')->name('player.skin.head');
 

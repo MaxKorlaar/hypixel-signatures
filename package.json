@@ -15,6 +15,7 @@
     "browser-sync-webpack-plugin": "^2.0.1",
     "cross-env": "^5.1",
     "laravel-mix": "^4.0.7",
+    "laravel-mix-bundle-analyzer": "^1.0.5",
     "laravel-mix-purgecss": "^5.0.0",
     "lodash": "^4.17.13",
     "resolve-url-loader": "^2.3.1",

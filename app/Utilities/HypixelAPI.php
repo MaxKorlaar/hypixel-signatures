@@ -48,7 +48,7 @@
         /**
          * @var HypixelPHP $api
          */
-        protected $api;
+        protected HypixelPHP $api;
 
         /**
          * HypixelAPI constructor.
