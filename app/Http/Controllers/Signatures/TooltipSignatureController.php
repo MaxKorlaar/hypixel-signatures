@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -35,8 +35,11 @@
     use App\Utilities\ColourHelper;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
+    use Illuminate\Support\Arr;
+    use Illuminate\Support\Collection;
     use Image;
     use Plancke\HypixelPHP\responses\player\Player;
+    use Plancke\HypixelPHP\util\Leveling;
 
     /**
      * Class TooltipSignatureController
@@ -44,6 +47,73 @@
      * @package App\Http\Controllers\Signatures
      */
     final class TooltipSignatureController extends BaseSignature {
+        /**
+         * @param int $imageWidth
+         *
+         * @param int $imageHeight
+         *
+         * @return false|resource
+         */
+        public static function getTooltipImage(int $imageWidth, int $imageHeight) {
+            $tooltipImage = imagecreatefrompng(resource_path('images/Tooltip.png'));
+
+            $cornerSize = 10;
+
+            $image = BaseSignature::getImage($imageWidth, $imageHeight);
+
+            $tooltipWidth  = imagesx($tooltipImage);
+            $tooltipHeight = imagesy($tooltipImage);
+
+            $copyY = $tooltipHeight - ($cornerSize * 2);
+
+            $timesToCopyY    = floor(($imageHeight - ($cornerSize * 2)) / $copyY);
+            $remainingHeight = ($imageHeight - ($cornerSize * 2)) % $copyY;
+
+            $copyPosY = $cornerSize;
+
+            for ($i = 0; $i < $timesToCopyY; $i++) {
+                $copyPosY = $cornerSize + ($i * $copyY);
+                imagecopy($image, $tooltipImage, 0, $copyPosY, 0, $cornerSize, $cornerSize, $copyY);
+                imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, $copyPosY, $tooltipWidth - $cornerSize, $cornerSize, $cornerSize, $copyY);
+                $copyPosY += $copyY;
+            }
+
+            if ($remainingHeight > 0) {
+                imagecopy($image, $tooltipImage, 0, $copyPosY, 0, $cornerSize, $cornerSize, $remainingHeight);
+                imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, $copyPosY, $tooltipWidth - $cornerSize, $cornerSize, $cornerSize, $remainingHeight);
+            }
+
+            $copyX = $tooltipWidth - ($cornerSize * 2);
+
+            $timesToCopyX   = floor(($imageWidth - ($cornerSize * 2)) / $copyX);
+            $remainingWidth = ($imageWidth - ($cornerSize * 2)) % $copyX;
+
+            $copyPosX = $cornerSize;
+
+            for ($i = 0; $i < $timesToCopyX; $i++) {
+                $copyPosX = $cornerSize + ($i * $copyX);
+                imagecopy($image, $tooltipImage, $copyPosX, 0, $cornerSize, 0, $copyX, $cornerSize);
+                imagecopy($image, $tooltipImage, $copyPosX, $imageHeight - $cornerSize, $cornerSize, $tooltipHeight - $cornerSize, $copyX, $cornerSize);
+                $copyPosX += $copyX;
+            }
+
+            if ($remainingWidth > 0) {
+                imagecopy($image, $tooltipImage, $copyPosX, 0, $cornerSize, 0, $remainingWidth, $cornerSize); // Top border
+                imagecopy($image, $tooltipImage, $copyPosX, $imageHeight - $cornerSize, $cornerSize, $tooltipHeight - $cornerSize, $remainingWidth, $cornerSize); // Bottom border
+            }
+
+            imagecopy($image, $tooltipImage, 0, 0, 0, 0, $cornerSize, $cornerSize); // Top left
+            imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, 0, $tooltipWidth - $cornerSize, 0, $cornerSize, $cornerSize); // Top right
+
+            imagecopy($image, $tooltipImage, 0, $imageHeight - $cornerSize, 0, $tooltipHeight - $cornerSize, $cornerSize, $cornerSize); // Bottom left
+            imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, $imageHeight - $cornerSize, $tooltipWidth - $cornerSize, $tooltipHeight - $cornerSize, $cornerSize, $cornerSize); // Bottom right
+
+            $purple = imagecolorallocate($image, 16, 1, 16);
+
+            imagefill($image, $cornerSize + 1, $cornerSize + 1, $purple);
+
+            return $image;
+        }
 
         /**
          * @param Request $request
@@ -52,7 +122,7 @@
          * @return Response
          */
         protected function signature(Request $request, Player $player): Response {
-            $image = imagecreatefrompng(resource_path('images/Tooltip.png'));
+            $image = self::getTooltipImage(430, 170);
 
             $fontMinecraftRegular = resource_path('fonts/Minecraft/1_Minecraft-Regular.otf');
 
@@ -65,17 +135,30 @@
             $start    = $bbox[0] + $spacing;
             $fontSize = 15;
 
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start, '§7Rank: ' . $rankName, true); // Rank
+            // Rank
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start, '§7Rank: ' . $rankName, true);
 
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + $spacing, '§7Level: §6' . ($player->getLevel()), true); // Level
+            // Level
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + $spacing, '§7Level: §6' . number_format($player->getLevel()), true);
 
             $level     = $player->getLevel();
-            $expNeeded = ($level - 1) * 2500 + 10000;
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 2 * $spacing, '§7Experience until next Level: §6' . $expNeeded, true); // Experience until next level
+            $expNeeded = Leveling::getTotalExpToLevel($level + 1) - Leveling::getExperience($player);
 
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 3 * $spacing, '§7Hypixel Credits: §b' . $player->getInt('vanityTokens'), true); // Hypixel Credits
+            // Exp until next level
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 2 * $spacing, '§7Experience until next Level: §6' . number_format($expNeeded), true);
 
-            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 4 * $spacing, '§7Karma: §d' . number_format($player->getInt('karma')), true); // Karma
+            // Achievement Points
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 3 * $spacing, '§7Achievement Points: §e' . Arr::get($player->getAchievementData(), 'standard.points.current', 0), true);
+
+            $quests          = new Collection($player->getArray('quests'));
+            $questsCompleted = $quests->whereNotNull('completions')->map(static function ($quest) {
+                return $quest['completions'];
+            })->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
+
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 4 * $spacing, '§7Quests Completed: §6' . number_format($questsCompleted), true);
+
+            // Karma
+            ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 5 * $spacing, '§7Karma: §d' . number_format($player->getInt('karma')), true);
 
             return Image::make($image)->response('png')->setCache([
                 'public'  => true,

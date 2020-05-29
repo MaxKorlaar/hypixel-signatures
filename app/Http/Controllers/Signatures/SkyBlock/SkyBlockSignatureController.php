@@ -35,6 +35,7 @@
     use App\Exceptions\HypixelFetchException;
     use App\Exceptions\SkyBlockEmptyProfileException;
     use App\Http\Controllers\Signatures\BaseSignature;
+    use App\Http\Controllers\Signatures\TooltipSignatureController;
     use App\Utilities\ColourHelper;
     use App\Utilities\SkyBlock\SkyBlockStatsDataParser;
     use Illuminate\Http\Request;
@@ -75,7 +76,7 @@
                 return self::generateErrorImage('This SkyBlock profile has no data. It may have been deleted.');
             }
 
-            $image = $this->getTooltipImage(325, 260);
+            $image = TooltipSignatureController::getTooltipImage(325, 260);
 
             $fontMinecraftRegular = resource_path('fonts/Minecraft/1_Minecraft-Regular.otf');
             $unifont              = resource_path('fonts/Unifont/unifont-13.0.02.ttf');
@@ -142,74 +143,6 @@
             $iconY = imagesy($icon);
 
             imagecopyresized($image, $icon, $destX + 2, $destY + 2, 0, 0, $iconX * $size, $iconY * $size, $iconX, $iconY);
-        }
-
-        /**
-         * @param int $imageWidth
-         *
-         * @param int $imageHeight
-         *
-         * @return false|resource
-         */
-        protected function getTooltipImage(int $imageWidth, int $imageHeight) {
-            $tooltipImage = imagecreatefrompng(resource_path('images/Tooltip.png'));
-
-            $cornerSize = 10;
-
-            $image = BaseSignature::getImage($imageWidth, $imageHeight);
-
-            $tooltipWidth  = imagesx($tooltipImage);
-            $tooltipHeight = imagesy($tooltipImage);
-
-            $copyY = $tooltipHeight - ($cornerSize * 2);
-
-            $timesToCopyY    = floor(($imageHeight - ($cornerSize * 2)) / $copyY);
-            $remainingHeight = ($imageHeight - ($cornerSize * 2)) % $copyY;
-
-            $copyPosY = $cornerSize;
-
-            for ($i = 0; $i < $timesToCopyY; $i++) {
-                $copyPosY = $cornerSize + ($i * $copyY);
-                imagecopy($image, $tooltipImage, 0, $copyPosY, 0, $cornerSize, $cornerSize, $copyY);
-                imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, $copyPosY, $tooltipWidth - $cornerSize, $cornerSize, $cornerSize, $copyY);
-                $copyPosY += $copyY;
-            }
-
-            if ($remainingHeight > 0) {
-                imagecopy($image, $tooltipImage, 0, $copyPosY, 0, $cornerSize, $cornerSize, $remainingHeight);
-                imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, $copyPosY, $tooltipWidth - $cornerSize, $cornerSize, $cornerSize, $remainingHeight);
-            }
-
-            $copyX = $tooltipWidth - ($cornerSize * 2);
-
-            $timesToCopyX   = floor(($imageWidth - ($cornerSize * 2)) / $copyX);
-            $remainingWidth = ($imageWidth - ($cornerSize * 2)) % $copyX;
-
-            $copyPosX = $cornerSize;
-
-            for ($i = 0; $i < $timesToCopyX; $i++) {
-                $copyPosX = $cornerSize + ($i * $copyX);
-                imagecopy($image, $tooltipImage, $copyPosX, 0, $cornerSize, 0, $copyX, $cornerSize);
-                imagecopy($image, $tooltipImage, $copyPosX, $imageHeight - $cornerSize, $cornerSize, $tooltipHeight - $cornerSize, $copyX, $cornerSize);
-                $copyPosX += $copyX;
-            }
-
-            if ($remainingWidth > 0) {
-                imagecopy($image, $tooltipImage, $copyPosX, 0, $cornerSize, 0, $remainingWidth, $cornerSize); // Top border
-                imagecopy($image, $tooltipImage, $copyPosX, $imageHeight - $cornerSize, $cornerSize, $tooltipHeight - $cornerSize, $remainingWidth, $cornerSize); // Bottom border
-            }
-
-            imagecopy($image, $tooltipImage, 0, 0, 0, 0, $cornerSize, $cornerSize); // Top left
-            imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, 0, $tooltipWidth - $cornerSize, 0, $cornerSize, $cornerSize); // Top right
-
-            imagecopy($image, $tooltipImage, 0, $imageHeight - $cornerSize, 0, $tooltipHeight - $cornerSize, $cornerSize, $cornerSize); // Bottom left
-            imagecopy($image, $tooltipImage, $imageWidth - $cornerSize, $imageHeight - $cornerSize, $tooltipWidth - $cornerSize, $tooltipHeight - $cornerSize, $cornerSize, $cornerSize); // Bottom right
-
-            $purple = imagecolorallocate($image, 16, 1, 16);
-
-            imagefill($image, $cornerSize + 1, $cornerSize + 1, $purple);
-
-            return $image;
         }
 
 

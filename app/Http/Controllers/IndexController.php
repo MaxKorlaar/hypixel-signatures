@@ -80,7 +80,7 @@
                             'route' => 'skywars'
                         ],
                         [
-                            'name'  => 'BedWars statistics',
+                            'name'  => 'Bed Wars statistics',
                             'route' => 'bedwars'
                         ],
                     ]
