@@ -37,7 +37,7 @@
         <div class="friends-grid players-grid" v-cloak>
             <a v-for="player in friends.slice(0, visible_friends_count)" :class="{ loading: player.loading }" class="item" :href="player.friends_url">
                 <div class="image-container">
-                    <img loading="lazy" src="" v-lazy="player.skin_url" width="71" height="64" alt="">
+                    <img src="" v-lazy="player.skin_url" width="71" height="64" alt="">
                 </div>
                 <div class="name-container">
                     <div class="loader" v-if="player.loading">
