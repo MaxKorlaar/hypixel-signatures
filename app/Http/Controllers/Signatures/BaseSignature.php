@@ -195,7 +195,7 @@
          *
          * @return false|resource
          */
-        protected static function getImage($width, $height) {
+        public static function getImage($width, $height) {
             $image       = imagecreatetruecolor($width, $height);
             $transparent = imagecolorallocatealpha($image, 250, 100, 100, config('signatures.signature_debug_background') ? 0 : self::FULLY_TRANSPARENT);
             imagefill($image, 0, 0, $transparent);

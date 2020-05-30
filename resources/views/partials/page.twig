@@ -65,6 +65,9 @@
                 <li class="{{ app.request.routeIs('friends*') ? 'active' }}">
                     <a href="{{ route('friends') }}">Friends</a>
                 </li>
+                <li class="{{ app.request.routeIs('guild*') ? 'active' }}">
+                    <a href="{{ route('guild') }}">Guild</a>
+                </li>
             </ul>
         </nav>
     {% endblock %}

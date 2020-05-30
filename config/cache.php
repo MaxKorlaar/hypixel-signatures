@@ -135,9 +135,11 @@
             'skyblock_profile' => 3600, // 1 hour
             'friends_profiles' => 86400 * 3,
             'public'           => [
-                'player_skin' => 604800 // 1 week
+                'player_skin'  => 604800, // 1 week
+                'guild_banner' => 604800,
             ],
-            'recent_players'   => 604800
+            'recent_players'   => 604800,
+            'recent_guilds'    => 604800,
         ],
 
     ];

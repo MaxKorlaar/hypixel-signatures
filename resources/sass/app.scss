@@ -39,6 +39,7 @@
 @import "footer";
 @import "home";
 @import "friends";
+@import "guild";
 
 @import "components/callout";
 
@@ -297,6 +298,7 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  width: auto;
 }
 
 .signature-grid {

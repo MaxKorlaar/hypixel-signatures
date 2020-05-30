@@ -1,0 +1,62 @@
+{% extends 'guild/info.twig' %}
+{% block page_title %}{{ guild.name }} Guild Members{% endblock %}
+{% block guild_content %}
+    <h1><a href="{{ route('guild.info', [guild.name]) }}">{{ guild.name }}</a>'s members</h1>
+
+    <div id="guild-members-app">
+        <div class="progress-info" v-if="meta.loaded < meta.total_members" v-cloak>
+            <h2>Loading members ({{ "{{ meta.loaded }}" }} / {{ "{{ meta.total_members }}" }})&hellip;</h2>
+
+            <div class="bar">
+                <div class="inner" :style="{ '--percentage': Math.round(meta.loaded/meta.total_members * 100) + '%' }"></div>
+            </div>
+        </div>
+
+        <table class="guild-members">
+            <thead>
+                <tr>
+                    <td>Username</td>
+                    <td>Guild rank</td>
+                    <td>Joined at</td>
+                    <td>Last login</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="member in members" :class="{ loading: member.loading }">
+                    <td>
+                        <img src="" v-lazy="member.skin_url" alt="">
+                        <div class="loader" v-if="member.loading">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span v-html="member.formatted_name"></span>
+                    </td>
+                    <td>
+                        {{ "{{ member.rank }}" }}
+                    </td>
+                    <td>
+                        {{ "{{ new Date(member.joined).toLocaleDateString() }}" }}
+                    </td>
+                    <td>
+                        <template v-if="member.last_login">
+                            {{ "{{ new Date(member.last_login).toLocaleDateString() }}" }}
+                        </template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        window.Paniek         = window.Paniek || {};
+        window.Paniek.members = {{ members|json_encode|raw }};
+        window.Paniek.meta    = {{ meta|json_encode|raw }};
+        window.Paniek.urls    = {{ urls|json_encode|raw }};
+    </script>
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/guild.js') }}"></script>
+{% endblock %}

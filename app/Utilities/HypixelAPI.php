@@ -37,6 +37,7 @@
     use Plancke\HypixelPHP\fetch\FetchParams;
     use Plancke\HypixelPHP\fetch\Response;
     use Plancke\HypixelPHP\HypixelPHP;
+    use Plancke\HypixelPHP\responses\guild\Guild;
     use Plancke\HypixelPHP\responses\player\Player;
 
     /**
@@ -73,9 +74,48 @@
         }
 
         /**
+         * @param string $uuid
+         *
+         * @return HypixelObject|Response|Guild|null
+         * @throws HypixelPHPException
+         */
+        public function getGuildByPlayerUuid(string $uuid) {
+            return $this->api->getGuild([FetchParams::GUILD_BY_PLAYER_UUID => $uuid]);
+        }
+
+        /**
+         * @param string $name
+         *
+         * @return HypixelObject|Response|Guild|null
+         * @throws HypixelPHPException
+         */
+        public function getGuildByName(string $name) {
+            return $this->api->getGuild([FetchParams::GUILD_BY_NAME => $name]);
+        }
+
+        /**
+         * @param string $id
+         *
+         * @return HypixelObject|Response|Guild|null
+         * @throws HypixelPHPException
+         */
+        public function getGuildById(string $id) {
+            return $this->api->getGuild([FetchParams::GUILD_BY_ID => $id]);
+        }
+
+        /**
          * @return HypixelPHP
          */
         public function getApi(): HypixelPHP {
             return $this->api;
+        }
+
+        /**
+         * @param string $id
+         *
+         * @return bool
+         */
+        public static function isValidMongoId(string $id): bool {
+            return strlen($id) === 24 && ctype_xdigit($id);
         }
     }

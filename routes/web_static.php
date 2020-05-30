@@ -61,3 +61,5 @@
 
     Route::get('/player/{uuid}/skin/head.webp', 'Player\ImageController@getHead')->name('player.skin.head');
 
+    Route::get('/guild/{id}/banner.png', 'Guild\BannerController@getBanner')->name('guild.banner');
+

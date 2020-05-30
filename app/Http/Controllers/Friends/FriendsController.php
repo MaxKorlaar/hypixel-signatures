@@ -125,7 +125,7 @@
                     Cache::set('recent_friends.' . $uuid, [
                         'username'      => $player->getName(),
                         'friends_count' => $friendsList['meta']['total_friends']
-                    ]);
+                    ], config('cache.times.recent_players'));
 
                     return view('friends.list', [
                             'username'           => $player->getName(),

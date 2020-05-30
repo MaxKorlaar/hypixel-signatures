@@ -1,5 +1,5 @@
 <?php
-    /**
+/**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,24 +30,34 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-    namespace App\Exceptions;
+namespace App\Http\Requests\Guild;
 
-    use Exception;
-    use Illuminate\View\View;
+    use Illuminate\Foundation\Http\FormRequest;
 
     /**
-     * Class HypixelFetchException
+     * Class ViewInfoByUsernameOrGuildNameRequest
      *
-     * @package App\Exceptions
+     * @package App\Http\Requests\Guild
      */
-    class HypixelFetchException extends Exception {
+    class ViewInfoByUsernameOrGuildNameRequest extends FormRequest {
         /**
-         * @return View
+         * Determine if the user is authorized to make this request.
+         *
+         * @return bool
          */
-        public function render(): View {
-            return view('errors.500', [
-                'title' => 'Internal Server Error',
-                'error' => $this->getMessage()
-            ]);
+        public function authorize(): bool {
+            return true;
+        }
+
+        /**
+         * Get the validation rules that apply to the request.
+         *
+         * @return array
+         */
+        public function rules(): array {
+            return [
+                'username' => 'string|max:32|required_without:name',
+                'name'     => 'string|max:32|required_without:username',
+            ];
         }
     }

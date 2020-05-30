@@ -40,6 +40,7 @@
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
     use Illuminate\Support\Collection;
+    use Illuminate\Support\Str;
     use Image;
     use Plancke\HypixelPHP\classes\gameType\GameTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
@@ -75,7 +76,7 @@
 
                 $image = BaseSignature::getImage($imageWidth, $imageHeight);
 
-                $banner      = new Banner($guild->getBanner());
+                $banner      = new Banner($bannerData);
                 $bannerImage = $banner->generate();
 
                 $bannerWidth  = imagesx($bannerImage);
@@ -108,7 +109,16 @@
 
             $linesY = [60, 90, 120, 150]; // Y starting points of the various text lines
 
-            $memberList  = $guild->getMemberList()->getList();
+            $memberList = $guild->getMemberList()->getList();
+
+            uksort($memberList, static function ($a, $b) {
+                if (Str::is(['guildmaster', 'guild master'], strtolower($b))) {
+                    return 1;
+                }
+
+                return 0;
+            });
+
             $highestRank = array_shift($memberList);
 
             $guildMaster       = $highestRank[0];

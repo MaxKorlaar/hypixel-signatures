@@ -1,0 +1,39 @@
+{% extends 'partials/page.twig' %}
+{% block page_title %}Hypixel Guild Statistics{% endblock %}
+{% block content %}
+    <div class="guild">
+        <div class="callout">
+            <p>
+                View information about any Hypixel Guild, including their members, description and even game statistics.
+            </p>
+            <p>
+                It's easy – You only have to enter an username or guild name to get started.
+            </p>
+            <form class="input has-button {{ errors.has('username') ? 'has-error' }}" method="post" action="{{ route('guild.form_redirect') }}">
+                {{ csrf_field() }}
+                <div class="fields">
+                    <input value="{{ old('username') }}" title="Username" type="text" autocomplete="nickname" name="username" placeholder="Enter your username to get started">
+                    <button class="button hide-sm" type="submit">View guild &longrightarrow;</button>
+                    <button class="button hide-md hide-lg hide-xl" type="submit">&longrightarrow;</button>
+                </div>
+                <p class="error">
+                    {{ errors.first('username') }}
+                </p>
+            </form>
+        </div>
+        <h1>Recently viewed</h1>
+        <div class="recently-viewed-grid">
+            {% for guild in recently_viewed %}
+                <a class="item" href="{{ route('guild.info', [guild.name]) }}">
+                    <div class="image-container">
+                        <img loading="lazy" src="{{ route('guild.banner', [guild.id]) }}" alt="">
+                    </div>
+                    <div class="name-container">
+                        <h3>{{ guild.name }}</h3>
+                        {{ guild.member_count }} members - {{ guild.views }} views
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
