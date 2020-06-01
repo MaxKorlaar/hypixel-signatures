@@ -43,7 +43,7 @@
         |
         */
 
-        'name' => env('APP_NAME', 'Hypixel Signatures'),
+        'name' => env('APP_NAME', 'Hypixel.Paniek.de'),
 
         /*
         |--------------------------------------------------------------------------

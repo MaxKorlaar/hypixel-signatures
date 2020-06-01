@@ -29,42 +29,45 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-nav {
-  background: $color-secondary;
-  box-shadow: rgba(0, 0, 0, .25) 0 2px 3px;
-  position: relative;
-  z-index: 20;
+.progress-info {
+  text-align: center;
+  margin: 0 auto 1rem;
+  max-width: $container-sm;
+  position: sticky;
+  background: $color-background;
+  padding: 1rem;
+  top: 0;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  z-index: 10;
+  --percentage: 0%;
 
-  ul {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    align-items: center;
-    padding: 0;
+  .bar {
+    height: 20px;
+    margin: .5rem 0;
+    background: lighten($color-primary, 40%);
+    border-radius: $border-radius;
+    overflow: hidden;
 
-    li {
+    .inner {
+      height: 100%;
+      width: var(--percentage);
       transition: all $transition-time;
+      background: $color-primary;
 
-      a {
-        font-size: 1rem;
-        text-transform: uppercase;
-        color: $color-white;
-        text-decoration: none;
-        padding: 25px;
-        display: block;
-      }
-
-      &:hover, &:focus, &.active {
-        background: darken($color-secondary, 10%);
-        box-shadow: inset rgba(0, 0, 0, .25) 0 0 5px 0;
-      }
-
-      &.active {
-        a {
-          color: $color-primary;
-        }
-      }
+      //animation: loading-bar-background 1.5s infinite reverse ease-in-out;
+      //background: linear-gradient(to right, transparent 0%, rgba($color-primary, 1) 5%, rgba($color-primary, 1) calc(var(--percentage)/2), transparent calc(var(--percentage)/2 + 5%));
+      //background-size: 200% auto;
+      //
+      //@keyframes loading-bar-background {
+      //  0% {
+      //    background-position-x: 5%;
+      //  }
+      //
+      //  100% {
+      //    background-position-x: 205%;
+      //  }
+      //}
     }
   }
 }

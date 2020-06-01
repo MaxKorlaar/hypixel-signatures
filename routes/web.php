@@ -62,6 +62,12 @@
     Route::get('/guild/{name}/members', 'Guild\MemberController@getMembers')->name('guild.members');
     Route::get('/guild/{name}/members/json', 'Guild\MemberController@getMembers')->name('guild.members.json');
 
+    Route::get('/guild/{name}/games/skywars', 'Guild\SkyWarsController@getSkyWarsStatistics')->name('guild.games.skywars');
+    Route::get('/guild/{name}/games/skywars/json', 'Guild\SkyWarsController@getSkyWarsStatistics')->name('guild.games.skywars.json');
+
+    Route::get('/guild/{name}/games/bedwars', 'Guild\BedWarsController@getBedWarsStatistics')->name('guild.games.bedwars');
+    Route::get('/guild/{name}/games/bedwars/json', 'Guild\BedWarsController@getBedWarsStatistics')->name('guild.games.bedwars.json');
+
     Route::prefix('status-sig')->group(static function () {
         Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');
     });

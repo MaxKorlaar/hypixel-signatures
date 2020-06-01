@@ -37,7 +37,7 @@
 
 .guild-info {
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr minmax(0, 5fr);
   grid-gap: 25px;
 
   .sidebar {
@@ -73,6 +73,10 @@
     }
   }
 
+  .table-container {
+    overflow-x: auto;
+  }
+
   table {
     margin-top: 1rem;
     width: 100%;
@@ -93,11 +97,16 @@
       list-style: none;
     }
 
-    td {
+    td, th {
       width: auto;
       border: 0;
       padding: 1rem 1rem;
-      border-top: 2px solid lighten($color-secondary, 60%);
+      border-top: 1px solid lighten($color-secondary, 60%);
+
+      .username {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
 
       img {
         display: inline-block;
@@ -105,9 +114,28 @@
       }
     }
 
-    tr {
-      &:hover, &:focus {
-        background: lighten($color-secondary, 60%);
+    tr:last-child th {
+      border-top: 1px solid lighten($color-secondary, 60%);
+    }
+
+    tr:last-child th, th[rowspan="2"] {
+      border-bottom: 2px solid lighten($color-secondary, 60%);
+    }
+
+    th {
+      border-top: none;
+      text-align: left;
+    }
+
+    .formatted-name {
+      text-shadow: rgba(0, 0, 0, 0.1) 0 0 3px;
+    }
+
+    tbody {
+      tr {
+        &:hover, &:focus {
+          background: lighten($color-secondary, 60%);
+        }
       }
     }
 
@@ -117,6 +145,7 @@
       .loader {
         display: inline;
         vertical-align: middle;
+        white-space: nowrap;
 
         span {
           height: 1.3rem;
@@ -147,6 +176,25 @@
       }
     }
 
+    &.compact {
+      td, th {
+        padding: .5rem;
+      }
+    }
+
+    &.bordered {
+      th {
+        &:not(:first-child) {
+          border-left: 1px solid lighten($color-secondary, 60%);
+        }
+      }
+
+      tbody {
+        td:not(:first-child) {
+          border-left: 1px solid lighten($color-secondary, 60%);
+        }
+      }
+    }
   }
 
   .content {

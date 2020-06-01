@@ -30,6 +30,9 @@
  */
 import Vue from 'vue';
 import VueLazyload from 'vue-lazyload';
+import SkyWarsTable from "./guild/SkyWarsTable";
+import MembersTable from "./guild/MembersTable";
+import BedWarsTable from "./guild/BedWarsTable";
 
 const axios = require('axios').default;
 
@@ -42,8 +45,9 @@ Vue.use(VueLazyload, {
 })
 // noinspection ObjectAllocationIgnored
 new Vue({
-    el:       '#guild-members-app',
-    data:     {
+    el:         '#guild-members-app',
+    components: {SkyWarsTable, MembersTable, BedWarsTable},
+    data:       {
         members: [],
         meta:    {
             total_members: 0,
@@ -54,7 +58,7 @@ new Vue({
         },
         loading: true
     },
-    methods:  {
+    methods:    {
         getMembersInterval() {
             if (this.meta.loaded < this.meta.total_members) {
                 let previousCount = this.meta.loaded;
@@ -79,10 +83,8 @@ new Vue({
             }).finally(() => {
                 this.loading = false;
             });
-        }
+        },
     },
-    watch:    {},
-    computed: {},
     mounted() {
         this.members = window.Paniek.members;
         this.meta    = window.Paniek.meta;

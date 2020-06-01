@@ -1,5 +1,5 @@
 <?php
-    /**
+/**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,29 +30,26 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-    namespace App\Http\Controllers\Guild;
+namespace App\Http\Controllers\Guild;
 
     use App\Exceptions\HypixelFetchException;
-    use App\Http\Controllers\Controller;
-    use App\Jobs\Guild\LoadMemberData;
     use App\Utilities\HypixelAPI;
-    use Cache;
     use Illuminate\Contracts\Foundation\Application;
     use Illuminate\Contracts\View\Factory;
     use Illuminate\Http\Request;
-    use Illuminate\Support\Str;
     use Illuminate\View\View;
-    use Plancke\HypixelPHP\color\ColorUtils;
+    use Plancke\HypixelPHP\classes\gameType\GameTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\guild\Guild;
-    use Plancke\HypixelPHP\responses\guild\GuildMember;
+    use Plancke\HypixelPHP\responses\player\GameStats;
+    use Plancke\HypixelPHP\responses\player\Player;
 
     /**
-     * Class MemberController
+     * Class GamesController
      *
      * @package App\Http\Controllers\Guild
      */
-    class MemberController extends Controller {
+    class BedWarsController extends MemberController {
         /**
          * @param Request $request
          * @param string  $nameOrId
@@ -61,7 +58,7 @@
          * @throws HypixelFetchException
          * @throws HypixelPHPException
          */
-        public function getMembers(Request $request, string $nameOrId) {
+        public function getBedWarsStatistics(Request $request, string $nameOrId) {
             $HypixelAPI = new HypixelAPI();
 
             if (HypixelAPI::isValidMongoId($nameOrId)) {
@@ -71,16 +68,16 @@
             }
 
             if ($guild instanceof Guild) {
-                $memberList = $this->getMemberList($guild);
+                $memberList = $this->getBedWarsMemberList($guild);
 
                 if ($request->wantsJson()) {
                     return $memberList;
                 }
 
-                return view('guild.members', [
+                return view('guild.games.bedwars', [
                         'guild' => $guild,
                         'urls'  => [
-                            'get_members' => route('guild.members.json', [$guild->getID()])
+                            'get_members' => route('guild.games.bedwars.json', [$guild->getID()])
                         ]
                     ] + $memberList);
             }
@@ -88,75 +85,69 @@
             throw new HypixelFetchException('An unknown error has occurred while trying to fetch this Guild or its members from Hypixel');
         }
 
+
         /**
-         * @param Guild         $guild
+         * @param Guild $guild
          *
-         * @param callable|null $playerCallback
-         *
-         * @return array
+         * @return array[]
          * @throws HypixelPHPException
          */
-        protected function getMemberList(Guild $guild, callable $playerCallback = null): array {
-            $memberList   = [];
-            $totalMembers = $guild->getMemberCount();
-            $loaded       = 0;
-            $queued       = 0;
-            $max          = 50;
+        private function getBedWarsMemberList(Guild $guild): array {
+            return $this->getMemberList($guild, static function (Player $player) {
+                /** @var GameStats $stats */
+                $stats = $player->getStats()->getGameFromID(GameTypes::BEDWARS);
 
-            $members = $guild->getMemberList();
-            $list    = $members->getList();
+                $wins = $stats->getInt('wins_bedwars');
 
-            uksort($list, static function ($a, $b) {
-                if (Str::is(['guildmaster', 'guild master'], strtolower($b))) {
-                    return 1;
+                $finalKills = $stats->get('final_kills_bedwars', 0);
+                $kills      = $stats->get('kills_bedwars', 0);
+
+                $totalKills = $finalKills + $kills;
+
+                $finalDeaths = $stats->getInt('final_deaths_bedwars', 0);
+                $deaths      = $stats->getInt('deaths_bedwars', 0);
+
+                $totalDeaths = $deaths + $finalDeaths;
+
+                $games = $stats->getInt('games_played_bedwars', 0);
+
+                if ($totalDeaths !== 0) {
+                    $totalKd = round($totalKills / $totalDeaths, 2);
+                } else {
+                    $totalKd = 'N/A';
                 }
 
-                return 0;
+                if ($wins !== 0 && $games !== 0) {
+                    $winsPercentage = round(($wins / ($games)) * 100, 2);
+                } else {
+                    $winsPercentage = 0;
+                }
+
+                if ($deaths !== 0) {
+                    $kd = round($kills / $deaths, 2);
+                } else {
+                    $kd = 'N/A';
+                }
+
+                if ($finalDeaths !== 0) {
+                    $finalKd = round($finalKills / $finalDeaths, 2);
+                } else {
+                    $finalKd = 'N/A';
+                }
+
+                return [
+                    'wins'            => $wins,
+                    'kills'           => $totalKills,
+                    'kd'              => $totalKd,
+                    'wins_percentage' => $winsPercentage,
+                    'beds_broken'     => $stats->getInt('beds_broken_bedwars'),
+
+                    'kills_normal' => $kills,
+                    'kd_normal'    => $kd,
+
+                    'kills_final' => $finalKills,
+                    'kd_final'    => $finalKd
+                ];
             });
-
-            foreach ($list as $rank => $rankMembers) {
-                /** @var GuildMember $member */
-                foreach ($rankMembers as $member) {
-                    $uuid = $member->getUUID();
-
-                    $memberArray = $member->getData() + [
-                            'skin_url' => route('player.skin.head', [$uuid, 'size' => 3]),
-                            'loading'  => false
-                        ];
-
-                    if (Cache::has('hypixel.players_loaded. ' . $uuid)) {
-                        $loaded++;
-                        $player = $member->getPlayer();
-
-                        $memberArray['formatted_name'] = ColorUtils::getColorParser()->parse($player->getRawFormattedName());
-                        $memberArray['last_login']     = $player->getInt('lastLogin');
-                        $memberArray['name']           = $player->getName();
-
-                        if ($playerCallback !== null) {
-                            $memberArray += $playerCallback($player);
-                        }
-                    } else {
-                        $memberArray['loading'] = true;
-
-                        if ($queued < $max) {
-                            Cache::remember('hypixel.guild_player_load.' . $uuid, 60, static function () use ($uuid) {
-                                LoadMemberData::dispatch($uuid);
-                            });
-                        }
-
-                        $queued++;
-                    }
-
-                    $memberList[] = $memberArray;
-                }
-            }
-
-            return [
-                'members' => $memberList,
-                'meta'    => [
-                    'total_members' => $totalMembers,
-                    'loaded'        => $loaded
-                ]
-            ];
         }
     }

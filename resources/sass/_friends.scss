@@ -92,49 +92,6 @@
 }
 
 .friends-list {
-  .progress-info {
-    text-align: center;
-    margin: 0 auto 1rem;
-    max-width: $container-sm;
-    position: sticky;
-    background: $color-background;
-    padding: 1rem;
-    top: 0;
-    border-bottom-left-radius: $border-radius;
-    border-bottom-right-radius: $border-radius;
-    z-index: 10;
-    --percentage: 0%;
-
-    .bar {
-      height: 20px;
-      margin: .5rem 0;
-      background: lighten($color-primary, 40%);
-      border-radius: $border-radius;
-      overflow: hidden;
-
-      .inner {
-        height: 100%;
-        width: var(--percentage);
-        transition: all $transition-time;
-        background: $color-primary;
-
-        //animation: loading-bar-background 1.5s infinite reverse ease-in-out;
-        //background: linear-gradient(to right, transparent 0%, rgba($color-primary, 1) 5%, rgba($color-primary, 1) calc(var(--percentage)/2), transparent calc(var(--percentage)/2 + 5%));
-        //background-size: 200% auto;
-        //
-        //@keyframes loading-bar-background {
-        //  0% {
-        //    background-position-x: 5%;
-        //  }
-        //
-        //  100% {
-        //    background-position-x: 205%;
-        //  }
-        //}
-      }
-    }
-  }
-
   .description {
     display: flex;
 

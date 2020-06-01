@@ -1,7 +1,11 @@
 {% extends 'guild/info.twig' %}
+
 {% block page_title %}{{ guild.name }} Guild Members{% endblock %}
+{% block social_title %}Guild members of {{ guild.name }} - {{ config_get('app.name') }}{% endblock %}
+{% block social_description %}View all of {{ guild.name }}'s {{ guild.memberCount }} members and more on {{ config_get('app.name') }}{% endblock %}
+
 {% block guild_content %}
-    <h1><a href="{{ route('guild.info', [guild.name]) }}">{{ guild.name }}</a>'s members</h1>
+    {% block table_title %}<h1><a href="{{ route('guild.info', [guild.name]) }}">{{ guild.name }}</a>'s members</h1>{% endblock %}
 
     <div id="guild-members-app">
         <div class="progress-info" v-if="meta.loaded < meta.total_members" v-cloak>
@@ -11,41 +15,9 @@
                 <div class="inner" :style="{ '--percentage': Math.round(meta.loaded/meta.total_members * 100) + '%' }"></div>
             </div>
         </div>
-
-        <table class="guild-members">
-            <thead>
-                <tr>
-                    <td>Username</td>
-                    <td>Guild rank</td>
-                    <td>Joined at</td>
-                    <td>Last login</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="member in members" :class="{ loading: member.loading }">
-                    <td>
-                        <img src="" v-lazy="member.skin_url" alt="">
-                        <div class="loader" v-if="member.loading">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <span v-html="member.formatted_name"></span>
-                    </td>
-                    <td>
-                        {{ "{{ member.rank }}" }}
-                    </td>
-                    <td>
-                        {{ "{{ new Date(member.joined).toLocaleDateString() }}" }}
-                    </td>
-                    <td>
-                        <template v-if="member.last_login">
-                            {{ "{{ new Date(member.last_login).toLocaleDateString() }}" }}
-                        </template>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        {% block members_table %}
+            <members-table :members="members"></members-table>
+        {% endblock %}
     </div>
 {% endblock %}
 {% block scripts %}
