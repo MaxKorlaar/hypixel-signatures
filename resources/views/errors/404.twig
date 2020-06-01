@@ -1,0 +1,3 @@
+{% extends 'errors/_error.twig' %}
+{% block title %}{{ title ?? 'Not Found' }}{% endblock %}
+{% block error %}{{ error ?? 'Unfortunately, the resource you have requested could not be found. It may have been moved to a new location.' }}{% endblock %}

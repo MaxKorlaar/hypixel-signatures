@@ -1,8 +1,3 @@
-{% extends 'partials/page.twig' %}
-{% block page_title %}{{ title ?? 'Internal Server Error' }}{% endblock %}
-{% block content %}
-    <div class="error">
-        <h1>{{ title ?? 'Internal Server Error' }}</h1>
-        <h2>{{ error ?? 'An internal server error has occurred while trying to process your request. Please try again later' }}</h2>
-    </div>
-{% endblock %}
+{% extends 'errors/_error.twig' %}
+{% block title %}{{ title ?? 'Internal Server Error' }}{% endblock %}
+{% block error %}{{ error ?? 'An internal server error has occurred while trying to process your request. Please try again later' }}{% endblock %}
