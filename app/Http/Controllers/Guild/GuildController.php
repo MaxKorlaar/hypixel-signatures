@@ -187,7 +187,7 @@ namespace App\Http\Controllers\Guild;
                     'formatted_tag'     => ColorUtils::getColorParser()->parse($guild->getTagColor() . $guild->getTag()),
                     'preferred_games'   => $preferredGames,
                     'most_active_games' => $mostActiveGames,
-                    'description'       => $this->linkify($guild->getDescription())
+                    'description' => ColorUtils::getColorParser()->parse(preg_replace('/([&§]([0-9A-FK-ORa-fk-or]))/iu', ColorUtils::COLOR_CHAR . "\$2", $this->linkify($guild->getDescription())))
                 ]);
             }
 
