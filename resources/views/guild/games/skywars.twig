@@ -1,5 +1,6 @@
 {% extends 'guild/members.twig' %}
 
+{% block page_title %}{{ guild.name }} SkyWars statistics{% endblock %}
 {% block social_title %}{{ guild.name }} SkyWars statistics - {{ config_get('app.name') }}{% endblock %}
 {% block social_description %}View the SkyWars statistics of the Hypixel guild {{ guild.name }} on {{ config_get('app.name') }}. You can browse through the list and compare SkyWars statistics of guild members.{% endblock %}
 
