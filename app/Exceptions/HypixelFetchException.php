@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,9 +30,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Exceptions;
+    namespace App\Exceptions;
 
     use Exception;
+    use Illuminate\View\View;
 
     /**
      * Class HypixelFetchException
@@ -40,5 +41,13 @@ namespace App\Exceptions;
      * @package App\Exceptions
      */
     class HypixelFetchException extends Exception {
-        //
+        /**
+         * @return View
+         */
+        public function render(): View {
+            return view('errors.500', [
+                'title' => 'Internal Server Error',
+                'error' => $this->getMessage()
+            ]);
+        }
     }

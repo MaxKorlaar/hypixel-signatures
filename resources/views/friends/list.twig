@@ -2,7 +2,7 @@
 {% block page_title %}{{ username }}'s Hypixel Friends List{% endblock %}
 
 {% block social_image %}{{ route('player.skin.head', { uuid: player.getUUID(), size: 10 }) }}{% endblock %}
-{% block social_title %}{{ username }}'s friends on Hypixel – Hypixel.Paniek.de{% endblock %}
+{% block social_title %}{{ username }}'s friends on Hypixel – {{ config_get('app.name') }}{% endblock %}
 {% block social_description %}View all of {{ meta.total_friends }} friends of {{ username }} on the Hypixel Minecraft server. You can browse through the list and navigate to other Hypixel players.{% endblock %}
 
 {% block content %}
@@ -17,7 +17,8 @@
                 </p>
                 <p>If you want to
                     <a href="{{ route('signatures.form_redirect', { username: username }) }}">generate dynamic signature images for {{ username }}</a>,
-                   you can also do that on Hypixel.Paniek.de! Show off {{ username }}'s minigame or SkyBlock statistics and achievements on any
+                   you can also do that on {{ config_get('app.name') }}! Show off {{ username }}'s minigame or SkyBlock statistics and achievements on
+                   any
                    website that allows you to link to images
                     <a href="{{ route('signatures.form_redirect', { username: username }) }}">by creating a dynamic signature</a>.</p>
             </div>
@@ -37,7 +38,7 @@
         <div class="friends-grid players-grid" v-cloak>
             <a v-for="player in friends.slice(0, visible_friends_count)" :class="{ loading: player.loading }" class="item" :href="player.friends_url">
                 <div class="image-container">
-                    <img src="" v-lazy="player.skin_url" width="71" height="64" alt="">
+                    <img v-lazy="player.skin_url" width="71" height="64" alt="">
                 </div>
                 <div class="name-container">
                     <div class="loader" v-if="player.loading">

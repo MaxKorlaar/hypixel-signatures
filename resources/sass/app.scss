@@ -39,8 +39,10 @@
 @import "footer";
 @import "home";
 @import "friends";
+@import "guild";
 
 @import "components/callout";
+@import "components/loading-bar";
 
 * {
   box-sizing: border-box;
@@ -79,7 +81,7 @@ main {
   margin-top: 20px;
 
   &.container-xl {
-    padding: 0 10px;
+    //padding: 0 10px;
     //background: $color-white;
     //padding: 10px 30px;
     //box-shadow: rgba(0, 0, 0, .25) 0 2px 3px;
@@ -297,6 +299,7 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  width: auto;
 }
 
 .signature-grid {

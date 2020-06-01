@@ -6,15 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>
-            {% block page_title %}{% endblock %} – Hypixel.Paniek.de
+            {% block page_title %}{% endblock %} – {{ config_get('app.name') }}
         </title>
         {% block social_meta_tags %}
             <meta property="og:image" content="{% block social_image %}{% endblock %}"/>
             <meta property="og:url" content="{% block social_url %}{{ app.request.url }}{% endblock %}"/>
             <meta name="twitter:card" content="summary"/>
             <meta name="twitter:site" content="{% block social_twitter_username %}@MaxKorlaar{% endblock %}"/>
-            <meta name="twitter:description" content="{% block social_description %}Hypixel.Paniek.de offers tools that may be useful for players on the gameserver Hypixel for the videogame Minecraft. You can view your friend list or generate an auto-updating image containing your game statistics, for example!{% endblock %}"/>
-            <meta name="twitter:title" content="{% block social_title %}Hypixel Related Tools and Signatures – Hypixel.Paniek.de{% endblock %}"/>
+            <meta name="twitter:description" content="{% block social_description %}{{ config_get('app.name') }} offers tools that may be useful for players on the gameserver Hypixel for the videogame Minecraft. You can view your friend list or generate an auto-updating image containing your game statistics, for example!{% endblock %}"/>
+            <meta name="twitter:title" content="{% block social_title %}Hypixel Related Tools and Signatures – {{ config_get('app.name') }}{% endblock %}"/>
             <meta name="twitter:image" content="{{ block('social_image') }}"/>
             <meta name="twitter:url" content="{{ block('social_url') }}"/>
             <meta property="og:title" content="{{ block('social_title') }}"/>
@@ -64,6 +64,9 @@
                 </li>
                 <li class="{{ app.request.routeIs('friends*') ? 'active' }}">
                     <a href="{{ route('friends') }}">Friends</a>
+                </li>
+                <li class="{{ app.request.routeIs('guild*') ? 'active' }}">
+                    <a href="{{ route('guild') }}">Guild</a>
                 </li>
             </ul>
         </nav>

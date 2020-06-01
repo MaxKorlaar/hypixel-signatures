@@ -1,4 +1,5 @@
-/*!
+<?php
+/**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -29,42 +30,34 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-nav {
-  background: $color-secondary;
-  box-shadow: rgba(0, 0, 0, .25) 0 2px 3px;
-  position: relative;
-  z-index: 20;
+namespace App\Http\Requests\Guild;
 
-  ul {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    align-items: center;
-    padding: 0;
+    use Illuminate\Foundation\Http\FormRequest;
 
-    li {
-      transition: all $transition-time;
-
-      a {
-        font-size: 1rem;
-        text-transform: uppercase;
-        color: $color-white;
-        text-decoration: none;
-        padding: 25px;
-        display: block;
-      }
-
-      &:hover, &:focus, &.active {
-        background: darken($color-secondary, 10%);
-        box-shadow: inset rgba(0, 0, 0, .25) 0 0 5px 0;
-      }
-
-      &.active {
-        a {
-          color: $color-primary;
+    /**
+     * Class ViewInfoByUsernameOrGuildNameRequest
+     *
+     * @package App\Http\Requests\Guild
+     */
+    class ViewInfoByUsernameOrGuildNameRequest extends FormRequest {
+        /**
+         * Determine if the user is authorized to make this request.
+         *
+         * @return bool
+         */
+        public function authorize(): bool {
+            return true;
         }
-      }
+
+        /**
+         * Get the validation rules that apply to the request.
+         *
+         * @return array
+         */
+        public function rules(): array {
+            return [
+                'username' => 'string|max:32|required_without:name',
+                'name'     => 'string|max:32|required_without:username',
+            ];
+        }
     }
-  }
-}

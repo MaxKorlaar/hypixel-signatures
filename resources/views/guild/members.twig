@@ -1,0 +1,34 @@
+{% extends 'guild/info.twig' %}
+
+{% block page_title %}{{ guild.name }} Guild Members{% endblock %}
+{% block social_title %}Guild members of {{ guild.name }} - {{ config_get('app.name') }}{% endblock %}
+{% block social_description %}View all of {{ guild.name }}'s {{ guild.memberCount }} members and more on {{ config_get('app.name') }}{% endblock %}
+
+{% block guild_content %}
+    {% block table_title %}<h1><a href="{{ route('guild.info', [guild.name]) }}">{{ guild.name }}</a>'s members</h1>{% endblock %}
+
+    <div id="guild-members-app">
+        <div class="progress-info" v-if="meta.loaded < meta.total_members" v-cloak>
+            <h2>Loading members ({{ "{{ meta.loaded }}" }} / {{ "{{ meta.total_members }}" }})&hellip;</h2>
+
+            <div class="bar">
+                <div class="inner" :style="{ '--percentage': Math.round(meta.loaded/meta.total_members * 100) + '%' }"></div>
+            </div>
+        </div>
+        {% block members_table %}
+            <members-table :members="members"></members-table>
+        {% endblock %}
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        window.Paniek         = window.Paniek || {};
+        window.Paniek.members = {{ members|json_encode|raw }};
+        window.Paniek.meta    = {{ meta|json_encode|raw }};
+        window.Paniek.urls    = {{ urls|json_encode|raw }};
+    </script>
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/guild.js') }}"></script>
+{% endblock %}

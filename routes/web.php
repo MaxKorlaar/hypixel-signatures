@@ -56,6 +56,18 @@
     Route::get('/friends/{uuid}', 'Friends\FriendsController@getFriends')->name('friends.list');
     Route::get('/friends/{uuid}/json', 'Friends\FriendsController@getFriendsListJSON')->name('friends.list.json');
 
+    Route::get('/guild/', 'Guild\GuildController@getIndex')->name('guild');
+    Route::post('/guild/', 'Guild\GuildController@redirectToInfo')->name('guild.form_redirect');
+    Route::get('/guild/{name}', 'Guild\GuildController@getInfo')->name('guild.info');
+    Route::get('/guild/{name}/members', 'Guild\MemberController@getMembers')->name('guild.members');
+    Route::get('/guild/{name}/members/json', 'Guild\MemberController@getMembers')->name('guild.members.json');
+
+    Route::get('/guild/{name}/games/skywars', 'Guild\SkyWarsController@getSkyWarsStatistics')->name('guild.games.skywars');
+    Route::get('/guild/{name}/games/skywars/json', 'Guild\SkyWarsController@getSkyWarsStatistics')->name('guild.games.skywars.json');
+
+    Route::get('/guild/{name}/games/bedwars', 'Guild\BedWarsController@getBedWarsStatistics')->name('guild.games.bedwars');
+    Route::get('/guild/{name}/games/bedwars/json', 'Guild\BedWarsController@getBedWarsStatistics')->name('guild.games.bedwars.json');
+
     Route::prefix('status-sig')->group(static function () {
         Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');
     });

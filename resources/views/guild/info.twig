@@ -1,0 +1,112 @@
+{% extends 'partials/page.twig' %}
+{% block page_title %}{{ guild.name }} Guild{% endblock %}
+
+{% block social_image %}{{ route('guild.banner', [guild.id]) }}{% endblock %}
+{% block social_title %}{{ guild.name }} – {{ config_get('app.name') }}{% endblock %}
+{% block social_description %}{{ guild.description ?: guild.name ~ ' is a guild on the Hypixel Minecraft server' }} - View {{ guild.name }}'s members, guild statistics and more on {{ config_get('app.name') }}{% endblock %}
+
+{% block head %}
+    {{ parent() }}
+    <link href="https://fonts.googleapis.com/css2?family=Neuton:wght@700&display=swap" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="guild-info">
+        <div class="sidebar">
+            <h2><a href="{{ route('guild.info', [guild.name]) }}">{{ guild.name }}</a></h2>
+            <a href="{{ route('guild.members', [guild.name]) }}" class="button">Member list</a>
+            <a href="{{ route('guild.games.skywars', [guild.name]) }}" class="button">SkyWars statistics</a>
+            <a href="{{ route('guild.games.bedwars', [guild.name]) }}" class="button">Bed Wars statistics</a>
+        </div>
+        <div class="content">
+            {% block guild_content %}
+                <div class="callout">
+                    <div>
+                        <img src="{{ route('guild.banner', [guild.id]) }}" alt="">
+                    </div>
+                    <div>
+                        <h1>{{ guild.name }}</h1>
+                    </div>
+                </div>
+                <table class="information">
+                    <tbody>
+                        <tr>
+                            <td class="bold">Current member count</td>
+                            <td><a href="{{ route('guild.members', [guild.name]) }}">{{ guild.memberCount }}</a></td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Level</td>
+                            <td>{{ guild.level }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Tag</td>
+                            <td>{{ formatted_tag|raw }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Description</td>
+                            <td>{{ (description ?: '<i>None set</i>')|raw }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Guildmaster</td>
+                            <td>
+                                <a href="{{ route('signatures.form_redirect', { username: guildmaster.name }) }}">
+                                    <img src="{{ route('player.skin.head', { uuid: guildmaster.getUUID(), size: 3 }) }}" alt="">
+                                    {{ guildmaster_name|raw }}
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Created on</td>
+                            <td id="date">{{ (guild.get('created')/1000)|round|date }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Preferred games</td>
+                            <td>
+                                <ul>
+                                    {% for game in preferred_games %}
+                                        <li>{{ game }}</li>
+                                    {% else %}
+                                        <li><i>None set</i></li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Most active games</td>
+                            <td>
+                                <ul>
+                                    {% for game in most_active_games %}
+                                        <li>{{ game }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Guild experience</td>
+                            <td>{{ guild.exp|number_format }}</td>
+                        </tr>
+                        {% if guild.getInt('coins') > 0 %}
+                            <tr>
+                                <td class="bold">Coins</td>
+                                <td>{{ guild.get('coins')|number_format }}</td>
+                            </tr>
+                        {% endif %}
+                        {% if guild.legacyRank > -1 %}
+                            <tr>
+                                <td class="bold">Legacy rank</td>
+                                <td>{{ guild.legacyRank + 1 }}</td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                            <td class="bold">Publicly joinable</td>
+                            <td>{{ guild.joinable ? 'Yes' : 'No' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="bold">Publicly listed</td>
+                            <td>{{ guild.publiclyListed ? 'Yes' : 'No' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

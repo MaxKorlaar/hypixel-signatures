@@ -72,7 +72,7 @@
                 $imageHeight = 240;
                 $image       = BaseSignature::getImage($imageWidth, $imageHeight);
 
-                $banner      = new Banner($guild->getBanner());
+                $banner      = new Banner($bannerData);
                 $bannerImage = $banner->generate();
 
                 $bannerWidth  = imagesx($bannerImage);

@@ -1,0 +1,10 @@
+{% extends 'partials/page.twig' %}
+{% block social_meta_tags %}
+{% endblock %}
+{% block page_title %}{% block title %}{{ title ?? 'Internal Server Error' }}{% endblock %}{% endblock %}
+{% block content %}
+    <div class="error">
+        <h1>{{ block('title') }}</h1>
+        <h2>{% block error %}{{ error }}{% endblock %}</h2>
+    </div>
+{% endblock %}

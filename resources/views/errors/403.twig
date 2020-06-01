@@ -1,0 +1,3 @@
+{% extends 'errors/_error.twig' %}
+{% block title %}{{ title ?? 'Access Denied' }}{% endblock %}
+{% block error %}{{ error ?? 'You do not have sufficient permissions to access this resource.' }}{% endblock %}
