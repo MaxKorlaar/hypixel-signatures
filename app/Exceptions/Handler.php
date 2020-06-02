@@ -36,6 +36,7 @@
     use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
+    use Plancke\HypixelPHP\exceptions\BadResponseCodeException;
     use Throwable;
 
     /**
@@ -51,7 +52,8 @@
          */
         protected $dontReport = [
             HypixelFetchException::class,
-            SkyBlockEmptyProfileException::class
+            SkyBlockEmptyProfileException::class,
+            BadResponseCodeException::class
         ];
 
         /**
