@@ -36,6 +36,7 @@
 
     namespace App\Utilities;
 
+    use Illuminate\Support\Str;
     use Log;
     use Plancke\HypixelPHP\log\Logger as HypixelPHPLogger;
 
@@ -61,6 +62,10 @@
          * @param string $line
          */
         protected function actuallyLog($level, $line) {
-            Log::log($this->levels[$level], $line);
+            if (Str::contains($line, 'vendor/plancke/hypixel-php')) {
+                Log::stack(['daily'])->log($this->levels[$level], $line);
+            } else {
+                Log::log($this->levels[$level], $line);
+            }
         }
     }
