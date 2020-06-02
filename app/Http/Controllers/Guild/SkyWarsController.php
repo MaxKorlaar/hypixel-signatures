@@ -97,7 +97,7 @@ namespace App\Http\Controllers\Guild;
                 /** @var GameStats $stats */
                 $stats = $player->getStats()->getGameFromID(GameTypes::SKYWARS);
 
-                if ($stats->getInt('deaths') > 0) {
+                if ($stats->getInt('kills') > 0) {
                     $kd = round($stats->getInt('deaths') / $stats->getInt('kills'), 2);
                 } else {
                     $kd = 'N/A';

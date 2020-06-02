@@ -187,7 +187,8 @@
             $this->fetchError = $MCavatar->fetchError;
 
             Log::debug('Getting skin from existing URL: ' . $skinURL);
-            $this->playerSkin = imagecreatefromwebp($skinURL);
+
+            $this->playerSkin = pathinfo($skinURL, PATHINFO_EXTENSION) === 'png' ? imagecreatefrompng($skinURL) : imagecreatefromwebp($skinURL);
 
             Log::debug('Skin URL: ' . $skinURL);
 
