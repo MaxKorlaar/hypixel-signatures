@@ -32,6 +32,7 @@
 
     namespace App\Utilities\MinecraftAvatar;
 
+    use Exception;
     use Illuminate\Support\Facades\Log;
     use Psr\SimpleCache\InvalidArgumentException;
 
@@ -188,7 +189,12 @@
 
             Log::debug('Getting skin from existing URL: ' . $skinURL);
 
-            $this->playerSkin = pathinfo($skinURL, PATHINFO_EXTENSION) === 'png' ? imagecreatefrompng($skinURL) : imagecreatefromwebp($skinURL);
+            try {
+                $this->playerSkin = pathinfo($skinURL, PATHINFO_EXTENSION) === 'png' ? imagecreatefrompng($skinURL) : imagecreatefromwebp($skinURL);
+            } catch (Exception $exception) {
+                Log::warning('Image resource could not be created based on skin URL', [$skinURL, pathinfo($skinURL, PATHINFO_EXTENSION)]);
+                report($exception);
+            }
 
             Log::debug('Skin URL: ' . $skinURL);
 
