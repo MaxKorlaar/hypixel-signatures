@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Http\Controllers\Guild;
+    namespace App\Http\Controllers\Guild;
 
     use App\Exceptions\HypixelFetchException;
     use App\Http\Controllers\Controller;
@@ -62,7 +62,9 @@ namespace App\Http\Controllers\Guild;
          */
         public function getIndex(): View {
             $recentlyViewed = (new Collection(Redis::hGetAll('recent_guilds')))->sortDesc()->map(static function ($value, $key) {
-                return ['uuid' => $key, 'views' => $value] + Cache::get('recent_guilds.' . $key, []);
+                return ['id' => $key, 'views' => $value] + Cache::get('recent_guilds.' . $key, [
+                        'name' => $key
+                    ]);
             })->slice(0, 20);
 
             return view('guild.index', [

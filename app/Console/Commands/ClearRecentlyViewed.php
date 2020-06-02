@@ -53,15 +53,17 @@ namespace App\Console\Commands;
          *
          * @var string
          */
-        protected $description = 'Clear list of recently viewed players by site visitors';
+        protected $description = 'Clear list of recently viewed players and guilds by site visitors';
 
         /**
          * Execute the console command.
          *
          * @return mixed
          */
-        public function handle() {
+        public function handle(): void {
             Redis::del('recent_friends');
+            Redis::del('recent_guilds');
+
             $this->info('Cleared recently viewed players');
         }
     }
