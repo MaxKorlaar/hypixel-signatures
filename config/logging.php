@@ -67,7 +67,7 @@
         'channels' => [
             'stack' => [
                 'driver'            => 'stack',
-                'channels'          => ['daily', 'slack'],
+                'channels'          => ['daily', 'discord'],
                 'ignore_exceptions' => false,
             ],
 
@@ -90,6 +90,13 @@
                 'username' => config('app.name') . '-bot',
                 'emoji'    => ':boom:',
                 'level'    => env('SLACK_LOG_LEVEL', 'warning'),
+            ],
+
+            'discord' => [
+                'driver' => 'custom',
+                'via'    => MarvinLabs\DiscordLogger\Logger::class,
+                'level'  => env('SLACK_LOG_LEVEL', 'warning'),
+                'url'    => env('LOG_DISCORD_WEBHOOK_URL'),
             ],
 
             'papertrail' => [

@@ -21,6 +21,7 @@
     "laravel/horizon": "^4",
     "laravel/slack-notification-channel": "^2.0",
     "laravel/tinker": "^2.0",
+    "marvinlabs/laravel-discord-logger": "^1.1",
     "monicahq/laravel-cloudflare": "^1.6",
     "morrislaptop/laravel-queue-clear": "^1.2",
     "plancke/hypixel-php": "dev-master",

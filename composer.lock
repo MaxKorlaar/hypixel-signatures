@@ -1,30 +1,30 @@
 {
-    "_readme": [
-        "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-        "This file is @generated automatically"
-    ],
-    "content-hash": "a4b6a5efe75006119a33c85b122ae80e",
-    "packages": [
-        {
-            "name": "barryvdh/laravel-ide-helper",
-            "version": "v2.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/barryvdh/laravel-ide-helper.git",
-                "reference": "5f677edc14bdcfdcac36633e6eea71b2728a4dbc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/5f677edc14bdcfdcac36633e6eea71b2728a4dbc",
-                "reference": "5f677edc14bdcfdcac36633e6eea71b2728a4dbc",
-                "shasum": ""
-            },
-            "require": {
-                "barryvdh/reflection-docblock": "^2.0.6",
-                "composer/composer": "^1.6",
-                "doctrine/dbal": "~2.3",
-                "illuminate/console": "^5.5|^6|^7",
+  "_readme": [
+    "This file locks the dependencies of your project to a known state",
+    "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+    "This file is @generated automatically"
+  ],
+  "content-hash": "56508324bb06dc62bf98e5d3a7bb9c69",
+  "packages": [
+    {
+      "name": "barryvdh/laravel-ide-helper",
+      "version": "v2.7.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/barryvdh/laravel-ide-helper.git",
+        "reference": "5f677edc14bdcfdcac36633e6eea71b2728a4dbc"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/5f677edc14bdcfdcac36633e6eea71b2728a4dbc",
+        "reference": "5f677edc14bdcfdcac36633e6eea71b2728a4dbc",
+        "shasum": ""
+      },
+      "require": {
+        "barryvdh/reflection-docblock": "^2.0.6",
+        "composer/composer": "^1.6",
+        "doctrine/dbal": "~2.3",
+        "illuminate/console": "^5.5|^6|^7",
                 "illuminate/filesystem": "^5.5|^6|^7",
                 "illuminate/support": "^5.5|^6|^7",
                 "php": ">=7.2"
@@ -1979,45 +1979,105 @@
                 "copy.com",
                 "dropbox",
                 "file systems",
-                "files",
-                "filesystem",
-                "filesystems",
-                "ftp",
-                "rackspace",
-                "remote",
-                "s3",
-                "sftp",
-                "storage"
+              "files",
+              "filesystem",
+              "filesystems",
+              "ftp",
+              "rackspace",
+              "remote",
+              "s3",
+              "sftp",
+              "storage"
             ],
-            "funding": [
-                {
-                    "url": "https://offset.earth/frankdejonge",
-                    "type": "other"
-                }
-            ],
-            "time": "2020-05-18T15:13:39+00:00"
+          "funding": [
+            {
+              "url": "https://offset.earth/frankdejonge",
+              "type": "other"
+            }
+          ],
+          "time": "2020-05-18T15:13:39+00:00"
         },
+    {
+      "name": "marvinlabs/laravel-discord-logger",
+      "version": "v1.1.5",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/marvinlabs/laravel-discord-logger.git",
+        "reference": "615706a49d57cd3f3ba087dadae94c13e235260c"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/marvinlabs/laravel-discord-logger/zipball/615706a49d57cd3f3ba087dadae94c13e235260c",
+        "reference": "615706a49d57cd3f3ba087dadae94c13e235260c",
+        "shasum": ""
+      },
+      "require": {
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/support": "^5.5|^6.0|^7.0",
+        "php": ">=7.1"
+      },
+      "require-dev": {
+        "mockery/mockery": "^0.9",
+        "orchestra/testbench": "^3.6",
+        "phpunit/phpunit": "^7.0",
+        "roave/security-advisories": "dev-master"
+      },
+      "type": "library",
+      "extra": {
+        "laravel": {
+          "providers": [
+            "MarvinLabs\\DiscordLogger\\ServiceProvider"
+          ]
+        }
+      },
+      "autoload": {
+        "psr-4": {
+          "MarvinLabs\\DiscordLogger\\": "src/DiscordLogger"
+        }
+      },
+      "notification-url": "https://packagist.org/downloads/",
+      "license": [
+        "MIT"
+      ],
+      "authors": [
         {
-            "name": "monicahq/laravel-cloudflare",
-            "version": "1.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/monicahq/laravel-cloudflare.git",
-                "reference": "40a94665c387a6cccef80d49c267d700787d4450"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/monicahq/laravel-cloudflare/zipball/40a94665c387a6cccef80d49c267d700787d4450",
-                "reference": "40a94665c387a6cccef80d49c267d700787d4450",
-                "shasum": ""
-            },
-            "require": {
-                "fideloper/proxy": "~4.0",
-                "guzzlehttp/guzzle": "^6.3",
-                "illuminate/console": "^5.5 || ^6.0 || ^7.0",
-                "illuminate/http": "^5.5 || ^6.0 || ^7.0",
-                "illuminate/support": "^5.5 || ^6.0 || ^7.0",
-                "php": ">= 7.2.0"
+          "name": "Vincent Mimoun-Prat",
+          "email": "contact@vincentprat.info",
+          "homepage": "https://vincentprat.info",
+          "role": "Developer"
+        }
+      ],
+      "description": "Logging to a discord channel in Laravel",
+      "keywords": [
+        "discord",
+        "laravel",
+        "logger",
+        "logging"
+      ],
+      "time": "2020-03-12T08:20:52+00:00"
+    },
+    {
+      "name": "monicahq/laravel-cloudflare",
+      "version": "1.6.0",
+      "source": {
+        "type": "git",
+        "url": "https://github.com/monicahq/laravel-cloudflare.git",
+        "reference": "40a94665c387a6cccef80d49c267d700787d4450"
+      },
+      "dist": {
+        "type": "zip",
+        "url": "https://api.github.com/repos/monicahq/laravel-cloudflare/zipball/40a94665c387a6cccef80d49c267d700787d4450",
+        "reference": "40a94665c387a6cccef80d49c267d700787d4450",
+        "shasum": ""
+      },
+      "require": {
+        "fideloper/proxy": "~4.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/console": "^5.5 || ^6.0 || ^7.0",
+        "illuminate/http": "^5.5 || ^6.0 || ^7.0",
+        "illuminate/support": "^5.5 || ^6.0 || ^7.0",
+        "php": ">= 7.2.0"
             },
             "require-dev": {
                 "laravel/framework": "^5.6 || ^6.0 || ^7.0",
