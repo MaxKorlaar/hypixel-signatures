@@ -191,7 +191,7 @@ namespace App\Http\Controllers\Guild;
                 ]);
             }
 
-            throw new HypixelFetchException('An unknown error has occurred while trying to fetch this Guild from Hypixel');
+            throw new HypixelFetchException('An unknown error has occurred while trying to fetch this Guild from Hypixel. It might not exist or has been renamed');
         }
 
         /**

@@ -50,7 +50,8 @@
          * @var array
          */
         protected $dontReport = [
-            //
+            HypixelFetchException::class,
+            SkyBlockEmptyProfileException::class
         ];
 
         /**
