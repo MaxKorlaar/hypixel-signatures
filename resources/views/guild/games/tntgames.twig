@@ -1,0 +1,10 @@
+{% extends 'guild/members.twig' %}
+
+{% block page_title %}{{ guild.name }} TNT-Games statistics{% endblock %}
+{% block social_title %}{{ guild.name }} TNT-Games statistics - {{ config_get('app.name') }}{% endblock %}
+{% block social_description %}View the TNT-Games statistics of the Hypixel guild {{ guild.name }} on {{ config_get('app.name') }}. You can browse through the list and compare statistics for Bow Spleef, TNT Run, PVP Run, TNT Tag and Wizards of guild members.{% endblock %}
+
+{% block table_title %}<h1><a href="{{ route('guild.info', [guild.name]) }}">{{ guild.name }}</a>'s TNT-Games statistics</h1>{% endblock %}
+{% block members_table %}
+    <t-n-t-games-table :members="members"></t-n-t-games-table>
+{% endblock %}

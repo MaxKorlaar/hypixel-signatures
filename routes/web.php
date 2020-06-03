@@ -68,6 +68,9 @@
     Route::get('/guild/{name}/games/bedwars', 'Guild\BedWarsController@getBedWarsStatistics')->name('guild.games.bedwars');
     Route::get('/guild/{name}/games/bedwars/json', 'Guild\BedWarsController@getBedWarsStatistics')->name('guild.games.bedwars.json');
 
+    Route::get('/guild/{name}/games/tnt-games', 'Guild\TNTGamesController@getTNTGamesStatistics')->name('guild.games.tntgames');
+    Route::get('/guild/{name}/games/tnt-games/json', 'Guild\TNTGamesController@getTNTGamesStatistics')->name('guild.games.tntgames.json');
+
     Route::prefix('status-sig')->group(static function () {
         Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');
     });
