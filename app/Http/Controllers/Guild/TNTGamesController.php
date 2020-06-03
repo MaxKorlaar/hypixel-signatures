@@ -121,9 +121,9 @@ namespace App\Http\Controllers\Guild;
                     'wins_tnttag'  => $stats->getInt('wins_tntag'),
                     'kills_tnttag' => $stats->getInt('kills_tntag'),
 
-                    'wins_wizards'    => $stats->getInt('kills_capture'),
+                    'wins_wizards'    => $stats->getInt('wins_capture'),
                     'kills_wizards'   => $killsWizards,
-                    'assists_wizards' => $stats->getInt('kills_capture'),
+                    'assists_wizards' => $stats->getInt('assists_capture'),
                     'kd_wizards'      => $kdWizards,
                 ];
             });
