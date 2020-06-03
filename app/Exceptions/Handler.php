@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -34,8 +34,10 @@
 
     use Exception;
     use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+    use Illuminate\Http\JsonResponse;
     use Illuminate\Http\Request;
-    use Illuminate\Http\Response;
+    use Illuminate\Support\Facades\Response;
+    use Plancke\HypixelPHP\exceptions\BadResponseCodeException;
     use Throwable;
 
     /**
@@ -73,6 +75,10 @@
          * @throws Exception
          */
         public function report(Throwable $exception) {
+            if (($exception instanceof BadResponseCodeException) && $exception->getActualCode() === 429) {
+                return;
+            }
+
             parent::report($exception);
         }
 
@@ -82,10 +88,17 @@
          * @param Request   $request
          * @param Throwable $exception
          *
-         * @return Response
+         * @return JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
          * @throws Throwable
          */
         public function render($request, Throwable $exception) {
+            if ($exception instanceof BadResponseCodeException) {
+                return Response::view('errors.hypixel_api', [
+                    'exception' => $exception,
+                    'code'      => $exception->getActualCode()
+                ]);
+            }
+
             return parent::render($request, $exception);
         }
     }
