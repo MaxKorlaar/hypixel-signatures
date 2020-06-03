@@ -62,7 +62,7 @@
          * @param string $line
          */
         protected function actuallyLog($level, $line) {
-            if (Str::contains($line, 'vendor/plancke/hypixel-php')) {
+            if (Str::contains($line, ['vendor/plancke/hypixel-php', '(200/429)'])) {
                 Log::stack(['daily'])->log($this->levels[$level], $line);
             } else {
                 Log::log($this->levels[$level], $line);
