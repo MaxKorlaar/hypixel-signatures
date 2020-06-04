@@ -1,76 +1,57 @@
 {% extends 'partials/page.twig' %}
-{% block page_title %}Hypixel Signatures & Tools{% endblock %}
+{% block page_title %}{{ trans('home.title') }}{% endblock %}
 {% block content %}
     <div class="home">
         <div class="callout">
-            <p>
-                Showcase <b>live</b> Hypixel minigame and SkyBlock statistics for everyone to see just by putting an image in your forum signature
-                or forum posts. Select your signature once and we'll take care of the rest.
-            </p>
-            <p>
-                It's easy – You only have to enter your username to get started.
-            </p>
+            {% for text in trans('home.callout') %}
+                <p>
+                    {{ text|raw }}
+                </p>
+            {% endfor %}
             <form class="input has-button" method="get" action="{{ route('signatures.form_redirect') }}">
                 <div class="fields">
-                    <input title="Username" type="search" autocomplete="nickname" name="username" placeholder="Enter your username to get started">
-                    <button class="button hide-sm" type="submit">Choose a signature &longrightarrow;</button>
+                    <input title="Username" type="search" autocomplete="nickname" name="username" placeholder="{{ trans('home.callout_placeholder') }}">
+                    <button class="button hide-sm" type="submit">{{ trans('home.callout_button') }} &longrightarrow;</button>
                     <button class="button hide-md hide-lg hide-xl" type="submit">&longrightarrow;</button>
                 </div>
             </form>
         </div>
         <div class="columns">
             <div>
-                <h2>Featured</h2>
+                <h2>{{ trans('home.featured') }}</h2>
                 <div class="featured">
                     <a href="{{ route('signatures') }}">
                         <img src="{{ route('signatures.skyblock.stats', ['b876ec32e396476ba1158438d83c67d4', 'b876ec32e396476ba1158438d83c67d4']) }}" alt="">
                         <i>SkyBlock character stats</i>
                     </a>
                 </div>
-                <h2>About</h2>
-                <p>
-                    I've created this website for the players and fans of the 'Hypixel' Minecraft server. It is the most popular Minecraft server in
-                    the world,
-                    with lots of public statistics you can do fun stuff with. I've done exactly that on my website: You can view
-                    people their minigame statistics in the form of dynamic 'signatures': Images that you can place in forum posts and your forum
-                    signature,
-                    so that others can view your latest achievements with ease.
-                </p>
-                <p>
-                    The <i>dynamic</i> part means that these signatures automatically update themselves, meaning you only have to select and use your
-                    signature once and we'll automatically make sure its contents are up to date.
-                </p>
-                <p>
-                    I'm always open to suggestions! Missing something? Feel free to <a href="https://twitter.com/MaxKorlaar">hit me up on Twitter</a>,
-                    leave suggestions in our Discord server linked down below
-                    or <a href="https://github.com/MaxKorlaar/hypixel-signatures">check out the source code for yourself on GitHub</a>.
-                </p>
+                <h2>{{ trans('home.about') }}</h2>
+                {% for text in trans('home.about_text') %}
+                    <p>
+                        {{ text|raw }}
+                    </p>
+                {% endfor %}
                 <a href="https://twitter.com/MaxKorlaar?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-screen-name="false" data-dnt="true" data-show-count="false">
                     Follow @MaxKorlaar
                 </a>
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                <h2>Discord Server</h2>
+                <h2>{{ trans('home.discord') }}</h2>
                 <iframe style="border:none;margin:.5rem 0;" src="https://discord.com/widget?id=717007953852629083&theme=dark" width="100%" height="250" allowtransparency="true"></iframe>
             </div>
             <div class="overview">
                 <div class="item">
-                    <h2>Hypixel Minecraft Server Dynamic Signatures</h2>
+                    <h2>{{ trans('home.overview.signatures') }}</h2>
                     <p>
-                        You can find and generate lots of different signatures (images) containing your <b>live</b> Hypixel statistics, for various
-                        Hypixel
-                        minigames, SkyBlock and general statistics in multiple styles. These images can be used on any website, including the Hypixel
-                        forums,
-                        and will automatically show your latest data – generate your signature once, forget the rest.
+                        {{ trans('home.overview.signatures_text') }}
                     </p>
-                    <a href="{{ route('signatures') }}" class="button primary">Get your own signature</a>
+                    <a href="{{ route('signatures') }}" class="button primary">{{ trans('home.overview.signatures_button') }}</a>
                 </div>
                 <div class="item">
-                    <h2>Hypixel Friends list</h2>
+                    <h2>{{ trans('home.overview.friends') }}</h2>
                     <p>
-                        An overview of your or someone else's friends list on Hypixel, and how long you've already been friends with them.
-                        This allows you to easily see which game your friends currently are playing!
+                        {{ trans('home.overview.friends_text') }}
                     </p>
-                    <a href="{{ route('friends') }}" class="button primary">See your friends list</a>
+                    <a href="{{ route('friends') }}" class="button primary">{{ trans('home.overview.friends_button') }}</a>
                 </div>
 
                 <iframe src="https://www.strawpoll.me/embed_1/20018435" style="width:100%;height:75vh;border:0;">Loading poll...</iframe>

@@ -57,16 +57,16 @@
         <nav>
             <ul class="container-xl">
                 <li class="{{ app.request.routeIs('home') ? 'active' }}">
-                    <a href="{{ route('home') }}">Home</a>
+                    <a href="{{ route('home') }}">{{ trans('nav.home') }}</a>
                 </li>
                 <li class="{{ app.request.routeIs('signatures') ? 'active' }}">
-                    <a href="{{ route('signatures') }}">Dynamic Signatures</a>
+                    <a href="{{ route('signatures') }}">{{ trans('nav.signatures') }}</a>
                 </li>
                 <li class="{{ app.request.routeIs('friends*') ? 'active' }}">
-                    <a href="{{ route('friends') }}">Friends</a>
+                    <a href="{{ route('friends') }}">{{ trans('nav.friends') }}</a>
                 </li>
                 <li class="{{ app.request.routeIs('guild*') ? 'active' }}">
-                    <a href="{{ route('guild') }}">Guild</a>
+                    <a href="{{ route('guild') }}">{{ trans('nav.guild') }}</a>
                 </li>
             </ul>
         </nav>
@@ -87,8 +87,8 @@
                     <a class="icon" href="https://github.com/MaxKorlaar/hypixel-signatures"><img src="{{ asset('images/GitHub-logomark.svg') }}" alt="This project on GitHub"></a>
                 </div>
                 <div>
-                    <a href="{{ route('privacy') }}">Privacy</a> &centerdot;
-                    <a href="https://github.com/MaxKorlaar/hypixel-signatures#acknowledgements">Acknowledgements</a>
+                    <a href="{{ route('privacy') }}">{{ trans('footer.privacy') }}</a> &centerdot;
+                    <a href="https://github.com/MaxKorlaar/hypixel-signatures#acknowledgements">{{ trans('footer.acknowledgements') }}</a>
                 </div>
             </div>
         </footer>
