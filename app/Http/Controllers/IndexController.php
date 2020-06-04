@@ -58,9 +58,9 @@
         public function signatureIndex() {
             $signatures = [
                 'generic'  => [
-                    'name'        => 'Generic Signatures',
-                    'short_name'  => 'Generic',
-                    'description' => 'Generic statistics for the most popular Hypixel games or your Hypixel profile.',
+                    'name'        => trans('signatures.groups.generic.name'),
+                    'short_name'  => trans('signatures.groups.generic.short_name'),
+                    'description' => trans('signatures.groups.generic.description'),
                     'signatures'  => [
                         [
                             'name'  => 'General statistics',
@@ -86,9 +86,9 @@
                     ]
                 ],
                 'guild'    => [
-                    'name'        => 'Guild Signatures',
-                    'short_name'  => 'Guild',
-                    'description' => 'Generic statistics for the guild you\'re part of on Hypixel. The general guild statistics image also shows the guild\'s banner if they have one!',
+                    'name'        => trans('signatures.groups.guild.name'),
+                    'short_name'  => trans('signatures.groups.guild.short_name'),
+                    'description' => trans('signatures.groups.guild.description'),
                     'signatures'  => [
                         [
                             'name'  => 'General guild statistics',
@@ -101,9 +101,9 @@
                     ]
                 ],
                 'skyblock' => [
-                    'name'        => 'SkyBlock Signatures',
-                    'short_name'  => 'SkyBlock',
-                    'description' => 'Hypixel SkyBlock statistics, custom made to parse all SkyBlock data per SkyBlock profile on your account!',
+                    'name'        => trans('signatures.groups.skyblock.name'),
+                    'short_name'  => trans('signatures.groups.skyblock.short_name'),
+                    'description' => trans('signatures.groups.skyblock.description'),
                     'signatures'  => [
                         [
                             'name'       => 'SkyBlock character stats',
@@ -141,8 +141,6 @@
                     $signature['url'] = route('signatures.' . $signature['route'], [':uuid', ... $signature['parameters'] ?? []]);
                 }
             }
-
-            //route('signatures.' ~ signature.route, ['b876ec32e396476ba1158438d83c67d4'])
 
             return view('signatures.index', [
                 'signatures' => $signatures,

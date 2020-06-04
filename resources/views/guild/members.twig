@@ -1,15 +1,16 @@
 {% extends 'guild/info.twig' %}
 
-{% block page_title %}{{ guild.name }} Guild Members{% endblock %}
-{% block social_title %}Guild members of {{ guild.name }} - {{ config_get('app.name') }}{% endblock %}
-{% block social_description %}View all of {{ guild.name }}'s {{ guild.memberCount }} members and more on {{ config_get('app.name') }}{% endblock %}
+{% block page_title %}{{ trans('guild.members.page_title', { name: guild.name }) }}{% endblock %}
+{% block social_title %}{{ trans('guild.members.social.title', { name: guild.name, site: config_get('app.name') }) }}{% endblock %}
+{% block social_description %}{{ trans('guild.members.social.description', { name: guild.name, count: guild.memberCount, site: config_get('app.name') }) }}{% endblock %}
 
 {% block guild_content %}
-    {% block table_title %}<h1><a href="{{ route('guild.info', [guild.name]) }}">{{ guild.name }}</a>'s members</h1>{% endblock %}
+    {% block table_title %}
+        <h1>{{ trans('guild.members.title', { name: guild.name, link: route('guild.info', [guild.name]) })|raw }}</h1>{% endblock %}
 
     <div id="guild-members-app">
         <div class="progress-info" v-if="meta.loaded < meta.total_members" v-cloak>
-            <h2>Loading members ({{ "{{ meta.loaded }}" }} / {{ "{{ meta.total_members }}" }})&hellip;</h2>
+            <h2>{{ trans('guild.members.loading_members') }}</h2>
 
             <div class="bar">
                 <div class="inner" :style="{ '--percentage': Math.round(meta.loaded/meta.total_members * 100) + '%' }"></div>

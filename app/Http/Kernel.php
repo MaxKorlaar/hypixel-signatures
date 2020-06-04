@@ -36,6 +36,7 @@
     use App\Http\Middleware\CheckForMaintenanceMode;
     use App\Http\Middleware\EncryptCookies;
     use App\Http\Middleware\RedirectIfAuthenticated;
+    use App\Http\Middleware\SetLanguage;
     use App\Http\Middleware\TrimStrings;
     use App\Http\Middleware\TrustProxies;
     use App\Http\Middleware\VerifyCsrfToken;
@@ -90,10 +91,12 @@
                 ShareErrorsFromSession::class,
                 VerifyCsrfToken::class,
                 SubstituteBindings::class,
+                SetLanguage::class
             ],
 
             'static' => [
-                'bindings'
+                'bindings',
+                SetLanguage::class
             ],
 
             'api' => [

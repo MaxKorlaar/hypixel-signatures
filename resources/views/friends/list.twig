@@ -1,34 +1,29 @@
 {% extends 'partials/page.twig' %}
-{% block page_title %}{{ username }}'s Hypixel Friends List{% endblock %}
+{% block page_title %}{{ trans('friends.list.page_title', { username: username }) }}{% endblock %}
 
 {% block social_image %}{{ route('player.skin.head', { uuid: player.getUUID(), size: 10 }) }}{% endblock %}
-{% block social_title %}{{ username }}'s friends on Hypixel – {{ config_get('app.name') }}{% endblock %}
-{% block social_description %}View all of {{ meta.total_friends }} friends of {{ username }} on the Hypixel Minecraft server. You can browse through the list and navigate to other Hypixel players.{% endblock %}
+{% block social_title %}{{ trans('friends.list.social.title', { username: username, site: config_get('app.name') }) }}{% endblock %}
+{% block social_description %}{{ trans('friends.list.social.description', { username: username, total_friends: meta.total_friends }) }}{% endblock %}
 
 {% block content %}
     <div class="friends-list" id="friends-list-app">
-        <h1>{{ formatted_username|raw }}'s friends on Hypixel</h1>
+        <h1>{{ trans('friends.list.title', { username: formatted_username })|raw }}</h1>
 
         <div class="description">
             <div>
-                <p>
-                    On this page you can find an overview of all of {{ username }}'s {{ meta.total_friends }} friends on Hypixel.
-                    You can see their ranks and click on them to view friends lists of other players.
-                </p>
-                <p>If you want to
-                    <a href="{{ route('signatures.form_redirect', { username: username }) }}">generate dynamic signature images for {{ username }}</a>,
-                   you can also do that on {{ config_get('app.name') }}! Show off {{ username }}'s minigame or SkyBlock statistics and achievements on
-                   any
-                   website that allows you to link to images
-                    <a href="{{ route('signatures.form_redirect', { username: username }) }}">by creating a dynamic signature</a>.</p>
+                {% for text in trans('friends.list.description', { total_friends: meta.total_friends, form_link: route('signatures.form_redirect', { username: username }), site: config_get('app.name'), username: username }) %}
+                    <p>
+                        {{ text|raw }}
+                    </p>
+                {% endfor %}
             </div>
             <div class="social-share">
-                <a href="https://twitter.com/share" data-url="{{ route('friends.list', [player.getUUID()]) }}" class="twitter-share-button" data-text="I'm browsing {{ username }}'s friend list on Hypixel!" data-via="MaxKorlaar" data-size="small" data-related="MaxKorlaar" data-hashtags="Hypixel">Tweet</a>
+                <a href="https://twitter.com/share" data-url="{{ route('friends.list', [player.getUUID()]) }}" class="twitter-share-button" data-text="{{ trans('friends.list.tweet_text', { username: username }) }}" data-via="MaxKorlaar" data-size="small" data-related="MaxKorlaar" data-hashtags="Hypixel">Tweet</a>
             </div>
         </div>
 
         <div class="progress-info" v-if="meta.loaded < meta.total_friends" v-cloak>
-            <h2>Loading friends ({{ "{{ meta.loaded }}" }} / {{ "{{ meta.total_friends }}" }})&hellip;</h2>
+            <h2>{{ trans('friends.list.loading_friends') }}</h2>
 
             <div class="bar">
                 <div class="inner" :style="{ '--percentage': Math.round(meta.loaded/meta.total_friends * 100) + '%' }"></div>
@@ -47,7 +42,7 @@
                         <span></span>
                     </div>
                     <h3 v-html="player.formatted_name"></h3>
-                    since {{ "{{ new Date(player.since).toLocaleDateString() }}" }}
+                    {{ trans('friends.list.friends_since') }}
                 </div>
             </a>
         </div>

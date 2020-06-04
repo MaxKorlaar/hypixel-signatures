@@ -1,17 +1,16 @@
 {% extends 'partials/page.twig' %}
-{% block page_title %}Dynamic Signatures{% endblock %}
+{% block page_title %}{{ trans('signatures.title') }}{% endblock %}
 {% block content %}
-    <h1>Hypixel Dynamic Statistic Signatures</h1>
+    <h1>{{ trans('signatures.title') }}</h1>
     <div id="signature-app">
         <div class="input" :class="{'has-error': errors.username }">
-            <label for="username">Minecraft username or UUID</label>
+            <label for="username">{{ trans('signatures.username_or_uuid') }}</label>
             <input id="username" autocomplete="nickname" :disabled="loading" type="text" v-model="username" @change="getUuidFromUsername()" @input="clearError('username')">
             <p class="error" v-if="errors.username" v-cloak>
                 {{ '{{ errors.username }}' }}
             </p>
             <p class="help">
-                Enter your Minecraft username or UUID here in order to allow us to look up your statistics via the Hypixel public API.
-                If you do not know what your UUID is, enter your username and it will be looked up for you.
+                {{ trans('signatures.username_help') }}
             </p>
         </div>
 
@@ -34,15 +33,13 @@
 
             <div class="skyblock-data" v-if="current_signature_group.short_name === 'SkyBlock'">
                 <p class="center-text error" v-if="skyblock.profiles.length === 0 && !skyblock.loading">
-                    You don't seem to have any SkyBlock profiles on your account. Please play SkyBlock and try again later, or enable your API
-                    statistics
-                    if you've disabled them.
+                    {{ trans('signatures.skyblock.no_profiles') }}
                 </p>
                 <p class="center-text error" v-if="skyblock.profiles.length > 0 && skyblock.profile === null && !skyblock.loading">
-                    Please select a SkyBlock profile to use for generating your signatures.
+                    {{ trans('signatures.skyblock.select_a_profile') }}
                 </p>
                 <div class="input" v-if="skyblock.profiles.length > 0" :class="{'has-error': errors.skyblock_profiles }">
-                    <label>SkyBlock profile</label>
+                    <label>{{ trans('signatures.skyblock.profile') }}</label>
                     <div class="profiles">
                         <div v-for="profile in skyblock.profiles">
                             <label class="button" :class="{ selected: skyblock.profile === profile }">
@@ -70,31 +67,25 @@
                 </div>
             </div>
             <div class="results" v-if="selected_signature">
-                <h2>Your signature</h2>
-                <p>
-                    Below you can find the signature that you have selected.
-                    You can refer to it using the URL of the image, or copy and paste the BBcode on the forums in a forum post, or in your signature.
-                </p>
-                <p>
-                    It's important to use the BBcode or image URL below to refer to your signature. If you download your signature,
-                    or copy and paste the image itself, then it won't automatically be updated.
-                </p>
+                <h2>{{ trans('signatures.your_signature') }}</h2>
+                {% for text in trans('signatures.your_signature_text') %}
+                    <p>
+                        {{ text|raw }}
+                    </p>
+                {% endfor %}
                 <img :class="{ pixelated: selected_signature.pixelated }" :src="getImageUrl(selected_signature)" alt="">
 
                 <div class="links">
                     <div class="title">
-                        <h3>BBCode</h3>
+                        <h3>{{ trans('signatures.bbcode') }}</h3>
                     </div>
                     <div>
                         <code class="bbcode">[URL='{{ config_get('app.url') }}'][IMG]{{ '{{ getImageUrl(selected_signature) }}' }}[/IMG][/URL]</code>
-                        <p>Copy and paste the above snippet of text in <a href="https://hypixel.net/account/signature">your forum signature</a> to
-                           automatically
-                           display your chosen statistics below every post you
-                           make on the forums. You can use the URL to the image to place this signature on other websites if you wish.</p>
+                        <p>{{ trans('signatures.bbcode_instructions') }}</p>
                     </div>
                     <div class="title">
                         <h3>
-                            Direct link
+                            {{ trans('signatures.direct_link') }}
                         </h3>
                     </div>
                     <div>
@@ -104,8 +95,8 @@
 
 
                 <div v-if="selected_signature.options_text" class="signature-options">
-                    <h3>Signature options</h3>
-                    <p>This signature offers options that you may set to alter the looks of it:</p>
+                    <h3>{{ trans('signatures.signature_options') }}</h3>
+                    <p>{{ trans('signatures.signature_options_text') }}</p>
                     <p v-html="replaceParameters(this.selected_signature.options_text)"></p>
                 </div>
             </div>

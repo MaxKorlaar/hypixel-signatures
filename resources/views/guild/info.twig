@@ -1,9 +1,9 @@
 {% extends 'partials/page.twig' %}
-{% block page_title %}{{ guild.name }} Guild{% endblock %}
+{% block page_title %}{{ trans('guild.info.title', { name: guild.name }) }}{% endblock %}
 
 {% block social_image %}{{ route('guild.banner', [guild.id]) }}{% endblock %}
-{% block social_title %}{{ guild.name }} – {{ config_get('app.name') }}{% endblock %}
-{% block social_description %}{{ description|striptags ?: guild.name ~ ' is a guild on the Hypixel Minecraft server' }} - View {{ guild.name }}'s members, guild statistics and even guild game statistics for SkyWars, Bed Wars and more games on {{ config_get('app.name') }}{% endblock %}
+{% block social_title %}{{ trans('guild.info.social.title', { name: guild.name, site: config_get('app.name') }) }}{% endblock %}
+{% block social_description %}{{ description|striptags ?: trans('guild.info.social.default_description', { name: guild.name }) }}{{ trans('guild.info.social.description', { name: guild.name, site: config_get('app.name') }) }}{% endblock %}
 
 {% block head %}
     {{ parent() }}
@@ -13,14 +13,20 @@
     <div class="guild-info">
         <div class="sidebar">
             <h2><a href="{{ route('guild.info', [guild.name]) }}">{{ guild.name }}</a></h2>
-            <a href="{{ route('guild.members', [guild.name]) }}" class="button">Member list</a>
-            <a href="{{ route('guild.games.skywars', [guild.name]) }}" class="button">SkyWars statistics</a>
-            <a href="{{ route('guild.games.bedwars', [guild.name]) }}" class="button">Bed Wars statistics</a>
-            <a href="{{ route('guild.games.tntgames', [guild.name]) }}" class="button">TNT-Games statistics</a>
+            <a href="{{ route('guild.members', [guild.name]) }}" class="button">{{ trans('guild.info.members') }}</a>
+            <a href="{{ route('guild.games.skywars', [guild.name]) }}" class="button">{{ trans('guild.info.skywars_statistics') }}</a>
+            <a href="{{ route('guild.games.bedwars', [guild.name]) }}" class="button">{{ trans('guild.info.bedwars_statistics') }}</a>
+            <a href="{{ route('guild.games.tntgames', [guild.name]) }}" class="button">{{ trans('guild.info.tntgames_statistics') }}</a>
             <ul>
-                <li><a target="_blank" href="//hypixel.maxkorlaar.com/guild/{{ guild.id }}/statistics/megawalls">Mega Walls statistics</a></li>
-                <li><a target="_blank" href="//hypixel.maxkorlaar.com/guild/{{ guild.id }}/statistics/crazywalls">Crazy Walls statistics</a></li>
-                <li><a target="_blank" href="//hypixel.maxkorlaar.com/guild/{{ guild.id }}/quakecraft">Quakecraft statistics</a></li>
+                <li>
+                    <a target="_blank" href="//hypixel.maxkorlaar.com/guild/{{ guild.id }}/statistics/megawalls">{{ trans('guild.info.megawalls_statistics') }}</a>
+                </li>
+                <li>
+                    <a target="_blank" href="//hypixel.maxkorlaar.com/guild/{{ guild.id }}/statistics/crazywalls">{{ trans('guild.info.crazywalls_statistics') }}</a>
+                </li>
+                <li>
+                    <a target="_blank" href="//hypixel.maxkorlaar.com/guild/{{ guild.id }}/quakecraft">{{ trans('guild.info.quakecraft_statistics') }}</a>
+                </li>
             </ul>
         </div>
         <div class="content">
@@ -36,23 +42,23 @@
                 <table class="information">
                     <tbody>
                         <tr>
-                            <td class="bold">Current member count</td>
+                            <td class="bold">{{ trans('guild.info.current_members') }}</td>
                             <td><a href="{{ route('guild.members', [guild.name]) }}">{{ guild.memberCount }}</a></td>
                         </tr>
                         <tr>
-                            <td class="bold">Level</td>
+                            <td class="bold">{{ trans('guild.info.level') }}</td>
                             <td>{{ guild.level }}</td>
                         </tr>
                         <tr>
-                            <td class="bold">Tag</td>
+                            <td class="bold">{{ trans('guild.info.tag') }}</td>
                             <td>{{ formatted_tag|raw }}</td>
                         </tr>
                         <tr>
-                            <td class="bold">Description</td>
-                            <td>{{ (description ?: '<i>None set</i>')|raw }}</td>
+                            <td class="bold">{{ trans('guild.info.description') }}</td>
+                            <td>{{ (description ?: trans('guild.info.not_set'))|raw }}</td>
                         </tr>
                         <tr>
-                            <td class="bold">Guildmaster</td>
+                            <td class="bold">{{ trans('guild.info.guildmaster') }}</td>
                             <td>
                                 <a href="{{ route('signatures.form_redirect', { username: guildmaster.name }) }}">
                                     <img src="{{ route('player.skin.head', { uuid: guildmaster.getUUID(), size: 3 }) }}" alt="">
@@ -61,54 +67,56 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="bold">Created on</td>
+                            <td class="bold">{{ trans('guild.info.created_on') }}</td>
                             <td id="date">{{ (guild.get('created')/1000)|round|date }}</td>
                         </tr>
                         <tr>
-                            <td class="bold">Preferred games</td>
+                            <td class="bold">{{ trans('guild.info.preferred_games') }}</td>
                             <td>
                                 <ul>
                                     {% for game in preferred_games %}
                                         <li>{{ game }}</li>
                                     {% else %}
-                                        <li><i>None set</i></li>
+                                        <li>{{ trans('guild.info.not_set')|raw }}</li>
                                     {% endfor %}
                                 </ul>
                             </td>
                         </tr>
                         <tr>
-                            <td class="bold">Most active games</td>
+                            <td class="bold">{{ trans('guild.info.most_active_games') }}</td>
                             <td>
                                 <ul>
                                     {% for game in most_active_games %}
                                         <li>{{ game }}</li>
+                                    {% else %}
+                                        <li>{{ trans('guild.info.not_set')|raw }}</li>
                                     {% endfor %}
                                 </ul>
                             </td>
                         </tr>
                         <tr>
-                            <td class="bold">Guild experience</td>
+                            <td class="bold">{{ trans('guild.info.experience') }}</td>
                             <td>{{ guild.exp|number_format }}</td>
                         </tr>
                         {% if guild.getInt('coins') > 0 %}
                             <tr>
-                                <td class="bold">Coins</td>
+                                <td class="bold">{{ trans('guild.info.coins') }}</td>
                                 <td>{{ guild.get('coins')|number_format }}</td>
                             </tr>
                         {% endif %}
                         {% if guild.legacyRank > -1 %}
                             <tr>
-                                <td class="bold">Legacy rank</td>
+                                <td class="bold">{{ trans('guild.info.legacy_rank') }}</td>
                                 <td>#{{ guild.legacyRank + 1 }}</td>
                             </tr>
                         {% endif %}
                         <tr>
-                            <td class="bold">Publicly joinable</td>
-                            <td>{{ guild.joinable ? 'Yes' : 'No' }}</td>
+                            <td class="bold">{{ trans('guild.info.joinable') }}</td>
+                            <td>{{ guild.joinable ? trans('guild.info.yes') : trans('guild.info.no') }}</td>
                         </tr>
                         <tr>
-                            <td class="bold">Publicly listed</td>
-                            <td>{{ guild.publiclyListed ? 'Yes' : 'No' }}</td>
+                            <td class="bold">{{ trans('guild.info.listed') }}</td>
+                            <td>{{ guild.publiclyListed ? trans('guild.info.yes') : trans('guild.info.no') }}</td>
                         </tr>
                     </tbody>
                 </table>
