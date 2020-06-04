@@ -66,12 +66,14 @@
                     'priority' => 1
                 ],
                 [
-                    'url'      => route('guild'),
-                    'priority' => 1
+                    'url'       => route('guild'),
+                    'priority'  => 1,
+                    'frequency' => 'daily',
                 ],
                 [
-                    'url'      => route('friends'),
-                    'priority' => 1
+                    'url'       => route('friends'),
+                    'priority'  => 1,
+                    'frequency' => 'daily',
                 ],
             ]);
 
