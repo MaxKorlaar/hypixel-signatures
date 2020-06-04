@@ -31,35 +31,35 @@
  */
 
     return [
-        'title' => 'Hypixel Friends List',
+        'title' => 'Hypixel Vriendenlijst',
 
         'callout'             => [
-            "View a list of your or someone else's friends on Hypixel, how long you've been friends with them and more.",
-            "It's easy – You only have to enter your username to get started."
+            'Bekijk de vriendenlijst van een speler of jezelf op Hypixel, hoe lang je al bevriend met ze bent en meer',
+            'Het is gemakkelijk – Je hoeft alleen je gebruikersnaam in te voeren om te beginnen.'
         ],
-        'callout_placeholder' => 'Enter your username to get started',
-        'callout_button'      => 'View friends',
+        'callout_placeholder' => 'Voer je gebruikersnaam in om te beginnen',
+        'callout_button'      => 'Bekijk vrienden',
 
-        'recently_viewed'                   => 'Recently viewed',
-        'recently_viewed_friends_and_views' => ':count friends – :views views',
+        'recently_viewed'                   => 'Recent bekeken',
+        'recently_viewed_friends_and_views' => ':count vrienden – :views keer bekeken',
 
         'list' => [
-            'page_title' => ":username's Hypixel Friends List",
-            'title'      => ":username's friends on Hypixel",
+            'page_title' => ":username Hypixel Vriendenlijst",
+            'title'      => "De vrienden van :username op Hypixel",
 
             'social' => [
-                'title'       => ":username's friends on Hypixel - :site",
-                'description' => 'View all of :total_friends friends of :username on the Hypixel Minecraft server. You can browse through the list and navigate to other Hypixel players.',
+                'title'       => "De vrienden van :username op Hypixel - :site",
+                'description' => 'Bekijk alle :total_friends vrienden van :username op de Hypixel Minecraft-server. Je kan door de lijst bladeren en naar andere Hypixel-spelers kijken.',
             ],
 
             'description' => [
-                "On this page you can find an overview of all of :username's :total_friends friends on Hypixel. You can see their ranks and click on them to view friends lists of other players.",
-                "If you want to <a href=':form_link'>generate dynamic signature images for :username</a>, you can also do that on :site! Show off :username's minigame or SkyBlock statistics and achievements on any website that allows you to link to images by <a href=':form_link'>creating a dynamic signature</a>."
+                'Op deze pagina zie je een overzicht van alle vrienden van :username op Hypixel. Je kan hun ranks zien en op ze klikken om de vriendenlijsten van andere spelers te bekijken.',
+                "Als je een <a href=':form_link'>dynamische afbeelding voor :username wil genereren</a>, dat kan je ook doen op :site! Pronk met de prestaties, minigame- of SkyBlock-statistieken van :username op elke website die het je toestaat om naar afbeeldingen te verwijzen door <a href=':form_link'>een dynamische afbeelding aan te maken</a>."
             ],
 
-            'tweet_text' => "I'm browsing :username's friend list on Hypixel!",
+            'tweet_text' => "Ik bekijk de vriendenlijst van :username op Hypixel!",
 
-            'loading_friends' => 'Loading friends ({{ meta.loaded }} / {{ meta.total_friends }})…',
-            'friends_since'   => 'since {{ new Date(player.since).toLocaleDateString() }}'
+            'loading_friends' => 'Vrienden laden ({{ meta.loaded }} / {{ meta.total_friends }})…',
+            'friends_since'   => 'sinds {{ new Date(player.since).toLocaleDateString() }}'
         ]
     ];
