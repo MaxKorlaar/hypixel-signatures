@@ -66,7 +66,7 @@
             "It's important to use the BBcode or image URL below to refer to your signature. If you download your signature, or copy and paste the image itself, then it won't automatically be updated."
         ],
 
-        'bbcode'              => 'BBCode',
+        'bbcode'              => 'BBcode',
         'bbcode_instructions' => 'Copy and paste the above snippet of text in <a href="https://hypixel.net/account/signature">your forum signature</a> to automatically display your chosen statistics below every post you make on the forums. You can use the URL to the image to place this signature on other websites if you wish.</p>',
 
         'direct_link' => 'Direct link',
