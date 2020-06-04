@@ -47,4 +47,15 @@
 
         'recently_viewed'                   => 'Recent bekeken',
         'recently_viewed_members_and_views' => ':count leden – :views keer bekeken',
+
+        'info' => [
+            'title' => ':name Gilde',
+
+            'social' => [
+                'title' => ':name - :site',
+
+                'default_description' => ':name is een gilde op de Hypixel Minecraft-server',
+                'description'         => " - Bekijk de leden van :name's, hun statistieken en zelfs minigame-statistieken voor SkyWars, Bed Wars en meer spellen voor heel de gilde op :site."
+            ],
+        ]
     ];
