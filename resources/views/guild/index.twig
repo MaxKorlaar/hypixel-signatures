@@ -15,7 +15,7 @@
             <form class="input has-button {{ errors.has('username') ? 'has-error' }}" method="post" action="{{ route('guild.form_redirect') }}">
                 {{ csrf_field() }}
                 <div class="fields">
-                    <input value="{{ old('username') }}" title="Username" type="text" autocomplete="nickname" name="username" placeholder="Enter your username to get started">
+                    <input value="{{ old('username') }}" title="Username" type="text" autocomplete="nickname" name="username" placeholder="{{ trans('guild.callout_placeholder') }}">
                     <button class="button hide-sm" type="submit">{{ trans('guild.callout_button') }} &longrightarrow;</button>
                     <button class="button hide-md hide-lg hide-xl" type="submit">&longrightarrow;</button>
                 </div>

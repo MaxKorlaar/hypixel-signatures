@@ -38,11 +38,12 @@
             'description' => 'Find information about a guild on the Hypixel Minecraft server, including their level, settings, description, members. You can also look through and compare guild statistics for games such as SkyWars, Bed Wars, TNT-Games, Mega Walls, Crazy Walls and Quakecraft, all on :site!'
         ],
 
-        'callout'        => [
+        'callout'             => [
             "View information about any Hypixel Guild, including their members, description and even game statistics.",
             "It's easy – You only have to enter an username or guild name to get started."
         ],
-        'callout_button' => 'View guild',
+        'callout_placeholder' => 'Enter your username to get started',
+        'callout_button'      => 'View guild',
 
         'recently_viewed'                   => 'Recently viewed',
         'recently_viewed_members_and_views' => ':count members – :views views',
