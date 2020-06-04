@@ -46,11 +46,19 @@
             'page_title' => ":username's Hypixel Friends List",
             'title'      => ":username's friends on Hypixel",
 
+            'social' => [
+                'title'       => ":username's friends on Hypixel - :site",
+                'description' => 'View all of :total_friends friends of :username on the Hypixel Minecraft server. You can browse through the list and navigate to other Hypixel players.',
+            ],
+
             'description' => [
                 "On this page you can find an overview of all of :username's :total_friends friends on Hypixel. You can see their ranks and click on them to view friends lists of other players.",
                 "If you want to <a href=':form_link'>generate dynamic signature images for :username</a>, you can also do that on :site! Show off :username's minigame or SkyBlock statistics and achievements on any website that allows you to link to images by <a href=':form_link'>creating a dynamic signature</a>."
             ],
 
             'tweet_text' => "I'm browsing :username's friend list on Hypixel!",
+
+            'loading_friends' => 'Loading friends ({{ meta.loaded }} / {{ meta.total_friends }})…',
+            'friends_since'   => 'since {{ new Date(player.since).toLocaleDateString() }}'
         ]
     ];
