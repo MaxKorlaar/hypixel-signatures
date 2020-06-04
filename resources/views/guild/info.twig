@@ -3,7 +3,7 @@
 
 {% block social_image %}{{ route('guild.banner', [guild.id]) }}{% endblock %}
 {% block social_title %}{{ guild.name }} – {{ config_get('app.name') }}{% endblock %}
-{% block social_description %}{{ description|striptags ?: guild.name ~ ' is a guild on the Hypixel Minecraft server' }} - View {{ guild.name }}'s members, guild statistics and more on {{ config_get('app.name') }}{% endblock %}
+{% block social_description %}{{ description|striptags ?: guild.name ~ ' is a guild on the Hypixel Minecraft server' }} - View {{ guild.name }}'s members, guild statistics and even guild game statistics for SkyWars, Bed Wars and more games on {{ config_get('app.name') }}{% endblock %}
 
 {% block head %}
     {{ parent() }}
