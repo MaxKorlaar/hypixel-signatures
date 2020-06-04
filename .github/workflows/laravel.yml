@@ -34,8 +34,15 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
-    - name: Archive logs
-      uses: actions/upload-artifact@v1
+    - name: Get Composer Cache Directory
+      id: composer-cache
+      run: |
+        echo "::set-output name=dir::$(composer config cache-files-dir)"
+    - uses: actions/cache@v2
       with:
-        name: logs
-        path: storage/logs
+        path: |
+          ${{ steps.composer-cache.outputs.dir }}
+          **/node_modules
+        key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-composer-
