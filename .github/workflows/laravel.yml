@@ -43,6 +43,7 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+        REDIS_PORT: ${{ job.services.redis.ports['6379'] }}
       run: vendor/bin/phpunit
     - name: Get Composer Cache Directory
       id: composer-cache
