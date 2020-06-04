@@ -725,7 +725,7 @@
 
                 $pet['rarity'] = strtolower($pet['tier']);
 
-                if ($pet['heldItem'] === 'PET_ITEM_TIER_BOOST') {
+                if (isset($pet['heldItem']) && $pet['heldItem'] === 'PET_ITEM_TIER_BOOST') {
                     $pet['rarity'] = self::PET_TIERS[min(count(self::PET_TIERS) - 1, array_search($pet['rarity'], self::PET_TIERS) + 1)];
                 }
 
@@ -739,7 +739,7 @@
 
                 $pet['texture_name'] = Str::afterLast($petData['head'], '/head/');
 
-                if ($pet['heldItem'] !== null) {
+                if (isset($pet['heldItem']) && $pet['heldItem'] !== null) {
                     $heldItem = $pet['heldItem'];
 
                     $petItemData = $this->get('pet_items')->get($heldItem);
