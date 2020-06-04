@@ -63,3 +63,4 @@
 
     Route::get('/guild/{id}/banner.png', 'Guild\BannerController@getBanner')->name('guild.banner');
 
+    Route::get('sitemap.xml', 'MetaController@getSitemap')->name('meta.sitemap');

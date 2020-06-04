@@ -58,7 +58,7 @@
          * @return void
          */
         protected function schedule(Schedule $schedule) {
-            $schedule->command('friends:clear-recent')->weekly();
+            $schedule->command('hypixel-cache:clear-recent')->monthly();
             $schedule->command('clean:directories')->daily();
             $schedule->command('horizon:snapshot')->everyFiveMinutes();
             $schedule->command('cloudflare:reload')->weekly();

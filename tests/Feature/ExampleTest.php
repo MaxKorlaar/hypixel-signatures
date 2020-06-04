@@ -45,9 +45,35 @@
          *
          * @return void
          */
-        public function testBasicTest(): void {
-            $response = $this->get('/');
+        public function testHomePage(): void {
+            $response = $this->get(route('home'));
 
             $response->assertStatus(200);
+        }
+
+        public function testGuildPage(): void {
+            $response = $this->get(route('guild'));
+
+            $response->assertStatus(200);
+        }
+
+        public function testFriendsPage(): void {
+            $response = $this->get(route('friends'));
+
+            $response->assertStatus(200);
+        }
+
+        public function testSignaturesPage(): void {
+            $response = $this->get(route('signatures'));
+
+            $response->assertStatus(200);
+        }
+
+        public function testSitemap(): void {
+            $response = $this->get(route('meta.sitemap'));
+
+            $response->assertStatus(200);
+
+            $response->assertHeader('Content-Type', 'text/xml; charset=UTF-8');
         }
     }

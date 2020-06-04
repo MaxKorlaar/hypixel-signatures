@@ -1,5 +1,5 @@
 <?php
-/**
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,10 +30,13 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
+    use Cache;
     use Illuminate\Contracts\Foundation\Application;
     use Illuminate\Contracts\View\Factory;
+    use Illuminate\Support\Collection;
+    use Illuminate\Support\Facades\Redis;
     use Illuminate\View\View;
 
     /**
@@ -53,5 +56,69 @@ namespace App\Http\Controllers;
          * @todo Implement sitemap generator
          */
         public function getSitemap() {
+            $pages = new Collection([
+                [
+                    'url'      => route('home'),
+                    'priority' => 1
+                ],
+                [
+                    'url'      => route('signatures'),
+                    'priority' => 1
+                ],
+                [
+                    'url'      => route('guild'),
+                    'priority' => 1
+                ],
+                [
+                    'url'      => route('friends'),
+                    'priority' => 1
+                ],
+            ]);
+
+            $recentGuilds = (new Collection(Redis::hGetAll('recent_guilds')))->sortDesc()->map(static function ($value, $key) {
+                $guildData = Cache::get('recent_guilds.' . $key, [
+                    'name' => $key
+                ]);
+
+                return [
+                    [
+                        'url'       => route('guild.info', [$guildData['name']]),
+                        'frequency' => 'daily',
+                        'priority'  => .9
+                    ],
+                    [
+                        'url'       => route('guild.members', [$guildData['name']]),
+                        'frequency' => 'daily',
+                        'priority'  => .85
+                    ],
+                    [
+                        'url'       => route('guild.games.skywars', [$guildData['name']]),
+                        'frequency' => 'daily',
+                        'priority'  => .80
+                    ],
+                    [
+                        'url'       => route('guild.games.bedwars', [$guildData['name']]),
+                        'frequency' => 'daily',
+                        'priority'  => .80
+                    ],
+                    [
+                        'url'       => route('guild.games.tntgames', [$guildData['name']]),
+                        'frequency' => 'daily',
+                        'priority'  => .80
+                    ]
+                ];
+            })->flatten(1);
+
+            $recentFriends = (new Collection(Redis::hGetAll('recent_friends')))->sortDesc()->map(static function ($value, $uuid) {
+                return [
+                    'url'       => route('friends.list', [$uuid]),
+                    'frequency' => 'daily',
+                    'priority'  => .85
+                ];
+            });
+
+            return response(view('meta.sitemap', ['pages' => $pages->concat($recentGuilds)->concat($recentFriends)]), 200, [
+                'Content-Type' => 'text/xml'
+            ]);
         }
     }

@@ -133,13 +133,13 @@
         'times' => [
             'mojang_api'       => 86400, // 1 day
             'skyblock_profile' => 3600, // 1 hour
-            'friends_profiles' => 86400 * 3,
+            'friends_profiles' => 86400 * 3, // 3 days
             'public'           => [
                 'player_skin'  => 604800, // 1 week
                 'guild_banner' => 604800,
             ],
-            'recent_players'   => 604800,
-            'recent_guilds'    => 604800,
+            'recent_players'   => 2678400, // 1 month
+            'recent_guilds'    => 2678400,
         ],
 
     ];

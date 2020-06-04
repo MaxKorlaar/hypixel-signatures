@@ -46,7 +46,7 @@ namespace App\Console\Commands;
          *
          * @var string
          */
-        protected $signature = 'friends:clear-recent';
+        protected $signature = 'hypixel-cache:clear-recent';
 
         /**
          * The console command description.
