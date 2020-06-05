@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -67,7 +67,7 @@
         ],
 
         'bbcode'              => 'BBcode',
-        'bbcode_instructions' => 'Copy and paste the above snippet of text in <a href="https://hypixel.net/account/signature">your forum signature</a> to automatically display your chosen statistics below every post you make on the forums. You can use the URL to the image to place this signature on other websites if you wish.</p>',
+        'bbcode_instructions' => 'Copy and paste the above snippet of text in <a target="_blank" href="https://hypixel.net/account/signature">your forum signature</a> to automatically display your chosen statistics below every post you make on the forums. You can use the URL to the image to place this signature on other websites if you wish.',
 
         'direct_link' => 'Direct link',
 

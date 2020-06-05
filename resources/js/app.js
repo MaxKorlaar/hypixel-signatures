@@ -29,4 +29,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-require('./bootstrap');
+window.addEventListener('load', () => {
+    const menuButton = document.getElementById('menu-opener');
+    const mainMenu   = document.getElementById('main-menu');
+
+    menuButton.addEventListener('click', () => {
+        mainMenu.classList.toggle('open');
+    });
+})

@@ -395,7 +395,6 @@ img {
 
   code {
     display: block;
-    user-select: all;
     white-space: normal;
     background: $gray-300;
     padding: .5rem;
@@ -403,6 +402,10 @@ img {
     line-break: anywhere;
     font-size: .8rem;
     border-radius: $border-radius;
+  }
+
+  .select-all {
+    user-select: all;
   }
 
   .signature-options {

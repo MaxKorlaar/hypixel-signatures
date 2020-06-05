@@ -80,8 +80,9 @@
                         <h3>{{ trans('signatures.bbcode') }}</h3>
                     </div>
                     <div>
-                        <code class="bbcode">[URL='{{ config_get('app.url') }}'][IMG]{{ '{{ getImageUrl(selected_signature) }}' }}[/IMG][/URL]</code>
-                        <p>{{ trans('signatures.bbcode_instructions') }}</p>
+                        <code class="bbcode select-all">[URL='{{ config_get('app.url') }}'][IMG]{{ '{{ getImageUrl(selected_signature) }}' }}
+                                                        [/IMG][/URL]</code>
+                        <p>{{ trans('signatures.bbcode_instructions')|raw }}</p>
                     </div>
                     <div class="title">
                         <h3>
@@ -89,7 +90,7 @@
                         </h3>
                     </div>
                     <div>
-                        <code>{{ '{{ getImageUrl(selected_signature) }}' }}</code>
+                        <code class="select-all">{{ '{{ getImageUrl(selected_signature) }}' }}</code>
                     </div>
                 </div>
 
@@ -110,7 +111,5 @@
         window.Paniek.signatures = {{ signatures|json_encode|raw }};
         window.Paniek.urls       = {{ urls|json_encode|raw }};
     </script>
-    <script src="{{ mix('js/manifest.js') }}"></script>
-    <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/signatures.js') }}"></script>
 {% endblock %}

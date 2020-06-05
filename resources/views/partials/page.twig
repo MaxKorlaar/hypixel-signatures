@@ -55,7 +55,15 @@
 <body>
     {% block navigation %}
         <nav>
-            <ul class="container-xl">
+            <ul class="container-xl mobile">
+                <li class="{{ app.request.routeIs('home') ? 'active' }}">
+                    <a href="{{ route('home') }}">{{ trans('nav.home') }}</a>
+                </li>
+                <li class="menu-container">
+                    <a href="#" id="menu-opener" aria-label="{{ trans('nav.menu') }}">&#9776;</a>
+                </li>
+            </ul>
+            <ul class="container-xl" id="main-menu">
                 <li class="{{ app.request.routeIs('home') ? 'active' }}">
                     <a href="{{ route('home') }}">{{ trans('nav.home') }}</a>
                 </li>
@@ -96,6 +104,9 @@
     {% block scripts %}
         <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oxygen:300,700&amp;display=swap" media="screen,projection">
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,500,700" rel="stylesheet" type="text/css" media="screen,projection">
+        <script src="{{ mix('js/manifest.js') }}"></script>
+        <script src="{{ mix('js/vendor.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
     {% endblock %}
 </body>
 </html>

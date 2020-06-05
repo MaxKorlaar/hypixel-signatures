@@ -117,11 +117,11 @@
             ],
             'tntgames' => [
                 'page_title' => ':name tntgames statistics',
-                'title'      => "<a href=':link'>:name</a>'s tntgames statistics",
+                'title'      => "<a href=':link'>:name</a>'s TNT-Games statistics",
 
                 'social' => [
-                    'title'       => ':name tntgames statistics - :site',
-                    'description' => "View the tntgames statistics of the Hypixel guild :name on :site. You can browse through the list and compare tntgames statistics of guild members."
+                    'title'       => ':name TNT-Games statistics - :site',
+                    'description' => "View the TNT-Games statistics of the Hypixel guild :name on :site. You can browse through the list and compare TNT-Games statistics of guild members."
                 ],
             ],
         ],

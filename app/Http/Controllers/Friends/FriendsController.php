@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -136,7 +136,7 @@
                             ]
                         ] + $friendsList);
                 }
-            } catch (HypixelFetchException | HypixelPHPException | InvalidUUIDException $e) {
+            } catch (InvalidUUIDException $e) {
             }
 
             return back(302, [], route('friends'))->withInput()->withErrors([

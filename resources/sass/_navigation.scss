@@ -35,16 +35,54 @@ nav {
   position: relative;
   z-index: 20;
 
+  .mobile {
+    display: flex;
+
+    @include breakpoint(sm) {
+      display: none;
+    }
+
+    .menu-container {
+      margin-left: auto;
+    }
+  }
+
   ul {
     list-style: none;
-    display: flex;
+    display: none;
     flex-direction: row;
     margin: 0;
     align-items: center;
     padding: 0 10px;
+    transition: all $transition-time;
+
+    @include breakpoint(sm) {
+      display: flex;
+    }
+
+    &.open {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      background: $color-secondary;
+      box-shadow: rgba(0, 0, 0, .25) 0 2px 3px;
+      opacity: 0;
+      animation: fade-in $transition-time forwards;
+
+      @keyframes fade-in {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+    }
 
     li {
       transition: all $transition-time;
+      text-align: center;
 
       a {
         font-size: 1rem;
