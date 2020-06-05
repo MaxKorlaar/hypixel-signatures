@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -81,6 +81,10 @@
                 $guildData = Cache::get('recent_guilds.' . $key, [
                     'name' => $key
                 ]);
+
+                if (!isset($guildData['name'])) {
+                    return [];
+                }
 
                 return [
                     [
