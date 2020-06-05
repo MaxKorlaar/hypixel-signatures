@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -97,8 +97,8 @@ namespace App\Http\Controllers\Guild;
                 /** @var GameStats $stats */
                 $stats = $player->getStats()->getGameFromID(GameTypes::SKYWARS);
 
-                if ($stats->getInt('kills') > 0) {
-                    $kd = round($stats->getInt('deaths') / $stats->getInt('kills'), 2);
+                if ($stats->getInt('deaths') > 0) {
+                    $kd = round($stats->getInt('kills') / $stats->getInt('deaths'), 2);
                 } else {
                     $kd = 'N/A';
                 }
@@ -109,8 +109,8 @@ namespace App\Http\Controllers\Guild;
                     $winsPercentage = 0;
                 }
 
-                if ($stats->getInt('kills_solo') > 0) {
-                    $kdSolo = round($stats->getInt('deaths_solo') / $stats->getInt('kills_solo'), 2);
+                if ($stats->getInt('deaths_solo') > 0) {
+                    $kdSolo = round($stats->getInt('kills_solo') / $stats->getInt('deaths_solo'), 2);
                 } else {
                     $kdSolo = 'N/A';
                 }
@@ -121,8 +121,8 @@ namespace App\Http\Controllers\Guild;
                     $winsPercentageSolo = 0;
                 }
 
-                if ($stats->getInt('kills_team') > 0) {
-                    $kdTeams = round($stats->getInt('deaths_team') / $stats->getInt('kills_team'), 2);
+                if ($stats->getInt('deaths_team') > 0) {
+                    $kdTeams = round($stats->getInt('kills_team') / $stats->getInt('deaths_team'), 2);
                 } else {
                     $kdTeams = 'N/A';
                 }
@@ -133,8 +133,8 @@ namespace App\Http\Controllers\Guild;
                     $winsPercentageTeams = 0;
                 }
 
-                if ($stats->getInt('kills_mega') > 0) {
-                    $kdMega = round($stats->getInt('deaths_mega') / $stats->getInt('kills_mega'), 2);
+                if ($stats->getInt('deaths_mega') > 0) {
+                    $kdMega = round($stats->getInt('kills_mega') / $stats->getInt('deaths_mega'), 2);
                 } else {
                     $kdMega = 'N/A';
                 }

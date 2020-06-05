@@ -1,4 +1,8 @@
 {% extends 'errors/_error.twig' %}
+{% block head %}
+    {{ parent() }}
+    <meta http-equiv="refresh" content="5"/>
+{% endblock %}
 {% block title %}
     {% if code == 429 %}
         Hypixel API Limit Reached
@@ -10,7 +14,7 @@
     {% if code == 429 %}
         Unfortunately, {{ config_get('app.name') }} is only allowed to request data from Hypixel's API a limited
         amount of times per minute. You're seeing this error because we just ran into this limit. Please try to load
-        this page again in a few moments.
+        this page again in a few moments, or wait a few seconds for us to automatically try it again.
     {% else %}
         The Hypixel API responded with an unexpected error ({{ code }}). Please try again in a minute.
     {% endif %}

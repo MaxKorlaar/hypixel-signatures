@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -93,7 +93,7 @@
                 'description' => "View all of :name's :count members and more on :site"
             ],
 
-            'loading_members' => 'Loading members ({{ meta.loaded }} / {{ meta.total_friends }})…',
+            'loading_members' => 'Loading members ({{ meta.loaded }} / {{ meta.total_members }})…',
         ],
 
         'games' => [
