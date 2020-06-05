@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -117,8 +117,7 @@
             foreach ($list as $rank => $rankMembers) {
                 /** @var GuildMember $member */
                 foreach ($rankMembers as $member) {
-                    $uuid = $member->getUUID();
-
+                    $uuid        = $member->getUUID();
                     $memberArray = $member->getData() + [
                             'skin_url' => route('player.skin.head', [$uuid, 'size' => 3]),
                             'loading'  => false
@@ -134,6 +133,10 @@
 
                         if ($playerCallback !== null) {
                             $memberArray += $playerCallback($player);
+                        }
+
+                        if ($loaded % 25 === 0) {
+                            gc_collect_cycles();
                         }
                     } else {
                         $memberArray['loading'] = true;

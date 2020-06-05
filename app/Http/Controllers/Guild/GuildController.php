@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -118,12 +118,12 @@
         /**
          * @param string $nameOrId
          *
-         * @return View
+         * @return RedirectResponse|View
          * @throws HypixelPHPException
          * @throws HypixelFetchException
          * @throws InvalidArgumentException
          */
-        public function getInfo(string $nameOrId): View {
+        public function getInfo(string $nameOrId) {
             $HypixelAPI = new HypixelAPI();
 
             if (HypixelAPI::isValidMongoId($nameOrId)) {
@@ -133,6 +133,10 @@
             }
 
             if ($guild instanceof Guild) {
+                if (empty($guild->getData())) {
+                    return redirect()->route('guild')->withErrors(['username' => 'This guild does not exist']);
+                }
+
                 Redis::hIncrBy('recent_guilds', $guild->getID(), 1);
                 Redis::expire('recent_guilds', config('cache.times.recent_guilds'));
                 Cache::set('recent_guilds.' . $guild->getID(), [

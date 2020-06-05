@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -37,6 +37,7 @@
     use Illuminate\Http\JsonResponse;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Response;
+    use MarvinLabs\DiscordLogger\Discord\Exceptions\MessageCouldNotBeSent;
     use Plancke\HypixelPHP\exceptions\BadResponseCodeException;
     use Throwable;
 
@@ -53,7 +54,8 @@
          */
         protected $dontReport = [
             HypixelFetchException::class,
-            SkyBlockEmptyProfileException::class
+            SkyBlockEmptyProfileException::class,
+            MessageCouldNotBeSent::class
         ];
 
         /**
