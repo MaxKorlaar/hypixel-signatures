@@ -29,6 +29,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+.player {
+  .recently-viewed-grid {
+    @extend .players-grid;
+
+    .online {
+      color: $green;
+    }
+  }
+}
+
 .player-status {
   text-align: center;
 

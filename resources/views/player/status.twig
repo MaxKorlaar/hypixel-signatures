@@ -13,7 +13,7 @@
                     <img src="{{ route(Browser.isSafari ? 'player.skin.full.png' : 'player.skin.full',  { uuid: player.uuid, size: 10 }) }}" alt="">
                 </div>
                 <div class="text-container" v-cloak>
-                    <h2>{{ player.name }} is currently</h2>
+                    <h2>{{ trans('player.status.name_is_currently', { username: player.name }) }}</h2>
 
                     <div v-if="status !== null">
                         <div v-if="status.online" class="online">

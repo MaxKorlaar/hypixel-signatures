@@ -49,6 +49,8 @@
     Route::get('/player/{username}/uuid', 'Player\PlayerController@getUuid')->name('player.get_uuid');
     Route::get('/player/{uuid}/profile', 'Player\PlayerController@getProfile')->name('player.get_profile');
 
+    Route::get('/player/status', 'Player\SessionController@getIndex')->name('player.status.index');
+    Route::post('/player/status', 'Player\SessionController@redirectToStatus')->name('player.status.form_redirect');
     Route::get('/player/{uuid}/status', 'Player\SessionController@getStatus')->name('player.status');
     Route::get('/player/{uuid}/status.json', 'Player\SessionController@getStatus')->name('player.status.json');
 
