@@ -31,13 +31,13 @@
  */
 
     return [
-        'title'               => 'Hypixel Dynamische Afbeeldingen & Tools',
+        'title'               => 'Hypixel Dynamische Plaatjes & Gereedschap',
         'callout'             => [
-            'Laat <b>live</b> Hypixel minigame en SkyBlock statistieken aan heel de wereld zien door simpelweg een afbeelding in je forum-handtekening of forumberichten te plaatsen. Kies één keer je afbeelding en wij doen de rest.',
+            'Laat <b>live</b> Hypixel minigame en SkyBlock statistieken aan heel Vlaanderen en wereld zien door simpelweg een plaatje in uw forum-handtekening of forumberichten te plaatsen. Kies één keer uw afbeelding en wij doen de rest.',
             'Het is gemakkelijk – Je hoeft alleen je gebruikersnaam in te voeren om te beginnen.'
         ],
         'callout_placeholder' => 'Voer je gebruikersnaam in om te beginnen',
-        'callout_button'      => 'Kies een afbeelding',
+        'callout_button'      => 'Kies een plaatje',
 
         'featured' => 'Uitgelicht',
 
@@ -51,12 +51,12 @@
         'discord' => 'Discord-server',
 
         'overview' => [
-            'signatures'        => 'Hypixel Minecraft Server Dynamische Afbeeldingen',
-            'signatures_text'   => 'Hier vind je veel verschillende soorten handtekeningen (afbeeldingen) met je eigen Hypixel-statistieken, voor verschillende minigames, SkyBlock en in het algemeen, in verschillende stijlen. Deze afbeeldingen kan je op elke website gebruiken, inclusief de Hypixel forums, en zullen automatisch je laatste statistieken tonen – kies één keer een afbeelding, vergeet de rest.',
-            'signatures_button' => 'Maak je eigen afbeelding',
+            'signatures'        => 'Hypixel Minecraft Server Dynamische Plaatjes',
+            'signatures_text'   => 'Hier vind je veel verschillende soorten handtekeningen (Plaatjes) met je eigen Hypixel-statistieken, voor verschillende minigames, SkyBlock en in het algemeen, in verschillende stijlen. Deze afbeeldingen kan je op elke website gebruiken, inclusief de Hypixel forums, en zullen automatisch je laatste statistieken tonen – kies één keer een afbeelding, vergeet de rest.',
+            'signatures_button' => 'Maak uw eigen plaatje',
 
             'friends'        => 'Hypixel Vriendenlijst',
-            'friends_text'   => 'Een overzicht van de vrienden van iemand anders of jezelf op Hypixel, en hoe lang je al bevriend met ze bent. Hiermee kan je gemakkelijk zien welke vrienden iemand allemaal heeft!',
-            'friends_button' => 'Bekijk je vriendenlijst',
+            'friends_text'   => 'Een overzicht van de vrienden van iemand anders of uw zelf op Hypixel, en hoe lang u al bevriend met ze bent. Hiermee kan u gemakkelijk zien welke vrienden iemand allemaal heeft!',
+            'friends_button' => 'Bekijk uw vriendenlijst',
         ]
     ];
