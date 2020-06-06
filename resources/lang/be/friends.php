@@ -34,14 +34,14 @@
         'title' => 'Hypixel Vriendenlijst',
 
         'callout'             => [
-            'Bekijk de vriendenlijst van een speler of jezelf op Hypixel, hoe lang je al bevriend met ze bent en meer',
-            'Het is gemakkelijk – Je hoeft alleen je gebruikersnaam in te voeren om te beginnen.'
+            'Bekijk de vriendenlijst van een speler of uw zelf op Hypixel, hoe lang u al bevriend met ze bent en meer',
+            'Dat is gemakkelijk – Je hoeft alleen uw gebruikersnaam in te voeren om te beginnen.'
         ],
         'callout_placeholder' => 'Voer je gebruikersnaam in om te beginnen',
-        'callout_button'      => 'Bekijk vrienden',
+        'callout_button'      => 'Bezigtig vrienden',
 
-        'recently_viewed'                   => 'Recent bekeken',
-        'recently_viewed_friends_and_views' => ':count vrienden – :views keer bekeken',
+        'recently_viewed'                   => 'Recent bekieken',
+        'recently_viewed_friends_and_views' => ':count vrienden – :views keer bekieken',
 
         'list' => [
             'page_title' => ":username Hypixel Vriendenlijst",
@@ -49,15 +49,15 @@
 
             'social' => [
                 'title'       => "De vrienden van :username op Hypixel - :site",
-                'description' => 'Bekijk alle :total_friends vrienden van :username op de Hypixel Minecraft-server. Je kan door de lijst bladeren en naar andere Hypixel-spelers kijken.',
+                'description' => 'Bezigtig alle :total_friends vrienden van :username op de Hypixel Minecraft-server. U kan door de lijst bladeren en naar andere Hypixel-spelers kijken.',
             ],
 
             'description' => [
-                'Op deze pagina zie je een overzicht van alle vrienden van :username op Hypixel. Je kan hun ranks zien en op ze klikken om de vriendenlijsten van andere spelers te bekijken.',
-                "Als je een <a href=':form_link'>dynamische afbeelding voor :username wil genereren</a>, dat kan je ook doen op :site! Pronk met de prestaties, minigame- of SkyBlock-statistieken van :username op elke website die het je toestaat om naar afbeeldingen te verwijzen door <a href=':form_link'>een dynamische afbeelding aan te maken</a>."
+                'Op deze pagina ziet u een overzicht van alle vrienden van :username op Hypixel. U kan hun ranks zien en op ze klikken om de vriendenlijsten van andere spelers te bekijken.',
+                "Als u een <a href=':form_link'>dynamische plaatke voor :username wil genereren</a>, dat kan u ook doen op :site! Pronk met de prestaties, minigame- of SkyBlock-statistieken van :username op elke website die het je toestaat om naar afbeeldingen te verwijzen door <a href=':form_link'>een dynamische afbeelding aan te maken</a>."
             ],
 
-            'tweet_text' => "Ik bekijk de vriendenlijst van :username op Hypixel!",
+            'tweet_text' => "Ik bekijk de vriendenlijst van onze :username op Hypixel!",
 
             'loading_friends' => 'Vrienden laden ({{ meta.loaded }} / {{ meta.total_friends }})…',
             'friends_since'   => 'sinds {{ new Date(player.since).toLocaleDateString() }}'
