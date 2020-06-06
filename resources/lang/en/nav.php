@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -35,4 +35,5 @@
         'signatures' => 'Dynamic Signatures',
         'friends'    => 'Friends',
         'guild'      => 'Guild',
+        'player_status' => 'Online Status'
     ];

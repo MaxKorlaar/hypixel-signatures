@@ -61,7 +61,7 @@
                             <td class="bold">{{ trans('guild.info.guildmaster') }}</td>
                             <td>
                                 <a href="{{ route('signatures.form_redirect', { username: guildmaster.name }) }}">
-                                    <img src="{{ route('player.skin.head', { uuid: guildmaster.getUUID(), size: 3 }) }}" alt="">
+                                    <img src="{{ route(Browser.isSafari ? 'player.skin.head.png' : 'player.skin.head', { uuid: guildmaster.getUUID(), size: 3 }) }}" alt="">
                                     {{ guildmaster_name|raw }}
                                 </a>
                             </td>

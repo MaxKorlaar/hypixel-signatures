@@ -1,4 +1,3 @@
-<?php
 /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
@@ -29,42 +28,60 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+import Vue from 'vue';
+import * as moment from "moment";
 
-namespace App\Console\Commands;
+const axios = require('axios').default;
 
-    use Illuminate\Console\Command;
-    use Illuminate\Support\Facades\Redis;
+// noinspection ObjectAllocationIgnored
+new Vue({
+    el:       '#player-status-app',
+    data:     {
+        urls:    {
+            get_status: ''
+        },
+        loading: true,
+        status:  null,
+        player:  {}
+    },
+    methods:  {
+        getStatusInterval() {
+            this.getStatus().finally(() => {
+                setTimeout(() => {
+                    this.getStatusInterval();
+                }, 10 * 1000);
+            });
+        },
+        getStatus() {
+            this.loading = true;
 
-    /**
-     * Class ClearRecentlyViewed
-     *
-     * @package App\Console\Commands
-     */
-    class ClearRecentlyViewed extends Command {
-        /**
-         * The name and signature of the console command.
-         *
-         * @var string
-         */
-        protected $signature = 'hypixel-cache:clear-recent';
+            return axios.get(this.urls.get_status).then(response => {
+                const data = response.data;
 
-        /**
-         * The console command description.
-         *
-         * @var string
-         */
-        protected $description = 'Clear list of recently viewed players and guilds by site visitors';
-
-        /**
-         * Execute the console command.
-         *
-         * @return mixed
-         */
-        public function handle(): void {
-            Redis::del('recent_friends');
-            Redis::del('recent_guilds');
-            Redis::del('recent_online_players');
-
-            $this->info('Cleared recently viewed players');
+                this.player = data.player;
+                this.status = data.status;
+            }).catch(error => {
+                console.error(error);
+            }).finally(() => {
+                this.loading = false;
+            });
         }
+    },
+    watch:    {},
+    computed: {
+        last_seen() {
+            return moment(this.player.last_seen, undefined, window.Paniek.language).fromNow();
+        }
+    },
+    mounted() {
+        this.player = window.Paniek.player;
+        this.status = window.Paniek.status;
+        this.urls   = window.Paniek.urls;
+
+        this.loading = false;
+
+        setTimeout(() => {
+            this.getStatusInterval();
+        }, 10 * 1000);
     }
+});

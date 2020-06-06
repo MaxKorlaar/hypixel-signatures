@@ -16,6 +16,7 @@
     "barryvdh/laravel-ide-helper": "^2.6",
     "fideloper/proxy": "^4.0",
     "guzzlehttp/guzzle": "^6.5",
+    "hisorange/browser-detect": "^4.2",
     "intervention/image": "^2.5",
     "laravel/framework": "^7",
     "laravel/horizon": "^4",

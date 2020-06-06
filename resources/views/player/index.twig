@@ -1,0 +1,64 @@
+{% extends 'partials/page.twig' %}
+
+{% block page_title %}{{ trans('player.title') }}{% endblock %}
+{% block social_title %}{{ trans('player.social.title', { site: config_get('app.name') }) }}{% endblock %}
+{% block social_description %}{{ trans('player.social.description', { site: config_get('app.name') }) }}{% endblock %}
+
+{% block content %}
+    <div class="player">
+        <div class="callout">
+            {% for text in trans('player.callout') %}
+                <p>
+                    {{ text }}
+                </p>
+            {% endfor %}
+            <form class="input has-button {{ errors.has('username') ? 'has-error' }}" method="post" action="{{ route('player.status.form_redirect') }}">
+                {{ csrf_field() }}
+                <div class="fields">
+                    <input value="{{ old('username') }}" title="Username" type="text" autocomplete="nickname" name="username" placeholder="{{ trans('player.callout_placeholder') }}">
+                    <button class="button hide-sm" type="submit">{{ trans('player.callout_button') }} &longrightarrow;</button>
+                    <button class="button hide-md hide-lg hide-xl" type="submit">&longrightarrow;</button>
+                </div>
+                <p class="error">
+                    {{ errors.first('username') }}
+                </p>
+            </form>
+        </div>
+        <h1>{{ trans('player.recently_viewed') }}</h1>
+        <div class="recently-viewed-grid players-grid">
+            {% for player in recently_viewed %}
+                <a class="item" href="{{ route('player.status', [player.uuid]) }}">
+                    <div class="image-container">
+                        <img loading="lazy" src="{{ route(Browser.isSafari ? 'player.skin.head.png' : 'player.skin.head',  [player.uuid]) }}" alt="">
+                    </div>
+                    <div class="name-container">
+                        <h3>{{ player.username }}</h3>
+                        {% if player.status and player.status.online %}
+                            <span class="online">
+                                {% if player.status.mode == 'LOBBY' %}
+                                    {% if player.status.game %}
+                                        {{ trans('player.recently_viewed_lobby_of_game_and_views', { game: player.status.game, views: player.views }) }}
+                                    {% else %}
+                                        {{ trans('player.recently_viewed_lobby_and_views', { views: player.views }) }}
+                                    {% endif %}
+                                {% else %}
+                                    {% if player.status.game %}
+                                        {% if player.status.mode %}
+                                            {{ trans('player.recently_viewed_game_mode_and_views', { game: player.status.game, mode: player.status.mode_fancy, views: player.views }) }}
+                                        {% else %}
+                                            {{ trans('player.recently_viewed_game_and_views', { game: player.status.game, views: player.views }) }}
+                                        {% endif %}
+                                    {% else %}
+                                        {{ trans('player.recently_viewed_online_and_views', { views: player.views }) }}
+                                    {% endif %}
+                                {% endif %}
+                            </span>
+                        {% else %}
+                            {{ trans('player.recently_viewed_offline_and_views', { views: player.views }) }}
+                        {% endif %}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
