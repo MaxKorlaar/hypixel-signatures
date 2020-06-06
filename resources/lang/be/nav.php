@@ -31,8 +31,8 @@
  */
 
     return [
-        'home'       => 'Home',
-        'signatures' => 'Dynamische Afbeeldingen',
+        'home'       => 'Thuis',
+        'signatures' => 'Dynamische Plaatjes',
         'friends'    => 'Vrienden',
-        'guild'      => 'Gilde',
+        'guild'      => 'Guild',
     ];
