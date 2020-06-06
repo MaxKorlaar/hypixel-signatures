@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -50,7 +50,7 @@ namespace App\Http\Middleware;
          * @return mixed
          */
         public function handle($request, Closure $next) {
-            $supportedLocales = ['en', 'nl'];
+            $supportedLocales = ['en', 'nl', 'nl_BE'];
 
             app()->setLocale($request->getPreferredLanguage($supportedLocales));
 

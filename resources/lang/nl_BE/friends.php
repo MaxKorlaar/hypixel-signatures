@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -34,7 +34,7 @@
         'title' => 'Hypixel Vriendenlijst',
 
         'callout'             => [
-            'Bekijk de vriendenlijst van een speler of uw zelf op Hypixel, hoe lang u al bevriend met ze bent en meer',
+            'Bekijk de vriendenlijst van een speler of uzelf op Hypixel, hoe lang u al bevriend met ze bent en meer',
             'Dat is gemakkelijk – Je hoeft alleen uw gebruikersnaam in te voeren om te beginnen.'
         ],
         'callout_placeholder' => 'Voer je gebruikersnaam in om te beginnen',

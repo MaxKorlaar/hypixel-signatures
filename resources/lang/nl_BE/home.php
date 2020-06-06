@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
             'signatures_button' => 'Maak uw eigen plaatje',
 
             'friends'        => 'Hypixel Vriendenlijst',
-            'friends_text'   => 'Een overzicht van de vrienden van iemand anders of uw zelf op Hypixel, en hoe lang u al bevriend met ze bent. Hiermee kan u gemakkelijk zien welke vrienden iemand allemaal heeft!',
+            'friends_text'   => 'Een overzicht van de vrienden van iemand anders of uzelf op Hypixel, en hoe lang u al bevriend met ze bent. Hiermee kan u gemakkelijk zien welke vrienden iemand allemaal heeft!',
             'friends_button' => 'Bekijk uw vriendenlijst',
         ]
     ];
