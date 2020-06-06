@@ -81,18 +81,29 @@
          * @throws JsonException
          */
         public function redirectToList(ViewListByUsernameRequest $request): ?RedirectResponse {
+            return $this->redirectToListByUsername($request->input('username'));
+        }
+
+        /**
+         * @param string $username
+         *
+         * @return RedirectResponse
+         * @throws InvalidArgumentException
+         * @throws JsonException
+         */
+        private function redirectToListByUsername(string $username): RedirectResponse {
             $mojangAPI = new MojangAPI();
 
-            $data = $mojangAPI->getUUID($request->input('username'));
+            $data = $mojangAPI->getUUID($username);
 
             if (!$data['success']) {
                 if ($data['status_code'] === 204) {
-                    return back()->withInput()->withErrors([
+                    return redirect()->route('friends')->withInput()->withErrors([
                         'username' => 'This username does not exist'
                     ]);
                 }
 
-                return back()->withInput()->withErrors([
+                return redirect()->route('friends')->withInput()->withErrors([
                     'username' => ($data['throttle'] ?? false) ? 'We\'re trying to use Mojang\'s API a bit too much right now, please try again later' : 'An unknown error has occurred while trying to retrieve your UUID from Mojang\'s servers'
                 ]);
             }
@@ -104,6 +115,8 @@
          * @param $uuid
          *
          * @return Application|Factory|RedirectResponse|View
+         * @throws HypixelFetchException
+         * @throws HypixelPHPException
          * @throws InvalidArgumentException
          */
         public function getFriends($uuid) {
@@ -143,6 +156,17 @@
             return back(302, [], route('friends'))->withInput()->withErrors([
                 'username' => 'An unknown error has occurred while trying to fetch your profile from Hypixel'
             ]);
+        }
+
+        /**
+         * @param string $username
+         *
+         * @return RedirectResponse
+         * @throws InvalidArgumentException
+         * @throws JsonException
+         */
+        public function getFriendsByUsername(string $username): RedirectResponse {
+            return $this->redirectToListByUsername($username);
         }
 
         /**

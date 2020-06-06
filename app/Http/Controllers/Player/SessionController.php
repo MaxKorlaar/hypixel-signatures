@@ -77,18 +77,40 @@
          * @throws InvalidArgumentException
          */
         public function redirectToStatus(ViewStatusByUsernameRequest $request): ?RedirectResponse {
+            return $this->redirectToStatusByUsername($request->input('username'));
+        }
+
+        /**
+         * @param string $username
+         *
+         * @return RedirectResponse
+         * @throws InvalidArgumentException
+         * @throws JsonException
+         */
+        public function getStatusByUsername(string $username): RedirectResponse {
+            return $this->redirectToStatusByUsername($username);
+        }
+
+        /**
+         * @param string $username
+         *
+         * @return RedirectResponse
+         * @throws InvalidArgumentException
+         * @throws JsonException
+         */
+        private function redirectToStatusByUsername(string $username): RedirectResponse {
             $mojangAPI = new MojangAPI();
 
-            $data = $mojangAPI->getUUID($request->input('username'));
+            $data = $mojangAPI->getUUID($username);
 
             if (!$data['success']) {
                 if ($data['status_code'] === 204) {
-                    return back()->withInput()->withErrors([
+                    return redirect()->route('player.status.index')->withInput()->withErrors([
                         'username' => 'This username does not exist'
                     ]);
                 }
 
-                return back()->withInput()->withErrors([
+                return redirect()->route('player.status.index')->withInput()->withErrors([
                     'username' => ($data['throttle'] ?? false) ? 'We\'re trying to use Mojang\'s API a bit too much right now, please try again later' : 'An unknown error has occurred while trying to retrieve your UUID from Mojang\'s servers'
                 ]);
             }
