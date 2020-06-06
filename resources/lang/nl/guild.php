@@ -31,31 +31,31 @@
  */
 
     return [
-        'title' => 'Hypixel Gilde-statistieken',
+        'title' => 'Hypixel Guild-statistieken',
 
         'social' => [
-            'title'       => 'Hypixel Gilde-informatie en minigame-statistieken - :site',
-            'description' => 'Bekijk informatie over een gilde op de Hypixel Minecraft-server, zoals het level, de instellingen, beschrijving en leden van een gilde. Je kan ook bladeren door de statistieken van spellen zoals SkyWars, Bed Wars, TNT-Games, Mega Walls, Crazy Walls en Quakecraft voor een complete gilde, allemaal op :site!'
+            'title'       => 'Hypixel Guild-informatie en minigame-statistieken - :site',
+            'description' => 'Bekijk informatie over een guild op de Hypixel Minecraft-server, zoals het level, de instellingen, beschrijving en leden van een gilde. Je kan ook bladeren door de statistieken van spellen zoals SkyWars, Bed Wars, TNT-Games, Mega Walls, Crazy Walls en Quakecraft voor een complete gilde, allemaal op :site!'
         ],
 
         'callout'             => [
-            "Bekijk informatie over elke Hypixel Gilde, inclusief de ledenlijst, beschrijvingen en zelfs minigame-statistieken.",
+            "Bekijk informatie over elke Hypixel Guild, inclusief de ledenlijst, beschrijvingen en zelfs minigame-statistieken.",
             'Het is gemakkelijk – Je hoeft alleen je gebruikersnaam in te voeren om te beginnen.'
         ],
         'callout_placeholder' => 'Voer je gebruikersnaam in om te beginnen',
-        'callout_button'      => 'Bekijk gilde',
+        'callout_button'      => 'Bekijk guild',
 
         'recently_viewed'                   => 'Recent bekeken',
         'recently_viewed_members_and_views' => ':count leden – :views keer bekeken',
 
         'info' => [
-            'title' => ':name Gilde',
+            'title' => ':name Guild',
 
             'social' => [
                 'title' => ':name - :site',
 
-                'default_description' => ':name is een gilde op de Hypixel Minecraft-server',
-                'description'         => " - Bekijk de leden van :name's, hun statistieken en zelfs minigame-statistieken voor SkyWars, Bed Wars en meer spellen voor heel de gilde op :site."
+                'default_description' => ':name is een guild op de Hypixel Minecraft-server',
+                'description'         => " - Bekijk de leden van :name's, hun statistieken en zelfs minigame-statistieken voor SkyWars, Bed Wars en meer spellen voor heel de guild op :site."
             ],
         ]
     ];
