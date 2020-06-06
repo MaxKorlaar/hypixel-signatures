@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -49,6 +49,9 @@
     Route::get('/player/{username}/uuid', 'Player\PlayerController@getUuid')->name('player.get_uuid');
     Route::get('/player/{uuid}/profile', 'Player\PlayerController@getProfile')->name('player.get_profile');
 
+    Route::get('/player/{uuid}/status', 'Player\SessionController@getStatus')->name('player.status');
+    Route::get('/player/{uuid}/status.json', 'Player\SessionController@getStatus')->name('player.status.json');
+
     Route::get('/player/{uuid}/skyblock/profiles', 'SkyBlockController@getProfiles')->name('skyblock.get_profiles');
 
     Route::get('/friends/', 'Friends\FriendsController@getIndex')->name('friends');
@@ -60,16 +63,16 @@
     Route::post('/guild/', 'Guild\GuildController@redirectToInfo')->name('guild.form_redirect');
     Route::get('/guild/{name}', 'Guild\GuildController@getInfo')->name('guild.info');
     Route::get('/guild/{name}/members', 'Guild\MemberController@getMembers')->name('guild.members');
-    Route::get('/guild/{name}/members/json', 'Guild\MemberController@getMembers')->name('guild.members.json');
+    Route::get('/guild/{name}/members.json', 'Guild\MemberController@getMembers')->name('guild.members.json');
 
     Route::get('/guild/{name}/games/skywars', 'Guild\SkyWarsController@getSkyWarsStatistics')->name('guild.games.skywars');
-    Route::get('/guild/{name}/games/skywars/json', 'Guild\SkyWarsController@getSkyWarsStatistics')->name('guild.games.skywars.json');
+    Route::get('/guild/{name}/games/skywars.json', 'Guild\SkyWarsController@getSkyWarsStatistics')->name('guild.games.skywars.json');
 
     Route::get('/guild/{name}/games/bedwars', 'Guild\BedWarsController@getBedWarsStatistics')->name('guild.games.bedwars');
-    Route::get('/guild/{name}/games/bedwars/json', 'Guild\BedWarsController@getBedWarsStatistics')->name('guild.games.bedwars.json');
+    Route::get('/guild/{name}/games/bedwars.json', 'Guild\BedWarsController@getBedWarsStatistics')->name('guild.games.bedwars.json');
 
     Route::get('/guild/{name}/games/tnt-games', 'Guild\TNTGamesController@getTNTGamesStatistics')->name('guild.games.tntgames');
-    Route::get('/guild/{name}/games/tnt-games/json', 'Guild\TNTGamesController@getTNTGamesStatistics')->name('guild.games.tntgames.json');
+    Route::get('/guild/{name}/games/tnt-games.json', 'Guild\TNTGamesController@getTNTGamesStatistics')->name('guild.games.tntgames.json');
 
     Route::prefix('status-sig')->group(static function () {
         Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');

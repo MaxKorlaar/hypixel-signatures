@@ -28,58 +28,60 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+import Vue from 'vue';
+import * as moment from "moment";
 
-const mix = require('laravel-mix');
-require('laravel-mix-purgecss');
-require('laravel-mix-bundle-analyzer');
-const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
+const axios = require('axios').default;
 
-if (mix.isWatching()) {
-    mix.bundleAnalyzer();
-}
+// noinspection ObjectAllocationIgnored
+new Vue({
+    el:       '#player-status-app',
+    data:     {
+        urls:    {
+            get_status: ''
+        },
+        loading: true,
+        status:  null,
+        player:  {}
+    },
+    methods:  {
+        getStatusInterval() {
+            this.getStatus().finally(() => {
+                setTimeout(() => {
+                    this.getStatusInterval();
+                }, 10 * 1000);
+            });
+        },
+        getStatus() {
+            this.loading = true;
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Laravel application. By default, we are compiling the Sass
- | file for the application as well as bundling up all the JS files.
- |
- */
+            return axios.get(this.urls.get_status).then(response => {
+                const data = response.data;
 
-mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/signatures.js', 'public/js')
-    .js('resources/js/friends.js', 'public/js')
-    .js('resources/js/guild.js', 'public/js')
-    .js('resources/js/status.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .version()
-    .extract(['vue'])
-    .purgeCss()
-    .webpackConfig({
-        plugins: [
-            new MomentLocalesPlugin({
-                localesToKeep: ['nl'],
-            }),
-        ]
-    })
-    .browserSync({
-        proxy: 'localhost:8000',
-        files: [
-            "resources/views/**/*.twig",
-            'app/**/*.php',
-            'public/js/**/*.js',
-            'public/css/**/*.css'
-        ],
-        // snippetOptions: {
-        //     // Provide a custom Regex for inserting the snippet.
-        //     rule: {
-        //         match: /<\/body>/i,
-        //         fn:    function (snippet, match) {
-        //             return snippet + match;
-        //         }
-        //     }
-        // }
-    });
+                this.player = data.player;
+                this.status = data.status;
+            }).catch(error => {
+                console.error(error);
+            }).finally(() => {
+                this.loading = false;
+            });
+        }
+    },
+    watch:    {},
+    computed: {
+        last_seen() {
+            return moment(this.player.last_seen, undefined, window.Paniek.language).fromNow();
+        }
+    },
+    mounted() {
+        this.player = window.Paniek.player;
+        this.status = window.Paniek.status;
+        this.urls   = window.Paniek.urls;
+
+        this.loading = false;
+
+        setTimeout(() => {
+            this.getStatusInterval();
+        }, 10 * 1000);
+    }
+});
