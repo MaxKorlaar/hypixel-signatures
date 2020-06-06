@@ -37,25 +37,25 @@
             'generic'  => [
                 'name'        => 'Algemene afbeeldingen',
                 'short_name'  => 'Algemeen',
-                'description' => 'Algemene statistieken voor de meest populaire Hypixel-minigames of je Hypixel-profiel.',
+                'description' => 'Algemene statistieken voor de meest populaire Hypixel-minigames of uw Hypixel-profiel.',
             ],
             'guild'    => [
                 'name'        => 'Gilde-afbeeldingen',
                 'short_name'  => 'Gilde',
-                'description' => 'Algemene statistieken over de gilde waarvan je lid bent op Hypixel. De generieke gilde-statistieken-afbeelding laat zelfs de vlag van de gilde zien als ze er een heeft!',
+                'description' => 'Algemene statistieken over de guild waarvan u lid bent op Hypixel. De generieke guild-statistieken-afbeelding laat zelfs de vlag van de guild zien als ze er een heeft!',
             ],
             'skyblock' => [
                 'name'        => 'SkyBlock-afbeeldingen',
                 'short_name'  => 'SkyBlock',
-                'description' => 'Hypixel SkyBlock-statistieken, met de hand gemaakt om alle SkyBlock-gegevens op je account uit te lezen!',
+                'description' => 'Hypixel SkyBlock-statistieken, met de hand gemaakt om alle SkyBlock-gegevens op uw account uit te lezen!',
             ]
         ],
 
         'username_or_uuid' => 'Minecraft-gebruikersnaam of UUID',
-        'username_help'    => 'Voer hier je Minecraft-gebruikersnaam of UUID in zodat wij je statistieken via de Hypixel-API kunnen opzoeken. Als je niet weet wat je UUID is, voer dan gewoon je gebruikersnaam in en dan zoeken wij hem voor je op.',
+        'username_help'    => 'Voer hier uw Minecraft-gebruikersnaam of UUID in zodat wij je statistieken via de Hypixel-API kunnen opzoeken. Als je niet weet wat je UUID is, voer dan gewoon uw gebruikersnaam in en dan zoeken wij hem voor je op.',
 
         'skyblock' => [
-            'no_profiles'      => 'Het lijkt erop dat je geen SkyBlock-profielen hebt op je account. Speel het eens als je dat nog niet gedaan hebt, of zet je API-statistieken aan als je die uitgezet hebt.',
+            'no_profiles'      => 'Het lijkt erop dat je geen SkyBlock-profielen hebt op je account. Speel het eens als u dat nog niet gedaan hebt, of zet uw API-statistieken aan als u die uitgezet hebt.',
             'select_a_profile' => 'Kies eerst een SkyBlock-profiel.',
             'profile'          => 'SkyBlock-profiel',
         ],
@@ -67,10 +67,10 @@
         ],
 
         'bbcode'              => 'BBcode',
-        'bbcode_instructions' => 'Kopieer en plak bovenstaand stuk tekst in <a target="_blank" href="https://hypixel.net/account/signature">je forum-handtekening</a> om automatisch je gekozen statistieken onder elk forumbericht dat je maakt te tonen. Je kan de URL van de afbeelding gebruiken om deze handtekening op andere websites te gebruiken als je dat wilt.',
+        'bbcode_instructions' => 'Kopieer en plak bovenstaand stuk tekst in <a target="_blank" href="https://hypixel.net/account/signature">je forum-handtekening</a> om automatisch uw gekozen statistieken onder elk forumbericht dat u maakt te tonen. U kan de URL van de afbeelding gebruiken om deze handtekening op andere websites te gebruiken als je dat wilt.',
 
         'direct_link' => 'Directe link',
 
         'signature_options'      => 'Afbeeldingsopties',
-        'signature_options_text' => 'Deze afbeelding biedt opties die je kan aanpassen om het uiterlijk ervan aan te passen:',
+        'signature_options_text' => 'Deze afbeelding biedt opties die u kan aanpassen om het uiterlijk ervan aan te passen:',
     ];
