@@ -52,6 +52,7 @@
     Route::get('/player/status', 'Player\SessionController@getIndex')->name('player.status.index');
     Route::post('/player/status', 'Player\SessionController@redirectToStatus')->name('player.status.form_redirect');
     Route::get('/player/{uuid}/status', 'Player\SessionController@getStatus')->name('player.status');
+    Route::get('/player/{username}/status', 'Player\SessionController@getStatusByUsername')->name('player.status');
     Route::get('/player/{uuid}/status.json', 'Player\SessionController@getStatus')->name('player.status.json');
 
     Route::get('/player/{uuid}/skyblock/profiles', 'SkyBlockController@getProfiles')->name('skyblock.get_profiles');
@@ -59,6 +60,7 @@
     Route::get('/friends/', 'Friends\FriendsController@getIndex')->name('friends');
     Route::post('/friends/', 'Friends\FriendsController@redirectToList')->name('friends.form_redirect');
     Route::get('/friends/{uuid}', 'Friends\FriendsController@getFriends')->name('friends.list');
+    Route::get('/friends/{username}', 'Friends\FriendsController@getFriendsByUsername')->name('friends.list');
     Route::get('/friends/{uuid}/json', 'Friends\FriendsController@getFriendsListJSON')->name('friends.list.json');
 
     Route::get('/guild/', 'Guild\GuildController@getIndex')->name('guild');
