@@ -30,41 +30,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Console\Commands;
+namespace App\Http\Requests\Player\Status;
 
-    use Illuminate\Console\Command;
-    use Illuminate\Support\Facades\Redis;
+    use Illuminate\Foundation\Http\FormRequest;
 
     /**
-     * Class ClearRecentlyViewed
+     * Class ViewStatusByUsernameRequest
      *
-     * @package App\Console\Commands
+     * @package App\Http\Requests\Player\Status
      */
-    class ClearRecentlyViewed extends Command {
+    class ViewStatusByUsernameRequest extends FormRequest {
         /**
-         * The name and signature of the console command.
+         * Determine if the user is authorized to make this request.
          *
-         * @var string
+         * @return bool
          */
-        protected $signature = 'hypixel-cache:clear-recent';
+        public function authorize(): bool {
+            return true;
+        }
 
         /**
-         * The console command description.
+         * Get the validation rules that apply to the request.
          *
-         * @var string
+         * @return array
          */
-        protected $description = 'Clear list of recently viewed players and guilds by site visitors';
-
-        /**
-         * Execute the console command.
-         *
-         * @return mixed
-         */
-        public function handle(): void {
-            Redis::del('recent_friends');
-            Redis::del('recent_guilds');
-            Redis::del('recent_online_players');
-
-            $this->info('Cleared recently viewed players');
+        public function rules(): array {
+            return [
+                'username' => 'required|string|max:32'
+            ];
         }
     }

@@ -75,6 +75,11 @@
                     'priority'  => 1,
                     'frequency' => 'daily',
                 ],
+                [
+                    'url'       => route('player.status.index'),
+                    'priority'  => 1,
+                    'frequency' => 'daily',
+                ],
             ]);
 
             $recentGuilds = (new Collection(Redis::hGetAll('recent_guilds')))->sortDesc()->map(static function ($value, $key) {
@@ -119,11 +124,19 @@
                 return [
                     'url'       => route('friends.list', [$uuid]),
                     'frequency' => 'daily',
-                    'priority'  => .85
+                    'priority'  => .6
                 ];
             });
 
-            return response(view('meta.sitemap', ['pages' => $pages->concat($recentGuilds)->concat($recentFriends)]), 200, [
+            $recentOnlinePlayers = (new Collection(Redis::hGetAll('recent_online_players')))->sortDesc()->map(static function ($value, $uuid) {
+                return [
+                    'url'       => route('player.status', [$uuid]),
+                    'frequency' => 'daily',
+                    'priority'  => .6
+                ];
+            });
+
+            return response(view('meta.sitemap', ['pages' => $pages->concat($recentGuilds)->concat($recentFriends)->concat($recentOnlinePlayers)]), 200, [
                 'Content-Type' => 'text/xml'
             ]);
         }

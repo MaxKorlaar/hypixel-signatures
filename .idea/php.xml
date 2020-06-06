@@ -128,6 +128,13 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
       <path value="$PROJECT_DIR$/vendor/marvinlabs/laravel-discord-logger" />
+      <path value="$PROJECT_DIR$/vendor/ua-parser/uap-php" />
+      <path value="$PROJECT_DIR$/vendor/mobiledetect/mobiledetectlib" />
+      <path value="$PROJECT_DIR$/vendor/league/pipeline" />
+      <path value="$PROJECT_DIR$/vendor/hisorange/browser-detect" />
+      <path value="$PROJECT_DIR$/vendor/piwik/device-detector" />
+      <path value="$PROJECT_DIR$/vendor/mustangostang/spyc" />
+      <path value="$PROJECT_DIR$/vendor/jaybizzle/crawler-detect" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />

@@ -32,6 +32,7 @@
 const mix = require('laravel-mix');
 require('laravel-mix-purgecss');
 require('laravel-mix-bundle-analyzer');
+const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
 
 if (mix.isWatching()) {
     mix.bundleAnalyzer();
@@ -52,10 +53,18 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/signatures.js', 'public/js')
     .js('resources/js/friends.js', 'public/js')
     .js('resources/js/guild.js', 'public/js')
+    .js('resources/js/status.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .version()
-    .extract(['vue'])
+    .extract(['vue', 'axios'])
     .purgeCss()
+    .webpackConfig({
+        plugins: [
+            new MomentLocalesPlugin({
+                localesToKeep: ['nl'],
+            }),
+        ]
+    })
     .browserSync({
         proxy: 'localhost:8000',
         files: [

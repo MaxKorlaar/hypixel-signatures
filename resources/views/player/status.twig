@@ -1,0 +1,64 @@
+{% extends 'partials/page.twig' %}
+
+{% block page_title %}{{ trans('player.status.title', { username: player.name }) }}{% endblock %}
+{% block social_image %}{{ route('player.skin.head', { uuid: player.getUUID(), size: 10 }) }}{% endblock %}
+{% block social_title %}{{ trans('player.status.social.title', { username: player.name, site: config_get('app.name') }) }}{% endblock %}
+{% block social_description %}{{ trans('player.status.social.description', { username: player.name, site: config_get('app.name') }) }}{% endblock %}
+
+{% block content %}
+    <div class="player-status" id="player-status-app">
+        {% if enabled %}
+            <div class="status-container" :class="{ loading: loading }">
+                <div class="image-container">
+                    <img src="{{ route(Browser.isSafari ? 'player.skin.full.png' : 'player.skin.full',  { uuid: player.uuid, size: 10 }) }}" alt="">
+                </div>
+                <div class="text-container" v-cloak>
+                    <h2>{{ trans('player.status.name_is_currently', { username: player.name }) }}</h2>
+
+                    <div v-if="status !== null">
+                        <div v-if="status.online" class="online">
+                            <template v-if="status.mode === 'LOBBY'">
+                                <h1 v-if="status.game">{{ trans('player.status.in_lobby_of_game') }}</h1>
+                                <h1 v-else>{{ trans('player.status.in_lobby') }}</h1>
+                            </template>
+                            <template v-else-if="status.mode === 'GAME'">
+                                <h1>{{ trans('player.status.in_game') }}</h1>
+                            </template>
+                            <template v-else>
+                                <h1 v-if="status.game">{{ trans('player.status.online_in_game') }}</h1>
+                                <h1 v-else>{{ trans('player.status.online') }}</h1>
+                                <h2 v-if="status.mode">{{ trans('player.status.mode') }}</h2>
+                            </template>
+                        </div>
+                        <div class="offline" v-else>
+                            <h1>{{ trans('player.status.offline') }}</h1>
+                            <h2 v-if="player.last_seen > 0">{{ trans('player.status.last_seen') }}</h2>
+                        </div>
+                    </div>
+                    <div class="offline" v-else>
+                        <h1>{{ trans('player.status.offline') }}</h1>
+                        <h2 v-if="player.last_seen > 0">{{ trans('player.status.last_seen') }}</h2>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="error">
+                <h1>{{ trans('player.status.error') }}</h1>
+                <h3>{{ trans('player.status.api_status_disabled', { username: player.name }) }}</h3>
+            </div>
+        {% endif %}
+        <p>{{ trans('player.status.help_text', { username: player.name }) }}</p>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        window.Paniek                   = window.Paniek || {};
+        window.Paniek.language          = {{ config_get('app.locale')|json_encode|raw }};
+        window.Paniek.fallback_language = {{ config_get('app.fallback_locale')|json_encode|raw }};
+        window.Paniek.player            = {{ data|json_encode|raw }};
+        window.Paniek.status            = {{ status|json_encode|raw }};
+        window.Paniek.urls              = {{ urls|json_encode|raw }};
+    </script>
+    <script src="{{ mix('js/status.js') }}"></script>
+{% endblock %}

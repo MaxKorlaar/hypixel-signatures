@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -32,6 +32,7 @@
 
     namespace App\Utilities;
 
+    use Plancke\HypixelPHP\cache\CacheTimes;
     use Plancke\HypixelPHP\classes\HypixelObject;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\fetch\FetchParams;
@@ -60,6 +61,7 @@
             $this->api = new HypixelPHP(config('signatures.api_key'));
             $this->api->setLogger(new LaravelLogger($this->api));
             $this->api->getCacheHandler()->setBaseDirectory(storage_path('app/cache/hypixelphp'));
+            $this->api->getCacheHandler()->setCacheTime(CacheTimes::STATUS, 60);
             $this->api->getFetcher()->setTimeOut(config('signatures.api_timeout'));
         }
 

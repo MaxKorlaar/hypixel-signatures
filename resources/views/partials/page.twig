@@ -73,6 +73,9 @@
                 <li class="{{ app.request.routeIs('friends*') ? 'active' }}">
                     <a href="{{ route('friends') }}">{{ trans('nav.friends') }}</a>
                 </li>
+                <li class="{{ app.request.routeIs('player.status*') ? 'active' }}">
+                    <a href="{{ route('player.status.index') }}">{{ trans('nav.player_status') }}</a>
+                </li>
                 <li class="{{ app.request.routeIs('guild*') ? 'active' }}">
                     <a href="{{ route('guild') }}">{{ trans('nav.guild') }}</a>
                 </li>

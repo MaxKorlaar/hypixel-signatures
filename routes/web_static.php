@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -59,7 +59,11 @@
         Route::get('guild/banner', 'Guild\BannerSignatureController@render')->name('guild.banner');
     });
 
-    Route::get('/player/{uuid}/skin/head.webp', 'Player\ImageController@getHead')->name('player.skin.head');
+    Route::get('/player/{uuid}/skin/head.webp', 'Player\ImageController@getHeadAsWebP')->name('player.skin.head');
+    Route::get('/player/{uuid}/skin/head.png', 'Player\ImageController@getHeadAsPNG')->name('player.skin.head.png');
+
+    Route::get('/player/{uuid}/skin/full.webp', 'Player\ImageController@getSkinAsWebP')->name('player.skin.full');
+    Route::get('/player/{uuid}/skin/full.png', 'Player\ImageController@getSkinAsPNG')->name('player.skin.full.png');
 
     Route::get('/guild/{id}/banner.png', 'Guild\BannerController@getBanner')->name('guild.banner');
 

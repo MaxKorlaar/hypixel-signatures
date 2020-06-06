@@ -1,5 +1,4 @@
-<?php
-/*
+/*!
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,41 +29,69 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Console\Commands;
+.player {
+  .recently-viewed-grid {
+    @extend .players-grid;
 
-    use Illuminate\Console\Command;
-    use Illuminate\Support\Facades\Redis;
-
-    /**
-     * Class ClearRecentlyViewed
-     *
-     * @package App\Console\Commands
-     */
-    class ClearRecentlyViewed extends Command {
-        /**
-         * The name and signature of the console command.
-         *
-         * @var string
-         */
-        protected $signature = 'hypixel-cache:clear-recent';
-
-        /**
-         * The console command description.
-         *
-         * @var string
-         */
-        protected $description = 'Clear list of recently viewed players and guilds by site visitors';
-
-        /**
-         * Execute the console command.
-         *
-         * @return mixed
-         */
-        public function handle(): void {
-            Redis::del('recent_friends');
-            Redis::del('recent_guilds');
-            Redis::del('recent_online_players');
-
-            $this->info('Cleared recently viewed players');
-        }
+    .online {
+      color: $green;
     }
+  }
+}
+
+.player-status {
+  text-align: center;
+
+  .loading {
+    .image-container, h1 {
+      @extend .anim-pulse;
+    }
+  }
+
+  p {
+    max-width: $container-md;
+    margin: 1rem auto;
+  }
+
+  .status-container {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    align-items: center;
+    margin: 0 auto;
+    max-width: $container-md;
+
+    .online {
+      h1 {
+        color: $green;
+      }
+    }
+
+    .offline {
+      h1 {
+        color: $color-gray;
+      }
+    }
+  }
+
+  h1 {
+    font-size: 3rem;
+    margin: .5rem 0;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .status {
+    font-size: 3rem;
+  }
+
+  .error {
+    h1 {
+      color: $red;
+    }
+
+    color: $red;
+  }
+
+}
