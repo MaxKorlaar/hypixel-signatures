@@ -40,10 +40,10 @@
 
         'callout'             => [
             "Bekijk informatie over elke Hypixel Guild, inclusief de ledenlijst, beschrijvingen en zelfs minigame-statistieken.",
-            'Het is gemakkelijk – Je hoeft alleen je gebruikersnaam in te voeren om te beginnen.'
+            'Het is gemakkelijk – U hoeft alleen uw gebruikersnaam in te voeren om te beginnen.'
         ],
-        'callout_placeholder' => 'Voer je gebruikersnaam in om te beginnen',
-        'callout_button'      => 'Bekijk guild',
+        'callout_placeholder' => 'Voer uw gebruikersnaam in om te beginnen',
+        'callout_button'      => 'Besigtig guild',
 
         'recently_viewed'                   => 'Recent bekeken',
         'recently_viewed_members_and_views' => ':count leden – :views keer bekeken',
@@ -54,7 +54,7 @@
             'social' => [
                 'title' => ':name - :site',
 
-                'default_description' => ':name is een guild op de Hypixel Minecraft-server',
+                'default_description' => ':name is ene guild op de Hypixel Minecraft-server',
                 'description'         => " - Bekijk de leden van :name's, hun statistieken en zelfs minigame-statistieken voor SkyWars, Bed Wars en meer spellen voor heel de guild op :site."
             ],
         ]
