@@ -1,5 +1,5 @@
 <?php
-/**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Http\Controllers\Player;
+    namespace App\Http\Controllers\Player;
 
     use App\Http\Controllers\Controller;
     use App\Utilities\MinecraftAvatar\ThreeDAvatar;
@@ -49,11 +49,77 @@ namespace App\Http\Controllers\Player;
          *
          * @return mixed
          */
-        public function getHead(Request $request, string $uuid) {
-            $threedAvatar = new ThreeDAvatar();
-            $headImage    = $threedAvatar->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, true, true, true, -30);
+        public function getHeadAsWebP(Request $request, string $uuid) {
+            $headImage = $this->getHead($request, $uuid);
 
             return Image::make($headImage)->response('webp')->setCache([
+                'public'  => true,
+                'max_age' => config('cache.times.public.player_skin')
+            ]);
+        }
+
+        /**
+         * @param Request $request
+         * @param string  $uuid
+         *
+         * @return bool|resource
+         */
+        private function getHead(Request $request, string $uuid) {
+            $threedAvatar = new ThreeDAvatar();
+            return $threedAvatar->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, true, true, true, -30);
+        }
+
+        /**
+         * @param Request $request
+         * @param string  $uuid
+         *
+         * @return mixed
+         */
+        public function getHeadAsPNG(Request $request, string $uuid) {
+            $headImage = $this->getHead($request, $uuid);
+
+            return Image::make($headImage)->response('png')->setCache([
+                'public'  => true,
+                'max_age' => config('cache.times.public.player_skin')
+            ]);
+        }
+
+        /**
+         * @param Request $request
+         * @param string  $uuid
+         *
+         * @return mixed
+         */
+        public function getSkinAsWebP(Request $request, string $uuid) {
+            $skin = $this->getSkin($request, $uuid);
+
+            return Image::make($skin)->response('webp')->setCache([
+                'public'  => true,
+                'max_age' => config('cache.times.public.player_skin')
+            ]);
+        }
+
+        /**
+         * @param Request $request
+         * @param string  $uuid
+         *
+         * @return bool|resource
+         */
+        private function getSkin(Request $request, string $uuid) {
+            $threedAvatar = new ThreeDAvatar();
+            return $threedAvatar->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, false, true, true, -30);
+        }
+
+        /**
+         * @param Request $request
+         * @param string  $uuid
+         *
+         * @return mixed
+         */
+        public function getSkinAsPNG(Request $request, string $uuid) {
+            $skin = $this->getSkin($request, $uuid);
+
+            return Image::make($skin)->response('png')->setCache([
                 'public'  => true,
                 'max_age' => config('cache.times.public.player_skin')
             ]);

@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -189,7 +189,11 @@
             | in order to be marked as safe.
             |
             */
-            'facades'   => [],
+            'facades' => [
+                'Browser' => [
+                    'is_safe' => true
+                ]
+            ],
 
             /*
             |--------------------------------------------------------------------------
