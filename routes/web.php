@@ -52,7 +52,7 @@
     Route::get('/player/status', 'Player\SessionController@getIndex')->name('player.status.index');
     Route::post('/player/status', 'Player\SessionController@redirectToStatus')->name('player.status.form_redirect');
     Route::get('/player/{uuid}/status', 'Player\SessionController@getStatus')->name('player.status');
-    Route::get('/player/{username}/status', 'Player\SessionController@getStatusByUsername')->name('player.status');
+    Route::get('/player/{username}/status', 'Player\SessionController@getStatusByUsername')->name('player.status.username');
     Route::get('/player/{uuid}/status.json', 'Player\SessionController@getStatus')->name('player.status.json');
 
     Route::get('/player/{uuid}/skyblock/profiles', 'SkyBlockController@getProfiles')->name('skyblock.get_profiles');
