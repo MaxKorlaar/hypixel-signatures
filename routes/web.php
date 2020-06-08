@@ -60,7 +60,7 @@
     Route::get('/friends/', 'Friends\FriendsController@getIndex')->name('friends');
     Route::post('/friends/', 'Friends\FriendsController@redirectToList')->name('friends.form_redirect');
     Route::get('/friends/{uuid}', 'Friends\FriendsController@getFriends')->name('friends.list');
-    Route::get('/friends/{username}', 'Friends\FriendsController@getFriendsByUsername')->name('friends.list');
+    Route::get('/friends/{username}', 'Friends\FriendsController@getFriendsByUsername')->name('friends.list.username');
     Route::get('/friends/{uuid}/json', 'Friends\FriendsController@getFriendsListJSON')->name('friends.list.json');
 
     Route::get('/guild/', 'Guild\GuildController@getIndex')->name('guild');
