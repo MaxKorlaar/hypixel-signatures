@@ -159,17 +159,6 @@
         }
 
         /**
-         * @param string $username
-         *
-         * @return RedirectResponse
-         * @throws InvalidArgumentException
-         * @throws JsonException
-         */
-        public function getFriendsByUsername(string $username): RedirectResponse {
-            return $this->redirectToListByUsername($username);
-        }
-
-        /**
          * @param string $uuid
          *
          * @param int    $max
@@ -192,7 +181,10 @@
                 $friends = $player->getFriends();
 
                 if ($friends === null) {
-                    throw new HypixelFetchException('Friend list of player ' . $uuid . ' is empty');
+                    throw new HypixelFetchException("An unknown error has ocurred while trying to retrieve {$player->getName()}'s friend list.
+                    Unfortunately, " . config('app.name') . " is only allowed to request data from Hypixel's API a limited
+                    amount of times per minute. You're likely seeing this error because we just ran into this limit. Please try to load
+                    this page again in a few moments, or wait a few seconds for us to automatically try it again.");
                 }
 
                 $totalFriends = count($friends->getRawList());
@@ -238,6 +230,20 @@
                 ];
             }
 
-            throw new HypixelFetchException('Player data of player ' . $uuid . ' is empty');
+            throw new HypixelFetchException("Player data of player {$uuid} is empty.
+            Unfortunately, " . config('app.name') . " is only allowed to request data from Hypixel's API a limited
+            amount of times per minute. You're likely seeing this error because we just ran into this limit. Please try to load
+            this page again in a few moments, or wait a few seconds for us to automatically try it again.");
+        }
+
+        /**
+         * @param string $username
+         *
+         * @return RedirectResponse
+         * @throws InvalidArgumentException
+         * @throws JsonException
+         */
+        public function getFriendsByUsername(string $username): RedirectResponse {
+            return $this->redirectToListByUsername($username);
         }
     }
