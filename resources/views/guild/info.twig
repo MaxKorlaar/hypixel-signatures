@@ -28,6 +28,19 @@
                     <a target="_blank" href="//hypixel.maxkorlaar.com/guild/{{ guild.id }}/quakecraft">{{ trans('guild.info.quakecraft_statistics') }}</a>
                 </li>
             </ul>
+            {% if config_get('signatures.google_ads_client_id') %}
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Guild pages -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="{{ config_get('signatures.google_ads_client_id') }}"
+                     data-ad-slot="7185756343"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            {% endif %}
         </div>
         <div class="content">
             {% block guild_content %}

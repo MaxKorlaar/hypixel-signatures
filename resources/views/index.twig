@@ -25,6 +25,19 @@
                         <i>SkyBlock character stats</i>
                     </a>
                 </div>
+                {% if config_get('signatures.google_ads_client_id') %}
+                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- Homepage -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="{{ config_get('signatures.google_ads_client_id') }}"
+                         data-ad-slot="8351837662"
+                         data-ad-format="auto"
+                         data-full-width-responsive="true"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                {% endif %}
                 <h2>{{ trans('home.about') }}</h2>
                 {% for text in trans('home.about_text') %}
                     <p>

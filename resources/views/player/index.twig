@@ -60,5 +60,18 @@
                 </a>
             {% endfor %}
         </div>
+        {% if config_get('signatures.google_ads_client_id') %}
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Player -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="{{ config_get('signatures.google_ads_client_id') }}"
+                 data-ad-slot="6088297092"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        {% endif %}
     </div>
 {% endblock %}
