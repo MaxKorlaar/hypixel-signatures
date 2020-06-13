@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -540,7 +540,11 @@
             }
 
             if ($rod !== null) {
-                $return['stats']['sea_creature_chance'] = $return['stats_with_sword']['sea_creature_chance'] = $return['weapon_stats'][$rod['item_uuid']]['sea_creature_chance'];
+                if (isset($return['stats_with_sword'])) {
+                    $return['stats_with_sword']['sea_creature_chance'];
+                }
+
+                $return['stats']['sea_creature_chance'] = $return['weapon_stats'][$rod['item_uuid']]['sea_creature_chance'];
             }
 
             $return['items'] = $items;
