@@ -79,7 +79,7 @@
          */
         public function report(Throwable $exception) {
             if (($exception instanceof BadResponseCodeException) && $exception->getActualCode() === 429) {
-                Log::error($exception->getMessage(), ['url' => Request::url(), 'data' => Request::except('_token')]);
+                Log::stack(['daily'])->error($exception->getMessage(), ['url' => Request::url(), 'data' => Request::except('_token')]);
                 return;
             }
 
