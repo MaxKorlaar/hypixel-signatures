@@ -36,6 +36,7 @@
 
     namespace App\Utilities;
 
+    use Illuminate\Support\Facades\Request;
     use Illuminate\Support\Str;
     use Log;
     use Plancke\HypixelPHP\log\Logger as HypixelPHPLogger;
@@ -64,7 +65,7 @@
         protected function actuallyLog($level, $line) {
             if (Str::contains($line, ['vendor/plancke/hypixel-php', '(200/429)'])) {
                 if (!Str::contains($line, 'DefaultFetcher.php')) {
-                    Log::stack(['daily'])->log($this->levels[$level], $line);
+                    Log::stack(['daily'])->log($this->levels[$level], $line, ['url' => Request::url()]);
                 }
             } else {
                 Log::log($this->levels[$level], $line);

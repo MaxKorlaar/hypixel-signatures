@@ -35,8 +35,9 @@
     use Exception;
     use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
     use Illuminate\Http\JsonResponse;
-    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Request;
     use Illuminate\Support\Facades\Response;
+    use Log;
     use MarvinLabs\DiscordLogger\Discord\Exceptions\MessageCouldNotBeSent;
     use Plancke\HypixelPHP\exceptions\BadResponseCodeException;
     use Throwable;
@@ -78,6 +79,7 @@
          */
         public function report(Throwable $exception) {
             if (($exception instanceof BadResponseCodeException) && $exception->getActualCode() === 429) {
+                Log::error($exception->getMessage(), ['url' => Request::url(), 'data' => Request::except('_token')]);
                 return;
             }
 
