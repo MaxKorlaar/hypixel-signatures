@@ -82,7 +82,7 @@
                 ],
             ]);
 
-            $recentGuilds = (new Collection(Redis::hGetAll('recent_guilds')))->sortDesc()->map(static function ($value, $key) {
+            $recentGuilds = (new Collection(Redis::connection('cache')->hGetAll('recent_guilds')))->sortDesc()->map(static function ($value, $key) {
                 $guildData = Cache::get('recent_guilds.' . $key, [
                     'name' => $key
                 ]);
@@ -120,7 +120,7 @@
                 ];
             })->flatten(1);
 
-            $recentFriends = (new Collection(Redis::hGetAll('recent_friends')))->sortDesc()->map(static function ($value, $uuid) {
+            $recentFriends = (new Collection(Redis::connection('cache')->hGetAll('recent_friends')))->sortDesc()->map(static function ($value, $uuid) {
                 return [
                     'url'       => route('friends.list', [$uuid]),
                     'frequency' => 'daily',
@@ -128,7 +128,7 @@
                 ];
             });
 
-            $recentOnlinePlayers = (new Collection(Redis::hGetAll('recent_online_players')))->sortDesc()->map(static function ($value, $uuid) {
+            $recentOnlinePlayers = (new Collection(Redis::connection('cache')->hGetAll('recent_online_players')))->sortDesc()->map(static function ($value, $uuid) {
                 return [
                     'url'       => route('player.status', [$uuid]),
                     'frequency' => 'daily',

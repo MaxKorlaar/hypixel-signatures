@@ -64,7 +64,7 @@
          * @return View
          */
         public function getIndex(): View {
-            $recentlyViewed = (new Collection(Redis::hGetAll('recent_friends')))->sortDesc()->map(static function ($value, $key) {
+            $recentlyViewed = (new Collection(Redis::connection('cache')->hGetAll('recent_friends')))->sortDesc()->map(static function ($value, $key) {
                 return ['uuid' => $key, 'views' => $value] + Cache::get('recent_friends.' . $key, []);
             })->slice(0, 20);
 
@@ -134,8 +134,8 @@
                 if ($player instanceof Player) {
                     $friendsList = $this->getFriendsListJSON($uuid);
 
-                    Redis::hIncrBy('recent_friends', $uuid, 1);
-                    Redis::expire('recent_friends', config('cache.times.recent_players'));
+                    Redis::connection('cache')->hIncrBy('recent_friends', $uuid, 1);
+                    Redis::connection('cache')->expire('recent_friends', config('cache.times.recent_players'));
                     Cache::set('recent_friends.' . $uuid, [
                         'username'      => $player->getName(),
                         'friends_count' => $friendsList['meta']['total_friends']

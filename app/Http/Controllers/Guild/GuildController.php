@@ -61,7 +61,7 @@
          * @return View
          */
         public function getIndex(): View {
-            $recentlyViewed = (new Collection(Redis::hGetAll('recent_guilds')))->sortDesc()->map(static function ($value, $key) {
+            $recentlyViewed = (new Collection(Redis::connection('cache')->hGetAll('recent_guilds')))->sortDesc()->map(static function ($value, $key) {
                 return ['id' => $key, 'views' => $value] + Cache::get('recent_guilds.' . $key, [
                         'name' => $key
                     ]);
@@ -137,8 +137,8 @@
                     return redirect()->route('guild')->withErrors(['username' => 'This guild does not exist']);
                 }
 
-                Redis::hIncrBy('recent_guilds', $guild->getID(), 1);
-                Redis::expire('recent_guilds', config('cache.times.recent_guilds'));
+                Redis::connection('cache')->hIncrBy('recent_guilds', $guild->getID(), 1);
+                Redis::connection('cache')->expire('recent_guilds', config('cache.times.recent_guilds'));
                 Cache::set('recent_guilds.' . $guild->getID(), [
                     'name'         => $guild->getName(),
                     'id'           => $guild->getID(),

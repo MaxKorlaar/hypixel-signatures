@@ -65,6 +65,10 @@ namespace App\Console\Commands;
             Redis::del('recent_guilds');
             Redis::del('recent_online_players');
 
+            Redis::connection('cache')->del('recent_friends');
+            Redis::connection('cache')->del('recent_guilds');
+            Redis::connection('cache')->del('recent_online_players');
+
             $this->info('Cleared recently viewed players');
         }
     }

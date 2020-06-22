@@ -60,7 +60,7 @@
          * @return View
          */
         public function getIndex(): View {
-            $recentlyViewed = (new Collection(Redis::hGetAll('recent_online_players')))->sortDesc()->map(static function ($value, $key) {
+            $recentlyViewed = (new Collection(Redis::connection('cache')->hGetAll('recent_online_players')))->sortDesc()->map(static function ($value, $key) {
                 return ['uuid' => $key, 'views' => $value] + Cache::get('recent_online_players.' . $key, []);
             })->slice(0, 20);
 
@@ -179,8 +179,8 @@
                     ];
                 }
 
-                Redis::hIncrBy('recent_online_players', $uuid, 1);
-                Redis::expire('recent_online_players', config('cache.times.recent_players'));
+                Redis::connection('cache')->hIncrBy('recent_online_players', $uuid, 1);
+                Redis::connection('cache')->expire('recent_online_players', config('cache.times.recent_players'));
 
                 return view('player.status', [
                     'player'  => $player,
