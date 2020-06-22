@@ -61,10 +61,6 @@ namespace App\Console\Commands;
          * @return mixed
          */
         public function handle(): void {
-            Redis::del('recent_friends');
-            Redis::del('recent_guilds');
-            Redis::del('recent_online_players');
-
             Redis::connection('cache')->del('recent_friends');
             Redis::connection('cache')->del('recent_guilds');
             Redis::connection('cache')->del('recent_online_players');
