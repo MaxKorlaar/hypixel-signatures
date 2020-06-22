@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -124,11 +124,11 @@
         */
 
         'trim' => [
-            'recent'        => 60,
-            'completed'     => 60,
-            'recent_failed' => 10080,
-            'failed'        => 10080,
-            'monitored'     => 10080,
+            'recent'        => 30,
+            'completed'     => 30,
+            'recent_failed' => 60 * 24,
+            'failed'        => 60 * 24,
+            'monitored'     => 60 * 48,
         ],
 
         /*
