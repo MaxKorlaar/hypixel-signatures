@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-use Spatie\DirectoryCleanup\Policies\DeleteEverything;
+    use Spatie\DirectoryCleanup\Policies\DeleteEverything;
 
     return [
 
@@ -46,7 +46,7 @@ use Spatie\DirectoryCleanup\Policies\DeleteEverything;
             ],
 
             storage_path('app/cache') => [
-                'deleteAllOlderThanMinutes' => 60 * 24 * 30
+                'deleteAllOlderThanMinutes' => 60 * 24 * 15
             ]
 
             /*
