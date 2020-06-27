@@ -42,14 +42,27 @@ import {meanBy, round, sumBy} from "lodash";
 export default {
     name:     "CalculatedCell",
     props:    {
-        name:      String,
-        precision: {
+        name:        String,
+        kills:       String,
+        deaths:      String,
+        wins:        String,
+        losses:      String,
+        totalPlayed: String,
+        precision:   {
             type:    Number,
             default: 0
         },
-        type:      {
+        type:        {
             type:    String,
             default: 'average'
+        },
+        formatter:   Function
+    },
+    data() {
+        return {
+            formatterMethod() {
+                return typeof this.formatter === 'undefined' ? (value => round(value, this.precision)) : this.formatter;
+            }
         }
     },
     computed: {
@@ -60,13 +73,51 @@ export default {
                 number = sumBy(this.$parent.data, item => {
                     return isNaN(item[this.name]) ? 0 : item[this.name];
                 });
+            } else if (this.type === 'total_kd') {
+                let kills = sumBy(this.$parent.data, item => {
+                    return isNaN(item[this.kills]) ? 0 : item[this.kills];
+                });
+
+                let deaths = sumBy(this.$parent.data, item => {
+                    return isNaN(item[this.deaths]) ? 0 : item[this.deaths];
+                });
+
+                if (deaths > 0) {
+                    number = kills / deaths;
+                } else {
+                    return 'N/A';
+                }
+            } else if (this.type === 'total_wins_percentage') {
+                let wins = sumBy(this.$parent.data, item => {
+                    return isNaN(item[this.wins]) ? 0 : item[this.wins];
+                });
+
+                let total;
+
+                if (this.totalPlayed) {
+                    total = sumBy(this.$parent.data, item => {
+                        return isNaN(item[this.totalPlayed]) ? 0 : item[this.totalPlayed];
+                    });
+                } else {
+                    let losses = sumBy(this.$parent.data, item => {
+                        return isNaN(item[this.losses]) ? 0 : item[this.losses];
+                    });
+
+                    total = wins + losses;
+                }
+
+                if (total > 0) {
+                    number = (wins / total) * 100;
+                } else {
+                    number = 0;
+                }
             } else {
                 number = meanBy(this.$parent.data, item => {
                     return isNaN(item[this.name]) ? 0 : item[this.name];
                 });
             }
 
-            return round(number, this.precision);
+            return this.formatterMethod()(number);
         }
     }
 }

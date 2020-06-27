@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -44,11 +44,11 @@
         'recently_viewed_friends_and_views' => ':count vrienden – :views keer bekeken',
 
         'list' => [
-            'page_title' => ":username Hypixel Vriendenlijst",
-            'title'      => "De vrienden van :username op Hypixel",
+            'page_title' => ':username Hypixel Vriendenlijst',
+            'title'      => 'De vrienden van :username op Hypixel',
 
             'social' => [
-                'title'       => "De vrienden van :username op Hypixel - :site",
+                'title'       => 'De vrienden van :username op Hypixel - :site',
                 'description' => 'Bekijk alle :total_friends vrienden van :username op de Hypixel Minecraft-server. Je kan door de lijst bladeren en naar andere Hypixel-spelers kijken.',
             ],
 
@@ -57,7 +57,7 @@
                 "Als je een <a href=':form_link'>dynamische afbeelding voor :username wil genereren</a>, dat kan je ook doen op :site! Pronk met de prestaties, minigame- of SkyBlock-statistieken van :username op elke website die het je toestaat om naar afbeeldingen te verwijzen door <a href=':form_link'>een dynamische afbeelding aan te maken</a>."
             ],
 
-            'tweet_text' => "Ik bekijk de vriendenlijst van :username op Hypixel!",
+            'tweet_text' => 'Ik bekijk de vriendenlijst van :username op Hypixel!',
 
             'loading_friends' => 'Vrienden laden ({{ meta.loaded }} / {{ meta.total_friends }})…',
             'friends_since'   => 'sinds {{ new Date(player.since).toLocaleDateString() }}'

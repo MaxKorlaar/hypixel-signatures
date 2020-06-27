@@ -39,7 +39,7 @@
         ],
 
         'callout'             => [
-            "Bekijk informatie over elke Hypixel Guild, inclusief de ledenlijst, beschrijvingen en zelfs minigame-statistieken.",
+            'Bekijk informatie over elke Hypixel Guild, inclusief de ledenlijst, beschrijvingen en zelfs minigame-statistieken.',
             'Het is gemakkelijk – U hoeft alleen uw gebruikersnaam in te voeren om te beginnen.'
         ],
         'callout_placeholder' => 'Voer uw gebruikersnaam in om te beginnen',

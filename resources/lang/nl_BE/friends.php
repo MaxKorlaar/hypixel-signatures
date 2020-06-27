@@ -44,11 +44,11 @@
         'recently_viewed_friends_and_views' => ':count vrienden – :views keer bekieken',
 
         'list' => [
-            'page_title' => ":username Hypixel Vriendenlijst",
-            'title'      => "De vrienden van :username op Hypixel",
+            'page_title' => ':username Hypixel Vriendenlijst',
+            'title'      => 'De vrienden van :username op Hypixel',
 
             'social' => [
-                'title'       => "De vrienden van :username op Hypixel - :site",
+                'title'       => 'De vrienden van :username op Hypixel - :site',
                 'description' => 'Bezigtig alle :total_friends vrienden van :username op de Hypixel Minecraft-server. U kan door de lijst bladeren en naar andere Hypixel-spelers kijken.',
             ],
 
@@ -57,7 +57,7 @@
                 "Als u een <a href=':form_link'>dynamische plaatke voor :username wil genereren</a>, dat kan u ook doen op :site! Pronk met de prestaties, minigame- of SkyBlock-statistieken van :username op elke website die het je toestaat om naar afbeeldingen te verwijzen door <a href=':form_link'>een dynamische afbeelding aan te maken</a>."
             ],
 
-            'tweet_text' => "Ik bekijk de vriendenlijst van onze :username op Hypixel!",
+            'tweet_text' => 'Ik bekijk de vriendenlijst van onze :username op Hypixel!',
 
             'loading_friends' => 'Vrienden laden ({{ meta.loaded }} / {{ meta.total_friends }})…',
             'friends_since'   => 'sinds {{ new Date(player.since).toLocaleDateString() }}'

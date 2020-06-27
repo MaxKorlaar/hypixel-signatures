@@ -59,10 +59,10 @@
                     <sortable-header name="shots_bowspleef">Shots</sortable-header>
                     <!--TNT Run-->
                     <sortable-header name="wins_tntrun">Wins</sortable-header>
-                    <sortable-header name="record_tntrun">Record</sortable-header>
+                    <sortable-header name="record_tntrun_raw">Record</sortable-header>
                     <!--PVP Run-->
                     <sortable-header name="wins_pvprun">Wins</sortable-header>
-                    <sortable-header name="record_pvprun">Record</sortable-header>
+                    <sortable-header name="record_pvprun_raw">Record</sortable-header>
                     <!--TNT Tag-->
                     <sortable-header name="wins_tnttag">Wins</sortable-header>
                     <sortable-header name="kills_tnttag">Kills</sortable-header>
@@ -125,6 +125,48 @@
                     {{ data.item.kd_wizards }}
                 </td>
             </template>
+            <template v-slot:footer>
+                <tr>
+                    <th>Guild Average</th>
+                    <!--Bow Spleef-->
+                    <calculated-cell name="wins_bowspleef"></calculated-cell>
+                    <calculated-cell name="shots_bowspleef"></calculated-cell>
+                    <!--TNT Run-->
+                    <calculated-cell name="wins_tntrun"></calculated-cell>
+                    <calculated-cell :formatter="formatTime" name="record_tntrun_raw"></calculated-cell>
+                    <!--PVP Run-->
+                    <calculated-cell name="wins_pvprun"></calculated-cell>
+                    <calculated-cell :formatter="formatTime" name="record_pvprun_raw"></calculated-cell>
+                    <!--TNT Tag-->
+                    <calculated-cell name="wins_tnttag"></calculated-cell>
+                    <calculated-cell name="kills_tnttag"></calculated-cell>
+                    <!--Wizards-->
+                    <calculated-cell name="wins_wizards"></calculated-cell>
+                    <calculated-cell name="kills_wizards"></calculated-cell>
+                    <calculated-cell name="assists_wizards"></calculated-cell>
+                    <calculated-cell :precision="2" name="kd_wizards"></calculated-cell>
+                </tr>
+                <tr>
+                    <th>Guild Total</th>
+                    <!--Bow Spleef-->
+                    <calculated-cell name="wins_bowspleef" type="total"></calculated-cell>
+                    <calculated-cell name="shots_bowspleef" type="total"></calculated-cell>
+                    <!--TNT Run-->
+                    <calculated-cell name="wins_tntrun" type="total"></calculated-cell>
+                    <calculated-cell :formatter="formatTime" name="record_tntrun_raw" type="total"></calculated-cell>
+                    <!--PVP Run-->
+                    <calculated-cell name="wins_pvprun" type="total"></calculated-cell>
+                    <calculated-cell :formatter="formatTime" name="record_pvprun_raw" type="total"></calculated-cell>
+                    <!--TNT Tag-->
+                    <calculated-cell name="wins_tnttag" type="total"></calculated-cell>
+                    <calculated-cell name="kills_tnttag" type="total"></calculated-cell>
+                    <!--Wizards-->
+                    <calculated-cell name="wins_wizards" type="total"></calculated-cell>
+                    <calculated-cell name="kills_wizards" type="total"></calculated-cell>
+                    <calculated-cell name="assists_wizards" type="total"></calculated-cell>
+                    <calculated-cell :precision="2" deaths="deaths_wizards" kills="kills_wizards" type="total_kd"></calculated-cell>
+                </tr>
+            </template>
         </sortable-table>
     </div>
 </template>
@@ -132,10 +174,19 @@
 <script>
 import SortableTable from "../components/SortableTable";
 import SortableHeader from "../components/SortableHeader";
+import CalculatedCell from "../components/CalculatedCell";
 
 export default {
     name:       "TNTGamesTable",
-    components: {SortableTable, SortableHeader},
-    props:      ['members']
+    components: {SortableTable, SortableHeader, CalculatedCell},
+    props:      ['members'],
+    methods:    {
+        formatTime(totalSeconds) {
+            let minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0'),
+                seconds = Math.floor(totalSeconds % 60).toString().padStart(2, '0');
+
+            return minutes + ':' + seconds;
+        }
+    }
 }
 </script>

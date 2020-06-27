@@ -39,7 +39,7 @@
         ],
 
         'callout'             => [
-            "View information about any Hypixel Guild, including their members, description and even game statistics.",
+            'View information about any Hypixel Guild, including their members, description and even game statistics.',
             "It's easy – You only have to enter an username or guild name to get started."
         ],
         'callout_placeholder' => 'Enter your username to get started',
@@ -103,7 +103,7 @@
 
                 'social' => [
                     'title'       => ':name SkyWars statistics - :site',
-                    'description' => "View the SkyWars statistics of the Hypixel guild :name on :site. You can browse through the list and compare SkyWars statistics of guild members."
+                    'description' => 'View the SkyWars statistics of the Hypixel guild :name on :site. You can browse through the list and compare SkyWars statistics of guild members.'
                 ],
             ],
             'bedwars'  => [
@@ -112,16 +112,16 @@
 
                 'social' => [
                     'title'       => ':name Bed Wars statistics - :site',
-                    'description' => "View the Bed Wars statistics of the Hypixel guild :name on :site. You can browse through the list and compare Bed Wars statistics of guild members."
+                    'description' => 'View the Bed Wars statistics of the Hypixel guild :name on :site. You can browse through the list and compare Bed Wars statistics of guild members.'
                 ],
             ],
             'tntgames' => [
-                'page_title' => ':name tntgames statistics',
+                'page_title' => ':name TNT-Games statistics',
                 'title'      => "<a href=':link'>:name</a>'s TNT-Games statistics",
 
                 'social' => [
                     'title'       => ':name TNT-Games statistics - :site',
-                    'description' => "View the TNT-Games statistics of the Hypixel guild :name on :site. You can browse through the list and compare TNT-Games statistics of guild members."
+                    'description' => 'View the TNT-Games statistics of the Hypixel guild :name on :site. You can browse through the list and compare TNT-Games statistics of guild members.'
                 ],
             ],
         ],

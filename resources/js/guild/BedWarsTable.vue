@@ -103,6 +103,38 @@
                     {{ data.item.kd_final }}
                 </td>
             </template>
+            <template v-slot:footer>
+                <tr>
+                    <th>Guild Average</th>
+                    <!--Total-->
+                    <calculated-cell name="wins"></calculated-cell>
+                    <calculated-cell name="kills"></calculated-cell>
+                    <calculated-cell :precision="2" name="kd"></calculated-cell>
+                    <calculated-cell :precision="1" name="wins_percentage">%</calculated-cell>
+                    <calculated-cell name="beds_broken"></calculated-cell>
+                    <!--Normal-->
+                    <calculated-cell name="kills_normal"></calculated-cell>
+                    <calculated-cell :precision="2" name="kd_normal"></calculated-cell>
+                    <!--Final-->
+                    <calculated-cell name="kills_final"></calculated-cell>
+                    <calculated-cell :precision="2" name="kd_final"></calculated-cell>
+                </tr>
+                <tr>
+                    <th>Guild Total</th>
+                    <!--Total-->
+                    <calculated-cell name="wins" type="total"></calculated-cell>
+                    <calculated-cell name="kills" type="total"></calculated-cell>
+                    <calculated-cell :precision="2" deaths="deaths" kills="kills" type="total_kd"></calculated-cell>
+                    <calculated-cell :precision="1" total-played="games_played" type="total_wins_percentage" wins="wins">%</calculated-cell>
+                    <calculated-cell name="beds_broken" type="total"></calculated-cell>
+                    <!--Normal-->
+                    <calculated-cell name="kills_normal" type="total"></calculated-cell>
+                    <calculated-cell :precision="2" deaths="deaths_normal" kills="kills_normal" type="total_kd"></calculated-cell>
+                    <!--Final-->
+                    <calculated-cell name="kills_final" type="total"></calculated-cell>
+                    <calculated-cell :precision="2" deaths="deaths_final" kills="kills_final" type="total_kd"></calculated-cell>
+                </tr>
+            </template>
         </sortable-table>
     </div>
 </template>
@@ -110,10 +142,11 @@
 <script>
 import SortableTable from "../components/SortableTable";
 import SortableHeader from "../components/SortableHeader";
+import CalculatedCell from "../components/CalculatedCell";
 
 export default {
     name:       "BedWarsTable",
-    components: {SortableTable, SortableHeader},
+    components: {SortableTable, SortableHeader, CalculatedCell},
     props:      ['members']
 }
 </script>

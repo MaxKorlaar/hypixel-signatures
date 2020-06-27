@@ -165,23 +165,23 @@
                     <!--Total-->
                     <calculated-cell name="wins" type="total"></calculated-cell>
                     <calculated-cell name="kills" type="total"></calculated-cell>
-                    <td>{{ total_kd }}</td>
-                    <td>{{ total_wins_percentage }}%</td>
+                    <calculated-cell :precision="2" deaths="deaths" kills="kills" type="total_kd"></calculated-cell>
+                    <calculated-cell :precision="1" losses="losses" type="total_wins_percentage" wins="wins">%</calculated-cell>
                     <!--Solo-->
                     <calculated-cell name="wins_solo" type="total"></calculated-cell>
                     <calculated-cell name="kills_solo" type="total"></calculated-cell>
-                    <td>{{ total_kd_solo }}</td>
-                    <td>{{ total_wins_percentage_solo }}%</td>
+                    <calculated-cell :precision="2" deaths="deaths_solo" kills="kills_solo" type="total_kd"></calculated-cell>
+                    <calculated-cell :precision="1" losses="losses_solo" type="total_wins_percentage" wins="wins_solo">%</calculated-cell>
                     <!--Teams-->
                     <calculated-cell name="wins_teams" type="total"></calculated-cell>
                     <calculated-cell name="kills_teams" type="total"></calculated-cell>
-                    <td>{{ total_kd_teams }}</td>
-                    <td>{{ total_wins_percentage_teams }}%</td>
+                    <calculated-cell :precision="2" deaths="deaths_teams" kills="kills_teams" type="total_kd"></calculated-cell>
+                    <calculated-cell :precision="1" losses="losses_teams" type="total_wins_percentage" wins="wins_teams">%</calculated-cell>
                     <!--Mega-->
                     <calculated-cell name="wins_mega" type="total"></calculated-cell>
                     <calculated-cell name="kills_mega" type="total"></calculated-cell>
-                    <td>{{ total_kd_mega }}</td>
-                    <td>{{ total_wins_percentage_mega }}%</td>
+                    <calculated-cell :precision="2" deaths="deaths_mega" kills="kills_mega" type="total_kd"></calculated-cell>
+                    <calculated-cell :precision="1" losses="losses_mega" type="total_wins_percentage" wins="wins_mega">%</calculated-cell>
                 </tr>
             </template>
         </sortable-table>
@@ -192,69 +192,10 @@
 import SortableTable from "../components/SortableTable";
 import SortableHeader from "../components/SortableHeader";
 import CalculatedCell from "../components/CalculatedCell";
-import {round, sumBy} from "lodash";
 
 export default {
     name:       "SkyWarsTable",
     components: {CalculatedCell, SortableTable, SortableHeader},
-    props:      ['members'],
-    methods:    {
-        calculateKD(killsField, deathsField) {
-            let kills = sumBy(this.members, item => {
-                return isNaN(item[killsField]) ? 0 : item[killsField];
-            });
-
-            let deaths = sumBy(this.members, item => {
-                return isNaN(item[deathsField]) ? 0 : item[deathsField];
-            });
-
-            if (deaths > 0) {
-                return round(kills / deaths, 2);
-            }
-
-            return 'N/A';
-        },
-        calculateWinsPercentage(winsField, lossesField) {
-            let wins = sumBy(this.members, item => {
-                return isNaN(item[winsField]) ? 0 : item[winsField];
-            });
-
-            let losses = sumBy(this.members, item => {
-                return isNaN(item[lossesField]) ? 0 : item[lossesField];
-            });
-
-            if ((wins + losses) > 0) {
-                return round((wins / (wins + losses)) * 100, 1);
-            }
-
-            return 0;
-        }
-    },
-    computed:   {
-        total_kd() {
-            return this.calculateKD('kills', 'deaths');
-        },
-        total_kd_solo() {
-            return this.calculateKD('kills_solo', 'deaths_solo');
-        },
-        total_kd_teams() {
-            return this.calculateKD('kills_teams', 'deaths_teams');
-        },
-        total_kd_mega() {
-            return this.calculateKD('kills_mega', 'deaths_mega');
-        },
-        total_wins_percentage() {
-            return this.calculateWinsPercentage('wins', 'losses');
-        },
-        total_wins_percentage_solo() {
-            return this.calculateWinsPercentage('wins_solo', 'losses_solo');
-        },
-        total_wins_percentage_teams() {
-            return this.calculateWinsPercentage('wins_teams', 'losses_teams');
-        },
-        total_wins_percentage_mega() {
-            return this.calculateWinsPercentage('wins_mega', 'losses_mega');
-        },
-    }
+    props: ['members']
 }
 </script>
