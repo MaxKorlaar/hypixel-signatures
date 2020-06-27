@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import {meanBy, round, sumBy} from "lodash";
+import {meanBy, round, sumBy} from "lodash/math";
 
 export default {
     name:     "CalculatedCell",
