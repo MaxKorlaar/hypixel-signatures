@@ -1,5 +1,5 @@
 <?php
-/**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,7 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Http\Controllers\Guild;
+    namespace App\Http\Controllers\Guild;
 
     use App\Exceptions\HypixelFetchException;
     use App\Utilities\HypixelAPI;
@@ -99,8 +99,8 @@ namespace App\Http\Controllers\Guild;
                 $killsWizards  = $stats->getInt('kills_capture');
                 $deathsWizards = $stats->getInt('deaths_capture');
 
-                $recordTNTRun = gmdate("i:s", $stats->getInt('record_tntrun'));
-                $recordPVPRun = gmdate("i:s", $stats->getInt('record_pvprun'));
+                $recordTNTRun = gmdate('i:s', $stats->getInt('record_tntrun'));
+                $recordPVPRun = gmdate('i:s', $stats->getInt('record_pvprun'));
 
                 if ($deathsWizards > 0) {
                     $kdWizards = round($killsWizards / $deathsWizards, 2);
@@ -112,17 +112,20 @@ namespace App\Http\Controllers\Guild;
                     'wins_bowspleef'  => $stats->getInt('wins_bowspleef'),
                     'shots_bowspleef' => $stats->getInt('tags_bowspleef'),
 
-                    'wins_tntrun'   => $stats->getInt('wins_tntrun'),
-                    'record_tntrun' => $recordTNTRun,
+                    'wins_tntrun'       => $stats->getInt('wins_tntrun'),
+                    'record_tntrun'     => $recordTNTRun,
+                    'record_tntrun_raw' => $stats->getInt('record_tntrun'),
 
-                    'wins_pvprun'   => $stats->getInt('wins_pvprun'),
-                    'record_pvprun' => $recordPVPRun,
+                    'wins_pvprun'       => $stats->getInt('wins_pvprun'),
+                    'record_pvprun'     => $recordPVPRun,
+                    'record_pvprun_raw' => $stats->getInt('record_pvprun'),
 
                     'wins_tnttag'  => $stats->getInt('wins_tntag'),
                     'kills_tnttag' => $stats->getInt('kills_tntag'),
 
                     'wins_wizards'    => $stats->getInt('wins_capture'),
                     'kills_wizards'   => $killsWizards,
+                    'deaths_wizards'  => $deathsWizards,
                     'assists_wizards' => $stats->getInt('assists_capture'),
                     'kd_wizards'      => $kdWizards,
                 ];

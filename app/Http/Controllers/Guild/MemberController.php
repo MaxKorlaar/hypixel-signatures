@@ -43,6 +43,7 @@
     use Illuminate\Http\Request;
     use Illuminate\Support\Str;
     use Illuminate\View\View;
+    use Log;
     use Plancke\HypixelPHP\color\ColorUtils;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\guild\Guild;
@@ -76,6 +77,10 @@
 
                 if ($request->wantsJson()) {
                     return $memberList;
+                }
+
+                if ($guild->getID() === null || $guild->getID() === '') {
+                    Log::error('Guild ID is empty or null', ['guild' => $guild, 'id' => $guild->getID(), 'name' => $nameOrId]);
                 }
 
                 return view('guild.members', [

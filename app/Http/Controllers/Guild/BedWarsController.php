@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -109,7 +109,7 @@ namespace App\Http\Controllers\Guild;
 
                 $totalDeaths = $deaths + $finalDeaths;
 
-                $games = $stats->getInt('games_played_bedwars', 0);
+                $gamesPlayed = $stats->getInt('games_played_bedwars', 0);
 
                 if ($totalDeaths !== 0) {
                     $totalKd = round($totalKills / $totalDeaths, 2);
@@ -117,8 +117,8 @@ namespace App\Http\Controllers\Guild;
                     $totalKd = 'N/A';
                 }
 
-                if ($wins !== 0 && $games !== 0) {
-                    $winsPercentage = round(($wins / ($games)) * 100, 2);
+                if ($wins !== 0 && $gamesPlayed !== 0) {
+                    $winsPercentage = round(($wins / $gamesPlayed) * 100, 1);
                 } else {
                     $winsPercentage = 0;
                 }
@@ -138,15 +138,19 @@ namespace App\Http\Controllers\Guild;
                 return [
                     'wins'            => $wins,
                     'kills'           => $totalKills,
+                    'deaths'          => $totalDeaths,
                     'kd'              => $totalKd,
                     'wins_percentage' => $winsPercentage,
+                    'games_played'    => $gamesPlayed,
                     'beds_broken'     => $stats->getInt('beds_broken_bedwars'),
 
-                    'kills_normal' => $kills,
-                    'kd_normal'    => $kd,
+                    'kills_normal'  => $kills,
+                    'deaths_normal' => $deaths,
+                    'kd_normal'     => $kd,
 
-                    'kills_final' => $finalKills,
-                    'kd_final'    => $finalKd
+                    'kills_final'  => $finalKills,
+                    'deaths_final' => $finalDeaths,
+                    'kd_final'     => $finalKd
                 ];
             });
         }

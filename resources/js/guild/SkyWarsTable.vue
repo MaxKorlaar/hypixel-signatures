@@ -136,6 +136,54 @@
                     {{ data.item.wins_percentage_mega }}%
                 </td>
             </template>
+            <template v-slot:footer>
+                <tr>
+                    <th>Guild Average</th>
+                    <!--Total-->
+                    <calculated-cell name="wins"></calculated-cell>
+                    <calculated-cell name="kills"></calculated-cell>
+                    <calculated-cell :precision="2" name="kd"></calculated-cell>
+                    <calculated-cell :precision="1" name="wins_percentage">%</calculated-cell>
+                    <!--Solo-->
+                    <calculated-cell name="wins_solo"></calculated-cell>
+                    <calculated-cell name="kills_solo"></calculated-cell>
+                    <calculated-cell :precision="2" name="kd_solo"></calculated-cell>
+                    <calculated-cell :precision="1" name="wins_percentage_solo">%</calculated-cell>
+                    <!--Teams-->
+                    <calculated-cell name="wins_teams"></calculated-cell>
+                    <calculated-cell name="kills_teams"></calculated-cell>
+                    <calculated-cell :precision="2" name="kd_teams"></calculated-cell>
+                    <calculated-cell :precision="1" name="wins_percentage_teams">%</calculated-cell>
+                    <!--Mega-->
+                    <calculated-cell name="wins_mega"></calculated-cell>
+                    <calculated-cell name="kills_mega"></calculated-cell>
+                    <calculated-cell :precision="2" name="kd_mega"></calculated-cell>
+                    <calculated-cell :precision="1" name="wins_percentage_mega">%</calculated-cell>
+                </tr>
+                <tr>
+                    <th>Guild Total</th>
+                    <!--Total-->
+                    <calculated-cell name="wins" type="total"></calculated-cell>
+                    <calculated-cell name="kills" type="total"></calculated-cell>
+                    <calculated-cell :precision="2" deaths="deaths" kills="kills" type="total_kd"></calculated-cell>
+                    <calculated-cell :precision="1" losses="losses" type="total_wins_percentage" wins="wins">%</calculated-cell>
+                    <!--Solo-->
+                    <calculated-cell name="wins_solo" type="total"></calculated-cell>
+                    <calculated-cell name="kills_solo" type="total"></calculated-cell>
+                    <calculated-cell :precision="2" deaths="deaths_solo" kills="kills_solo" type="total_kd"></calculated-cell>
+                    <calculated-cell :precision="1" losses="losses_solo" type="total_wins_percentage" wins="wins_solo">%</calculated-cell>
+                    <!--Teams-->
+                    <calculated-cell name="wins_teams" type="total"></calculated-cell>
+                    <calculated-cell name="kills_teams" type="total"></calculated-cell>
+                    <calculated-cell :precision="2" deaths="deaths_teams" kills="kills_teams" type="total_kd"></calculated-cell>
+                    <calculated-cell :precision="1" losses="losses_teams" type="total_wins_percentage" wins="wins_teams">%</calculated-cell>
+                    <!--Mega-->
+                    <calculated-cell name="wins_mega" type="total"></calculated-cell>
+                    <calculated-cell name="kills_mega" type="total"></calculated-cell>
+                    <calculated-cell :precision="2" deaths="deaths_mega" kills="kills_mega" type="total_kd"></calculated-cell>
+                    <calculated-cell :precision="1" losses="losses_mega" type="total_wins_percentage" wins="wins_mega">%</calculated-cell>
+                </tr>
+            </template>
         </sortable-table>
     </div>
 </template>
@@ -143,10 +191,11 @@
 <script>
 import SortableTable from "../components/SortableTable";
 import SortableHeader from "../components/SortableHeader";
+import CalculatedCell from "../components/CalculatedCell";
 
 export default {
     name:       "SkyWarsTable",
-    components: {SortableTable, SortableHeader},
-    props:      ['members']
+    components: {CalculatedCell, SortableTable, SortableHeader},
+    props: ['members']
 }
 </script>

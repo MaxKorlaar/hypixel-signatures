@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -39,7 +39,7 @@
         ],
 
         'callout'             => [
-            "Bekijk informatie over elke Hypixel Guild, inclusief de ledenlijst, beschrijvingen en zelfs minigame-statistieken.",
+            'Bekijk informatie over elke Hypixel Guild, inclusief de ledenlijst, beschrijvingen en zelfs minigame-statistieken.',
             'Het is gemakkelijk – Je hoeft alleen je gebruikersnaam in te voeren om te beginnen.'
         ],
         'callout_placeholder' => 'Voer je gebruikersnaam in om te beginnen',

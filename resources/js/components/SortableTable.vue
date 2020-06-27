@@ -39,6 +39,9 @@
                 <slot v-bind:item="item"></slot>
             </tr>
         </tbody>
+        <tfoot>
+            <slot name="footer"></slot>
+        </tfoot>
     </table>
 </template>
 

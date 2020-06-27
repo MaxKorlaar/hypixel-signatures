@@ -39,7 +39,7 @@
         ],
 
         'callout' => [
-            "Bekijk of een speler momenteel online is, welk spel ze spelen of in welke lobby ze zich bevinden.",
+            'Bekijk of een speler momenteel online is, welk spel ze spelen of in welke lobby ze zich bevinden.',
             'Het is gemakkelijk – Je hoeft alleen een gebruikersnaam in te voeren om te beginnen.'
         ],
 
