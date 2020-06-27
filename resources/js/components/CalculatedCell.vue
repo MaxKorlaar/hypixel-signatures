@@ -30,66 +30,44 @@
   -->
 
 <template>
-    <table>
-        <thead>
-            <slot name="head"></slot>
-        </thead>
-        <tbody>
-            <tr :class="{ 'loading': item.loading }" v-for="item in sorted_data">
-                <slot v-bind:item="item"></slot>
-            </tr>
-        </tbody>
-        <tfoot>
-            <slot name="footer"></slot>
-        </tfoot>
-    </table>
+    <td>
+        {{ value }}
+        <slot></slot>
+    </td>
 </template>
 
 <script>
+import {meanBy, round, sumBy} from "lodash";
+
 export default {
-    name:     "SortableTable",
-    props:    ['data'],
-    data() {
-        return {
-            sort: {
-                by:        null,
-                direction: 'asc'
-            },
+    name:     "CalculatedCell",
+    props:    {
+        name:      String,
+        precision: {
+            type:    Number,
+            default: 0
+        },
+        type:      {
+            type:    String,
+            default: 'average'
         }
     },
     computed: {
-        sorted_data() {
-            if (this.sort.by !== null) {
-                return [...this.data].sort((a, b) => {
-                    const modifier = this.sort.direction === 'asc' ? 1 : -1;
+        value() {
+            let number;
 
-                    if (a[this.sort.by] < b[this.sort.by]) return -1 * modifier;
-                    if (a[this.sort.by] > b[this.sort.by]) return modifier;
-
-                    return 0;
+            if (this.type === 'total') {
+                number = sumBy(this.$parent.data, item => {
+                    return isNaN(item[this.name]) ? 0 : item[this.name];
+                });
+            } else {
+                number = meanBy(this.$parent.data, item => {
+                    return isNaN(item[this.name]) ? 0 : item[this.name];
                 });
             }
 
-            return this.data;
+            return round(number, this.precision);
         }
-    },
-    mounted() {
-        this.$on('sortBy', field => {
-            if (field === this.sort.by) {
-                switch (this.sort.direction) {
-                    case "asc":
-                        this.sort.direction = 'desc';
-                        break;
-                    case 'desc':
-                        this.sort.direction = 'asc';
-                        this.sort.by        = null;
-                        break;
-                }
-            } else {
-                this.sort.direction = 'asc';
-                this.sort.by        = field;
-            }
-        })
     }
 }
 </script>

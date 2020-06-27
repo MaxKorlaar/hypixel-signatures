@@ -151,12 +151,17 @@
       border-top: 1px solid lighten($color-secondary, 60%);
     }
 
-    tr:last-child th, th[rowspan="2"] {
-      border-bottom: 2px solid lighten($color-secondary, 60%);
+    thead {
+      tr:last-child th, th[rowspan="2"] {
+        border-bottom: 2px solid lighten($color-secondary, 60%);
+      }
+
+      th {
+        border-top: none;
+      }
     }
 
     th {
-      border-top: none;
       text-align: left;
     }
 
@@ -216,7 +221,7 @@
         }
       }
 
-      tbody {
+      tbody, tfoot {
         td:not(:first-child) {
           border-left: 1px solid lighten($color-secondary, 60%);
         }
