@@ -46,7 +46,7 @@
             ],
 
             storage_path('app/cache') => [
-                'deleteAllOlderThanMinutes' => 60 * 24 * 15
+                'deleteAllOlderThanMinutes' => 60 * 24 * 7
             ]
 
             /*
