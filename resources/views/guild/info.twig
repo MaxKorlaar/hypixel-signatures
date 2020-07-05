@@ -17,17 +17,7 @@
             <a href="{{ route('guild.games.skywars', [guild.name]) }}" class="button">{{ trans('guild.info.skywars_statistics') }}</a>
             <a href="{{ route('guild.games.bedwars', [guild.name]) }}" class="button">{{ trans('guild.info.bedwars_statistics') }}</a>
             <a href="{{ route('guild.games.tntgames', [guild.name]) }}" class="button">{{ trans('guild.info.tntgames_statistics') }}</a>
-            <ul>
-                <li>
-                    <a target="_blank" href="//hypixel.maxkorlaar.com/guild/{{ guild.id }}/statistics/megawalls">{{ trans('guild.info.megawalls_statistics') }}</a>
-                </li>
-                <li>
-                    <a target="_blank" href="//hypixel.maxkorlaar.com/guild/{{ guild.id }}/statistics/crazywalls">{{ trans('guild.info.crazywalls_statistics') }}</a>
-                </li>
-                <li>
-                    <a target="_blank" href="//hypixel.maxkorlaar.com/guild/{{ guild.id }}/statistics/quakecraft">{{ trans('guild.info.quakecraft_statistics') }}</a>
-                </li>
-            </ul>
+            <a href="{{ route('guild.games.megawalls', [guild.name]) }}" class="button">{{ trans('guild.info.megawalls_statistics') }}</a>
             {% if config_get('signatures.google_ads_client_id') %}
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- Guild pages -->

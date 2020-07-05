@@ -78,6 +78,9 @@
     Route::get('/guild/{name}/games/tnt-games', 'Guild\TNTGamesController@getTNTGamesStatistics')->name('guild.games.tntgames');
     Route::get('/guild/{name}/games/tnt-games.json', 'Guild\TNTGamesController@getTNTGamesStatistics')->name('guild.games.tntgames.json');
 
+    Route::get('/guild/{name}/games/megawalls', 'Guild\MegaWallsController@getMegaWallsStatistics')->name('guild.games.megawalls');
+    Route::get('/guild/{name}/games/megawalls.json', 'Guild\MegaWallsController@getMegaWallsStatistics')->name('guild.games.megawalls.json');
+
     Route::prefix('status-sig')->group(static function () {
         Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');
     });
