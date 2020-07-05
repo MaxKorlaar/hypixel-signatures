@@ -34,6 +34,7 @@ import SkyWarsTable from "./guild/SkyWarsTable";
 import MembersTable from "./guild/MembersTable";
 import BedWarsTable from "./guild/BedWarsTable";
 import TNTGamesTable from "./guild/TNTGamesTable";
+import MegaWallsTable from "./guild/MegaWallsTable";
 
 const axios = require('axios').default;
 
@@ -47,7 +48,7 @@ Vue.use(VueLazyload, {
 // noinspection ObjectAllocationIgnored
 new Vue({
     el:         '#guild-members-app',
-    components: {SkyWarsTable, MembersTable, BedWarsTable, TNTGamesTable},
+    components: {SkyWarsTable, MembersTable, BedWarsTable, TNTGamesTable, MegaWallsTable},
     data:       {
         members: [],
         meta:    {

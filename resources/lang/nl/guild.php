@@ -49,7 +49,8 @@
         'recently_viewed_members_and_views' => ':count leden – :views keer bekeken',
 
         'info' => [
-            'title' => ':name Guild',
+            'title'   => ':name Guild',
+            'members' => 'Ledenlijst',
 
             'social' => [
                 'title' => ':name - :site',

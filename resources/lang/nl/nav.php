@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -31,8 +31,9 @@
  */
 
     return [
-        'home'       => 'Home',
-        'signatures' => 'Dynamische Afbeeldingen',
-        'friends'    => 'Vrienden',
-        'guild'      => 'Gilde',
+        'home'         => 'Home',
+        'signatures'   => 'Dynamische Afbeeldingen',
+        'friends'      => 'Vrienden',
+        'guild'        => 'Gilde',
+        'beta_warning' => '<b>Let op!</b> Hypixel.Paniek.de zit nog in een bètafase, en kan af en toe niet goed werken. Als je feedback hebt, of als je graag meer functies wil zien op deze website, aarzel dan vooral niet om contact met mij op te nemen!'
     ];

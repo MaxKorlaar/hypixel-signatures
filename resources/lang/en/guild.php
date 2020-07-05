@@ -97,7 +97,7 @@
         ],
 
         'games' => [
-            'skywars'  => [
+            'skywars'   => [
                 'page_title' => ':name SkyWars statistics',
                 'title'      => "<a href=':link'>:name</a>'s SkyWars statistics",
 
@@ -106,7 +106,7 @@
                     'description' => 'View the SkyWars statistics of the Hypixel guild :name on :site. You can browse through the list and compare SkyWars statistics of guild members.'
                 ],
             ],
-            'bedwars'  => [
+            'bedwars'   => [
                 'page_title' => ':name Bed Wars statistics',
                 'title'      => "<a href=':link'>:name</a>'s Bed Wars statistics",
 
@@ -115,13 +115,22 @@
                     'description' => 'View the Bed Wars statistics of the Hypixel guild :name on :site. You can browse through the list and compare Bed Wars statistics of guild members.'
                 ],
             ],
-            'tntgames' => [
+            'tntgames'  => [
                 'page_title' => ':name TNT-Games statistics',
                 'title'      => "<a href=':link'>:name</a>'s TNT-Games statistics",
 
                 'social' => [
                     'title'       => ':name TNT-Games statistics - :site',
                     'description' => 'View the TNT-Games statistics of the Hypixel guild :name on :site. You can browse through the list and compare TNT-Games statistics of guild members.'
+                ],
+            ],
+            'megawalls' => [
+                'page_title' => ':name Mega Walls statistics',
+                'title'      => "<a href=':link'>:name</a>'s Mega Walls statistics",
+
+                'social' => [
+                    'title'       => ':name TNT-Games statistics - :site',
+                    'description' => 'View the Mega Walls statistics of the Hypixel guild :name on :site. You can browse through the list and compare Mega Walls statistics of guild members.'
                 ],
             ],
         ],
