@@ -31,9 +31,10 @@
  */
 
     return [
-        'home'       => 'Home',
-        'signatures' => 'Dynamic Signatures',
-        'friends'    => 'Friends',
-        'guild'      => 'Guild',
-        'player_status' => 'Online Status'
+        'home'          => 'Home',
+        'signatures'    => 'Dynamic Signatures',
+        'friends'       => 'Friends',
+        'guild'         => 'Guild',
+        'player_status' => 'Online Status',
+        'beta_warning'  => '<b>Heads up!</b> Hypixel.Paniek.de is still in beta, and may ocasionally break. If you have any feedback or would like to see more functionality added to this site, don\'t hesitate to get in touch with me!'
     ];
