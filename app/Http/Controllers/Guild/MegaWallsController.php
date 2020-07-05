@@ -113,7 +113,7 @@
                     $winsPercentage = 0;
                 }
 
-                $finalKills  = $stats->getInt('finalKills') + $stats->getInt('final_kills');
+                $finalKills  = $stats->getInt('final_kills');
                 $finalDeaths = $stats->getInt('finalDeaths') + $stats->getInt('final_deaths');
 
                 if ($finalDeaths > 0) {
