@@ -72,7 +72,7 @@ namespace App\Jobs\Guild;
          * @throws LimiterTimeoutException
          */
         public function handle(): void {
-            Redis::throttle('hypixel.player_data')->allow(750)->every(60)->block(0)->then(function () {
+            Redis::throttle('hypixel.guild.player_data')->allow(500)->every(60)->block(0)->then(function () {
                 $api = new HypixelAPI();
 
                 $player = $api->getPlayerByUuid($this->uuid);
