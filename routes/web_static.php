@@ -57,6 +57,8 @@
 
         Route::get('guild/general', 'Guild\GuildSignatureController@render')->name('guild.general');
         Route::get('guild/banner', 'Guild\BannerSignatureController@render')->name('guild.banner');
+
+        Route::get('other/timestamp', 'TimestampSignatureController@render')->name('other.timestamp');
     });
 
     Route::get('/player/{uuid}/skin/head.webp', 'Player\ImageController@getHeadAsWebP')->name('player.skin.head');

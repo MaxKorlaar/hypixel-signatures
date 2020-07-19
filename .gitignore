@@ -119,6 +119,6 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/composer,phpstorm
 .idea/$CACHE_FILE$
-.idea/Laravel_**.xml
+.idea/commandlinetools/Laravel*.xml
 
 .vagrant
