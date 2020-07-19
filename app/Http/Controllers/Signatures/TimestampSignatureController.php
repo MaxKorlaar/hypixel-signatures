@@ -37,7 +37,6 @@
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
     use Image;
-    use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\player\Player;
 
     /**
@@ -52,7 +51,6 @@
          * @param Player  $player
          *
          * @return Response
-         * @throws HypixelPHPException
          */
         protected function signature(Request $request, Player $player): Response {
             $image                  = BaseSignature::getImage(400, 100);
