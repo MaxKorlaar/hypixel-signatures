@@ -37,9 +37,11 @@
     use Illuminate\Http\JsonResponse;
     use Illuminate\Support\Facades\Request;
     use Illuminate\Support\Facades\Response;
+    use Illuminate\Support\Str;
     use Log;
     use MarvinLabs\DiscordLogger\Discord\Exceptions\MessageCouldNotBeSent;
     use Plancke\HypixelPHP\exceptions\BadResponseCodeException;
+    use Plancke\HypixelPHP\exceptions\CurlException;
     use Throwable;
 
     /**
@@ -80,6 +82,11 @@
         public function report(Throwable $exception) {
             if (($exception instanceof BadResponseCodeException) && $exception->getActualCode() === 429) {
                 Log::stack(['daily'])->error($exception->getMessage(), ['url' => Request::url(), 'data' => Request::except('_token')]);
+                return;
+            }
+
+            if ($exception instanceof CurlException && Str::contains($exception->getMessage(), ['Operation timed out after'])) {
+                Log::stack(['daily'])->error($exception->getMessage(), ['url' => Request::url()]);
                 return;
             }
 
