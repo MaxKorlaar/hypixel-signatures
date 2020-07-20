@@ -64,7 +64,7 @@
          */
         protected function actuallyLog($level, $line) {
             if (Str::contains($line, ['vendor/plancke/hypixel-php', '(200/429)', 'Operation timed out after'])) {
-                if (!Str::contains($line, 'DefaultFetcher.php')) {
+                if (!Str::containsAll($line, ['DefaultFetcher.php', '(200/429)'])) {
                     Log::stack(['daily'])->log($this->levels[$level], $line, ['url' => Request::url()]);
                 }
             } else {
