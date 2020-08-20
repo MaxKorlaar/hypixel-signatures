@@ -6,7 +6,10 @@
 
 {% block guild_content %}
     {% block table_title %}
-        <h1>{{ trans('guild.members.title', { name: guild.name, link: route('guild.info', [guild.name]) })|raw }}</h1>{% endblock %}
+        <h1>{{ trans('guild.members.title', { name: guild.name, link: route('guild.info', [guild.name]) })|raw }}</h1>
+    {% endblock %}
+
+    <p>{{ trans('guild.info.click_to_sort') }}</p>
 
     <div id="guild-members-app">
         <div class="progress-info" v-if="meta.loaded < meta.total_members" v-cloak>

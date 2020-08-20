@@ -135,7 +135,12 @@ namespace App\Http\Controllers\Guild;
                     $finalKd = 'N/A';
                 }
 
+                $achievements = $player->getArray('achievements');
+
+                $level = $achievements['bedwars_level'] ?? 0;
+
                 return [
+                    'level'           => $level,
                     'wins'            => $wins,
                     'kills'           => $totalKills,
                     'deaths'          => $totalDeaths,

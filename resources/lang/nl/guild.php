@@ -58,5 +58,7 @@
                 'default_description' => ':name is een guild op de Hypixel Minecraft-server',
                 'description'         => " - Bekijk de leden van :name's, hun statistieken en zelfs minigame-statistieken voor SkyWars, Bed Wars en meer spellen voor heel de guild op :site."
             ],
+
+            'click_to_sort' => 'Je kan op de kolommen klikken om de leden te sorteren op basis van bepaalde statistieken. Als je de precieze positie van een speler op het getoonde guild-scorebord wil zien, beweeg dan je cursor over een gebruikersnaam om de relatieve positie voor de huidige sortering te zien!'
         ]
     ];
