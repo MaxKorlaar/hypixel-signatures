@@ -11,7 +11,7 @@ devDependencies:
   laravel-mix: 5.0.4_vue-template-compiler@2.6.11
   laravel-mix-bundle-analyzer: 1.0.5_laravel-mix@5.0.4
   laravel-mix-purgecss: 5.0.0_laravel-mix@5.0.4
-  lodash: 4.17.15
+  lodash: 4.17.19
   moment-locales-webpack-plugin: 1.2.0_moment@2.27.0
   resolve-url-loader: 2.3.2
   sass: 1.26.9
@@ -4837,6 +4837,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  /lodash/4.17.19:
+    dev: true
+    resolution:
+      integrity: sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
   /loglevel/1.6.8:
     dev: true
     engines:
@@ -5161,6 +5165,7 @@ packages:
     resolution:
       integrity: sha512-QAi5v0OlPUP7GXviKMtxnpBAo8WmTHrUNN7iciAhNOEAd9evCOvuN0g1N7ThIg3q11GLCkjY1zQ2saRcf/43nQ==
   /moment/2.27.0:
+    dev: false
     resolution:
       integrity: sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==
   /move-concurrently/1.0.1:
@@ -8301,7 +8306,7 @@ specifiers:
   laravel-mix: ^5
   laravel-mix-bundle-analyzer: ^1.0.5
   laravel-mix-purgecss: ^5.0.0
-  lodash: ^4.17.13
+  lodash: ^4.17.19
   moment: ^2.27.0
   moment-locales-webpack-plugin: ^1.2.0
   resolve-url-loader: ^2.3.1

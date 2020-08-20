@@ -82,6 +82,8 @@
             'yes'               => 'Yes',
             'no'                => 'No',
             'listed'            => 'Publicly listed',
+
+            'click_to_sort' => 'You can click the table headers to sort the guild members by specific statistics. If you would like to know the exact position a player is on for a guild leaderboard, hover over the username in order to see their relative position for the currently sorted statistic!'
         ],
 
         'members' => [

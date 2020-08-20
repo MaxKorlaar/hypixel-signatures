@@ -49,6 +49,7 @@
                 </tr>
                 <tr>
                     <!--Total-->
+                    <sortable-header name="level">Stars</sortable-header>
                     <sortable-header name="wins">Wins</sortable-header>
                     <sortable-header name="kills">Kills</sortable-header>
                     <sortable-header name="kd">K/D</sortable-header>
@@ -73,6 +74,9 @@
                     <span class="formatted-name" v-html="data.item.formatted_name"></span>
                 </td>
                 <!--Total-->
+                <td>
+                    {{ data.item.level }}
+                </td>
                 <td>
                     {{ data.item.wins }}
                 </td>
@@ -107,6 +111,7 @@
                 <tr>
                     <th>Guild Average</th>
                     <!--Total-->
+                    <calculated-cell name="level"></calculated-cell>
                     <calculated-cell name="wins"></calculated-cell>
                     <calculated-cell name="kills"></calculated-cell>
                     <calculated-cell :precision="2" name="kd"></calculated-cell>
@@ -122,6 +127,7 @@
                 <tr>
                     <th>Guild Total</th>
                     <!--Total-->
+                    <calculated-cell name="level" type="total"></calculated-cell>
                     <calculated-cell name="wins" type="total"></calculated-cell>
                     <calculated-cell name="kills" type="total"></calculated-cell>
                     <calculated-cell :precision="2" deaths="deaths" kills="kills" type="total_kd"></calculated-cell>

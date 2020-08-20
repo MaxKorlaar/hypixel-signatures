@@ -68,7 +68,7 @@ new Vue({
                 this.getMembers().finally(() => {
                     setTimeout(() => {
                         this.getMembersInterval();
-                    }, this.meta.loaded === previousCount ? 7500 : 750);
+                    }, this.meta.loaded === previousCount ? 2500 : 750);
                 });
             }
         },
