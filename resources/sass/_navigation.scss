@@ -114,4 +114,8 @@ nav {
   margin-bottom: 20px;
   color: $color-white;
   border-radius: $border-radius;
+
+  a {
+    color: $color-primary;
+  }
 }

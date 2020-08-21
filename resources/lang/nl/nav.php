@@ -35,5 +35,5 @@
         'signatures'   => 'Dynamische Afbeeldingen',
         'friends'      => 'Vrienden',
         'guild'        => 'Gilde',
-        'beta_warning' => '<b>Let op!</b> Hypixel.Paniek.de zit nog in een bètafase, en kan af en toe niet goed werken. Als je feedback hebt, of als je graag meer functies wil zien op deze website, aarzel dan vooral niet om contact met mij op te nemen!'
+        'beta_warning' => '<b>Let op!</b> Hypixel.Paniek.de zit nog in een bètafase, en kan af en toe niet goed werken. Als je feedback hebt, of als je graag meer functies wil zien op deze website, aarzel dan vooral niet om contact met mij op te nemen: <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">@MaxKorlaar op Twitter</a> of op de <a href="https://hypixel.net/threads/2880476/" target="_blank" rel="noopener">Hypixel Forums</a>.'
     ];

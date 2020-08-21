@@ -34,7 +34,7 @@
         <sortable-table :data="members" class="guild-members compact bordered">
             <template v-slot:head>
                 <tr>
-                    <sortable-header name="formatted_name" rowspan="2">
+                    <sortable-header :sticky="false" name="formatted_name" rowspan="2">
                         Username
                     </sortable-header>
                     <th colspan="2">
