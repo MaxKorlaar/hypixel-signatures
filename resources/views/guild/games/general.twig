@@ -1,0 +1,12 @@
+{% extends 'guild/members.twig' %}
+
+{% block page_title %}{{ trans('guild.games.general.page_title', { name: guild.name }) }}{% endblock %}
+{% block social_title %}{{ trans('guild.games.general.social.title', { name: guild.name, site: config_get('app.name') }) }}{% endblock %}
+{% block social_description %}{{ trans('guild.games.general.social.description', { name: guild.name, site: config_get('app.name') }) }}{% endblock %}
+
+{% block table_title %}
+    <h1>{{ trans('guild.games.general.title', { name: guild.name, link: route('guild.info', [guild.name]) })|raw }}</h1>{% endblock %}
+
+{% block members_table %}
+    <general-statistics-table :members="members"></general-statistics-table>
+{% endblock %}

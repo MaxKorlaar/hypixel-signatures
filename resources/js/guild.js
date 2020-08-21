@@ -35,6 +35,7 @@ import MembersTable from "./guild/MembersTable";
 import BedWarsTable from "./guild/BedWarsTable";
 import TNTGamesTable from "./guild/TNTGamesTable";
 import MegaWallsTable from "./guild/MegaWallsTable";
+import GeneralStatisticsTable from "./guild/GeneralStatisticsTable";
 
 const axios = require('axios').default;
 
@@ -44,11 +45,18 @@ Vue.use(VueLazyload, {
         rootMargin: '250px',
         threshold:  0.1
     }
-})
+});
+
+Vue.filter('number_format', value => {
+    if (isNaN(value)) return value;
+
+    return (new Intl.NumberFormat()).format(value);
+});
+
 // noinspection ObjectAllocationIgnored
 new Vue({
     el:         '#guild-members-app',
-    components: {SkyWarsTable, MembersTable, BedWarsTable, TNTGamesTable, MegaWallsTable},
+    components: {SkyWarsTable, MembersTable, BedWarsTable, TNTGamesTable, MegaWallsTable, GeneralStatisticsTable},
     data:       {
         members: [],
         meta:    {

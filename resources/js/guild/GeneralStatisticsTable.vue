@@ -37,19 +37,17 @@
                     <sortable-header :sticky="false" name="formatted_name">
                         Username
                     </sortable-header>
-                    <sortable-header name="wins">Wins</sortable-header>
-                    <sortable-header name="kills">Kills</sortable-header>
-                    <sortable-header name="assists">Assists</sortable-header>
-                    <sortable-header name="kd">K/D</sortable-header>
-                    <sortable-header name="wins_percentage">Games won</sortable-header>
-                    <sortable-header name="kills_final">Final kills</sortable-header>
-                    <sortable-header name="kd_final">Final K/D</sortable-header>
+                    <sortable-header name="level">Level</sortable-header>
+                    <sortable-header name="achievement_points">Achievement Points</sortable-header>
+                    <sortable-header name="karma">Karma</sortable-header>
+                    <sortable-header name="quests_completed">Quests Completed</sortable-header>
+                    <sortable-header name="challenges_completed">Challenges Completed</sortable-header>
                 </tr>
             </template>
             <template v-slot="data">
                 <td>
-                    <img alt="" v-lazy="data.item.skin_url">
-                    <div class="loader" v-if="data.item.loading">
+                    <img v-lazy="data.item.skin_url" alt="">
+                    <div v-if="data.item.loading" class="loader">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -57,47 +55,37 @@
                     <span class="formatted-name" v-html="data.item.formatted_name"></span>
                 </td>
                 <td>
-                    {{ data.item.wins|number_format }}
+                    {{ data.item.level|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kills|number_format }}
+                    {{ data.item.achievement_points|number_format }}
                 </td>
                 <td>
-                    {{ data.item.assists|number_format }}
+                    {{ data.item.karma|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kd|number_format }}
+                    {{ data.item.quests_completed|number_format }}
                 </td>
                 <td>
-                    {{ data.item.wins_percentage }}%
-                </td>
-                <td>
-                    {{ data.item.kills_final|number_format }}
-                </td>
-                <td>
-                    {{ data.item.kd_final|number_format }}
+                    {{ data.item.challenges_completed|number_format }}
                 </td>
             </template>
             <template v-slot:footer>
                 <tr>
                     <th>Guild Average</th>
-                    <calculated-cell name="wins"></calculated-cell>
-                    <calculated-cell name="kills"></calculated-cell>
-                    <calculated-cell name="assists"></calculated-cell>
-                    <calculated-cell :precision="2" name="kd"></calculated-cell>
-                    <calculated-cell :precision="1" name="wins_percentage">%</calculated-cell>
-                    <calculated-cell name="kills_final"></calculated-cell>
-                    <calculated-cell :precision="2" name="kd_final"></calculated-cell>
+                    <calculated-cell name="level"></calculated-cell>
+                    <calculated-cell name="achievement_points"></calculated-cell>
+                    <calculated-cell name="karma"></calculated-cell>
+                    <calculated-cell name="quests_completed"></calculated-cell>
+                    <calculated-cell name="challenges_completed"></calculated-cell>
                 </tr>
                 <tr>
                     <th>Guild Total</th>
-                    <calculated-cell name="wins" type="total"></calculated-cell>
-                    <calculated-cell name="kills" type="total"></calculated-cell>
-                    <calculated-cell name="assists" type="total"></calculated-cell>
-                    <calculated-cell :precision="2" deaths="deaths" kills="kills" type="total_kd"></calculated-cell>
-                    <calculated-cell :precision="1" losses="losses" type="total_wins_percentage" wins="wins">%</calculated-cell>
-                    <calculated-cell name="kills_final" type="total"></calculated-cell>
-                    <calculated-cell :precision="2" deaths="deaths_final" kills="kills_final" type="total_kd"></calculated-cell>
+                    <calculated-cell name="level" type="total"></calculated-cell>
+                    <calculated-cell name="achievement_points" type="total"></calculated-cell>
+                    <calculated-cell name="karma" type="total"></calculated-cell>
+                    <calculated-cell name="quests_completed" type="total"></calculated-cell>
+                    <calculated-cell name="challenges_completed" type="total"></calculated-cell>
                 </tr>
             </template>
         </sortable-table>
@@ -110,7 +98,7 @@ import SortableHeader from "../components/SortableHeader";
 import CalculatedCell from "../components/CalculatedCell";
 
 export default {
-    name:       "MegaWallsTable",
+    name:       "GeneralStatisticsTable",
     components: {SortableTable, SortableHeader, CalculatedCell},
     props:      ['members']
 }

@@ -85,52 +85,52 @@
                 </td>
                 <!--Total-->
                 <td>
-                    {{ data.item.wins }}
+                    {{ data.item.wins|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kills }}
+                    {{ data.item.kills|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kd }}
+                    {{ data.item.kd|number_format }}
                 </td>
                 <td>
                     {{ data.item.wins_percentage }}%
                 </td>
                 <!--Solo-->
                 <td>
-                    {{ data.item.wins_solo }}
+                    {{ data.item.wins_solo|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kills_solo }}
+                    {{ data.item.kills_solo|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kd_solo }}
+                    {{ data.item.kd_solo|number_format }}
                 </td>
                 <td>
                     {{ data.item.wins_percentage_solo }}%
                 </td>
                 <!--Teams-->
                 <td>
-                    {{ data.item.wins_teams }}
+                    {{ data.item.wins_teams|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kills_teams }}
+                    {{ data.item.kills_teams|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kd_teams }}
+                    {{ data.item.kd_teams|number_format }}
                 </td>
                 <td>
                     {{ data.item.wins_percentage_teams }}%
                 </td>
                 <!--Mega-->
                 <td>
-                    {{ data.item.wins_mega }}
+                    {{ data.item.wins_mega|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kills_mega }}
+                    {{ data.item.kills_mega|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kd_mega }}
+                    {{ data.item.kd_mega|number_format }}
                 </td>
                 <td>
                     {{ data.item.wins_percentage_mega }}%

@@ -31,7 +31,7 @@
 
 <template>
     <td>
-        {{ value }}
+        {{ value|number_format }}
         <slot></slot>
     </td>
 </template>

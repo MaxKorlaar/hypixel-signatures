@@ -59,6 +59,7 @@
             ],
 
             'members'               => 'Member list',
+            'general_statistics'    => 'General statistics',
             'skywars_statistics'    => 'SkyWars statistics',
             'bedwars_statistics'    => 'Bed Wars statistics',
             'tntgames_statistics'   => 'TNT-Games statistics',
@@ -99,6 +100,15 @@
         ],
 
         'games' => [
+            'general'   => [
+                'page_title' => ':name General Hypixel statistics',
+                'title'      => "<a href=':link'>:name</a>'s General Hypixel statistics",
+
+                'social' => [
+                    'title'       => ':name General Hypixel statistics - :site',
+                    'description' => 'View the general Hypixel statistics of the Hypixel guild :name on :site. You can browse through the list and compare general statistics, such as Hypixel level or achievement points of guild members.'
+                ],
+            ],
             'skywars'   => [
                 'page_title' => ':name SkyWars statistics',
                 'title'      => "<a href=':link'>:name</a>'s SkyWars statistics",
