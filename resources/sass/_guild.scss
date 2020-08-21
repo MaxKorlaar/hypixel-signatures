@@ -97,7 +97,7 @@
   }
 
   .table-container {
-    overflow-x: auto;
+    //overflow-x: auto;
   }
 
   table {
@@ -107,6 +107,7 @@
     border-collapse: collapse;
     border-radius: $border-radius;
     counter-reset: index;
+    position: relative;
 
     &.compact {
       td, th {
@@ -176,6 +177,15 @@
 
       th {
         border-top: none;
+
+        &.sticky {
+          position: sticky;
+          top: 0;
+
+          &:not(.sorted-by) {
+            background: $color-background;
+          }
+        }
       }
     }
 

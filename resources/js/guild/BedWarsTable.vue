@@ -34,7 +34,7 @@
         <sortable-table :data="members" class="guild-members compact bordered">
             <template v-slot:head>
                 <tr>
-                    <sortable-header name="formatted_name" rowspan="2">
+                    <sortable-header :sticky="false" name="formatted_name" rowspan="2">
                         Username
                     </sortable-header>
                     <th colspan="5">
@@ -75,36 +75,36 @@
                 </td>
                 <!--Total-->
                 <td>
-                    {{ data.item.level }}
+                    {{ data.item.level|number_format }}
                 </td>
                 <td>
-                    {{ data.item.wins }}
+                    {{ data.item.wins|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kills }}
+                    {{ data.item.kills|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kd }}
+                    {{ data.item.kd|number_format }}
                 </td>
                 <td>
-                    {{ data.item.wins_percentage }}%
+                    {{ data.item.wins_percentage|number_format }}%
                 </td>
                 <td>
-                    {{ data.item.beds_broken }}
+                    {{ data.item.beds_broken|number_format }}
                 </td>
                 <!--Normal-->
                 <td>
-                    {{ data.item.kills_normal }}
+                    {{ data.item.kills_normal|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kd_normal }}
+                    {{ data.item.kd_normal|number_format }}
                 </td>
                 <!--Final-->
                 <td>
-                    {{ data.item.kills_final }}
+                    {{ data.item.kills_final|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kd_final }}
+                    {{ data.item.kd_final|number_format }}
                 </td>
             </template>
             <template v-slot:footer>

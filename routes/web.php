@@ -81,6 +81,9 @@
     Route::get('/guild/{name}/games/megawalls', 'Guild\MegaWallsController@getMegaWallsStatistics')->name('guild.games.megawalls');
     Route::get('/guild/{name}/games/megawalls.json', 'Guild\MegaWallsController@getMegaWallsStatistics')->name('guild.games.megawalls.json');
 
+    Route::get('/guild/{name}/members/general', 'Guild\GeneralStatsController@getGeneralStatistics')->name('guild.members.general');
+    Route::get('/guild/{name}/members/general.json', 'Guild\GeneralStatsController@getGeneralStatistics')->name('guild.members.general.json');
+
     Route::prefix('status-sig')->group(static function () {
         Route::get('get-{name}/{uuid}{other?}', 'RedirectOldSignaturesController@redirect');
     });

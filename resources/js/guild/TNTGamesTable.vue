@@ -34,7 +34,7 @@
         <sortable-table :data="members" class="guild-members compact bordered">
             <template v-slot:head>
                 <tr>
-                    <sortable-header name="formatted_name" rowspan="2">
+                    <sortable-header :sticky="false" name="formatted_name" rowspan="2">
                         Username
                     </sortable-header>
                     <th colspan="2">
@@ -85,44 +85,44 @@
                 </td>
                 <!--Bow Spleef-->
                 <td>
-                    {{ data.item.wins_bowspleef }}
+                    {{ data.item.wins_bowspleef|number_format }}
                 </td>
                 <td>
-                    {{ data.item.shots_bowspleef }}
+                    {{ data.item.shots_bowspleef|number_format }}
                 </td>
                 <!--TNT Run-->
                 <td>
-                    {{ data.item.wins_tntrun }}
+                    {{ data.item.wins_tntrun|number_format }}
                 </td>
                 <td>
                     {{ data.item.record_tntrun }}
                 </td>
                 <!--PVP Run-->
                 <td>
-                    {{ data.item.wins_pvprun }}
+                    {{ data.item.wins_pvprun|number_format }}
                 </td>
                 <td>
                     {{ data.item.record_pvprun }}
                 </td>
                 <!--TNT Tag-->
                 <td>
-                    {{ data.item.wins_tnttag }}
+                    {{ data.item.wins_tnttag|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kills_tnttag }}
+                    {{ data.item.kills_tnttag|number_format }}
                 </td>
                 <!--Wizards-->
                 <td>
-                    {{ data.item.wins_wizards }}
+                    {{ data.item.wins_wizards|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kills_wizards }}
+                    {{ data.item.kills_wizards|number_format }}
                 </td>
                 <td>
-                    {{ data.item.assists_wizards }}
+                    {{ data.item.assists_wizards|number_format }}
                 </td>
                 <td>
-                    {{ data.item.kd_wizards }}
+                    {{ data.item.kd_wizards|number_format }}
                 </td>
             </template>
             <template v-slot:footer>

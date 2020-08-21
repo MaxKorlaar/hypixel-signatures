@@ -14,6 +14,7 @@
         <div class="sidebar">
             <h2><a href="{{ route('guild.info', [guild.name]) }}">{{ guild.name }}</a></h2>
             <a href="{{ route('guild.members', [guild.name]) }}" class="button">{{ trans('guild.info.members') }}</a>
+            <a href="{{ route('guild.members.general', [guild.name]) }}" class="button">{{ trans('guild.info.general_statistics') }}</a>
             <a href="{{ route('guild.games.skywars', [guild.name]) }}" class="button">{{ trans('guild.info.skywars_statistics') }}</a>
             <a href="{{ route('guild.games.bedwars', [guild.name]) }}" class="button">{{ trans('guild.info.bedwars_statistics') }}</a>
             <a href="{{ route('guild.games.tntgames', [guild.name]) }}" class="button">{{ trans('guild.info.tntgames_statistics') }}</a>

@@ -30,7 +30,7 @@
   -->
 
 <template>
-    <th :class="{ 'sorted-by': sort_by === name }" @click="sort(name)">
+    <th :class="{ 'sorted-by': sort_by === name, sticky: sticky }" @click="sort(name)">
         <slot></slot>
         <span class="triangle" v-if="direction === 'asc'">&bigtriangleup;</span>
         <span class="triangle" v-else>&bigtriangledown;</span>
@@ -40,7 +40,13 @@
 <script>
 export default {
     name:     "SortableHeader",
-    props:    ['name'],
+    props:    {
+        name:   String,
+        sticky: {
+            type:    Boolean,
+            default: true
+        }
+    },
     computed: {
         sort_by() {
             return this.$parent.sort.by;
@@ -61,25 +67,25 @@ export default {
 @import "../../sass/variables";
 
 th {
-    cursor: pointer;
-    user-select: none;
+  cursor: pointer;
+  user-select: none;
+
+  .triangle {
+    display: none;
+    float: right;
+  }
+
+  &.sorted-by {
+    background: lighten($color-secondary, 50%);
+    box-shadow: inset rgba(0, 0, 0, .25) 0 0 5px 0;
 
     .triangle {
-        display: none;
-        float: right;
+      display: inline;
     }
+  }
 
-    &.sorted-by {
-        background: lighten($color-secondary, 50%);
-        box-shadow: inset rgba(0, 0, 0, .25) 0 0 5px 0;
-
-        .triangle {
-            display: inline;
-        }
-    }
-
-    &:hover, &:focus {
-        background: lighten($color-secondary, 60%);
-    }
+  &:hover, &:focus {
+    background: lighten($color-secondary, 60%);
+  }
 }
 </style>
