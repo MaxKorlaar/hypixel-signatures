@@ -15,7 +15,7 @@
     "ext-zlib": "*",
     "barryvdh/laravel-ide-helper": "^2.6",
     "fideloper/proxy": "^4.0",
-    "guzzlehttp/guzzle": "^6.5",
+    "guzzlehttp/guzzle": "^7",
     "hisorange/browser-detect": "^4.2",
     "intervention/image": "^2.5",
     "laravel/framework": "^7",
@@ -27,7 +27,7 @@
     "morrislaptop/laravel-queue-clear": "^1.2",
     "plancke/hypixel-php": "dev-master",
     "pocketmine/nbt": "^0.2.14",
-    "rcrowe/twigbridge": "^0.11.2",
+    "rcrowe/twigbridge": "^0.12",
     "spatie/laravel-directory-cleanup": "^1.5",
     "stil/gd-text": "^1.1"
   },
@@ -35,10 +35,10 @@
     "roave/security-advisories": "dev-master",
     "facade/ignition": "^2.0",
     "fzaninotto/faker": "^1.4",
-    "laravel/homestead": "^10",
+    "laravel/homestead": "^11",
     "mockery/mockery": "^1.0",
-    "nunomaduro/collision": "^4.1",
-    "phpunit/phpunit": "^8.5"
+    "nunomaduro/collision": "^5",
+    "phpunit/phpunit": "^9"
   },
   "config": {
     "optimize-autoloader": true,
