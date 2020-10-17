@@ -57,5 +57,31 @@
                 'default_description' => ':name is ene guild op de Hypixel Minecraft-server',
                 'description'         => " - Bekijk de leden van :name's, hun statistieken en zelfs minigame-statistieken voor SkyWars, Bed Wars en meer spellen voor heel de guild op :site."
             ],
-        ]
+
+            'members'               => 'Leden lijst',
+            'general_statistics'    => 'Algemene statistieken',
+            'skywars_statistics'    => 'SkyWars statistieken',
+            'bedwars_statistics'    => 'Bed Wars statistieken',
+            'tntgames_statistics'   => 'TNT-Games statistieken',
+            'megawalls_statistics'  => 'Mega Walls statistieken',
+            'crazywalls_statistics' => 'Crazy Walls statistieken',
+            'quakecraft_statistics' => 'Quakecraft statistieken',
+
+            'current_members'   => 'Huidig ledenaantal',
+            'level'             => 'Level',
+            'tag'               => 'Tag',
+            'description'       => 'Beschrijving',
+            'not_set'           => '<i>Niets ingesteld</i>',
+            'guildmaster'       => 'Guildmeester',
+            'created_on'        => 'Aangemaakt op',
+            'preferred_games'   => 'Favoriete spellen',
+            'most_active_games' => 'Meest actieve spellen',
+            'experience'        => 'Guild Ervaring',
+            'coins'             => 'Munten',
+            'legacy_rank'       => 'Oude rang',
+            'joinable'          => 'Publiekelijk betreedbaar',
+            'yes'               => 'Ja',
+            'no'                => 'Neen',
+            'listed'            => 'Publiekelijk opgelijst',
+        ],
     ];
