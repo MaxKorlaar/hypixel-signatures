@@ -128,7 +128,7 @@
         'regex'                => 'Das :attribute Format ist ungültig.',
         'required'             => 'Das :attribute Feld ist erforderlich.',
         'required_if'          => 'Das :attribute Feld ist erforderlich, wenn :other is :value.',
-        'required_unless'      => 'Das :attribute Feld ist erforderlich, es sei denn :other ist in :values.',
+        'required_unless'      => 'Das :attribute Feld ist erforderlich, es sei denn :other ist nicht in :values.',
         'required_with'        => 'Das :attribute Feld ist erforderlich, wenn :values vorhanden ist.',
         'required_with_all'    => 'Das :attribute Feld ist erforderlich, wenn :values vorhanden sind.',
         'required_without'     => 'Das :attribute Feld ist erforderlich, wenn :values nicht vorhanden ist.',
