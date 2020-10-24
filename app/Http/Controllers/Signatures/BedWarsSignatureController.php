@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -123,7 +123,7 @@
 
             imagettftext($image, 20, 0, 250, $linesY[1], $black, $fontSourceSansProLight, 'Final KD: ' . $kd); // Final kill/death ratio
 
-            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, 'Level ' . number_format($level)); // BedWars level
+            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, number_format($level) . ' stars'); // BedWars stars (level)
 
             imagettftext($image, 20, 0, 250, $linesY[2], $black, $fontSourceSansProLight, "Wins percentage: {$winsPercentage}%"); // Percentage of games won
 

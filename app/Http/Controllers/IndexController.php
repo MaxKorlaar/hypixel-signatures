@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -76,8 +76,13 @@
                             'pixelated' => true
                         ],
                         [
-                            'name'  => 'SkyWars statistics',
-                            'route' => 'skywars'
+                            'name'         => 'SkyWars statistics',
+                            'route'        => 'skywars',
+                            'options_text' => "If you prefer to show off the amount of players you have survived instead of your SkyWars level,
+                            then add the parameter 'show_survived_players' to the URL and set it to 'true'.
+                            For example: <code>" .
+                                route('signatures.skywars', [':uuid', 'show_survived_players' => 'true'])
+                                . '</code>',
                         ],
                         [
                             'name'  => 'Bed Wars statistics',
@@ -119,7 +124,7 @@
                              'sort' to the image URL and set it to 'level'. To disable the highlighting of your active pet,
                              set the parameter 'highlight_active' to 'false'. For example: <code>" .
                                 route('signatures.skyblock.pets', [':uuid', ':skyblock_profile', 'sort' => 'level', 'highlight_active' => 'false'])
-                                . "</code>",
+                                . '</code>',
                         ],
                         [
                             'name'         => 'SkyBlock minion levels',
@@ -130,7 +135,7 @@
                             You may also specify how many minions are shown per row with the parameter 'per_row', which defaults to 15, and should be a number between 5 and 50.
                             For example: <code>" .
                                 route('signatures.skyblock.minions', [':uuid', ':skyblock_profile', 'size' => 4, 'per_row' => 20])
-                                . "</code>",
+                                . '</code>',
                         ]
                     ]
                 ]
