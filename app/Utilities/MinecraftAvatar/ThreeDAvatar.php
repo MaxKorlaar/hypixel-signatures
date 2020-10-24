@@ -32,6 +32,7 @@
 
     namespace App\Utilities\MinecraftAvatar;
 
+    use App\Utilities\MinecraftAvatar\ThreeD\Renderer;
     use Cache;
     use Exception;
     use Log;
@@ -40,7 +41,6 @@
 
     require_once(__DIR__ . '/MCavatar.php');
     require_once(__DIR__ . '/GifCreator.php');
-    require_once(__DIR__ . '/3d.class.php');
 
     /**
      * Class moreMCavatar
@@ -49,17 +49,17 @@
      * @license MIT
      */
     class ThreeDAvatar extends MCavatar {
-        public $images;
-        public $username;
-        public $headOnly;
-        public $helmet;
-        public $layers;
-        public $speed;
-        public $frames;
-        public $filepath;
-        public $invert;
+        public array $images;
+        public string $username;
+        public bool $headOnly;
+        public bool $helmet;
+        public bool $layers;
+        public int $speed;
+        public int $frames;
+        public string $filepath;
+        public bool $invert;
 
-        private ?render3DPlayer $playerRender = null;
+        private ?Renderer $playerRender = null;
 
         /**
          * @param        $username
@@ -149,7 +149,7 @@
                 if ($this->invert) {
                     $angle *= -1;
                 }
-                $player         = new render3DPlayer($this->username, '0', $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'webp', $this->size, $this->layers);
+                $player         = new Renderer($this->username, '0', $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'webp', $this->size, $this->layers);
                 $this->images[] = $player->get3DRender();
             };
 
@@ -293,7 +293,7 @@
             $this->headOnly     = $headOnly;
             $this->helmet       = $helmet;
             $this->layers       = $layers;
-            $this->playerRender = new render3DPlayer($this->username, $verticalAngle, $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'webp', $this->size, $this->layers, true);
+            $this->playerRender = new Renderer($this->username, $verticalAngle, $angle, '0', '0', '0', '0', '0', $this->helmet, $this->headOnly, 'webp', $this->size, $this->layers, true);
 
             return $this->playerRender->get3DRender();
         }
