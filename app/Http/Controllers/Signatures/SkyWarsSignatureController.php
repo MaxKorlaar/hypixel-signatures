@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -75,11 +75,12 @@
             /** @var GameStats $stats */
             $stats = $mainStats->getGameFromID(GameTypes::SKYWARS);
 
-            $wins     = $stats->get('wins', 0);
-            $kills    = $stats->get('kills', 0);
-            $survived = $stats->get('survived_players', 0);
-            $deaths   = $stats->get('deaths', 0);
-            $losses   = $stats->getInt('losses', 0);
+            $wins           = $stats->get('wins', 0);
+            $kills          = $stats->get('kills', 0);
+            $survived       = $stats->get('survived_players', 0);
+            $deaths         = $stats->get('deaths', 0);
+            $losses         = $stats->getInt('losses', 0);
+            $levelFormatted = $stats->get('levelFormatted', '00');
 
             if ($deaths !== 0) {
                 $kd = round($kills / $deaths, 2);
@@ -120,7 +121,11 @@
 
             imagettftext($image, 20, 0, 350, $linesY[1], $black, $fontSourceSansProLight, 'KD: ' . $kd); // kill/death ratio
 
-            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, "Survived " . number_format($survived) . " players"); // SkyWars level
+            if ($request->has('show_survived_players')) {
+                imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, 'Survived ' . number_format($survived) . ' players');
+            } else {
+                ColourHelper::minecraftStringToTTFText($image, $fontSourceSansProLight, 20, $textBeneathAvatarX, $linesY[2] - 16, '§0Level: ' . mb_substr($levelFormatted, 0, -1)); // SkyWars level
+            }
 
             imagettftext($image, 20, 0, 350, $linesY[2], $black, $fontSourceSansProLight, "Wins percentage: {$winsPercentage}%"); // Percentage of games won
 
