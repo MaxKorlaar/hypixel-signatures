@@ -67,7 +67,7 @@
         ],
 
         'bbcode'              => 'BBcode',
-        'bbcode_instructions' => 'Kopieren Sie den obigen Textausschnitt und fügen Sie ihn in <a target="_blank" href="https://hypixel.net/account/signature"> Ihrer Forensignatur </a> ein, um Ihre ausgewählten Statistiken automatisch unter jedem von Ihnen verfassten Beitrag anzuzeigen in den Foren. Sie können die URL zum Bild verwenden, um diese Signatur auf anderen Websites zu platzieren, wenn Sie dies wünschen.',
+        'bbcode_instructions' => 'Kopieren Sie den obigen Textausschnitt und fügen Sie ihn in <a target="_blank" href="https://hypixel.net/account/signature">Ihrer Forensignatur</a> ein, um Ihre ausgewählten Statistiken automatisch unter jedem von Ihnen verfassten Beitrag anzuzeigen in den Foren. Sie können die URL zum Bild verwenden, um diese Signatur auf anderen Websites zu platzieren, wenn Sie dies wünschen.',
 
         'direct_link' => 'Direkte Verbindung',
 

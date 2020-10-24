@@ -54,7 +54,7 @@
 
             'description' => [
                 "Auf dieser Seite finden Sie eine Übersicht aller :usersname :total_friends Freunden auf Hypixel. Sie können ihre Ränge sehen und darauf klicken, um Freundeslisten anderer Spieler anzuzeigen.",
-                "Wenn Sie <a href=':form_link'> dynamische Signaturbilder für Folgendes generieren möchten :username</a>, das kannst du auch machen auf :site! Angeberei :username Minispiel oder SkyBlock-Statistiken und Erfolge auf jeder Website, auf der Sie durch <a href=':form_link'> Erstellen einer dynamischen Signatur </a> auf Bilder verlinken können."
+                "Wenn Sie <a href=':form_link'>dynamische Signaturbilder für Folgendes generieren möchten :username</a>, das kannst du auch machen auf :site! Angeberei :username Minispiel oder SkyBlock-Statistiken und Erfolge auf jeder Website, auf der Sie durch <a href=':form_link'>Erstellen einer dynamischen Signatur</a> auf Bilder verlinken können."
             ],
 
             'tweet_text' => "Ich stöbere Freundesliste des :username auf Hypixel!",

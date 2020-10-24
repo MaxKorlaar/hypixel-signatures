@@ -33,7 +33,7 @@
     return [
         'title'               => 'Hypixel Sygnatur & Instrumente',
         'callout'             => [
-            "Präsentieren Sie <b> live </ b> Hypixel-Minispiel- und SkyBlock-Statistiken, die jeder sehen kann, indem Sie einfach ein Bild in Ihre Forensignatur einfügen
+            "Präsentieren Sie <b>live</b> Hypixel-Minispiel- und SkyBlock-Statistiken, die jeder sehen kann, indem Sie einfach ein Bild in Ihre Forensignatur einfügen
             oder Forenbeiträge. Wählen Sie Ihre Unterschrift einmal aus und wir kümmern uns um den Rest.",
             "Es ist ganz einfach: Sie müssen nur Ihren Benutzernamen eingeben, um loszulegen."
         ],
@@ -46,7 +46,7 @@
         'about_text' => [
             "Ich habe diese Website für die Spieler und Fans des Minecraft-Servers 'Hypixel' erstellt. Es ist der beliebteste Minecraft-Server der Welt, mit vielen öffentlichen Statistiken, mit denen Sie Spaß haben können. Genau das habe ich auf meiner Website getan: Sie können die Minispielstatistiken der Benutzer in Form von dynamischen Signaturen anzeigen: Bilder, die Sie in Forenbeiträgen und in Ihrer Forensignatur platzieren können, damit andere Ihre neuesten Erfolge problemlos anzeigen können.",
             "Der <i> dynamische </ i> Teil bedeutet, dass sich diese Signaturen automatisch aktualisieren. Dies bedeutet, dass Sie Ihre Signatur nur einmal auswählen und verwenden müssen und wir automatisch sicherstellen, dass ihr Inhalt auf dem neuesten Stand ist.",
-            "Ich bin immer offen für Vorschläge! Etwas vermissen? Fühlen Sie sich frei, <a href='https://twitter.com/MaxKorlaar'> mich auf Twitter zu kontaktieren </a> und Vorschläge in unserem unten verlinkten Discord-Server zu hinterlassen, <a href = 'https: // hypixel. net / threads / 2880476 / '> Antworte auf den Forenthread auf Hypixel.net </a> oder <a href='https://github.com/MaxKorlaar/hypixel-signatures'> und überprüfe den Quellcode auf GitHub </a>.",
+            "Ich bin immer offen für Vorschläge! Etwas vermissen? Fühlen Sie sich frei, <a href='https://twitter.com/MaxKorlaar'>mich auf Twitter zu kontaktieren</a> und Vorschläge in unserem unten verlinkten Discord-Server zu hinterlassen, <a href='https://hypixel.net/threads/2880476/'>Antworte auf den Forenthread auf Hypixel.net</a> oder <a href='https://github.com/MaxKorlaar/hypixel-signatures'>und überprüfe den Quellcode auf GitHub</a>.",
         ],
 
         'discord' => 'Discord server',

@@ -89,11 +89,11 @@
 
         'members' => [
             'page_title' => ':name Gildenmitglieder',
-            'title'      => "<a href=':link'>:name</a>'s members",
+            'title'      => "<a href=':link'>:name</a>s Mitglieder",
 
             'social' => [
                 'title'       => 'Gildenmitglieder von :name - :site',
-                'description' => "Alle anzeigen: :name :count mitglied und mehr auf: site"
+                'description' => "Alle anzeigen: :name :count mitglied und mehr auf :site"
             ],
 
             'loading_members' => 'Mitglieder laden ({{ meta.loaded }} / {{ meta.total_members }})…',
