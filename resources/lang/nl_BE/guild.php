@@ -58,7 +58,7 @@
                 'description'         => " - Bekijk de leden van :name's, hun statistieken en zelfs minigame-statistieken voor SkyWars, Bed Wars en meer spellen voor heel de guild op :site."
             ],
 
-            'members'               => 'Leden lijst',
+            'members'               => 'Ledenlijst',
             'general_statistics'    => 'Algemene statistieken',
             'skywars_statistics'    => 'SkyWars statistieken',
             'bedwars_statistics'    => 'Bed Wars statistieken',
