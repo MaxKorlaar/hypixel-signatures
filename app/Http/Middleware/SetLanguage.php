@@ -50,7 +50,7 @@ namespace App\Http\Middleware;
          * @return mixed
          */
         public function handle($request, Closure $next) {
-            $supportedLocales = ['en', 'nl', 'nl_BE'];
+            $supportedLocales = ['en', 'nl', 'nl_BE', 'de'];
 
             app()->setLocale($request->getPreferredLanguage($supportedLocales));
 
