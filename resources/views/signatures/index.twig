@@ -92,8 +92,9 @@
                         <h3>{{ trans('signatures.bbcode') }}</h3>
                     </div>
                     <div>
-                        <code class="bbcode select-all">[URL='{{ config_get('app.url') }}'][IMG]{{ '{{ getImageUrl(selected_signature) }}' }}
-                                                        [/IMG][/URL]</code>
+                        <code class="bbcode select-all">
+                            [URL='{{ config_get('app.url') }}'][IMG]{{ '{{ getImageUrl(selected_signature) }}' }}[/IMG][/URL]
+                        </code>
                         <p>{{ trans('signatures.bbcode_instructions')|raw }}</p>
                     </div>
                     <div class="title">

@@ -1,5 +1,5 @@
 <?php
-    /**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,8 +30,9 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-    namespace App\Utilities\MinecraftAvatar;
+    namespace App\Utilities\MinecraftAvatar\ThreeD;
 
+    use App\Utilities\MinecraftAvatar\MCavatar;
     use Exception;
     use Illuminate\Support\Facades\Log;
     use Psr\SimpleCache\InvalidArgumentException;
@@ -67,11 +68,10 @@
     $maxY = null;
     /* End Global variable */
 
-
     /**
-     * Class render3DPlayer
+     * Class Renderer
      */
-    class render3DPlayer {
+    class Renderer {
         public $fetchError = null;
         private $playerName = null;
         private $playerSkin = false;
@@ -416,6 +416,8 @@
                 $v['back']  = $cube_max_depth_faces[1];
                 $v['front'] = array_diff($this->all_faces, $v['back']);
             }
+
+            unset($v);
 
             $this->setCubePoints();
 
@@ -1542,308 +1544,4 @@
         }
 
 
-    }
-
-    /**
-     * Class img
-     */
-    class ImageHelper {
-
-        /**
-         * Function converts a non true color image to
-         * true color. This fixes the dark blue skins.
-         *
-         * Espects an image.
-         * Returns a true color image.
-         *
-         * @param $img
-         *
-         * @return resource
-         */
-        public static function convertToTrueColor($img) {
-            if (imageistruecolor($img)) {
-                return $img;
-            }
-
-            $dst = self::createEmptyCanvas(imagesx($img), imagesy($img));
-
-            imagecopy($dst, $img, 0, 0, 0, 0, imagesx($img), imagesy($img));
-            imagedestroy($img);
-
-            return $dst;
-        }
-
-
-        /**
-         * Function creates a blank canvas
-         * with transparancy with the size of the
-         * given image.
-         *
-         * Espects canvas with and canvast height.
-         * Returns a empty canvas.
-         *
-         * @param $w
-         * @param $h
-         *
-         * @return resource
-         */
-        public static function createEmptyCanvas($w, $h) {
-            $dst = imagecreatetruecolor($w, $h);
-            imagesavealpha($dst, true);
-            $trans_colour = imagecolorallocatealpha($dst, 255, 255, 255, 127);
-            imagefill($dst, 0, 0, $trans_colour);
-            $bg = imagecolorallocatealpha($dst, 255, 255, 255, 127);
-            imagecolortransparent($dst, $bg);
-            return $dst;
-        }
-    }
-
-    /**
-     * Class Point
-     */
-    class Point {
-        private $_originCoord;
-        private $_destCoord = [];
-        private $_isProjected = false;
-        private $_isPreProjected = false;
-
-        /**
-         * @param $originCoord
-         */
-        public function __construct($originCoord) {
-            if (is_array($originCoord) && count($originCoord) == 3) {
-                $this->_originCoord = [
-                    'x' => (isset($originCoord['x']) ? $originCoord['x'] : 0),
-                    'y' => (isset($originCoord['y']) ? $originCoord['y'] : 0),
-                    'z' => (isset($originCoord['z']) ? $originCoord['z'] : 0)
-                ];
-            } else {
-                $this->_originCoord = [
-                    'x' => 0,
-                    'y' => 0,
-                    'z' => 0
-                ];
-            }
-        }
-
-        /**
-         * @param $dx
-         * @param $dy
-         * @param $dz
-         * @param $cos_alpha
-         * @param $sin_alpha
-         * @param $cos_omega
-         * @param $sin_omega
-         */
-        public function preProject($dx, $dy, $dz, $cos_alpha, $sin_alpha, $cos_omega, $sin_omega) {
-            if (!$this->_isPreProjected) {
-                $x                       = $this->_originCoord['x'] - $dx;
-                $y                       = $this->_originCoord['y'] - $dy;
-                $z                       = $this->_originCoord['z'] - $dz;
-                $this->_originCoord['x'] = $x * $cos_omega + $z * $sin_omega + $dx;
-                $this->_originCoord['y'] = $x * $sin_alpha * $sin_omega + $y * $cos_alpha - $z * $sin_alpha * $cos_omega + $dy;
-                $this->_originCoord['z'] = -$x * $cos_alpha * $sin_omega + $y * $sin_alpha + $z * $cos_alpha * $cos_omega + $dz;
-                $this->_isPreProjected   = true;
-            }
-        }
-
-        /**
-         * @return array
-         */
-        public function getOriginCoord() {
-            return $this->_originCoord;
-        }
-
-        /**
-         * @return array
-         */
-        public function getDestCoord() {
-            return $this->_destCoord;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getDepth() {
-            if (!$this->_isProjected) {
-                $this->project();
-            }
-            return $this->_destCoord['z'];
-        }
-
-        public function project() {
-            global $cos_alpha, $sin_alpha, $cos_omega, $sin_omega;
-            global $minX, $maxX, $minY, $maxY;
-
-            // 1, 0, 1, 0
-            $x                     = $this->_originCoord['x'];
-            $y                     = $this->_originCoord['y'];
-            $z                     = $this->_originCoord['z'];
-            $this->_destCoord['x'] = $x * $cos_omega + $z * $sin_omega;
-            $this->_destCoord['y'] = $x * $sin_alpha * $sin_omega + $y * $cos_alpha - $z * $sin_alpha * $cos_omega;
-            $this->_destCoord['z'] = -$x * $cos_alpha * $sin_omega + $y * $sin_alpha + $z * $cos_alpha * $cos_omega;
-            $this->_isProjected    = true;
-            $minX                  = min($minX, $this->_destCoord['x']);
-            $maxX                  = max($maxX, $this->_destCoord['x']);
-            $minY                  = min($minY, $this->_destCoord['y']);
-            $maxY                  = max($maxY, $this->_destCoord['y']);
-        }
-
-        /**
-         * @return bool
-         */
-        public function isProjected() {
-            return $this->_isProjected;
-        }
-    }
-
-
-    /**
-     * Class Polygon
-     */
-    class Polygon {
-        private $_dots;
-        private $_colour;
-        private $_isProjected = false;
-        private $_face = 'w';
-        private $_faceDepth = 0;
-
-        /**
-         * @param $dots
-         * @param $colour
-         */
-        public function __construct($dots, $colour) {
-            $this->_dots   = $dots;
-            $this->_colour = $colour;
-            $coord_0       = $dots[0]->getOriginCoord();
-            $coord_1       = $dots[1]->getOriginCoord();
-            $coord_2       = $dots[2]->getOriginCoord();
-            if ($coord_0['x'] == $coord_1['x'] && $coord_1['x'] == $coord_2['x']) {
-                $this->_face      = 'x';
-                $this->_faceDepth = $coord_0['x'];
-            } elseif ($coord_0['y'] == $coord_1['y'] && $coord_1['y'] == $coord_2['y']) {
-                $this->_face      = 'y';
-                $this->_faceDepth = $coord_0['y'];
-            } elseif ($coord_0['z'] == $coord_1['z'] && $coord_1['z'] == $coord_2['z']) {
-                $this->_face      = 'z';
-                $this->_faceDepth = $coord_0['z'];
-            }
-        }
-
-        // never used
-
-        /**
-         * @param $ratio
-         *
-         * @return string
-         */
-        public function getSvgPolygon($ratio) {
-            $points_2d = '';
-            $r         = ($this->_colour >> 16) & 0xFF;
-            $g         = ($this->_colour >> 8) & 0xFF;
-            $b         = $this->_colour & 0xFF;
-            $vR        = (127 - (($this->_colour & 0x7F000000) >> 24)) / 127;
-            if ($vR == 0) {
-                return '';
-            }
-            foreach ($this->_dots as $dot) {
-                $coord     = $dot->getDestCoord();
-                $points_2d .= $coord['x'] * $ratio . ',' . $coord['y'] * $ratio . ' ';
-            }
-            $comment = '';
-            return $comment . '<polygon points="' . $points_2d . '" style="fill:rgba(' . $r . ',' . $g . ',' . $b . ',' . $vR . ')" />' . "\n";
-        }
-
-        // never used
-
-        /**
-         * @param $image
-         * @param $minX
-         * @param $minY
-         * @param $ratio
-         */
-        public function addPngPolygon(&$image, $minX, $minY, $ratio) {
-            $points_2d = [];
-            $nb_points = 0;
-            $r         = ($this->_colour >> 16) & 0xFF;
-            $g         = ($this->_colour >> 8) & 0xFF;
-            $b         = $this->_colour & 0xFF;
-            $vR        = (127 - (($this->_colour & 0x7F000000) >> 24)) / 127;
-            if ($vR == 0) {
-                return;
-            }
-            $same_plan_x = true;
-            $same_plan_y = true;
-            foreach ($this->_dots as $dot) {
-                $coord = $dot->getDestCoord();
-                if (!isset($coord_x)) {
-                    $coord_x = $coord['x'];
-                }
-                if (!isset($coord_y)) {
-                    $coord_y = $coord['y'];
-                }
-                if ($coord_x != $coord['x']) {
-                    $same_plan_x = false;
-                }
-                if ($coord_y != $coord['y']) {
-                    $same_plan_y = false;
-                }
-                $points_2d[] = ($coord['x'] - $minX) * $ratio;
-                $points_2d[] = ($coord['y'] - $minY) * $ratio;
-                $nb_points++;
-            }
-            if (!($same_plan_x || $same_plan_y)) {
-                $colour = imagecolorallocate($image, $r, $g, $b);
-                imagefilledpolygon($image, $points_2d, $nb_points, $colour);
-            }
-        }
-
-        /**
-         * @return bool
-         */
-        public function isProjected() {
-            return $this->_isProjected;
-        }
-
-        /**
-         * @param $dx
-         * @param $dy
-         * @param $dz
-         * @param $cos_alpha
-         * @param $sin_alpha
-         * @param $cos_omega
-         * @param $sin_omega
-         */
-        public function preProject($dx, $dy, $dz, $cos_alpha, $sin_alpha, $cos_omega, $sin_omega) {
-            foreach ($this->_dots as &$dot) {
-                $dot->preProject($dx, $dy, $dz, $cos_alpha, $sin_alpha, $cos_omega, $sin_omega);
-            }
-        }
-
-        /**
-         * @return string
-         */
-        private function getFace() {
-            return $this->_face;
-        }
-
-        /**
-         * @return int
-         */
-        private function getFaceDepth() {
-            if (!$this->_isProjected) {
-                $this->project();
-            }
-            return $this->_faceDepth;
-        }
-
-        public function project() {
-            foreach ($this->_dots as &$dot) {
-                if (!$dot->isProjected()) {
-                    $dot->project();
-                }
-            }
-            unset($dot);
-            $this->_isProjected = true;
-        }
     }
