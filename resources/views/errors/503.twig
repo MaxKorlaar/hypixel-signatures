@@ -1,0 +1,3 @@
+{% extends 'errors/_error.twig' %}
+{% block title %}{{ title ?? 'Maintenance' }}{% endblock %}
+{% block error %}{{ error ?? config_get('app.name') ~ ' is currently not available due to maintenance. Please check again in a few minutes!' }}{% endblock %}

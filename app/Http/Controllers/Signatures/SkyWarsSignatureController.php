@@ -87,6 +87,7 @@
             } else {
                 $kd = 'None';
             }
+
             if ($wins !== 0) {
                 $winsPercentage = round(($wins / ($wins + $losses)) * 100, 2);
             } else {

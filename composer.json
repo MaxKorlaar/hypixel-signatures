@@ -22,6 +22,7 @@
     "laravel/horizon": "^4",
     "laravel/slack-notification-channel": "^2.0",
     "laravel/tinker": "^2.0",
+    "lunakid/anim-gif": "dev-dev-array-access-bug",
     "marvinlabs/laravel-discord-logger": "^1.1",
     "monicahq/laravel-cloudflare": "^1.6",
     "morrislaptop/laravel-queue-clear": "^1.2",
@@ -86,6 +87,10 @@
     {
       "type": "vcs",
       "url": "https://github.com/MaxKorlaar/hypixel-php"
+    },
+    {
+      "type": "git",
+      "url": "https://github.com/mattkirwan/AnimGif.git"
     }
   ]
 }

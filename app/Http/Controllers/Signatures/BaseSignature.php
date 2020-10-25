@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -179,7 +179,6 @@
             $box->setBox(5, $height / 3 + 10, $width - 5, $height - 5);
             $box->setFontSize($height / 6);
             $box->setFontColor(new Color(0, 0, 0));
-            $box->setTextShadow(new Color(0, 0, 0, 50), 1, 1);
             $box->draw($error);
 
             /** @var Response $response */
