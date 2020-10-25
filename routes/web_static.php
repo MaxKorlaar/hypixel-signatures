@@ -50,6 +50,7 @@
 
         Route::get('bedwars', 'BedWarsSignatureController@render')->name('bedwars');
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
+        Route::get('skywars-simple', 'SimpleSkyWarsSignatureController@render')->name('skywars_simple');
 
         Route::get('skyblock/stats/{profile_id}', 'SkyBlock\SkyBlockSignatureController@render')->name('skyblock.stats');
         Route::get('skyblock/pets/{profile_id}', 'SkyBlock\PetsSignatureController@render')->name('skyblock.pets');

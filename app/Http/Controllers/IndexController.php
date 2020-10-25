@@ -85,6 +85,10 @@
                                 . '</code>',
                         ],
                         [
+                            'name'  => 'Simple SkyWars statistics',
+                            'route' => 'skywars_simple'
+                        ],
+                        [
                             'name'  => 'Bed Wars statistics',
                             'route' => 'bedwars'
                         ],

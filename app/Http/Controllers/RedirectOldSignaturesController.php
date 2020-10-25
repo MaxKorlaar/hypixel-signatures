@@ -46,11 +46,12 @@
      */
     class RedirectOldSignaturesController extends Controller {
         private const URL_MAPPING = [
-            'main'       => 'signatures.general',
-            'main-small' => 'signatures.general_small',
-            'tooltip'    => 'signatures.general_tooltip',
-            'bed-wars'   => 'signatures.bedwars',
-            'skywars'    => 'signatures.skywars'
+            'main'           => 'signatures.general',
+            'main-small'     => 'signatures.general_small',
+            'tooltip'        => 'signatures.general_tooltip',
+            'bed-wars'       => 'signatures.bedwars',
+            'skywars'        => 'signatures.skywars',
+            'skywars-simple' => 'signatures.skywars_simple'
         ];
 
         /**
