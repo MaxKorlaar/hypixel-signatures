@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -52,6 +52,13 @@
             'bed-wars'   => 'signatures.bedwars',
             'skywars'    => 'signatures.skywars'
         ];
+
+        /**
+         * @return Application|RedirectResponse|Redirector
+         */
+        public function redirectIndex() {
+            return redirect(route('signatures'), 301);
+        }
 
         /**
          * @param      $oldSignatureName
