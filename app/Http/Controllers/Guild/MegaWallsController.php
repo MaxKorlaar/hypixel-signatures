@@ -36,6 +36,7 @@
     use App\Utilities\HypixelAPI;
     use Illuminate\Contracts\Foundation\Application;
     use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\View\View;
     use Plancke\HypixelPHP\classes\gameType\GameTypes;
@@ -54,7 +55,7 @@
          * @param Request $request
          * @param string  $nameOrId
          *
-         * @return array[]|Application|Factory|View
+         * @return array[]|Application|Factory|RedirectResponse|View
          * @throws HypixelFetchException
          * @throws HypixelPHPException
          */
@@ -68,6 +69,10 @@
             }
 
             if ($guild instanceof Guild) {
+                if (empty($guild->getData())) {
+                    return redirect()->route('guild')->withErrors(['username' => 'This guild does not exist']);
+                }
+
                 $memberList = $this->getMegaWallsMemberList($guild);
 
                 if ($request->wantsJson()) {

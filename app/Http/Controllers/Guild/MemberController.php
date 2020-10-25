@@ -40,10 +40,10 @@
     use Cache;
     use Illuminate\Contracts\Foundation\Application;
     use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\Support\Str;
     use Illuminate\View\View;
-    use Log;
     use Plancke\HypixelPHP\color\ColorUtils;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\guild\Guild;
@@ -59,7 +59,7 @@
          * @param Request $request
          * @param string  $nameOrId
          *
-         * @return array[]|Application|Factory|View
+         * @return array[]|Application|Factory|RedirectResponse|View
          * @throws HypixelFetchException
          * @throws HypixelPHPException
          */
@@ -73,14 +73,14 @@
             }
 
             if ($guild instanceof Guild) {
+                if (empty($guild->getData())) {
+                    return redirect()->route('guild')->withErrors(['username' => 'This guild does not exist']);
+                }
+
                 $memberList = $this->getMemberList($guild);
 
                 if ($request->wantsJson()) {
                     return $memberList;
-                }
-
-                if ($guild->getID() === null || $guild->getID() === '') {
-                    Log::error('Guild ID is empty or null', ['guild' => $guild, 'id' => $guild->getID(), 'name' => $nameOrId]);
                 }
 
                 return view('guild.members', [

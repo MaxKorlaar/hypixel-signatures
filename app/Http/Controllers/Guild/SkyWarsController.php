@@ -68,6 +68,10 @@
             }
 
             if ($guild instanceof Guild) {
+                if (empty($guild->getData())) {
+                    return redirect()->route('guild')->withErrors(['username' => 'This guild does not exist']);
+                }
+
                 $memberList = $this->getSkyWarsMemberList($guild);
 
                 if ($request->wantsJson()) {
