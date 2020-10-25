@@ -51,7 +51,8 @@
             'tooltip'        => 'signatures.general_tooltip',
             'bed-wars'       => 'signatures.bedwars',
             'skywars'        => 'signatures.skywars',
-            'skywars-simple' => 'signatures.skywars_simple'
+            'skywars-simple' => 'signatures.skywars_simple',
+            'skywars-gif'    => 'signatures.skywars_gif'
         ];
 
         /**

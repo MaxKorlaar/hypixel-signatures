@@ -48,6 +48,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/mime-type-detection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/pipeline" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/lunakid/anim-gif" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/marvinlabs/laravel-discord-logger" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mobiledetect/mobiledetectlib" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/mockery/mockery" />

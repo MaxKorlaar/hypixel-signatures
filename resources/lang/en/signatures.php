@@ -39,6 +39,11 @@
                 'short_name'  => 'Generic',
                 'description' => 'Generic statistics for the most popular Hypixel games or your Hypixel profile.',
             ],
+            'skywars'  => [
+                'name'        => 'SkyWars signatures',
+                'short_name'  => 'SkyWars',
+                'description' => 'Statistics for SkyWars on Hypixel, such as the amount of wins, your SkyWars level and your kill/death ratio.'
+            ],
             'guild'    => [
                 'name'        => 'Guild Signatures',
                 'short_name'  => 'Guild',

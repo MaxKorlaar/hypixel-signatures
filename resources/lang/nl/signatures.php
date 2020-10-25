@@ -39,6 +39,11 @@
                 'short_name'  => 'Algemeen',
                 'description' => 'Algemene statistieken voor de meest populaire Hypixel-minigames of je Hypixel-profiel.',
             ],
+            'skywars'  => [
+                'name'        => 'SkyWars-afbeeldingen',
+                'short_name'  => 'SkyWars',
+                'description' => 'Hypixel SkyWars-statistieken, zoals het aantal overwinningen, je SkyWars-level en je kill/death ratio.'
+            ],
             'guild'    => [
                 'name'        => 'Gilde-afbeeldingen',
                 'short_name'  => 'Gilde',

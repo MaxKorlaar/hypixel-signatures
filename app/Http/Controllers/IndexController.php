@@ -76,6 +76,17 @@
                             'pixelated' => true
                         ],
                         [
+                            'name'  => 'Bed Wars statistics',
+                            'route' => 'bedwars'
+                        ],
+                    ]
+                ],
+                'skywars'  => [
+                    'name'        => trans('signatures.groups.skywars.name'),
+                    'short_name'  => trans('signatures.groups.skywars.short_name'),
+                    'description' => trans('signatures.groups.skywars.description'),
+                    'signatures'  => [
+                        [
                             'name'         => 'SkyWars statistics',
                             'route'        => 'skywars',
                             'options_text' => "If you prefer to show off the amount of players you have survived instead of your SkyWars level,
@@ -89,8 +100,8 @@
                             'route' => 'skywars_simple'
                         ],
                         [
-                            'name'  => 'Bed Wars statistics',
-                            'route' => 'bedwars'
+                            'name'  => 'SkyWars statistics per mode (GIF)',
+                            'route' => 'skywars_gif'
                         ],
                     ]
                 ],
