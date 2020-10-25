@@ -224,7 +224,7 @@
          */
         public static function getImage($width, $height) {
             $image       = imagecreatetruecolor($width, $height);
-            $transparent = imagecolorallocatealpha($image, 250, 250, 250, 0);
+            $transparent = imagecolorallocatealpha($image, 254, 254, 254, 0);
             imagefill($image, 0, 0, $transparent);
             imagesavealpha($image, true);
             return $image;
