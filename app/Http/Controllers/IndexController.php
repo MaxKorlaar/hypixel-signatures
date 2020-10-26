@@ -79,6 +79,10 @@
                             'name'  => 'Bed Wars statistics',
                             'route' => 'bedwars'
                         ],
+                        [
+                            'name'  => 'UHC Champions statistics',
+                            'route' => 'uhc_champions'
+                        ],
                     ]
                 ],
                 'skywars'  => [

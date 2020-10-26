@@ -255,7 +255,7 @@
          * @return array
          * @throws HypixelPHPException
          */
-        private function addBasicItems(Request $request, Player $player, &$image, string $title) {
+        private function addBasicItems(Request $request, Player $player, &$image, string $title): array {
             if ($request->has('no_3d_avatar')) {
                 [, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
             } else {
@@ -274,15 +274,7 @@
 
             imagettftext($image, 17, 0, $usernameBoundingBox[2] + 10, 30, $this->grey, $this->fontSourceSansProLight, $title);
 
-            $rank       = $player->getRank(false);
-            $rankColour = $rank->getColor();
-            $rankName   = $rank->getCleanName();
-
-            if ($rankName === 'DEFAULT') {
-                $rankName = 'Player';
-            }
-
-            $rankNameWithColour = $rankColour . $rankName;
+            $rankNameWithColour = $this->getColouredRankName($player);
 
             ColourHelper::minecraftStringToTTFText($image, $this->fontSourceSansProLight, 20, $textX, 44, $rankNameWithColour); // Rank name (coloured)
 
