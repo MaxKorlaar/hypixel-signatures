@@ -50,6 +50,7 @@
 
         Route::get('uhc-champions', 'UHCChampionsSignatureController@render')->name('uhc_champions');
         Route::get('bedwars', 'BedWarsSignatureController@render')->name('bedwars');
+        Route::get('duels', 'DuelsSignatureController@render')->name('duels');
 
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
         Route::get('skywars-simple', 'SimpleSkyWarsSignatureController@render')->name('skywars_simple');
