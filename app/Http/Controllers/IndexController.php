@@ -83,6 +83,10 @@
                             'name'  => 'UHC Champions statistics',
                             'route' => 'uhc_champions'
                         ],
+                        [
+                            'name'  => 'Duels statistics',
+                            'route' => 'duels'
+                        ],
                     ]
                 ],
                 'skywars'  => [

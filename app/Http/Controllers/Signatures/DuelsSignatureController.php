@@ -42,18 +42,18 @@
     use Plancke\HypixelPHP\responses\player\Player;
 
     /**
-     * Class UHCChampionsSignatureController
+     * Class DuelsSignatureController
      *
      * @package App\Http\Controllers\Signatures
      */
-    class UHCChampionsSignatureController extends BaseSignature {
+    class DuelsSignatureController extends BaseSignature {
 
         /**
          * @inheritDoc
          * @throws HypixelPHPException
          */
         protected function signature(Request $request, Player $player): Response {
-            $image                  = BaseSignature::getImage(460, 160);
+            $image                  = BaseSignature::getImage(650, 160);
             $black                  = imagecolorallocate($image, 0, 0, 0);
             $grey                   = imagecolorallocate($image, 203, 203, 203);
             $fontSourceSansProLight = resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf');
@@ -63,12 +63,13 @@
 
             $mainStats = $player->getStats();
             /** @var GameStats $stats */
-            $stats = $mainStats->getGameFromID(GameTypes::UHC);
+            $stats = $mainStats->getGameFromID(GameTypes::DUELS);
 
-            $kills  = $stats->getInt('kills') + $stats->getInt('kills_solo');
-            $deaths = $stats->getInt('deaths') + $stats->getInt('deaths_solo');
-            $wins   = $stats->getInt('wins') + $stats->getInt('wins_solo');
-            $score  = $stats->getInt('score');
+            $wins          = $stats->get('wins', 0);
+            $kills         = $stats->get('kills', 0);
+            $deaths        = $stats->get('deaths', 0);
+            $losses        = $stats->getInt('losses', 0);
+            $bestWinStreak = $stats->getInt('best_overall_winstreak');
 
             if ($deaths !== 0) {
                 $kd = round($kills / $deaths, 2);
@@ -76,26 +77,10 @@
                 $kd = 'None';
             }
 
-            if ($score >= 10210) {
-                $title = 'Champion';
-            } elseif ($score >= 5210) {
-                $title = 'Warlord';
-            } elseif ($score >= 2710) {
-                $title = 'Gladiator';
-            } elseif ($score >= 1710) {
-                $title = 'Centurion';
-            } elseif ($score >= 960) {
-                $title = 'Captain';
-            } elseif ($score >= 460) {
-                $title = 'Knight';
-            } elseif ($score >= 210) {
-                $title = 'Sergeant';
-            } elseif ($score >= 60) {
-                $title = 'Soldier';
-            } elseif ($score >= 10) {
-                $title = 'Initiate';
+            if ($wins !== 0) {
+                $winsPercentage = round(($wins / ($wins + $losses)) * 100, 2);
             } else {
-                $title = 'Recruit';
+                $winsPercentage = 0;
             }
 
             if ($request->has('no_3d_avatar')) {
@@ -114,7 +99,7 @@
                 $usernameBoundingBox = imagettftext($image, 25, 0, $textX, 30, $black, $fontSourceSansProLight, $username);
             }
 
-            imagettftext($image, 17, 0, $usernameBoundingBox[2] + 10, 30, $grey, $fontSourceSansProLight, 'UHC Champions statistics');
+            imagettftext($image, 17, 0, $usernameBoundingBox[2] + 10, 30, $grey, $fontSourceSansProLight, 'Duels statistics');
 
             $linesY = [60, 95, 130]; // Y starting points of the various text lines
 
@@ -122,15 +107,15 @@
 
             imagettftext($image, 20, 0, $textX, $linesY[1], $black, $fontSourceSansProLight, number_format($wins) . ' wins'); // Total wins
 
-            imagettftext($image, 20, 0, 275, $linesY[0], $black, $fontSourceSansProLight, $title);
+            imagettftext($image, 20, 0, 350, $linesY[0], $black, $fontSourceSansProLight, number_format($kills) . ' kills'); // Total kills
 
-            imagettftext($image, 20, 0, 275, $linesY[1], $black, $fontSourceSansProLight, 'Score: ' . number_format($score)); // score
+            imagettftext($image, 20, 0, 350, $linesY[1], $black, $fontSourceSansProLight, 'KD: ' . $kd); // kill/death ratio
 
-            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, number_format($kills) . ' kills'); // Total kills
+            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, 'Best winstreak: ' . number_format($bestWinStreak));
 
-            imagettftext($image, 20, 0, 275, $linesY[2], $black, $fontSourceSansProLight, 'KD: ' . $kd); // kill/death ratio
+            imagettftext($image, 20, 0, 350, $linesY[2], $black, $fontSourceSansProLight, "Wins percentage: {$winsPercentage}%"); // Percentage of games won
 
-            $this->addWatermark($image, $fontSourceSansProLight, 460, 160); // Watermark/advertisement
+            $this->addWatermark($image, $fontSourceSansProLight, 650, 160); // Watermark/advertisement
 
             return Image::make($image)->response('png')->setCache([
                 'public'  => true,

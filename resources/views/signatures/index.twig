@@ -67,7 +67,7 @@
                         </label>
                     </div>
                     {% if config_get('signatures.google_ads_client_id') %}
-                        <in-feed-adsense v-if="index === current_signature_group.signatures.length - 2"
+                        <in-feed-adsense v-if="index === current_signature_group.signatures.length - 2 || index % 4 === 0"
                                          data-ad-layout-key="-fg+5n+6t-e7+r"
                                          data-ad-client="{{ config_get('signatures.google_ads_client_id') }}"
                                          data-ad-layout-key="-75+ev-15-20+86"
