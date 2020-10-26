@@ -48,6 +48,7 @@
         Route::get('general-small', 'SmallGeneralSignatureController@render')->name('general_small');
         Route::get('general-tooltip', 'TooltipSignatureController@render')->name('general_tooltip');
 
+        Route::get('uhc-champions', 'UHCChampionsSignatureController@render')->name('uhc_champions');
         Route::get('bedwars', 'BedWarsSignatureController@render')->name('bedwars');
 
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');

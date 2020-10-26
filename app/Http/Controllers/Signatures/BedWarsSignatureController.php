@@ -62,15 +62,8 @@
             $grey                   = imagecolorallocate($image, 203, 203, 203);
             $fontSourceSansProLight = resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf');
 
-            $username = $player->getName();
-
-            $rank       = $player->getRank(false);
-            $rankColour = $rank->getColor();
-            $rankName   = $rank->getCleanName();
-            if ($rankName === 'DEFAULT') {
-                $rankName = 'Player';
-            }
-            $rankNameWithColour = $rankColour . $rankName;
+            $username           = $player->getName();
+            $rankNameWithColour = $this->getColouredRankName($player);
 
             $mainStats = $player->getStats();
             /** @var GameStats $stats */

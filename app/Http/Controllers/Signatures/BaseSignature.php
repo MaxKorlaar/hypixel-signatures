@@ -121,6 +121,23 @@
         }
 
         /**
+         * @param Player $player
+         *
+         * @return string
+         */
+        protected function getColouredRankName(Player $player): string {
+            $rank       = $player->getRank(false);
+            $rankColour = $rank->getColor();
+            $rankName   = $rank->getCleanName();
+
+            if ($rankName === 'DEFAULT') {
+                $rankName = 'Player';
+            }
+
+            return $rankColour . $rankName;
+        }
+
+        /**
          * @param string $uuid
          *
          * @return Response|Player
@@ -196,7 +213,7 @@
          */
         public static function getImage($width, $height) {
             $image       = imagecreatetruecolor($width, $height);
-            $transparent = imagecolorallocatealpha($image, 250, 100, 100, config('signatures.signature_debug_background') ? 0 : self::FULLY_TRANSPARENT);
+            $transparent = imagecolorallocatealpha($image, 230, 230, 255, config('signatures.signature_debug_background') ? 0 : self::FULLY_TRANSPARENT);
             imagefill($image, 0, 0, $transparent);
             imagesavealpha($image, true);
             return $image;

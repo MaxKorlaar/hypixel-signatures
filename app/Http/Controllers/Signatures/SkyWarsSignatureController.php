@@ -63,13 +63,7 @@
 
             $username = $player->getName();
 
-            $rank       = $player->getRank(false);
-            $rankColour = $rank->getColor();
-            $rankName   = $rank->getCleanName();
-            if ($rankName === 'DEFAULT') {
-                $rankName = 'Player';
-            }
-            $rankNameWithColour = $rankColour . $rankName;
+            $rankNameWithColour = $this->getColouredRankName($player);
 
             $mainStats = $player->getStats();
             /** @var GameStats $stats */
