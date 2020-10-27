@@ -29,6 +29,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 import Vue from 'vue';
+import Ads from 'vue-google-adsense';
+import vue_script2 from "vue-script2";
+
+Vue.use(vue_script2);
+Vue.use(Ads.InFeedAdsense);
 
 const axios = require('axios').default;
 

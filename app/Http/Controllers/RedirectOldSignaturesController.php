@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -46,12 +46,22 @@
      */
     class RedirectOldSignaturesController extends Controller {
         private const URL_MAPPING = [
-            'main'       => 'signatures.general',
-            'main-small' => 'signatures.general_small',
-            'tooltip'    => 'signatures.general_tooltip',
-            'bed-wars'   => 'signatures.bedwars',
-            'skywars'    => 'signatures.skywars'
+            'main'           => 'signatures.general',
+            'main-small'     => 'signatures.general_small',
+            'tooltip'        => 'signatures.general_tooltip',
+            'bed-wars'       => 'signatures.bedwars',
+            'skywars'        => 'signatures.skywars',
+            'skywars-simple' => 'signatures.skywars_simple',
+            'skywars-gif'    => 'signatures.skywars_gif',
+            'uhc-champions'  => 'signatures.uhc_champions'
         ];
+
+        /**
+         * @return Application|RedirectResponse|Redirector
+         */
+        public function redirectIndex() {
+            return redirect(route('signatures'), 301);
+        }
 
         /**
          * @param      $oldSignatureName

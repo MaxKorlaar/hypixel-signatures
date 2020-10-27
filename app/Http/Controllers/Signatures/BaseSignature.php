@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -121,6 +121,23 @@
         }
 
         /**
+         * @param Player $player
+         *
+         * @return string
+         */
+        protected function getColouredRankName(Player $player): string {
+            $rank       = $player->getRank(false);
+            $rankColour = $rank->getColor();
+            $rankName   = $rank->getCleanName();
+
+            if ($rankName === 'DEFAULT') {
+                $rankName = 'Player';
+            }
+
+            return $rankColour . $rankName;
+        }
+
+        /**
          * @param string $uuid
          *
          * @return Response|Player
@@ -179,7 +196,6 @@
             $box->setBox(5, $height / 3 + 10, $width - 5, $height - 5);
             $box->setFontSize($height / 6);
             $box->setFontColor(new Color(0, 0, 0));
-            $box->setTextShadow(new Color(0, 0, 0, 50), 1, 1);
             $box->draw($error);
 
             /** @var Response $response */
@@ -197,7 +213,7 @@
          */
         public static function getImage($width, $height) {
             $image       = imagecreatetruecolor($width, $height);
-            $transparent = imagecolorallocatealpha($image, 250, 100, 100, config('signatures.signature_debug_background') ? 0 : self::FULLY_TRANSPARENT);
+            $transparent = imagecolorallocatealpha($image, 230, 230, 255, config('signatures.signature_debug_background') ? 0 : self::FULLY_TRANSPARENT);
             imagefill($image, 0, 0, $transparent);
             imagesavealpha($image, true);
             return $image;

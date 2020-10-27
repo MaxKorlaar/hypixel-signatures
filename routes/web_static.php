@@ -48,8 +48,13 @@
         Route::get('general-small', 'SmallGeneralSignatureController@render')->name('general_small');
         Route::get('general-tooltip', 'TooltipSignatureController@render')->name('general_tooltip');
 
+        Route::get('uhc-champions', 'UHCChampionsSignatureController@render')->name('uhc_champions');
         Route::get('bedwars', 'BedWarsSignatureController@render')->name('bedwars');
+        Route::get('duels', 'DuelsSignatureController@render')->name('duels');
+
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
+        Route::get('skywars-simple', 'SimpleSkyWarsSignatureController@render')->name('skywars_simple');
+        Route::get('skywars-gif', 'AnimatedSkyWarsSignatureController@render')->name('skywars_gif');
 
         Route::get('skyblock/stats/{profile_id}', 'SkyBlock\SkyBlockSignatureController@render')->name('skyblock.stats');
         Route::get('skyblock/pets/{profile_id}', 'SkyBlock\PetsSignatureController@render')->name('skyblock.pets');

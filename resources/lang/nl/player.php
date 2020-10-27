@@ -62,6 +62,8 @@
                 'description' => "Bekijk de huidige online status van :username's op Hypixel: Zie of :username momenteel in een lobby zit, een spel aan het spelen is of iets anders doet! Bekijk dit en meer op :site",
             ],
 
+            'tweet_text' => 'Bekijk de online status van :username op Hypixel!',
+
             'error'               => 'Fout',
             'api_status_disabled' => ':username heeft ervoor gekozen om zijn of haar online-status op Hypixel te verbergen in de Hypixel-API.',
 

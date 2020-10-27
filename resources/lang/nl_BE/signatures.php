@@ -39,6 +39,11 @@
                 'short_name'  => 'Algemeen',
                 'description' => 'Algemene statistieken voor de meest populaire Hypixel-minigames of uw Hypixel-profiel.',
             ],
+            'skywars'  => [
+                'name'        => 'SkyWars-afbeeldingen',
+                'short_name'  => 'SkyWars',
+                'description' => 'Hypixel SkyWars-statistieken, zoals het aantal overwinningen, uw SkyWars-level en uw kill/death ratio.'
+            ],
             'guild'    => [
                 'name'        => 'Gilde-afbeeldingen',
                 'short_name'  => 'Gilde',
@@ -52,22 +57,22 @@
         ],
 
         'username_or_uuid' => 'Minecraft-gebruikersnaam of UUID',
-        'username_help'    => 'Voer hier uw Minecraft-gebruikersnaam of UUID in zodat wij je statistieken via de Hypixel-API kunnen opzoeken. Als je niet weet wat je UUID is, voer dan gewoon uw gebruikersnaam in en dan zoeken wij hem voor je op.',
+        'username_help'    => 'Voer hier uw Minecraft-gebruikersnaam of UUID in zodat wij uw statistieken via de Hypixel-API kunnen opzoeken. Als u niet weet wat uw UUID is, voer dan gewoon uw gebruikersnaam in en dan zoeken wij hem voor u op.',
 
         'skyblock' => [
-            'no_profiles'      => 'Het lijkt erop dat je geen SkyBlock-profielen hebt op je account. Speel het eens als u dat nog niet gedaan hebt, of zet uw API-statistieken aan als u die uitgezet hebt.',
+            'no_profiles'      => 'Het lijkt erop dat u geen SkyBlock-profielen hebt op uw account. Speel het eens als u dat nog niet gedaan hebt, of zet uw API-statistieken aan als u die uitgezet hebt.',
             'select_a_profile' => 'Kies eerst een SkyBlock-profiel.',
             'profile'          => 'SkyBlock-profiel',
         ],
 
         'your_signature'      => 'Jouw afbeelding',
         'your_signature_text' => [
-            'Hieronder vind je de afbeelding die jij hebt gekozen. Je kan ernaar verwijzen met de URL van de afbeelding, of je kan de BBcode kopiëren en plakken op de forums in een forumbericht of je handtekening.',
-            'Het is belangrijk dat je de BBcode of de URL hieronder gebruikt om te verwijzen naar je afbeelding. Als je de afbeelding downloadt of de afbeelding zelf kopieert en plakt, dan zal deze niet automatisch worden bijgewerkt.'
+            'Hieronder vind u de afbeelding die jij hebt gekozen. U kunt ernaar verwijzen met de URL van de afbeelding, of u kunt de BBcode kopiëren en plakken op de forums in een forumbericht of uw handtekening.',
+            'Het is belangrijk dat u de BBcode of de URL hieronder gebruikt om te verwijzen naar uw afbeelding. Als u de afbeelding downloadt of de afbeelding zelf kopieert en plakt, dan zal deze niet automatisch worden bijgewerkt.'
         ],
 
         'bbcode'              => 'BBcode',
-        'bbcode_instructions' => 'Kopieer en plak bovenstaand stuk tekst in <a target="_blank" href="https://hypixel.net/account/signature">je forum-handtekening</a> om automatisch uw gekozen statistieken onder elk forumbericht dat u maakt te tonen. U kan de URL van de afbeelding gebruiken om deze handtekening op andere websites te gebruiken als je dat wilt.',
+        'bbcode_instructions' => 'Kopieer en plak bovenstaand stuk tekst in <a target="_blank" href="https://hypixel.net/account/signature">uw forum-handtekening</a> om automatisch uw gekozen statistieken onder elk forumbericht dat u maakt te tonen. U kan de URL van de afbeelding gebruiken om deze handtekening op andere websites te gebruiken als u dat wilt.',
 
         'direct_link' => 'Directe link',
 

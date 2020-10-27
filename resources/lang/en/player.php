@@ -62,6 +62,8 @@
                 'description' => "Check out :username's current online status on Hypixel: See if :username is currently in a lobby, playing a game or doing something else! Find this and more on :site"
             ],
 
+            'tweet_text' => "Check out :username's online status on Hypixel!",
+
             'error'               => 'Error',
             'api_status_disabled' => ':username has chosen to hide their current Hypixel online status from the public API.',
 

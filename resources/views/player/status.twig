@@ -48,6 +48,9 @@
             </div>
         {% endif %}
         <p>{{ trans('player.status.help_text', { username: player.name }) }}</p>
+        <div class="social-share">
+            <a href="https://twitter.com/share" data-url="{{ route('player.status', [player.getUUID()]) }}" class="twitter-share-button" data-text="{{ trans('player.status.tweet_text', { username: player.name }) }}" data-via="MaxKorlaar" data-size="large" data-related="MaxKorlaar" data-hashtags="Hypixel">Tweet</a>
+        </div>
     </div>
     {% if config_get('signatures.google_ads_client_id') %}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -74,4 +77,13 @@
         window.Paniek.urls              = {{ urls|json_encode|raw }};
     </script>
     <script src="{{ mix('js/status.js') }}"></script>
+    <script>!function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+            if (!d.getElementById(id)) {
+                js     = d.createElement(s);
+                js.id  = id;
+                js.src = p + '://platform.twitter.com/widgets.js';
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        }(document, 'script', 'twitter-wjs');</script>
 {% endblock %}

@@ -35,47 +35,68 @@
     use App\Utilities\ColourHelper;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
-    use Illuminate\Support\Arr;
-    use Illuminate\Support\Collection;
     use Image;
     use Plancke\HypixelPHP\classes\gameType\GameTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
+    use Plancke\HypixelPHP\responses\player\GameStats;
     use Plancke\HypixelPHP\responses\player\Player;
 
     /**
-     * Class GeneralSignatureController
+     * Class UHCChampionsSignatureController
      *
      * @package App\Http\Controllers\Signatures
      */
-    class GeneralSignatureController extends BaseSignature {
+    class UHCChampionsSignatureController extends BaseSignature {
 
         /**
-         * @param Request $request
-         * @param Player  $player
-         *
-         * @return Response
+         * @inheritDoc
          * @throws HypixelPHPException
          */
         protected function signature(Request $request, Player $player): Response {
-            $image = BaseSignature::getImage(740, 160);
-            [$black, $purple, $yellow] = self::getColours($image);
+            $image                  = BaseSignature::getImage(460, 160);
+            $black                  = imagecolorallocate($image, 0, 0, 0);
+            $grey                   = imagecolorallocate($image, 203, 203, 203);
             $fontSourceSansProLight = resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf');
 
-            $karma              = $player->getInt('karma', 0);
-            $achievementPoints  = Arr::get($player->getAchievementData(), 'standard.points.current', 0);
-            $mostRecentGame     = $player->get('mostRecentGameType', 'None');
             $username           = $player->getName();
             $rankNameWithColour = $this->getColouredRankName($player);
 
-            $lastgameType = GameTypes::fromEnum($mostRecentGame);
-            if ($lastgameType !== null) {
-                $mostRecentGame = $lastgameType->getName();
+            $mainStats = $player->getStats();
+            /** @var GameStats $stats */
+            $stats = $mainStats->getGameFromID(GameTypes::UHC);
+
+            $kills  = $stats->getInt('kills') + $stats->getInt('kills_solo');
+            $deaths = $stats->getInt('deaths') + $stats->getInt('deaths_solo');
+            $wins   = $stats->getInt('wins') + $stats->getInt('wins_solo');
+            $score  = $stats->getInt('score');
+
+            if ($deaths !== 0) {
+                $kd = round($kills / $deaths, 2);
+            } else {
+                $kd = 'None';
             }
 
-            $quests          = new Collection($player->getArray('quests'));
-            $questsCompleted = $quests->whereNotNull('completions')->map(static function ($quest) {
-                return $quest['completions'];
-            })->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
+            if ($score >= 10210) {
+                $title = 'Champion';
+            } elseif ($score >= 5210) {
+                $title = 'Warlord';
+            } elseif ($score >= 2710) {
+                $title = 'Gladiator';
+            } elseif ($score >= 1710) {
+                $title = 'Centurion';
+            } elseif ($score >= 960) {
+                $title = 'Captain';
+            } elseif ($score >= 460) {
+                $title = 'Knight';
+            } elseif ($score >= 210) {
+                $title = 'Sergeant';
+            } elseif ($score >= 60) {
+                $title = 'Soldier';
+            } elseif ($score >= 10) {
+                $title = 'Initiate';
+            } else {
+                $title = 'Recruit';
+            }
 
             if ($request->has('no_3d_avatar')) {
                 [, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
@@ -88,43 +109,32 @@
                 if ($guildTag === '§7[]') {
                     $guildTag = '§7[-]';
                 }
-                ColourHelper::minecraftStringToTTFText($image, $fontSourceSansProLight, 25, $textX, 14, '§0' . $username . ' ' . $guildTag);
+                $usernameBoundingBox = ColourHelper::minecraftStringToTTFText($image, $fontSourceSansProLight, 25, $textX, 14, '§0' . $username . ' ' . $guildTag);
             } else {
-                imagettftext($image, 25, 0, $textX, 30, $black, $fontSourceSansProLight, $username);
+                $usernameBoundingBox = imagettftext($image, 25, 0, $textX, 30, $black, $fontSourceSansProLight, $username);
             }
+
+            imagettftext($image, 17, 0, $usernameBoundingBox[2] + 10, 30, $grey, $fontSourceSansProLight, 'UHC Champions statistics');
 
             $linesY = [60, 95, 130]; // Y starting points of the various text lines
 
             ColourHelper::minecraftStringToTTFText($image, $fontSourceSansProLight, 20, $textX, 44, $rankNameWithColour); // Rank name (coloured)
 
-            imagettftext($image, 20, 0, $textX, $linesY[1], $purple, $fontSourceSansProLight, number_format($karma) . ' karma'); // Amount of karma
+            imagettftext($image, 20, 0, $textX, $linesY[1], $black, $fontSourceSansProLight, number_format($wins) . ' wins'); // Total wins
 
-            imagettftext($image, 20, 0, 380, $linesY[0], $black, $fontSourceSansProLight, 'Level ' . number_format($player->getLevel())); // Network level
+            imagettftext($image, 20, 0, 275, $linesY[0], $black, $fontSourceSansProLight, $title);
 
-            imagettftext($image, 20, 0, 380, $linesY[1], $black, $fontSourceSansProLight, 'Quests Completed: ' . number_format($questsCompleted)); // Quests Completed
+            imagettftext($image, 20, 0, 275, $linesY[1], $black, $fontSourceSansProLight, 'Score: ' . number_format($score)); // score
 
-            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $yellow, $fontSourceSansProLight, number_format($achievementPoints) . ' Achievement Points'); // Hypixel Credits
+            imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, number_format($kills) . ' kills'); // Total kills
 
-            imagettftext($image, 20, 0, 380, $linesY[2], $black, $fontSourceSansProLight, 'Recently played: ' . $mostRecentGame); // Last game played
+            imagettftext($image, 20, 0, 275, $linesY[2], $black, $fontSourceSansProLight, 'KD: ' . $kd); // kill/death ratio
 
-            $this->addWatermark($image, $fontSourceSansProLight, 740, 160); // Watermark/advertisement
+            $this->addWatermark($image, $fontSourceSansProLight, 460, 160); // Watermark/advertisement
 
             return Image::make($image)->response('png')->setCache([
                 'public'  => true,
                 'max_age' => 600
             ]);
         }
-
-        /**
-         * @param $image
-         *
-         * @return array
-         */
-        protected static function getColours($image): array {
-            $black  = imagecolorallocate($image, 0, 0, 0);
-            $purple = imagecolorallocate($image, 204, 0, 204);
-            $yellow = imagecolorallocate($image, 199, 199, 0);
-            return [$black, $purple, $yellow];
-        }
-
     }
