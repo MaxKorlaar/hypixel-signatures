@@ -31,35 +31,37 @@
  */
 
     return [
-        'title' => 'Listen von Hypixel\' Freunden',
+        'title' => 'Hypixel Freundesliste',
 
         'callout'             => [
-            "Zeigen Sie eine Liste Ihrer Freunde oder einer anderen Person auf Hypixel an, Wie lange bist du schon mit ihnen befreundet und mehr",
-            "It's easy – You only have to enter your username to get started."
+            "Zeigt eine Liste Ihrer Freunde oder einer anderen Person auf Hypixel an, wie lange du schon mit ihnen befreundet bist und weiteres",
+            "Ganz einfach – Gib einfach einen Benutzernamen ein um loszulegen."
         ],
-        'callout_placeholder' => 'Geben Sie Ihren Benutzernamen und Passwort einloggen.',
+        'callout_placeholder' => 'Geben Sie Ihren Benutzernamen um zu starten',
         'callout_button'      => 'Freunde anzeigen',
 
         'recently_viewed'                   => 'Zuletzt angesehene',
-        'recently_viewed_friends_and_views' => ':count Freunden – :views Aufrufe',
+        'recently_viewed_friends_and_views' => ':count Freunde – :views Aufrufe',
 
         'list' => [
-            'page_title' => "Hypixel-Freundesliste des :username",
-            'title'      => "Freunde des :username auf Hypixel",
+            'page_title' => "Hypixel-Freundesliste von :username",
+            'title'      => "Freunde von :username auf Hypixel",
 
             'social' => [
-                'title'       => ":username Freunden auf Hypixel - :site",
-                'description' => 'Alle anzeigen von :total_friends Freunden of :username auf dem Hypixel Minecraft Server. Sie können die Liste durchsuchen und zu anderen Hypixel-Playern navigieren.',
+                'title'       => "Freunde von :username auf Hypixel - :site",
+                'description' => 'Sehen Sie sich alle Freunde von :total_friends Freunde von :username auf dem Hypixel Minecraft-Server an. Sie können durch die Liste blättern und zu anderen Hypixel-Spielern navigieren.',
             ],
+            
+            // What is social doing?
 
             'description' => [
-                "Auf dieser Seite finden Sie eine Übersicht aller :usersname :total_friends Freunden auf Hypixel. Sie können ihre Ränge sehen und darauf klicken, um Freundeslisten anderer Spieler anzuzeigen.",
-                "Wenn Sie <a href=':form_link'>dynamische Signaturbilder für Folgendes generieren möchten :username</a>, das kannst du auch machen auf :site! Angeberei :username Minispiel oder SkyBlock-Statistiken und Erfolge auf jeder Website, auf der Sie durch <a href=':form_link'>Erstellen einer dynamischen Signatur</a> auf Bilder verlinken können."
+                "Auf dieser Seite finden Sie eine Übersicht aller :total_friends Freunde von :username auf Hypixel. Sie können ihre Ränge sehen und darauf klicken, um die Freundesliste anderer Spieler anzuzeigen.",
+                "Wenn Sie <a href=':form_link'>dynamische Signaturbilder für :username generieren möchten </a>, kannst du das auch auf :site machen! Prahle mit den Minispiel oder SkyBlock-Statistiken und Erfolgen von :username auf jeder Website, auf der Sie durch <a href=':form_link'>Erstellen einer dynamischen Signatur</a> auf Bilder verlinken können."
             ],
 
-            'tweet_text' => "Ich stöbere Freundesliste des :username auf Hypixel!",
+            'tweet_text' => "Ich stöbere durch die Freundesliste von :username auf Hypixel!",
 
-            'loading_friends' => 'Freunde laden ({{ meta.loaded }} / {{ meta.total_friends }})…',
-            'friends_since'   => 'schon seit {{ new Date(player.since).toLocaleDateString() }}'
+            'loading_friends' => 'Lade Freunde ({{ meta.loaded }} / {{ meta.total_friends }})…',
+            'friends_since'   => 'seit {{ new Date(player.since).toLocaleDateString() }}'
         ]
     ];
