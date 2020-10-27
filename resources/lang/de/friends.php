@@ -40,7 +40,7 @@
         'callout_placeholder' => 'Geben Sie Ihren Benutzernamen um zu starten',
         'callout_button'      => 'Freunde anzeigen',
 
-        'recently_viewed'                   => 'Zuletzt angesehene',
+        'recently_viewed'                   => 'Zuletzt angesehen',
         'recently_viewed_friends_and_views' => ':count Freunde – :views Aufrufe',
 
         'list' => [
@@ -52,7 +52,6 @@
                 'description' => 'Sehen Sie sich alle Freunde von :total_friends Freunde von :username auf dem Hypixel Minecraft-Server an. Sie können durch die Liste blättern und zu anderen Hypixel-Spielern navigieren.',
             ],
             
-            // What is social doing?
 
             'description' => [
                 "Auf dieser Seite finden Sie eine Übersicht aller :total_friends Freunde von :username auf Hypixel. Sie können ihre Ränge sehen und darauf klicken, um die Freundesliste anderer Spieler anzuzeigen.",
