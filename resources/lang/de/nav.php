@@ -31,10 +31,10 @@
  */
 
     return [
-        'home'          => 'Zuhause',
+        'home'          => 'Hauptseite',
         'signatures'    => 'Unterschriften',
-        'friends'       => 'Freund',
-        'guild'         => 'Gilde',
+        'friends'       => 'Freunde',
+        'guild'         => 'Gilden',
         'player_status' => 'Online Status',
-        'beta_warning' => '<b>Heads up!</b> Hypixel.Paniek.de befindet sich noch in der Beta-Phase und kann gelegentlich unterbrochen werden. Wenn Sie Feedback haben oder möchten mehr Funktionalität auf dieser Website hinzugefügt sehen, Zögern Sie nicht, sich mit mir in Verbindung zu setzen: <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">@MaxKorlaar on Twitter</a> or on the <a href="https://hypixel.net/threads/2880476/" target="_blank" rel="noopener">Hypixel Forums</a>.'
+        'beta_warning' => '<b>Heads up!</b> Hypixel.Paniek.de befindet sich noch in der Beta-Phase und kann gelegentlich kaputt gehen. Wenn Sie Feedback haben oder mehr Funktionalität auf dieser Website hinzugefügt sehen möchten, zögern Sie nicht, sich mit mir in Verbindung zu setzen: <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">@MaxKorlaar auf Twitter</a> oder auf dem <a href="https://hypixel.net/threads/2880476/" target="_blank" rel="noopener">Hypixel Forum</a>.'
     ];
