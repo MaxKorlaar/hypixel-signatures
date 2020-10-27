@@ -45,7 +45,7 @@
         'callout_placeholder' => 'Geben Sie Ihren Benutzernamen ein, um zu starten',
         'callout_button'      => 'Gilde anzeigen',
 
-        'recently_viewed'                   => 'zuletzt angesehen',
+        'recently_viewed'                   => 'Zuletzt angesehen',
         'recently_viewed_members_and_views' => ':count Mitglieder – :views Aufrufe',
 
         'info' => [
