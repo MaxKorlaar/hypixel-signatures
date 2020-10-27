@@ -35,14 +35,19 @@
 
         'groups' => [
             'generic'  => [
-                'name'        => 'Generische Sygnatur',
-                'short_name'  => 'Generisch',
+                'name'        => 'Allgemeine Signatur',
+                'short_name'  => 'Allgemein',
                 'description' => 'Allgemeine Statistiken für die beliebtesten Hypixel-Spiele oder Ihr Hypixel-Profil.',
             ],
+            'skywars'  => [
+                'name'        => 'SkyWars Signatur',
+                'short_name'  => 'SkyWars',
+                'description' => 'Statistiken für SkyWars auf Hypixel, zum Beispiel die Anzahl gewonnener Runder, dein SkyWars Level und deiner Tötungen/Todesfälle Verhältnis.'
+            ],
             'guild'    => [
-                'name'        => 'Gildenunterschriften',
+                'name'        => 'Gilden Signatur',
                 'short_name'  => 'Gilde',
-                'description' => 'Allgemeine Statistiken für die Gilde, der du bei Hypixel angehörst. Das allgemeine Gildenstatistikbild zeigt auch das Banner der Gilde, falls vorhanden!',
+                'description' => 'Statistiken für die Gilde, der du bei Hypixel angehörst. Das allgemeine Gildenstatistikbild zeigt auch das Banner der Gilde, falls vorhanden!',
             ],
             'skyblock' => [
                 'name'        => 'SkyBlock Sygnatur',
@@ -60,7 +65,7 @@
             'profile'          => 'SkyBlock profile',
         ],
 
-        'your_signature'      => 'Deine Sygnatur',
+        'your_signature'      => 'Deine Signatur',
         'your_signature_text' => [
             'Unten finden Sie die von Ihnen ausgewählte Signatur. Sie können über die URL des Bildes darauf verweisen oder den BBcode kopieren und in die Foren eines Forumsbeitrags oder in Ihre Unterschrift einfügen. ',
             "Es ist wichtig, den unten stehenden BBcode oder die Bild-URL zu verwenden, um auf Ihre Signatur zu verweisen. Wenn Sie Ihre Signatur herunterladen oder das Bild selbst kopieren und einfügen, wird es nicht automatisch aktualisiert."
@@ -71,6 +76,6 @@
 
         'direct_link' => 'Direkte Verbindung',
 
-        'signature_options'      => 'Sygnatur Optionen',
-        'signature_options_text' => 'Diese Sygnatur bietet Optionen, mit denen Sie das Aussehen ändern können:',
+        'signature_options'      => 'Signatur Optionen',
+        'signature_options_text' => 'Diese Signatur bietet Optionen an, mit denen Sie das Aussehen ändern können:',
     ];
