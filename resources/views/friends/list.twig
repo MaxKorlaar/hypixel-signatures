@@ -47,7 +47,7 @@
                     </div>
                 </a>
                 {% if config_get('signatures.google_ads_client_id') %}
-                    <in-feed-adsense v-if="(index + 5) % 10 === 0"
+                    <in-feed-adsense style="max-height: 250px" v-if="(index + 5) % 10 === 0"
                                      data-ad-layout-key="-gm-n+0-hk+p2"
                                      data-ad-client="{{ config_get('signatures.google_ads_client_id') }}"
                                      data-ad-slot="7628028258">
