@@ -44,7 +44,7 @@
         */
 
         'accepted'             => 'Das :attribute muss akzeptiert werden.',
-        'active_url'           => 'Das :attribute ist keine gültige URL. '
+        'active_url'           => 'Das :attribute ist keine gültige URL. ',
         'after'                => 'Das :attribute muss ein Datum nach :date sein.',
         'after_or_equal'       => 'Das :attribute muss ein Datum nach oder gleich :date. sein',
         'alpha'                => 'Das :attribute darf nur Buchstaben enthalten.',
