@@ -31,20 +31,29 @@
         </div>
 
         <div class="friends-grid players-grid" v-cloak>
-            <a v-for="player in friends.slice(0, visible_friends_count)" :class="{ loading: player.loading }" class="item" :href="player.friends_url">
-                <div class="image-container">
-                    <img v-lazy="player.skin_url" width="71" height="64" alt="">
-                </div>
-                <div class="name-container">
-                    <div class="loader" v-if="player.loading">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+            <template v-for="(player, index) in friends.slice(0, visible_friends_count)">
+                <a :class="{ loading: player.loading }" class="item" :href="player.friends_url">
+                    <div class="image-container">
+                        <img v-lazy="player.skin_url" width="71" height="64" alt="">
                     </div>
-                    <h3 v-html="player.formatted_name"></h3>
-                    {{ trans('friends.list.friends_since') }}
-                </div>
-            </a>
+                    <div class="name-container">
+                        <div class="loader" v-if="player.loading">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <h3 v-html="player.formatted_name"></h3>
+                        {{ trans('friends.list.friends_since') }}
+                    </div>
+                </a>
+                {% if config_get('signatures.google_ads_client_id') %}
+                    <in-feed-adsense ins-style="display:block;height: 119px" v-if="(index + 10) % 15 === 0"
+                                     data-ad-layout-key="-gm-n+0-hk+p2"
+                                     data-ad-client="{{ config_get('signatures.google_ads_client_id') }}"
+                                     data-ad-slot="7628028258">
+                    </in-feed-adsense>
+                {% endif %}
+            </template>
         </div>
     </div>
 {% endblock %}
