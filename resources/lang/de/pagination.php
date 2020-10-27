@@ -43,7 +43,7 @@
         |
         */
 
-        'previous' => '&laquo; Bisherige',
+        'previous' => '&laquo; Vorheriger',
         'next'     => 'Nächster &raquo;',
 
     ];
