@@ -35,9 +35,16 @@
             <slot name="head"></slot>
         </thead>
         <tbody>
-            <tr :class="{ 'loading': item.loading }" v-for="item in sorted_data">
-                <slot v-bind:item="item"></slot>
-            </tr>
+            <template v-for="(item, index) in sorted_data">
+                <tr :class="{ 'loading': item.loading }">
+                    <slot v-bind:item="item"></slot>
+                </tr>
+                <InFeedAdsense v-if="(index + 15) % 20 === 0"
+                               data-ad-client="ca-pub-9570587520778628"
+                               data-ad-layout-key="-ez+5q+5e-d4+4m"
+                               data-ad-slot="8224948143">
+                </InFeedAdsense>
+            </template>
         </tbody>
         <tfoot>
             <slot name="footer"></slot>
@@ -46,6 +53,13 @@
 </template>
 
 <script>
+import Ads from 'vue-google-adsense';
+import vue_script2 from "vue-script2";
+import Vue from "vue";
+
+Vue.use(vue_script2);
+Vue.use(Ads.InFeedAdsense);
+
 export default {
     name:     "SortableTable",
     props:    ['data'],
