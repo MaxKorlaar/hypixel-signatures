@@ -34,19 +34,19 @@
         'title' => 'Hypixel-Gildenstatistik',
 
         'social' => [
-            'title'       => 'Hypixel Guild Info und Mitgliedsstatistik - :site',
-            'description' => 'Auf dem Hypixel Minecraft-Server finden Sie Informationen zu einer Gilde, einschließlich ihrer Stufe, Einstellungen, Beschreibung und Mitglieder. Sie können auch Gildenstatistiken für Spiele wie SkyWars, Bed Wars, TNT-Spiele, Mega Walls, Crazy Walls und Quakecraft auf der :site durchsehen und vergleichen!'
+            'title'       => 'Hypixel Gilden Info und Mitgliedsstatistik - :site',
+            'description' => 'Finde Information zu einer Gilde auf dem Hypixel Minecraft-Server, einschließlich ihrer Stufe, Einstellungen, Beschreibung und Mitglieder. Sie können auch Gildenstatistiken für Spiele wie SkyWars, Bed Wars, TNT-Spiele, Mega Walls, Crazy Walls und Quakecraft auf :site durchsehen und vergleichen!'
         ],
 
         'callout'             => [
-            'Zeigen Sie Informationen zu jeder Hypixel-Gilde an, einschließlich ihrer Mitglieder, Beschreibung und sogar Spielstatistiken.',
-            "Es ist einfach – Sie müssen nur einen Benutzernamen oder einen Gildennamen eingeben, um loszulegen."
+            'Schau dir Informationen zu jeder Hypixel-Gilde an, einschließlich ihrer Mitglieder, Beschreibung und sogar Spielstatistiken.',
+            "Ganz einfach – Sie müssen nur einen Benutzernamen oder einen Gildennamen eingeben, um loszulegen."
         ],
-        'callout_placeholder' => 'Geben Sie Ihren Benutzernamen ein, um loszulegen',
+        'callout_placeholder' => 'Geben Sie Ihren Benutzernamen ein, um zu starten',
         'callout_button'      => 'Gilde anzeigen',
 
         'recently_viewed'                   => 'zuletzt angesehen',
-        'recently_viewed_members_and_views' => ':count Mitglieder – :views Ansichten',
+        'recently_viewed_members_and_views' => ':count Mitglieder – :views Aufrufe',
 
         'info' => [
             'title' => ':name Gilde',
@@ -55,23 +55,23 @@
                 'title' => ':name - :site',
 
                 'default_description' => ':name ist eine Gilde auf dem Hypixel Minecraft Server',
-                'description'         => " - Ansicht :name s Namens, Gildenstatistiken und sogar Gildenspielstatistiken für SkyWars, Bed Wars und weitere Spiele vor :site"
+                'description'         => " - Schau dir :name Mitglieder, Gildenstatistiken und sogar Gildenspielstatistiken für SkyWars, Bed Wars und weitere Spiele an, auf :site"
             ],
 
             'members'               => 'Mitgliederliste',
             'general_statistics'    => 'Allgemeine Statistiken',
-            'skywars_statistics'    => 'SkyWars-Statistiken',
-            'bedwars_statistics'    => 'Bed Wars Statistik',
-            'tntgames_statistics'   => 'TNT-Games-Statistiken',
-            'megawalls_statistics'  => 'Mega Walls Statistik',
+            'skywars_statistics'    => 'SkyWars Statistiken',
+            'bedwars_statistics'    => 'Bed Wars Statistiken',
+            'tntgames_statistics'   => 'TNT-Games Statistiken',
+            'megawalls_statistics'  => 'Mega Walls Statistiken',
             'crazywalls_statistics' => 'Crazy Walls Statistiken',
-            'quakecraft_statistics' => 'Quakecraft-Statistiken',
+            'quakecraft_statistics' => 'Quakecraft Statistiken',
 
             'current_members'   => 'Aktuelle Mitgliederzahl',
-            'level'             => 'Niveau',
+            'level'             => 'Level',
             'tag'               => 'Etikett',
             'description'       => 'Beschreibung',
-            'not_set'           => '<i>None set</i>',
+            'not_set'           => '<i>Nich gesetzt</i>',
             'guildmaster'       => 'Gildenmeister',
             'created_on'        => 'erstellt am',
             'preferred_games'   => 'Lieblingsspiel',
@@ -79,10 +79,10 @@
             'experience'        => 'Gildenerfahrung',
             'coins'             => 'Münzen',
             'legacy_rank'       => 'Legacy-Rang',
-            'joinable'          => 'Öffentlich verbindbar',
+            'joinable'          => 'Öffentlich eintretbar',
             'yes'               => 'Ja',
             'no'                => 'Nein',
-            'listed'            => 'Börsennotiert',
+            'listed'            => 'Öffentlich gelistet',
 
             'click_to_sort' => 'Sie können auf die Tabellenüberschriften klicken, um die Gildenmitglieder nach bestimmten Statistiken zu sortieren. Wenn Sie die genaue Position eines Spielers für eine Gilden-Bestenliste wissen möchten, bewegen Sie den Mauszeiger über den Benutzernamen, um die relative Position für die aktuell sortierte Statistik anzuzeigen!'
         ],
@@ -106,7 +106,7 @@
 
                 'social' => [
                     'title'       => ':name Allgemeine Hypixel-Statistiken - :site',
-                    'description' => 'Zeigen Sie die allgemeinen Hypixel-Statistiken der Hypixel-Gilde an :name auf :site. Sie können die Liste durchsuchen und allgemeine Statistiken wie Hypixel-Level oder Leistungspunkte von Gildenmitgliedern vergleichen.'
+                    'description' => 'Schau dir die allgemeinen Hypixel-Statistiken der Hypixel-Gilde :name auf :site an. Sie können die Liste durchsuchen und allgemeine Statistiken wie Hypixel-Level oder Leistungspunkte von Gildenmitgliedern vergleichen.'
                 ],
             ],
             'skywars'   => [
@@ -115,7 +115,7 @@
 
                 'social' => [
                     'title'       => ':nameSkyWars-Statistiken - :site',
-                    'description' => 'Zeigen Sie die SkyWars-Statistiken der Hypixel-Gilde an :name auf :site. Sie können die Liste durchsuchen und die SkyWars-Statistiken der Gildenmitglieder vergleichen.'
+                    'description' => 'Schau dir die SkyWars-Statistiken der Hypixel-Gilde :name auf :site an. Sie können die Liste durchsuchen und die SkyWars-Statistiken der Gildenmitglieder vergleichen.'
                 ],
             ],
             'bedwars'   => [
@@ -124,7 +124,7 @@
 
                 'social' => [
                     'title'       => ':name Bed Wars statistics - :site',
-                    'description' => 'Sehen Sie sich die Bed Wars-Statistik der Hypixel-Gilde an :name auf : site. Sie können die Liste durchsuchen und die Bed Wars-Statistik der Gildenmitglieder vergleichen'
+                    'description' => 'Schau dir die Bed Wars-Statistik der Hypixel-Gilde :name auf :site an. Sie können die Liste durchsuchen und die Bed Wars-Statistik der Gildenmitglieder vergleichen'
                 ],
             ],
             'tntgames'  => [
@@ -133,7 +133,7 @@
 
                 'social' => [
                     'title'       => ':name TTNT-Games-Statistiken - :site',
-                    'description' => 'Sehen Sie sich die TNT-Games-Statistiken der Hypixel-Gilde an :name auf :site. Sie können die Liste durchsuchen und die TNT-Games-Statistiken der Gildenmitglieder vergleichen.'
+                    'description' => 'Schau dir die TNT-Games-Statistiken der Hypixel-Gilde :name auf :site an. Sie können die Liste durchsuchen und die TNT-Games-Statistiken der Gildenmitglieder vergleichen.'
                 ],
             ],
             'megawalls' => [
@@ -142,7 +142,7 @@
 
                 'social' => [
                     'title'       => ':name TNT-Games statistics - :site',
-                    'description' => 'Sehen Sie sich die Mega Walls-Statistiken der Hypixel-Gilde an :name auf :site. Sie können die Liste durchsuchen und die Mega Walls-Statistiken der Gildenmitglieder vergleichen.'
+                    'description' => 'Schau dir die Mega Walls-Statistiken der Hypixel-Gilde :name auf :site an. Sie können die Liste durchsuchen und die Mega Walls-Statistiken der Gildenmitglieder vergleichen.'
                 ],
             ],
         ],
