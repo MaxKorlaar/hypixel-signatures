@@ -47,22 +47,22 @@
         'callout_button'      => 'Status anzeigen',
 
         'recently_viewed'                         => 'Zuletzt angesehen',
-        'recently_viewed_game_and_views'          => ':game – :views Ansichten',
-        'recently_viewed_game_mode_and_views'     => ':game (:mode) – :views Ansichten',
-        'recently_viewed_lobby_and_views'         => 'In lobby – :views Ansichten',
-        'recently_viewed_lobby_of_game_and_views' => ':game Lobby – :views Ansichten',
-        'recently_viewed_online_and_views'        => 'Online – :views Ansichten',
-        'recently_viewed_offline_and_views'       => 'Offline – :views Ansichten',
+        'recently_viewed_game_and_views'          => ':game – :views Aufrufe',
+        'recently_viewed_game_mode_and_views'     => ':game (:mode) – :views Aufrufe',
+        'recently_viewed_lobby_and_views'         => 'In lobby – :views Aufrufe',
+        'recently_viewed_lobby_of_game_and_views' => ':game Lobby – :views Aufrufe',
+        'recently_viewed_online_and_views'        => 'Online – :views Aufrufe',
+        'recently_viewed_offline_and_views'       => 'Offline – :views Aufrufe',
 
         'status' => [
-            'title' => ":username s Online-Status auf Hypixel",
+            'title' => "Online-Status von :username auf Hypixel",
 
             'social' => [
-                'title'       => ":username's Online-Status auf Hypixel - :site",
-                'description' => "Auschecken: Aktueller Online-Status des :username auf Hypixel Überprüfen Sie, ob sich der Benutzername derzeit in einer Lobby befindet, ein Spiel spielt oder etwas anderes tut! Finden Sie dies und mehr auf: site"
+                'title'       => "Online-Status von :username auf Hypixel - :site",
+                'description' => "Sieh dir den aktuellen Online-Status von :username auf Hypixel an. Überprüfen Sie, ob sich :username derzeit in einer Lobby befindet, ein Spiel spielt oder etwas anderes tut! Finden Sie dies und mehr auf: site"
             ],
 
-            'error'               => 'Error',
+            'error'               => 'Fehler',
             'api_status_disabled' => ':username hat sich entschieden, den aktuellen Hypixel-Online-Status vor der öffentlichen API auszublenden.',
 
             'name_is_currently' => ':username ist zurzeit',
