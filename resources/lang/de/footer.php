@@ -32,5 +32,5 @@
 
     return [
         'privacy'          => 'Privatsphäre',
-        'acknowledgements' => 'Bestätigungen'
+        'acknowledgements' => 'Danksagungen'
     ];
