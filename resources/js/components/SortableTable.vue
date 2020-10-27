@@ -39,8 +39,8 @@
                 <tr :class="{ 'loading': item.loading }">
                     <slot v-bind:item="item"></slot>
                 </tr>
-                <tr>
-                    <InFeedAdsense v-if="index > 10 && (index + 15) % 20 === 0"
+                <tr v-if="index > 10 && (index) % 20 === 0">
+                    <InFeedAdsense ins-style="display:block;height: 75px"
                                    data-ad-client="ca-pub-9570587520778628"
                                    data-ad-layout-key="-ez+5q+5e-d4+4m"
                                    data-ad-slot="8224948143">
