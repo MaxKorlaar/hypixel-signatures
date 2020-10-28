@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -34,8 +34,8 @@
         'title' => 'Hypixel Freundesliste',
 
         'callout'             => [
-            "Zeigt eine Liste Ihrer Freunde oder einer anderen Person auf Hypixel an, wie lange du schon mit ihnen befreundet bist und weiteres",
-            "Ganz einfach – Gib einfach einen Benutzernamen ein um loszulegen."
+            'Zeigt eine Liste Ihrer Freunde oder einer anderen Person auf Hypixel an, wie lange du schon mit ihnen befreundet bist und weiteres',
+            'Ganz einfach – Gib einfach einen Benutzernamen ein um loszulegen.'
         ],
         'callout_placeholder' => 'Geben Sie Ihren Benutzernamen um zu starten',
         'callout_button'      => 'Freunde anzeigen',
@@ -44,21 +44,20 @@
         'recently_viewed_friends_and_views' => ':count Freunde – :views Aufrufe',
 
         'list' => [
-            'page_title' => "Hypixel-Freundesliste von :username",
-            'title'      => "Freunde von :username auf Hypixel",
+            'page_title' => 'Hypixel-Freundesliste von :username',
+            'title'      => 'Freunde von :username auf Hypixel',
 
             'social' => [
-                'title'       => "Freunde von :username auf Hypixel - :site",
+                'title'       => 'Freunde von :username auf Hypixel - :site',
                 'description' => 'Sehen Sie sich alle Freunde von :total_friends Freunde von :username auf dem Hypixel Minecraft-Server an. Sie können durch die Liste blättern und zu anderen Hypixel-Spielern navigieren.',
             ],
-            
 
             'description' => [
-                "Auf dieser Seite finden Sie eine Übersicht aller :total_friends Freunde von :username auf Hypixel. Sie können ihre Ränge sehen und darauf klicken, um die Freundesliste anderer Spieler anzuzeigen.",
+                'Auf dieser Seite finden Sie eine Übersicht aller :total_friends Freunde von :username auf Hypixel. Sie können ihre Ränge sehen und darauf klicken, um die Freundesliste anderer Spieler anzuzeigen.',
                 "Wenn Sie <a href=':form_link'>dynamische Signaturbilder für :username generieren möchten </a>, kannst du das auch auf :site machen! Prahle mit den Minispiel oder SkyBlock-Statistiken und Erfolgen von :username auf jeder Website, auf der Sie durch <a href=':form_link'>Erstellen einer dynamischen Signatur</a> auf Bilder verlinken können."
             ],
 
-            'tweet_text' => "Ich stöbere durch die Freundesliste von :username auf Hypixel!",
+            'tweet_text' => 'Ich stöbere durch die Freundesliste von :username auf Hypixel!',
 
             'loading_friends' => 'Lade Freunde ({{ meta.loaded }} / {{ meta.total_friends }})…',
             'friends_since'   => 'seit {{ new Date(player.since).toLocaleDateString() }}'

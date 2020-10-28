@@ -40,7 +40,7 @@
 
         'callout'             => [
             'Schau dir Informationen zu jeder Hypixel-Gilde an, einschließlich ihrer Mitglieder, Beschreibung und sogar Spielstatistiken.',
-            "Ganz einfach – Sie müssen nur einen Benutzernamen oder einen Gildennamen eingeben, um loszulegen."
+            'Ganz einfach – Sie müssen nur einen Benutzernamen oder einen Gildennamen eingeben, um loszulegen.'
         ],
         'callout_placeholder' => 'Geben Sie Ihren Benutzernamen ein, um zu starten',
         'callout_button'      => 'Gilde anzeigen',
@@ -55,7 +55,7 @@
                 'title' => ':name - :site',
 
                 'default_description' => ':name ist eine Gilde auf dem Hypixel Minecraft Server',
-                'description'         => " - Schau dir :name Mitglieder, Gildenstatistiken und sogar Gildenspielstatistiken für SkyWars, Bed Wars und weitere Spiele an, auf :site"
+                'description' => ' - Schau dir :name Mitglieder, Gildenstatistiken und sogar Gildenspielstatistiken für SkyWars, Bed Wars und weitere Spiele an, auf :site'
             ],
 
             'members'               => 'Mitgliederliste',
@@ -93,7 +93,7 @@
 
             'social' => [
                 'title'       => 'Gildenmitglieder von :name - :site',
-                'description' => "Alle anzeigen: :name :count mitglied und mehr auf :site"
+                'description' => 'Alle anzeigen: :name :count mitglied und mehr auf :site'
             ],
 
             'loading_members' => 'Mitglieder laden ({{ meta.loaded }} / {{ meta.total_members }})…',

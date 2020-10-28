@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -33,9 +33,9 @@
     return [
         'title'               => 'Hypixel Signatur & Instrumente',
         'callout'             => [
-            "Präsentieren Sie <b>live</b> Hypixel-Minispiel- und SkyBlock-Statistiken, die jeder sehen kann, indem Sie einfach ein Bild in Ihre Forensignatur oder Forenbeitrag einfügen.
-             Wählen Sie Ihre Unterschrift einmal aus und wir kümmern uns um den Rest.",
-            "Es ist ganz einfach: Sie müssen nur Ihren Benutzernamen eingeben, um loszulegen."
+            'Präsentieren Sie <b>live</b> Hypixel-Minispiel- und SkyBlock-Statistiken, die jeder sehen kann, indem Sie einfach ein Bild in Ihre Forensignatur oder Forenbeitrag einfügen.
+             Wählen Sie Ihre Unterschrift einmal aus und wir kümmern uns um den Rest.',
+            'Es ist ganz einfach: Sie müssen nur Ihren Benutzernamen eingeben, um loszulegen.'
         ],
         'callout_placeholder' => 'Geben Sie Ihren Benutzernamen ein, um loszulegen',
         'callout_button'      => 'Wählen Sie eine Unterschrift',
@@ -45,7 +45,7 @@
         'about'      => 'Über',
         'about_text' => [
             "Ich habe diese Website für die Spieler und Fans des Minecraft-Servers 'Hypixel' erstellt. Es ist der beliebteste Minecraft-Server der Welt, mit vielen öffentlichen Statistiken, mit denen Sie Spaß haben können. Genau das habe ich auf meiner Website getan: Sie können die Minispielstatistiken der Benutzer in Form von dynamischen Signaturen anzeigen: Bilder, die Sie in Forenbeiträgen und in Ihrer Forensignatur platzieren können, damit andere Ihre neuesten Erfolge problemlos angezeigt werden können.",
-            "Der <i>dynamische</i> Teil bedeutet, dass sich diese Signaturen automatisch aktualisieren. Dies bedeutet, dass Sie Ihre Signatur nur einmal auswählen und verwenden müssen und wir automatisch sicherstellen, dass ihr Inhalt auf dem neuesten Stand ist.",
+            'Der <i>dynamische</i> Teil bedeutet, dass sich diese Signaturen automatisch aktualisieren. Dies bedeutet, dass Sie Ihre Signatur nur einmal auswählen und verwenden müssen und wir automatisch sicherstellen, dass ihr Inhalt auf dem neuesten Stand ist.',
             "Ich bin immer offen für Vorschläge! Vermissen Sie etwas? Fühlen Sie sich frei, <a href='https://twitter.com/MaxKorlaar'>mich auf Twitter zu kontaktieren</a> und Vorschläge in unserem unten verlinkten Discord-Server zu hinterlassen, <a href='https://hypixel.net/threads/2880476/'>Antworte auf den Forenthread auf Hypixel.net</a> oder <a href='https://github.com/MaxKorlaar/hypixel-signatures'>überprüfe den Quellcode auf GitHub</a>.",
         ],
 
@@ -57,7 +57,7 @@
             'signatures_button' => 'Holen Sie sich Ihre eigene Unterschrift',
 
             'friends'        => 'Hypixel Freundesliste',
-            'friends_text'   => "Eine Übersicht über die Freundesliste Ihrer oder einer anderen Person auf Hypixel und wie lange Sie bereits mit ihnen befreundet sind. So können Sie leicht sehen, welches Spiel Ihre Freunde gerade spielen!",
+            'friends_text'   => 'Eine Übersicht über die Freundesliste Ihrer oder einer anderen Person auf Hypixel und wie lange Sie bereits mit ihnen befreundet sind. So können Sie leicht sehen, welches Spiel Ihre Freunde gerade spielen!',
             'friends_button' => 'Siehe deine Freundesliste',
         ]
     ];

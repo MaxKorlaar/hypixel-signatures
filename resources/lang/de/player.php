@@ -35,12 +35,12 @@
 
         'social' => [
             'title'       => 'Hypixel online Spieler-Status - :site',
-            'description' => "Überprüfen Sie den Online-Status Ihrer Freunde auf Hypixel! Sehen Sie, ob sich gerade jemand in einer Lobby befindet, ein Spiel spielt oder etwas anderes tut! Finden Sie dies und mehr auf :site"
+            'description' => 'Überprüfen Sie den Online-Status Ihrer Freunde auf Hypixel! Sehen Sie, ob sich gerade jemand in einer Lobby befindet, ein Spiel spielt oder etwas anderes tut! Finden Sie dies und mehr auf :site'
         ],
 
         'callout' => [
-            "Zeigen Sie an, ob ein Spieler gerade online ist, welches Spiel er spielt oder in welcher Lobby er sich befindet.",
-            "Es ist ganz einfach - Sie müssen nur einen Benutzernamen eingeben, um loszulegen."
+            'Zeigen Sie an, ob ein Spieler gerade online ist, welches Spiel er spielt oder in welcher Lobby er sich befindet.',
+            'Es ist ganz einfach - Sie müssen nur einen Benutzernamen eingeben, um loszulegen.'
         ],
 
         'callout_placeholder' => 'Geben Sie einen Benutzernamen ein, um loszulegen',
@@ -55,11 +55,11 @@
         'recently_viewed_offline_and_views'       => 'Offline – :views Aufrufe',
 
         'status' => [
-            'title' => "Online-Status von :username auf Hypixel",
+            'title' => 'Online-Status von :username auf Hypixel',
 
             'social' => [
-                'title'       => "Online-Status von :username auf Hypixel - :site",
-                'description' => "Sieh dir den aktuellen Online-Status von :username auf Hypixel an. Überprüfen Sie, ob sich :username derzeit in einer Lobby befindet, ein Spiel spielt oder etwas anderes tut! Finden Sie dies und mehr auf: site"
+                'title'       => 'Online-Status von :username auf Hypixel - :site',
+                'description' => 'Sieh dir den aktuellen Online-Status von :username auf Hypixel an. Überprüfen Sie, ob sich :username derzeit in einer Lobby befindet, ein Spiel spielt oder etwas anderes tut! Finden Sie dies und mehr auf: site'
             ],
 
             'error'               => 'Fehler',

@@ -60,7 +60,7 @@
         'username_help'    => 'Geben Sie hier Ihren Minecraft-Benutzernamen oder Ihre UUID ein, damit wir Ihre Statistiken über die öffentliche Hypixel-API abrufen können. Wenn Sie Ihre UUID nicht kennen, geben Sie Ihren Benutzernamen ein und er wird für Sie nachgeschlagen.',
 
         'skyblock' => [
-            'no_profiles'      => "Sie scheinen keine SkyBlock-Profile in Ihrem Konto zu haben. Bitte spielen Sie SkyBlock und versuchen Sie es später erneut oder aktivieren Sie Ihre API-Statistiken, wenn Sie sie deaktiviert haben.",
+            'no_profiles'      => 'Sie scheinen keine SkyBlock-Profile in Ihrem Konto zu haben. Bitte spielen Sie SkyBlock und versuchen Sie es später erneut oder aktivieren Sie Ihre API-Statistiken, wenn Sie sie deaktiviert haben.',
             'select_a_profile' => 'Bitte wählen Sie ein SkyBlock-Profil aus, das zum Generieren Ihrer Sygnatur verwendet werden soll.',
             'profile'          => 'SkyBlock profile',
         ],
@@ -68,7 +68,7 @@
         'your_signature'      => 'Deine Signatur',
         'your_signature_text' => [
             'Unten finden Sie die von Ihnen ausgewählte Signatur. Sie können über die URL des Bildes darauf verweisen oder den BBcode kopieren und in die Foren eines Forumsbeitrags oder in Ihre Unterschrift einfügen. ',
-            "Es ist wichtig, den unten stehenden BBcode oder die Bild-URL zu verwenden, um auf Ihre Signatur zu verweisen. Wenn Sie Ihre Signatur herunterladen oder das Bild selbst kopieren und einfügen, wird es nicht automatisch aktualisiert."
+            'Es ist wichtig, den unten stehenden BBcode oder die Bild-URL zu verwenden, um auf Ihre Signatur zu verweisen. Wenn Sie Ihre Signatur herunterladen oder das Bild selbst kopieren und einfügen, wird es nicht automatisch aktualisiert.'
         ],
 
         'bbcode'              => 'BBcode',

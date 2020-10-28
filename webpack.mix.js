@@ -61,7 +61,7 @@ mix.js('resources/js/app.js', 'public/js')
     .webpackConfig({
         plugins: [
             new MomentLocalesPlugin({
-                localesToKeep: ['nl'],
+                localesToKeep: ['nl', 'de'],
             }),
         ]
     })

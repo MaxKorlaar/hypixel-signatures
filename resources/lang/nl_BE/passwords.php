@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -46,7 +46,7 @@
         'reset'     => 'Uw wachtwoord is gereset!',
         'sent'      => 'We hebben uw link voor het opnieuw instellen van uw wachtwoord gemaild!',
         'token'     => 'Dit token voor het opnieuw instellen van uw wachtwoord is ongeldig.',
-        'user'      => "We kunnen geen gebruiker met dat e-mailadres vinden.",
+        'user'      => 'We kunnen geen gebruiker met dat e-mailadres vinden.',
         'throttled' => 'Wacht alstublieft voordat u het opnieuw probeert.',
 
     ];
