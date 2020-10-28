@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,30 +30,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Http\Middleware;
+    return [
 
-    use Closure;
-    use Illuminate\Http\Request;
+        /*
+        |--------------------------------------------------------------------------
+        | Authentication Language Lines
+        |--------------------------------------------------------------------------
+        |
+        | The following language lines are used during authentication for various
+        | messages that we need to display to the user. You are free to modify
+        | these language lines according to your application's requirements.
+        |
+        */
 
-    /**
-     * Class SetLanguage
-     *
-     * @package App\Http\Middleware
-     */
-    class SetLanguage {
-        /**
-         * Handle an incoming request.
-         *
-         * @param Request $request
-         * @param Closure $next
-         *
-         * @return mixed
-         */
-        public function handle($request, Closure $next) {
-            $supportedLocales = ['en', 'nl', 'nl_BE', 'de'];
+        'failed'   => 'Diese Anmeldeinformationen stimmen nicht mit unseren Aufzeichnungen überein.',
+        'throttle' => 'Zu viele Anmeldeversuche. Bitte versuchen Sie es in :seconds Sekunden erneut.',
 
-            app()->setLocale($request->getPreferredLanguage($supportedLocales));
-
-            return $next($request);
-        }
-    }
+    ];

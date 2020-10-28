@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,30 +30,20 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Http\Middleware;
+    return [
 
-    use Closure;
-    use Illuminate\Http\Request;
+        /*
+        |--------------------------------------------------------------------------
+        | Pagination Language Lines
+        |--------------------------------------------------------------------------
+        |
+        | The following language lines are used by the paginator library to build
+        | the simple pagination links. You are free to change them to anything
+        | you want to customize your views to better match your application.
+        |
+        */
 
-    /**
-     * Class SetLanguage
-     *
-     * @package App\Http\Middleware
-     */
-    class SetLanguage {
-        /**
-         * Handle an incoming request.
-         *
-         * @param Request $request
-         * @param Closure $next
-         *
-         * @return mixed
-         */
-        public function handle($request, Closure $next) {
-            $supportedLocales = ['en', 'nl', 'nl_BE', 'de'];
+        'previous' => '&laquo; Vorheriger',
+        'next'     => 'Nächster &raquo;',
 
-            app()->setLocale($request->getPreferredLanguage($supportedLocales));
-
-            return $next($request);
-        }
-    }
+    ];

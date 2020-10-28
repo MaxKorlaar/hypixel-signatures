@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,30 +30,23 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Http\Middleware;
+    return [
 
-    use Closure;
-    use Illuminate\Http\Request;
+        /*
+        |--------------------------------------------------------------------------
+        | Password Reset Language Lines
+        |--------------------------------------------------------------------------
+        |
+        | The following language lines are the default lines which match reasons
+        | that are given by the password broker for a password update attempt
+        | has failed, such as for an invalid token or invalid new password.
+        |
+        */
 
-    /**
-     * Class SetLanguage
-     *
-     * @package App\Http\Middleware
-     */
-    class SetLanguage {
-        /**
-         * Handle an incoming request.
-         *
-         * @param Request $request
-         * @param Closure $next
-         *
-         * @return mixed
-         */
-        public function handle($request, Closure $next) {
-            $supportedLocales = ['en', 'nl', 'nl_BE', 'de'];
+        'reset'     => 'Dein Passwort wurde zurück gesetzt!',
+        'sent'      => 'Wir haben Ihnen den Link zum Zurücksetzen Ihres Passworts per E-Mail gesendet!',
+        'token'     => 'Dieses Token zum Zurücksetzen des Passworts ist ungültig.',
+        'user'      => "Wir können keinen Benutzer mit dieser E-Mail-Adresse finden.",
+        'throttled' => 'Bitte warten Sie, bevor Sie es erneut versuchen.',
 
-            app()->setLocale($request->getPreferredLanguage($supportedLocales));
-
-            return $next($request);
-        }
-    }
+    ];

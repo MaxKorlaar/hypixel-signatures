@@ -1,5 +1,5 @@
 <?php
-/*
+    /**
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,30 +30,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Http\Middleware;
-
-    use Closure;
-    use Illuminate\Http\Request;
-
-    /**
-     * Class SetLanguage
-     *
-     * @package App\Http\Middleware
-     */
-    class SetLanguage {
-        /**
-         * Handle an incoming request.
-         *
-         * @param Request $request
-         * @param Closure $next
-         *
-         * @return mixed
-         */
-        public function handle($request, Closure $next) {
-            $supportedLocales = ['en', 'nl', 'nl_BE', 'de'];
-
-            app()->setLocale($request->getPreferredLanguage($supportedLocales));
-
-            return $next($request);
-        }
-    }
+    return [
+        'privacy'          => 'Privatsphäre',
+        'acknowledgements' => 'Danksagungen'
+    ];

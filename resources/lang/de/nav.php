@@ -1,5 +1,5 @@
 <?php
-/*
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -30,30 +30,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-namespace App\Http\Middleware;
-
-    use Closure;
-    use Illuminate\Http\Request;
-
-    /**
-     * Class SetLanguage
-     *
-     * @package App\Http\Middleware
-     */
-    class SetLanguage {
-        /**
-         * Handle an incoming request.
-         *
-         * @param Request $request
-         * @param Closure $next
-         *
-         * @return mixed
-         */
-        public function handle($request, Closure $next) {
-            $supportedLocales = ['en', 'nl', 'nl_BE', 'de'];
-
-            app()->setLocale($request->getPreferredLanguage($supportedLocales));
-
-            return $next($request);
-        }
-    }
+    return [
+        'home'          => 'Hauptseite',
+        'signatures'    => 'Unterschriften',
+        'friends'       => 'Freunde',
+        'guild'         => 'Gilden',
+        'player_status' => 'Online Status',
+        'beta_warning' => '<b>Heads up!</b> Hypixel.Paniek.de befindet sich noch in der Beta-Phase und kann gelegentlich kaputt gehen. Wenn Sie Feedback haben oder mehr Funktionalität auf dieser Website hinzugefügt sehen möchten, zögern Sie nicht, sich mit mir in Verbindung zu setzen: <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">@MaxKorlaar auf Twitter</a> oder auf dem <a href="https://hypixel.net/threads/2880476/" target="_blank" rel="noopener">Hypixel Forum</a>.'
+    ];
