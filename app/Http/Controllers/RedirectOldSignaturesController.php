@@ -56,6 +56,7 @@
             'uhc-champions'     => 'signatures.uhc_champions',
             'tnt-games'         => 'signatures.tnt_games',
             'cops-versus-crims' => 'signatures.cops_and_crims',
+            'blitz'             => 'signatures.blitz_survival_games',
         ];
 
         /**

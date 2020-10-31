@@ -53,6 +53,7 @@
         Route::get('duels', 'DuelsSignatureController@render')->name('duels');
         Route::get('tnt-games', 'TNTGamesSignatureController@render')->name('tnt_games');
         Route::get('cops-and-crims', 'CopsAndCrimsSignatureController@render')->name('cops_and_crims');
+        Route::get('blitz-survival-games', 'BlitzSurvivalGamesSignatureController@render')->name('blitz_survival_games');
 
         Route::get('skywars', 'SkyWarsSignatureController@render')->name('skywars');
         Route::get('skywars-simple', 'SimpleSkyWarsSignatureController@render')->name('skywars_simple');

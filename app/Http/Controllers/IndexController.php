@@ -95,6 +95,10 @@
                             'name'  => 'Cops and Crims statistics',
                             'route' => 'cops_and_crims'
                         ],
+                        [
+                            'name'  => 'Blitz Survival Games statistics',
+                            'route' => 'blitz_survival_games'
+                        ],
                     ]
                 ],
                 'skywars'  => [
