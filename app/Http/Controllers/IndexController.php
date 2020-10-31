@@ -87,6 +87,10 @@
                             'name'  => 'Duels statistics',
                             'route' => 'duels'
                         ],
+                        [
+                            'name'  => 'TNT-Games statistics',
+                            'route' => 'tnt_games'
+                        ],
                     ]
                 ],
                 'skywars'  => [

@@ -188,13 +188,13 @@
             $box   = new Box($image);
             $box->setFontFace(resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf'));
             $box->setFontColor(new Color(255, 0, 0));
-            $box->setFontSize($height / 3);
+            $box->setFontSize($height / 4);
             $box->setBox(5, 0, $width - 5, $height - 5);
             $box->setTextAlign('center', 'top');
             $box->draw('Something went wrong');
 
-            $box->setBox(5, $height / 3 + 10, $width - 5, $height - 5);
-            $box->setFontSize($height / 6);
+            $box->setBox(5, $height / 4 + 10, $width - 5, $height - 5);
+            $box->setFontSize($height / 7);
             $box->setFontColor(new Color(0, 0, 0));
             $box->draw($error);
 
