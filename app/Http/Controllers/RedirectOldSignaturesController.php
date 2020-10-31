@@ -46,14 +46,17 @@
      */
     class RedirectOldSignaturesController extends Controller {
         private const URL_MAPPING = [
-            'main'           => 'signatures.general',
-            'main-small'     => 'signatures.general_small',
-            'tooltip'        => 'signatures.general_tooltip',
-            'bed-wars'       => 'signatures.bedwars',
-            'skywars'        => 'signatures.skywars',
-            'skywars-simple' => 'signatures.skywars_simple',
-            'skywars-gif'    => 'signatures.skywars_gif',
-            'uhc-champions'  => 'signatures.uhc_champions'
+            'main'              => 'signatures.general',
+            'main-small'        => 'signatures.general_small',
+            'tooltip'           => 'signatures.general_tooltip',
+            'bed-wars'          => 'signatures.bedwars',
+            'skywars'           => 'signatures.skywars',
+            'skywars-simple'    => 'signatures.skywars_simple',
+            'skywars-gif'       => 'signatures.skywars_gif',
+            'uhc-champions'     => 'signatures.uhc_champions',
+            'tnt-games'         => 'signatures.tnt_games',
+            'cops-versus-crims' => 'signatures.cops_and_crims',
+            'blitz'             => 'signatures.blitz_survival_games',
         ];
 
         /**
@@ -79,6 +82,6 @@
 
             $oldSignatureName = Str::limit($oldSignatureName, 20);
 
-            return BaseSignature::generateErrorImage("The signature '{$oldSignatureName}' does not exist. It probably has been (re)moved. You can suggest it to be added again, if it's been removed. Visit Hypixel.Paniek.de.", 404, 800, 200);
+            return BaseSignature::generateErrorImage("Signature '{$oldSignatureName}' does not exist. Got this signature from hypixel.maxkorlaar.com? It might have been removed. You can suggest it to be added again. Visit Hypixel.Paniek.de or the forum thread.", 404, 800, 250);
         }
     }

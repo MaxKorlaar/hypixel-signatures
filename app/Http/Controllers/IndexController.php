@@ -87,6 +87,18 @@
                             'name'  => 'Duels statistics',
                             'route' => 'duels'
                         ],
+                        [
+                            'name'  => 'TNT-Games statistics',
+                            'route' => 'tnt_games'
+                        ],
+                        [
+                            'name'  => 'Cops and Crims statistics',
+                            'route' => 'cops_and_crims'
+                        ],
+                        [
+                            'name'  => 'Blitz Survival Games statistics',
+                            'route' => 'blitz_survival_games'
+                        ],
                     ]
                 ],
                 'skywars'  => [
