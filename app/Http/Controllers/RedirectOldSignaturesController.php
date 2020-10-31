@@ -46,15 +46,16 @@
      */
     class RedirectOldSignaturesController extends Controller {
         private const URL_MAPPING = [
-            'main'           => 'signatures.general',
-            'main-small'     => 'signatures.general_small',
-            'tooltip'        => 'signatures.general_tooltip',
-            'bed-wars'       => 'signatures.bedwars',
-            'skywars'        => 'signatures.skywars',
-            'skywars-simple' => 'signatures.skywars_simple',
-            'skywars-gif'    => 'signatures.skywars_gif',
-            'uhc-champions'  => 'signatures.uhc_champions',
-            'tnt-games'      => 'signatures.tnt_games'
+            'main'              => 'signatures.general',
+            'main-small'        => 'signatures.general_small',
+            'tooltip'           => 'signatures.general_tooltip',
+            'bed-wars'          => 'signatures.bedwars',
+            'skywars'           => 'signatures.skywars',
+            'skywars-simple'    => 'signatures.skywars_simple',
+            'skywars-gif'       => 'signatures.skywars_gif',
+            'uhc-champions'     => 'signatures.uhc_champions',
+            'tnt-games'         => 'signatures.tnt_games',
+            'cops-versus-crims' => 'signatures.cops_and_crims',
         ];
 
         /**

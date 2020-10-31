@@ -91,6 +91,10 @@
                             'name'  => 'TNT-Games statistics',
                             'route' => 'tnt_games'
                         ],
+                        [
+                            'name'  => 'Cops and Crims statistics',
+                            'route' => 'cops_and_crims'
+                        ],
                     ]
                 ],
                 'skywars'  => [
