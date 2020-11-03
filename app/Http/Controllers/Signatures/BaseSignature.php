@@ -175,15 +175,17 @@
         }
 
         /**
-         * @param     $error
-         * @param int $statusCode
+         * @param        $error
+         * @param int    $statusCode
          *
-         * @param int $width
-         * @param int $height
+         * @param int    $width
+         * @param int    $height
+         *
+         * @param string $title
          *
          * @return Response
          */
-        public static function generateErrorImage($error, $statusCode = 500, $width = 740, $height = 160): Response {
+        public static function generateErrorImage($error, $statusCode = 500, $width = 740, $height = 160, $title = 'Something went wrong'): Response {
             $image = self::getImage($width, $height);
             $box   = new Box($image);
             $box->setFontFace(resource_path('fonts/SourceSansPro/SourceSansPro-Light.otf'));
@@ -191,7 +193,7 @@
             $box->setFontSize($height / 4);
             $box->setBox(5, 0, $width - 5, $height - 5);
             $box->setTextAlign('center', 'top');
-            $box->draw('Something went wrong');
+            $box->draw($title);
 
             $box->setBox(5, $height / 4 + 10, $width - 5, $height - 5);
             $box->setFontSize($height / 7);

@@ -32,6 +32,7 @@
 
     namespace App\Exceptions;
 
+    use App\Http\Controllers\Signatures\BaseSignature;
     use Exception;
     use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
     use Illuminate\Http\JsonResponse;
@@ -42,6 +43,7 @@
     use MarvinLabs\DiscordLogger\Discord\Exceptions\MessageCouldNotBeSent;
     use Plancke\HypixelPHP\exceptions\BadResponseCodeException;
     use Plancke\HypixelPHP\exceptions\CurlException;
+    use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
     use Throwable;
 
     /**
@@ -78,6 +80,7 @@
          *
          * @return void
          * @throws Exception
+         * @throws Throwable
          */
         public function report(Throwable $exception) {
             if (($exception instanceof BadResponseCodeException) && $exception->getActualCode() === 429) {
@@ -96,8 +99,8 @@
         /**
          * Render an exception into an HTTP response.
          *
-         * @param Request   $request
-         * @param Throwable $exception
+         * @param \Illuminate\Http\Request $request
+         * @param Throwable                $exception
          *
          * @return JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
          * @throws Throwable
@@ -108,6 +111,10 @@
                     'exception' => $exception,
                     'code'      => $exception->getActualCode()
                 ]);
+            }
+
+            if (($exception instanceof NotFoundHttpException) && $request->prefers(['text', 'application', 'image']) === 'image') {
+                return BaseSignature::generateErrorImage(trans('error.image.404.text'), $exception->getStatusCode(), 300, 200, trans('error.image.404.title'));
             }
 
             return parent::render($request, $exception);

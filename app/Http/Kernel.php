@@ -75,6 +75,7 @@
             ValidatePostSize::class,
             TrimStrings::class,
             ConvertEmptyStringsToNull::class,
+            SetLanguage::class
         ];
 
         /**
@@ -91,12 +92,10 @@
                 ShareErrorsFromSession::class,
                 VerifyCsrfToken::class,
                 SubstituteBindings::class,
-                SetLanguage::class
             ],
 
             'static' => [
-                'bindings',
-                SetLanguage::class
+                'bindings'
             ],
 
             'api' => [
