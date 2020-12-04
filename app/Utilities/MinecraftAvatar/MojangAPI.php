@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -81,7 +81,7 @@
                     return ['success' => false, 'throttle' => true];
                 }
 
-                Log::warning('Something went wrong while fetching profile data', ['url' => $this->sessionURL . $uuid, 'return' => $request]);
+                Log::stack(['daily'])->warning('Something went wrong while fetching profile data', ['url' => $this->sessionURL . $uuid, 'return' => $request]);
                 return $request;
             }
 
@@ -133,7 +133,7 @@
             $curlOut = curl_exec($ch);
 
             if ($curlOut === false) {
-                Log::warning('Something went wrong while fetching from the Mojang API', ['error' => curl_error($ch), 'url' => $url]);
+                Log::stack(['daily'])->warning('Something went wrong while fetching from the Mojang API', ['error' => curl_error($ch), 'url' => $url]);
                 return ['success' => false, 'status_code' => null, 'error' => curl_error($ch)];
             }
 
