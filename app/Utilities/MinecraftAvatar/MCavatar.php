@@ -1,5 +1,5 @@
 <?php
-    /**
+    /*
  * Copyright (c) 2020 Max Korlaar
  * All rights reserved.
  *
@@ -147,7 +147,7 @@
                     }
                     Log::debug('Downloaded from ' . $skinURL);
                 } else {
-                    Log::warning('Falling back on steve skin, could not fetch player profile from Mojang', ['data' => $data]);
+                    Log::stack(['daily'])->warning('Falling back on steve skin, could not fetch player profile from Mojang', ['data' => $data]);
                     $this->fetchError = true;
 
                     return $this->fallbackUrl;
@@ -159,7 +159,7 @@
                     return $this->getSkin($uuid['data']['id'], $save);
                 }
 
-                Log::warning('Falling back on steve skin, could not fetch player UUID from Mojang.', ['username' => $username, 'data' => $uuid]);
+                Log::stack(['daily'])->warning('Falling back on steve skin, could not fetch player UUID from Mojang.', ['username' => $username, 'data' => $uuid]);
                 $this->fetchError = true;
 
                 return $this->fallbackUrl;
