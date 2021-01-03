@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,6 +29,16 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-const constants = require('./constants');
+const constants = {
+    ...require('./SkyCrypt/src/constants/bonuses'),
+    ...require('./SkyCrypt/src/constants/collections'),
+    ...require('./SkyCrypt/src/constants/dungeons'),
+    ...require('./SkyCrypt/src/constants/leveling'),
+    ...require('./SkyCrypt/src/constants/minions'),
+    ...require('./SkyCrypt/src/constants/misc'),
+    ...require('./SkyCrypt/src/constants/pets'),
+    ...require('./SkyCrypt/src/constants/tags'),
+    ...require('./SkyCrypt/src/constants/talismans'),
+};
 
 console.log(JSON.stringify(constants));

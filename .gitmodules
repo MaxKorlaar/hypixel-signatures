@@ -1,0 +1,3 @@
+[submodule "resources/data/skyblock/SkyCrypt"]
+	path = resources/data/skyblock/SkyCrypt
+	url = https://github.com/SkyCryptWebsite/SkyCrypt

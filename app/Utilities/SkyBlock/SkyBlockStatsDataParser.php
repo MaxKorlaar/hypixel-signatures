@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -156,9 +156,8 @@
              */
 
             if (($profile['fairy_exchanges'] ?? 0) > 0) {
-                $fairySoulsBonusStats = new Collection($this->getBonusStats()->get('fairy_souls'));
+                $fairyBonus = $this->getFairyBonus($profile['fairy_exchanges']);
 
-                $fairyBonus            = $this->getBonusStat($profile['fairy_exchanges'] * 5, 'fairy_souls', $fairySoulsBonusStats->keys()->max(), 5);
                 $return['fairy_bonus'] = $fairyBonus;
 
                 foreach ($fairyBonus as $statName => $value) {
@@ -573,6 +572,27 @@
          */
         public function getBonusStats(): Collection {
             return $this->get('bonus_stats');
+        }
+
+        /**
+         * @link https://github.com/SkyCryptWebsite/SkyCrypt/blob/640b1bda5bac65139764b696c4af9c32c0cbebd5/src/lib.js#L286
+         *
+         * @param $fairyExchanges
+         *
+         * @return Collection
+         */
+        protected function getFairyBonus($fairyExchanges): Collection {
+            $bonus = $this->getStatTemplate();
+
+            $bonus['speed'] = floor($fairyExchanges / 10);
+
+            for ($i = 0; $i < $fairyExchanges; $i++) {
+                $bonus['strength'] += ($i + 1) % 5 === 0 ? 2 : 1;
+                $bonus['defense']  += ($i + 1) % 5 === 0 ? 2 : 1;
+                $bonus['health']   += 3 + floor($i / 2);
+            }
+
+            return $bonus;
         }
 
         /**

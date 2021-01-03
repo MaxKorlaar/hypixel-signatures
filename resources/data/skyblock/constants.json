@@ -1,4 +1,1108 @@
 {
+  "bonus_stats": {
+    "taming_skill": {
+      "1": {
+        "pet_luck": 1
+      }
+    },
+    "farming_skill": {
+      "1": {
+        "health": 2
+      },
+      "15": {
+        "health": 3
+      },
+      "20": {
+        "health": 4
+      },
+      "26": {
+        "health": 5
+      }
+    },
+    "combat_skill": {
+      "1": {
+        "crit_chance": 0.5,
+        "damage_increase": 0.04
+      }
+    },
+    "mining_skill": {
+      "1": {
+        "defense": 1
+      },
+      "15": {
+        "defense": 2
+      }
+    },
+    "foraging_skill": {
+      "1": {
+        "strength": 1
+      },
+      "15": {
+        "strength": 2
+      }
+    },
+    "fishing_skill": {
+      "1": {
+        "health": 2
+      },
+      "15": {
+        "health": 3
+      },
+      "20": {
+        "health": 4
+      },
+      "26": {
+        "health": 5
+      }
+    },
+    "enchanting_skill": {
+      "1": {
+        "intelligence": 1,
+        "ability_damage": 0.5
+      },
+      "15": {
+        "intelligence": 2,
+        "ability_damage": 0.5
+      }
+    },
+    "alchemy_skill": {
+      "1": {
+        "intelligence": 1
+      },
+      "15": {
+        "intelligence": 2
+      }
+    },
+    "carpentry_skill": {
+      "1": {}
+    },
+    "runecrafting_skill": {
+      "1": {}
+    },
+    "zombie_slayer": {
+      "1": {
+        "health": 2
+      },
+      "3": {
+        "health": 3
+      },
+      "5": {
+        "health": 4
+      },
+      "7": {
+        "health": 5
+      },
+      "9": {
+        "health": 6
+      }
+    },
+    "spider_slayer": {
+      "1": {
+        "crit_damage": 1
+      },
+      "5": {
+        "crit_damage": 2
+      },
+      "7": {
+        "crit_damage": 0,
+        "crit_chance": 1
+      },
+      "8": {
+        "crit_chance": 0,
+        "crit_damage": 3
+      }
+    },
+    "wolf_slayer": {
+      "1": {
+        "speed": 1
+      },
+      "2": {
+        "health": 2
+      },
+      "3": {
+        "speed": 1
+      },
+      "4": {
+        "health": 2
+      },
+      "5": {
+        "crit_damage": 1
+      },
+      "6": {
+        "health": 3
+      },
+      "7": {
+        "crit_damage": 2
+      },
+      "8": {
+        "speed": 1
+      }
+    },
+    "enchantments": {
+      "sharpness": {
+        "1": {
+          "damage_multiplicator": 0.05
+        }
+      },
+      "ender": {
+        "1": {
+          "damage_multiplicator": 0.12
+        }
+      },
+      "giant_killer": {
+        "1": {
+          "damage_multiplicator": 0.05
+        }
+      },
+      "cubism": {
+        "1": {
+          "damage_multiplicator": 0.1
+        }
+      },
+      "impaling": {
+        "1": {
+          "damage_multiplicator": 0.125
+        }
+      },
+      "critical": {
+        "1": {
+          "crit_damage": 10
+        }
+      },
+      "first_strike": {
+        "1": {
+          "damage_multiplicator": 0.25
+        }
+      },
+      "power": {
+        "1": {
+          "damage_multiplicator": 0.08
+        }
+      }
+    }
+  },
+  "collection_types": [
+    "farming",
+    "mining",
+    "combat",
+    "foraging",
+    "fishing"
+  ],
+  "collection_data": [
+    {
+      "type": "farming",
+      "skyblockId": "WHEAT",
+      "name": "Wheat",
+      "id": 296,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "CARROT_ITEM",
+      "name": "Carrot",
+      "id": 391,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "POTATO_ITEM",
+      "name": "Potato",
+      "id": 392,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "PUMPKIN",
+      "name": "Pumpkin",
+      "id": 86,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "MELON",
+      "name": "Melon",
+      "id": 360,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "SEEDS",
+      "name": "Seeds",
+      "id": 295,
+      "damage": 0,
+      "maxTier": 6
+    },
+    {
+      "type": "farming",
+      "skyblockId": "MUSHROOM_COLLECTION",
+      "name": "Mushroom",
+      "id": 40,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "INK_SACK:3",
+      "name": "Cocoa Beans",
+      "id": 351,
+      "damage": 3,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "CACTUS",
+      "name": "Cactus",
+      "id": 81,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "SUGAR_CANE",
+      "name": "Sugar Cane",
+      "id": 338,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "FEATHER",
+      "name": "Feather",
+      "id": 288,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "LEATHER",
+      "name": "Leather",
+      "id": 334,
+      "damage": 0,
+      "maxTier": 10
+    },
+    {
+      "type": "farming",
+      "skyblockId": "PORK",
+      "name": "Raw Porkchop",
+      "id": 319,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "RAW_CHICKEN",
+      "name": "Raw Chicken",
+      "id": 365,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "MUTTON",
+      "name": "Mutton",
+      "id": 423,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "RABBIT",
+      "name": "Raw Rabbit",
+      "id": 411,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "farming",
+      "skyblockId": "NETHER_STALK",
+      "name": "Nether Wart",
+      "id": 372,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "COBBLESTONE",
+      "name": "Cobblestone",
+      "id": 4,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "COAL",
+      "name": "Coal",
+      "id": 263,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "IRON_INGOT",
+      "name": "Iron Ingot",
+      "id": 265,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "GOLD_INGOT",
+      "name": "Gold Ingot",
+      "id": 266,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "DIAMOND",
+      "name": "Diamond",
+      "id": 264,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "INK_SACK:4",
+      "name": "Lapis Lazuli",
+      "id": 351,
+      "damage": 4,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "EMERALD",
+      "name": "Emerald",
+      "id": 388,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "REDSTONE",
+      "name": "Redstone",
+      "id": 331,
+      "damage": 0,
+      "maxTier": 11
+    },
+    {
+      "type": "mining",
+      "skyblockId": "QUARTZ",
+      "name": "Nether Quartz",
+      "id": 406,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "OBSIDIAN",
+      "name": "Obsidian",
+      "id": 49,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "GLOWSTONE_DUST",
+      "name": "Glowstone",
+      "id": 348,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "GRAVEL",
+      "name": "Gravel",
+      "id": 13,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "ICE",
+      "name": "Ice",
+      "id": 79,
+      "damage": 0,
+      "maxTier": 10
+    },
+    {
+      "type": "mining",
+      "skyblockId": "NETHERRACK",
+      "name": "Netherrack",
+      "id": 87,
+      "damage": 0,
+      "maxTier": 3
+    },
+    {
+      "type": "mining",
+      "skyblockId": "SAND",
+      "name": "Sand",
+      "id": 12,
+      "damage": 0,
+      "maxTier": 7
+    },
+    {
+      "type": "mining",
+      "skyblockId": "ENDER_STONE",
+      "name": "End Stone",
+      "id": 121,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "combat",
+      "skyblockId": "ROTTEN_FLESH",
+      "name": "Rotten Flesh",
+      "id": 367,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "combat",
+      "skyblockId": "BONE",
+      "name": "Bone",
+      "id": 352,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "combat",
+      "skyblockId": "STRING",
+      "name": "String",
+      "id": 287,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "combat",
+      "skyblockId": "SPIDER_EYE",
+      "name": "Spider Eye",
+      "id": 375,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "combat",
+      "skyblockId": "SULPHUR",
+      "name": "Gunpowder",
+      "id": 289,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "combat",
+      "skyblockId": "ENDER_PEARL",
+      "name": "Ender Pearl",
+      "id": 368,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "combat",
+      "skyblockId": "GHAST_TEAR",
+      "name": "Ghast Tear",
+      "id": 370,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "combat",
+      "skyblockId": "SLIME_BALL",
+      "name": "Slimeball",
+      "id": 341,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "combat",
+      "skyblockId": "BLAZE_ROD",
+      "name": "Blaze Rod",
+      "id": 369,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "combat",
+      "skyblockId": "MAGMA_CREAM",
+      "name": "Magma Cream",
+      "id": 378,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "foraging",
+      "skyblockId": "LOG",
+      "name": "Oak Wood",
+      "id": 17,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "foraging",
+      "skyblockId": "LOG:1",
+      "name": "Spruce Wood",
+      "id": 17,
+      "damage": 1,
+      "maxTier": 9
+    },
+    {
+      "type": "foraging",
+      "skyblockId": "LOG:2",
+      "name": "Birch Wood",
+      "id": 17,
+      "damage": 2,
+      "maxTier": 9
+    },
+    {
+      "type": "foraging",
+      "skyblockId": "LOG_2:1",
+      "name": "Dark Oak Wood",
+      "id": 162,
+      "damage": 1,
+      "maxTier": 9
+    },
+    {
+      "type": "foraging",
+      "skyblockId": "LOG_2",
+      "name": "Acacia Wood",
+      "id": 162,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "foraging",
+      "skyblockId": "LOG:3",
+      "name": "Jungle Wood",
+      "id": 17,
+      "damage": 3,
+      "maxTier": 9
+    },
+    {
+      "type": "fishing",
+      "skyblockId": "RAW_FISH",
+      "name": "Raw Fish",
+      "id": 349,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "fishing",
+      "skyblockId": "RAW_FISH:1",
+      "name": "Raw Salmon",
+      "id": 349,
+      "damage": 1,
+      "maxTier": 9
+    },
+    {
+      "type": "fishing",
+      "skyblockId": "RAW_FISH:2",
+      "name": "Clownfish",
+      "id": 349,
+      "damage": 2,
+      "maxTier": 3
+    },
+    {
+      "type": "fishing",
+      "skyblockId": "RAW_FISH:3",
+      "name": "Pufferfish",
+      "id": 349,
+      "damage": 3,
+      "maxTier": 6
+    },
+    {
+      "type": "fishing",
+      "skyblockId": "PRISMARINE_SHARD",
+      "name": "Prismarine Shard",
+      "id": 409,
+      "damage": 0,
+      "maxTier": 5
+    },
+    {
+      "type": "fishing",
+      "skyblockId": "PRISMARINE_CRYSTALS",
+      "name": "Prismarine Crystals",
+      "id": 410,
+      "damage": 0,
+      "maxTier": 7
+    },
+    {
+      "type": "fishing",
+      "skyblockId": "CLAY_BALL",
+      "name": "Clay",
+      "id": 337,
+      "damage": 0,
+      "maxTier": 5
+    },
+    {
+      "type": "fishing",
+      "skyblockId": "WATER_LILY",
+      "name": "Lily Pad",
+      "id": 111,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "fishing",
+      "skyblockId": "INK_SACK",
+      "name": "Ink Sac",
+      "id": 351,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "fishing",
+      "skyblockId": "SPONGE",
+      "name": "Sponge",
+      "id": 19,
+      "damage": 0,
+      "maxTier": 9
+    }
+  ],
+  "dungeons": {
+    "bosses": {
+      "bonzo": {
+        "name": "Bonzo",
+        "texture": "12716ecbf5b8da00b05f316ec6af61e8bd02805b21eb8e440151468dc656549c",
+        "floor": "catacombs_1"
+      },
+      "scarf": {
+        "name": "Scarf",
+        "texture": "7de7bbbdf22bfe17980d4e20687e386f11d59ee1db6f8b4762391b79a5ac532d",
+        "floor": "catacombs_2"
+      },
+      "professor": {
+        "name": "The Professor",
+        "texture": "9971cee8b833a62fc2a612f3503437fdf93cad692d216b8cf90bbb0538c47dd8",
+        "floor": "catacombs_3"
+      },
+      "thorn": {
+        "name": "Thorn",
+        "texture": "8b6a72138d69fbbd2fea3fa251cabd87152e4f1c97e5f986bf685571db3cc0",
+        "floor": "catacombs_4"
+      },
+      "livid": {
+        "name": "Livid",
+        "texture": "c1007c5b7114abec734206d4fc613da4f3a0e99f71ff949cedadc99079135a0b",
+        "floor": "catacombs_5"
+      },
+      "sadan": {
+        "name": "Sadan",
+        "texture": "fa06cb0c471c1c9bc169af270cd466ea701946776056e472ecdaeb49f0f4a4dc",
+        "floor": "catacombs_6"
+      },
+      "necron": {
+        "name": "Necron",
+        "texture": "a435164c05cea299a3f016bbbed05706ebb720dac912ce4351c2296626aecd9a",
+        "floor": "catacombs_7"
+      }
+    },
+    "boss_collections": {
+      "catacombs_1": {
+        "boss": "bonzo",
+        "max_tiers": 6,
+        "rewards": {
+          "red_nose": {
+            "name": "Red Nose",
+            "required": 25,
+            "tier": 1
+          },
+          "bonzo_mask": {
+            "name": "Bonzo's Mask",
+            "required": 50,
+            "tier": 2
+          },
+          "gold_bonzo_head": {
+            "name": "Golden Bonzo Head",
+            "required": 100,
+            "tier": 3
+          },
+          "bonzo_staff": {
+            "name": "Bonzo's Staff",
+            "required": 150,
+            "tier": 4
+          },
+          "recombobulator": {
+            "name": "Recombobulator 3000",
+            "required": 250,
+            "tier": 5
+          },
+          "diamond_bonzo_head": {
+            "name": "Diamond Bonzo Head",
+            "required": 1000,
+            "tier": 6
+          }
+        }
+      },
+      "catacombs_2": {
+        "boss": "scarf",
+        "max_tiers": 6,
+        "rewards": {
+          "red_scarf": {
+            "name": "Red Scarf",
+            "required": 25,
+            "tier": 1
+          },
+          "scarf_thesis": {
+            "name": "Scarf's Thesis",
+            "required": 50,
+            "tier": 2
+          },
+          "gold_scarf_head": {
+            "name": "Golden Scarf Head",
+            "required": 100,
+            "tier": 3
+          },
+          "stone_blade": {
+            "name": "Adaptive Blade",
+            "required": 150,
+            "tier": 4
+          },
+          "recombobulator": {
+            "name": "Recombobulator 3000",
+            "required": 250,
+            "tier": 5
+          },
+          "diamond_scarf_head": {
+            "name": "Diamond Scarf Head",
+            "required": 1000,
+            "tier": 6
+          }
+        }
+      },
+      "catacombs_3": {
+        "boss": "professor",
+        "max_tiers": 6,
+        "rewards": {
+          "suspicious_vial": {
+            "name": "Suspicious Vial",
+            "required": 25,
+            "tier": 1
+          },
+          "adaptive_leggings": {
+            "name": "Adaptive Leggings",
+            "required": 50,
+            "tier": 2
+          },
+          "gold_professor_head": {
+            "name": "Golden Professor Head",
+            "required": 100,
+            "tier": 3
+          },
+          "adaptive_chestplate": {
+            "name": "Adaptive Chestplate",
+            "required": 150,
+            "tier": 4
+          },
+          "recombobulator": {
+            "name": "Recombobulator 3000",
+            "required": 250,
+            "tier": 5
+          },
+          "diamond_professor_head": {
+            "name": "Diamond Professor Head",
+            "required": 1000,
+            "tier": 6
+          }
+        }
+      },
+      "catacombs_4": {
+        "boss": "thorn",
+        "max_tiers": 6,
+        "rewards": {
+          "spirit_decoy": {
+            "name": "Spirit Stone",
+            "required": 50,
+            "tier": 1
+          },
+          "gold_thorn_head": {
+            "name": "Golden Thorn Head",
+            "required": 100,
+            "tier": 2
+          },
+          "spirit_bow": {
+            "name": "Spirit Bow",
+            "required": 150,
+            "tier": 3
+          },
+          "recombobulator": {
+            "name": "Recombobulator 3000",
+            "required": 250,
+            "tier": 4
+          },
+          "spirit_boots": {
+            "name": "Spirit Boots",
+            "required": 400,
+            "tier": 5
+          },
+          "diamond_thorn_head": {
+            "name": "Diamond Thorn Head",
+            "required": 1000,
+            "tier": 6
+          }
+        }
+      },
+      "catacombs_5": {
+        "boss": "livid",
+        "max_tiers": 6,
+        "rewards": {
+          "dark_orb": {
+            "name": "Dark Orb",
+            "required": 50,
+            "tier": 1
+          },
+          "gold_livid_head": {
+            "name": "Golden Livid Head",
+            "required": 100,
+            "tier": 2
+          },
+          "livid_dagger": {
+            "name": "Livid Dagger",
+            "required": 150,
+            "tier": 3
+          },
+          "recombobulator": {
+            "name": "Recombobulator 3000",
+            "required": 250,
+            "tier": 4
+          },
+          "last_breath": {
+            "name": "Last Breath",
+            "required": 400,
+            "tier": 5
+          },
+          "diamond_livid_head": {
+            "name": "Diamond Livid Head",
+            "required": 1000,
+            "tier": 6
+          }
+        }
+      },
+      "catacombs_6": {
+        "boss": "sadan",
+        "max_tiers": 7,
+        "rewards": {
+          "giant_tooth": {
+            "name": "Giant Tooth",
+            "required": 50,
+            "tier": 1
+          },
+          "gold_sadan_head": {
+            "name": "Golden Sadan Head",
+            "required": 100,
+            "tier": 2
+          },
+          "necromancer_helmet": {
+            "name": "Necromancer Lord Helmet",
+            "required": 150,
+            "tier": 3
+          },
+          "recombobulator": {
+            "name": "Recombobulator 3000",
+            "required": 250,
+            "tier": 4
+          },
+          "necromancer_chestplate": {
+            "name": "Necromancer Lord Chestplate",
+            "required": 500,
+            "tier": 5
+          },
+          "necromancer_sword": {
+            "name": "Necromancer Sword",
+            "required": 750,
+            "tier": 6
+          },
+          "diamond_sadan_head": {
+            "name": "Diamond Sadan Head",
+            "required": 1000,
+            "tier": 7
+          }
+        }
+      },
+      "catacombs_7": {
+        "boss": "necron",
+        "max_tiers": 7,
+        "rewards": {
+          "wither_blood": {
+            "name": "Wither Blood",
+            "required": 50,
+            "tier": 1
+          },
+          "gold_necron_head": {
+            "name": "Golden Necron Head",
+            "required": 100,
+            "tier": 2
+          },
+          "wither_helmet": {
+            "name": "Wither Helmet",
+            "required": 150,
+            "tier": 3
+          },
+          "recombobulator": {
+            "name": "Recombobulator 3000",
+            "required": 250,
+            "tier": 4
+          },
+          "wither_leggings": {
+            "name": "Wither Leggings",
+            "required": 500,
+            "tier": 5
+          },
+          "wither_chestplate": {
+            "name": "Wither Chestplate",
+            "required": 750,
+            "tier": 6
+          },
+          "diamond_necron_head": {
+            "name": "Diamond Necron Head",
+            "required": 1000,
+            "tier": 7
+          }
+        }
+      }
+    },
+    "floors": {
+      "catacombs_0": {
+        "name": "entrance",
+        "texture": "35c3024f4d9d12ddf5959b6aea3c810f5ee85176aab1b2e7f462aa1c194c342b"
+      },
+      "catacombs_1": {
+        "name": "floor_1",
+        "texture": "726f384acdfbb7218e96efac630e9ae1a14fd2f820ab660cc68322a59b165a12"
+      },
+      "catacombs_2": {
+        "name": "floor_2",
+        "texture": "ebaf2ae74553a64587840d6e70fb27d2c0ae2f8bdfacbe56654c8db4001cdc98"
+      },
+      "catacombs_3": {
+        "name": "floor_3",
+        "texture": "5a2f67500a65f3ce79d34ec150de93df8f60ebe52e248f5e1cdb69b0726256f7"
+      },
+      "catacombs_4": {
+        "name": "floor_4",
+        "texture": "5720917cda0567442617f2721e88be9d2ffbb0b26a3f4c2fe21655814d4f4476"
+      },
+      "catacombs_5": {
+        "name": "floor_5",
+        "texture": "5720917cda0567442617f2721e88be9d2ffbb0b26a3f4c2fe21655814d4f4476"
+      },
+      "catacombs_6": {
+        "name": "floor_6",
+        "texture": "3ce69d2ddcc81c9fc2e9948c92003eb0f7ebf0e7e952e801b7f2069dcee76d85"
+      },
+      "catacombs_7": {
+        "name": "floor_7",
+        "texture": "76965e3fd619de6b0a7ce1673072520a9360378e1cb8c19d4baf0c86769d3764"
+      }
+    },
+    "level_bonuses": {
+      "dungeon_catacombs": {
+        "1": {
+          "item_boost": 4
+        },
+        "6": {
+          "item_boost": 5
+        },
+        "11": {
+          "item_boost": 6
+        },
+        "16": {
+          "item_boost": 7
+        },
+        "21": {
+          "item_boost": 8
+        },
+        "26": {
+          "item_boost": 9
+        },
+        "31": {
+          "item_boost": 10
+        },
+        "36": {
+          "item_boost": 12
+        },
+        "41": {
+          "item_boost": 14
+        },
+        "46": {
+          "item_boost": 16
+        },
+        "47": {
+          "item_boost": 17
+        },
+        "48": {
+          "item_boost": 18
+        },
+        "49": {
+          "item_boost": 19
+        },
+        "50": {
+          "item_boost": 20
+        }
+      }
+    },
+    "journals": {
+      "karylles_diary": {
+        "name": "Karyelle's Diary",
+        "pages": 10
+      },
+      "the_study": {
+        "name": "The Study",
+        "pages": 8
+      },
+      "expedition_volume_1": {
+        "name": "The Expedition Volume 1",
+        "pages": 4
+      },
+      "uncanny_remains": {
+        "name": "Uncanny Remains",
+        "pages": 7
+      },
+      "expedition_volume_2": {
+        "name": "The Expedition Volume 2",
+        "pages": 5
+      },
+      "grim_adversity": {
+        "name": "Grim Adversity",
+        "pages": 9
+      },
+      "expedition_volume_3": {
+        "name": "The Expedition Volume 3",
+        "pages": 10
+      },
+      "expedition_volume_4": {
+        "name": "The Expedition Volume 4",
+        "pages": 11
+      },
+      "the_walls": {
+        "name": "The Walls",
+        "pages": 24
+      },
+      "the_eye": {
+        "name": "The Eye",
+        "pages": 8
+      },
+      "aftermath": {
+        "name": "Aftermath",
+        "pages": 5
+      },
+      "the_apprentice": {
+        "name": "The Apprentice",
+        "pages": 6
+      },
+      "the_follower": {
+        "name": "The Follower",
+        "pages": 14
+      },
+      "the_apprentice_2": {
+        "name": "The Apprentice 2",
+        "pages": 14
+      }
+    }
+  },
   "leveling_xp": {
     "1": 50,
     "2": 125,
@@ -49,7 +1153,32 @@
     "47": 3100000,
     "48": 3400000,
     "49": 3700000,
-    "50": 4000000
+    "50": 4000000,
+    "51": 4300000,
+    "52": 4600000,
+    "53": 4900000,
+    "54": 5200000,
+    "55": 5500000,
+    "56": 5800000,
+    "57": 6100000,
+    "58": 6400000,
+    "59": 6700000,
+    "60": 7000000
+  },
+  "default_skill_caps": {
+    "farming": 50,
+    "mining": 50,
+    "combat": 50,
+    "foraging": 50,
+    "fishing": 50,
+    "enchanting": 60,
+    "alchemy": 50,
+    "taming": 50,
+    "carpentry": 50,
+    "runecrafting": 25
+  },
+  "maxed_skill_caps": {
+    "farming": 60
   },
   "runecrafting_xp": {
     "1": 50,
@@ -75,14 +1204,84 @@
     "21": 7800,
     "22": 9800,
     "23": 12200,
-    "24": 15300
+    "24": 15300,
+    "25": 19050
   },
+  "dungeoneering_xp": {
+    "1": 50,
+    "2": 75,
+    "3": 110,
+    "4": 160,
+    "5": 230,
+    "6": 330,
+    "7": 470,
+    "8": 670,
+    "9": 950,
+    "10": 1340,
+    "11": 1890,
+    "12": 2665,
+    "13": 3760,
+    "14": 5260,
+    "15": 7380,
+    "16": 10300,
+    "17": 14400,
+    "18": 20000,
+    "19": 27600,
+    "20": 38000,
+    "21": 52500,
+    "22": 71500,
+    "23": 97000,
+    "24": 132000,
+    "25": 180000,
+    "26": 243000,
+    "27": 328000,
+    "28": 445000,
+    "29": 600000,
+    "30": 800000,
+    "31": 1065000,
+    "32": 1410000,
+    "33": 1900000,
+    "34": 2500000,
+    "35": 3300000,
+    "36": 4300000,
+    "37": 5600000,
+    "38": 7200000,
+    "39": 9200000,
+    "40": 12000000,
+    "41": 15000000,
+    "42": 19000000,
+    "43": 24000000,
+    "44": 30000000,
+    "45": 38000000,
+    "46": 48000000,
+    "47": 60000000,
+    "48": 75000000,
+    "49": 93000000,
+    "50": 116250000
+  },
+  "guild_xp": [
+    100000,
+    150000,
+    250000,
+    500000,
+    750000,
+    1000000,
+    1250000,
+    1500000,
+    2000000,
+    2500000,
+    2500000,
+    2500000,
+    2500000,
+    2500000,
+    3000000
+  ],
   "slayer_xp": {
     "zombie": {
       "1": 5,
-      "2": 15,
-      "3": 200,
-      "4": 1000,
+      "2": 25,
+      "3": 100,
+      "4": 500,
       "5": 5000,
       "6": 20000,
       "7": 100000,
@@ -91,9 +1290,9 @@
     },
     "spider": {
       "1": 5,
-      "2": 15,
-      "3": 200,
-      "4": 1000,
+      "2": 25,
+      "3": 100,
+      "4": 500,
       "5": 5000,
       "6": 20000,
       "7": 100000,
@@ -101,9 +1300,9 @@
       "9": 1000000
     },
     "wolf": {
-      "1": 5,
-      "2": 15,
-      "3": 200,
+      "1": 10,
+      "2": 25,
+      "3": 250,
       "4": 1500,
       "5": 5000,
       "6": 20000,
@@ -112,6 +1311,259 @@
       "9": 1000000
     }
   },
+  "slayer_boss_xp": {
+    "1": 5,
+    "2": 25,
+    "3": 100,
+    "4": 500
+  },
+  "minion_types": [
+    "farming",
+    "mining",
+    "combat",
+    "foraging",
+    "fishing"
+  ],
+  "minion_slots": {
+    "0": 5,
+    "5": 6,
+    "15": 7,
+    "30": 8,
+    "50": 9,
+    "75": 10,
+    "100": 11,
+    "125": 12,
+    "150": 13,
+    "175": 14,
+    "200": 15,
+    "225": 16,
+    "250": 17,
+    "275": 18,
+    "300": 19,
+    "350": 20,
+    "400": 21,
+    "450": 22,
+    "500": 23,
+    "550": 24,
+    "600": 25
+  },
+  "minions": {
+    "COBBLESTONE": {
+      "type": "mining",
+      "head": "\/head\/2f93289a82bd2a06cbbe61b733cfdc1f1bd93c4340f7a90abd9bdda774109071"
+    },
+    "OBSIDIAN": {
+      "type": "mining",
+      "head": "\/head\/320c29ab966637cb9aecc34ee76d5a0130461e0c4fdb08cdaf80939fa1209102"
+    },
+    "GLOWSTONE": {
+      "type": "mining",
+      "head": "\/head\/20f4d7c26b0310990a7d3a3b45948b95dd4ab407a16a4b6d3b7cb4fba031aeed"
+    },
+    "GRAVEL": {
+      "type": "mining",
+      "head": "\/head\/7458507ed31cf9a38986ac8795173c609637f03da653f30483a721d3fbe602d"
+    },
+    "SAND": {
+      "type": "mining",
+      "head": "\/head\/81f8e2ad021eefd1217e650e848b57622144d2bf8a39fbd50dab937a7eac10de"
+    },
+    "CLAY": {
+      "type": "fishing",
+      "head": "\/head\/af9b312c8f53da289060e6452855072e07971458abbf338ddec351e16c171ff8"
+    },
+    "ICE": {
+      "type": "mining",
+      "head": "\/head\/e500064321b12972f8e5750793ec1c823da4627535e9d12feaee78394b86dabe"
+    },
+    "SNOW": {
+      "type": "mining",
+      "head": "\/head\/f6d180684c3521c9fc89478ba4405ae9ce497da8124fa0da5a0126431c4b78c3"
+    },
+    "COAL": {
+      "type": "mining",
+      "head": "\/head\/425b8d2ea965c780652d29c26b1572686fd74f6fe6403b5a3800959feb2ad935"
+    },
+    "IRON": {
+      "type": "mining",
+      "head": "\/head\/af435022cb3809a68db0fccfa8993fc1954dc697a7181494905b03fdda035e4a"
+    },
+    "GOLD": {
+      "type": "mining",
+      "head": "\/head\/f6da04ed8c810be29bba53c62e712d65cfb25238117b94d7e85a4615775bf14f"
+    },
+    "DIAMOND": {
+      "type": "mining",
+      "head": "\/head\/2354bbe604dfe58bf92e7729730d0c8e37844e831ee3816d7e8427c27a1824a2"
+    },
+    "LAPIS": {
+      "type": "mining",
+      "head": "\/head\/64fd97b9346c1208c1db3957530cdfc5789e3e65943786b0071cf2b2904a6b5c"
+    },
+    "REDSTONE": {
+      "type": "mining",
+      "head": "\/head\/1edefcf1a89d687a0a4ecf1589977af1e520fc673c48a0434be426612e8faa67"
+    },
+    "EMERALD": {
+      "type": "mining",
+      "head": "\/head\/9bf57f3401b130c6b53808f2b1e119cc7b984622dac7077bbd53454e1f65bbf0"
+    },
+    "QUARTZ": {
+      "type": "mining",
+      "head": "\/head\/d270093be62dfd3019f908043db570b5dfd366fd5345fccf9da340e75c701a60"
+    },
+    "ENDER_STONE": {
+      "name": "End Stone",
+      "type": "mining",
+      "head": "\/head\/7994be3dcfbb4ed0a5a7495b7335af1a3ced0b5888b5007286a790767c3b57e6"
+    },
+    "WHEAT": {
+      "type": "farming",
+      "head": "\/head\/bbc571c5527336352e2fee2b40a9edfa2e809f64230779aa01253c6aa535881b"
+    },
+    "MELON": {
+      "type": "farming",
+      "head": "\/head\/95d54539ac8d3fba9696c91f4dcc7f15c320ab86029d5c92f12359abd4df811e"
+    },
+    "PUMPKIN": {
+      "type": "farming",
+      "head": "\/head\/f3fb663e843a7da787e290f23c8af2f97f7b6f572fa59a0d4d02186db6eaabb7"
+    },
+    "CARROT": {
+      "type": "farming",
+      "head": "\/head\/4baea990b45d330998cb0c1f8515c27b24f93bff1df0db056e647f8200d03b9d"
+    },
+    "POTATO": {
+      "type": "farming",
+      "head": "\/head\/7dda35a044cb0374b516015d991a0f65bf7d0fb6566e350496642cf2059ff1d9"
+    },
+    "MUSHROOM": {
+      "type": "farming",
+      "head": "\/head\/4a3b58341d196a9841ef1526b367209cbc9f96767c24f5f587cf413d42b74a93"
+    },
+    "CACTUS": {
+      "type": "farming",
+      "head": "\/head\/ef93ec6e67a6cd272c9a9684b67df62584cb084a265eee3cde141d20e70d7d72"
+    },
+    "COCOA": {
+      "type": "farming",
+      "head": "\/head\/acb680e96f6177cd8ffaf27e9625d8b544d720afc50738801818d0e745c0e5f7"
+    },
+    "SUGAR_CANE": {
+      "type": "farming",
+      "head": "\/head\/2fced0e80f0d7a5d1f45a1a7217e6a99ea9720156c63f6efc84916d4837fabde"
+    },
+    "NETHER_WARTS": {
+      "name": "Nether Wart",
+      "type": "farming",
+      "head": "\/head\/71a4620bb3459c1c2fa74b210b1c07b4a02254351f75173e643a0e009a63f558"
+    },
+    "FLOWER": {
+      "type": "foraging",
+      "head": "\/head\/baa7c59b2f792d8d091aecacf47a19f8ab93f3fd3c48f6930b1c2baeb09e0f9b"
+    },
+    "FISHING": {
+      "type": "fishing",
+      "head": "\/head\/53ea0fd89524db3d7a3544904933830b4fc8899ef60c113d948bb3c4fe7aabb1"
+    },
+    "ZOMBIE": {
+      "type": "combat",
+      "head": "\/head\/196063a884d3901c41f35b69a8c9f401c61ac9f6330f964f80c35352c3e8bfb0"
+    },
+    "REVENANT": {
+      "type": "combat",
+      "head": "\/head\/a3dce8555923558d8d74c2a2b261b2b2d630559db54ef97ed3f9c30e9a20aba"
+    },
+    "SKELETON": {
+      "type": "combat",
+      "head": "\/head\/2fe009c5cfa44c05c88e5df070ae2533bd682a728e0b33bfc93fd92a6e5f3f64"
+    },
+    "CREEPER": {
+      "type": "combat",
+      "head": "\/head\/54a92c2f8c1b3774e80492200d0b2218d7b019314a73c9cb5b9f04cfcacec471"
+    },
+    "SPIDER": {
+      "type": "combat",
+      "head": "\/head\/e77c4c284e10dea038f004d7eb43ac493de69f348d46b5c1f8ef8154ec2afdd0"
+    },
+    "TARANTULA": {
+      "type": "combat",
+      "head": "\/head\/97e86007064c9ce26eb4bad8ac9aa30aac309e70a9e0b615936318dea40a721"
+    },
+    "CAVESPIDER": {
+      "name": "Cave Spider",
+      "type": "combat",
+      "head": "\/head\/5d815df973bcd01ee8dfdb3bd74f0b7cb8fef2a70559e4faa5905127bbb4a435"
+    },
+    "BLAZE": {
+      "type": "combat",
+      "head": "\/head\/3208fbd64e97c6e00853d36b3a201e4803cae43dcbd6936a3cece050912e1f20"
+    },
+    "MAGMA_CUBE": {
+      "type": "combat",
+      "head": "\/head\/18c9a7a24da7e3182e4f62fa62762e21e1680962197c7424144ae1d2c42174f7"
+    },
+    "ENDERMAN": {
+      "type": "combat",
+      "head": "\/head\/e460d20ba1e9cd1d4cfd6d5fb0179ff41597ac6d2461bd7ccdb58b20291ec46e"
+    },
+    "GHAST": {
+      "type": "combat",
+      "head": "\/head\/2478547d122ec83a818b46f3b13c5230429559e40c7d144d4ec225f92c1494b3"
+    },
+    "SLIME": {
+      "type": "combat",
+      "head": "\/head\/c95eced85db62c922724efca804ea0060c4a87fcdedf2fd5c4f9ac1130a6eb26"
+    },
+    "COW": {
+      "type": "farming",
+      "head": "\/head\/c2fd8976e1b64aebfd38afbe62aa1429914253df3417ace1f589e5cf45fbd717"
+    },
+    "PIG": {
+      "type": "farming",
+      "head": "\/head\/a9bb5f0c56408c73cfa412345c8fc51f75b6c7311ae60e7099c4781c48760562"
+    },
+    "CHICKEN": {
+      "type": "farming",
+      "head": "\/head\/a04b7da13b0a97839846aa5648f5ac6736ba0ca9fbf38cd366916e417153fd7f"
+    },
+    "SHEEP": {
+      "type": "farming",
+      "head": "\/head\/fd15d4b8bce708f77f963f1b4e87b1b969fef1766a3e9b67b249c59d5e80e8c5"
+    },
+    "RABBIT": {
+      "type": "farming",
+      "head": "\/head\/ef59c052d339bb6305cad370fd8c52f58269a957dfaf433a255597d95e68a373"
+    },
+    "OAK": {
+      "type": "foraging",
+      "head": "\/head\/57e4a30f361204ea9cded3fbff850160731a0081cc452cfe26aed48e97f6364b"
+    },
+    "BIRCH": {
+      "type": "foraging",
+      "head": "\/head\/eb74109dbb88178afb7a9874afc682904cedb3df75978a51f7beeb28f924251"
+    },
+    "SPRUCE": {
+      "type": "foraging",
+      "head": "\/head\/7ba04bfe516955fd43932dcb33bd5eac20b38a231d9fa8415b3fb301f60f7363"
+    },
+    "DARK_OAK": {
+      "type": "foraging",
+      "head": "\/head\/5ecdc8d6b2b7e081ed9c36609052c91879b89730b9953adbc987e25bf16c5581"
+    },
+    "ACACIA": {
+      "type": "foraging",
+      "head": "\/head\/42183eaf5b133b838db13d145247e389ab4b4f33c67846363792dc3d82b524c0"
+    },
+    "JUNGLE": {
+      "type": "foraging",
+      "head": "\/head\/2fe73d981690c1be346a16331819c4e8800859fcdc3e5153718c6ad45861924c"
+    }
+  },
+  "blocked_players": [
+    "20934ef9488c465180a78f861586b4cf",
+    "f025c1c7f55a4ea0b8d93f47d17dfe0f"
+  ],
   "item_types": [
     "sword",
     "bow",
@@ -127,12 +1579,539 @@
     "leggings",
     "boots"
   ],
+  "tier_colors": {
+    "common": "\u00a7f",
+    "uncommon": "\u00a7a",
+    "rare": "\u00a79",
+    "epic": "\u00a75",
+    "legendary": "\u00a76"
+  },
+  "rarity_colors": {
+    "5": "epic",
+    "6": "legendary",
+    "9": "rare",
+    "f": "common",
+    "a": "uncommon",
+    "d": "mythic",
+    "c": "special"
+  },
+  "special_enchants": [
+    "Sharpness 7",
+    "Sharpness VII",
+    "Sharpness 6",
+    "Sharpness VI",
+    "Giant Killer 7",
+    "Giant Killer VII",
+    "Giant Killer 6",
+    "Giant Killer VI",
+    "Bane of Arthropods 7",
+    "Bane of Arthropods VII",
+    "Bane of Arthropods 6",
+    "Bane of Arthropods VI",
+    "Critical 7",
+    "Critical VII",
+    "Critical 6",
+    "Critical VI",
+    "Ender Slayer 7",
+    "Ender Slayer VII",
+    "Ender Slayer 6",
+    "Ender Slayer VI",
+    "Experience 4",
+    "Experience IV",
+    "Life Steal 5",
+    "Life Steal V",
+    "Life Steal 4",
+    "Life Steal IV",
+    "Looting 5",
+    "Looting V",
+    "Looting 4",
+    "Looting IV",
+    "Luck 7",
+    "Luck VII",
+    "Luck 6",
+    "Luck VI",
+    "Scavenger 5",
+    "Scavenger V",
+    "Scavenger 4",
+    "Scavenger IV",
+    "Smite 7",
+    "Smite VII",
+    "Smite 6",
+    "Smite VI",
+    "Vampirism 6",
+    "Vampirism VI",
+    "Power 7",
+    "Power VII",
+    "Power 6",
+    "Power VI",
+    "Growth 7",
+    "Growth VII",
+    "Growth 6",
+    "Growth VI",
+    "Blast Protection 7",
+    "Blast Protection VII",
+    "Blast Protection 6",
+    "Blast Protection VI",
+    "Fire Protection 7",
+    "Fire Protection VII",
+    "Fire Protection 6",
+    "Fire Protection VI",
+    "Projectile Protection 7",
+    "Projectile Protection VII",
+    "Projectile Protection 6",
+    "Projectile Protection VI",
+    "Protection 7",
+    "Protection VII",
+    "Protection 6",
+    "Protection VI",
+    "True Protection 1",
+    "True Protection I",
+    "Sugar Rush 3",
+    "Sugar Rush III",
+    "Efficiency 6",
+    "Efficiency VI",
+    "Angler 6",
+    "Angler VI",
+    "Caster 6",
+    "Caster VI",
+    "Frail 6",
+    "Frail VI",
+    "Luck of the Sea 6",
+    "Luck of the Sea VI",
+    "Lure 6",
+    "Lure VI",
+    "Magnet 6",
+    "Magnet VI",
+    "Spiked Hook 6",
+    "Spiked Hook VI",
+    "Dragon Hunter 5",
+    "Dragon Hunter V",
+    "Feather Falling 10",
+    "Feather Falling X",
+    "Infinite Quiver 10",
+    "Infinite Quiver X",
+    "Thorns 6",
+    "Thorns VI",
+    "Expertise 10",
+    "Expertise X",
+    "Thunderlord 6",
+    "Thunderlord VI",
+    "Lethality 6",
+    "Lethality VI",
+    "Compact 10",
+    "Compact X",
+    "First Strike 5",
+    "First Strike V",
+    "Execute 6",
+    "Execute VI",
+    "Cubism 6",
+    "Cubism VI",
+    "Venomous 6",
+    "Venomous VI",
+    "Cleave 6",
+    "Cleave VI"
+  ],
+  "expertise_kills_ladder": [
+    50,
+    100,
+    250,
+    500,
+    1000,
+    2500,
+    5500,
+    10000,
+    15000
+  ],
+  "profile_upgrades": {
+    "island_size": 10,
+    "minion_slots": 5,
+    "guests_count": 5,
+    "coop_slots": 3,
+    "coins_allowance": 5
+  },
+  "base_stats": {
+    "damage": 0,
+    "health": 100,
+    "defense": 0,
+    "effective_health": 100,
+    "strength": 0,
+    "damage_increase": 0,
+    "speed": 100,
+    "crit_chance": 30,
+    "crit_damage": 50,
+    "bonus_attack_speed": 0,
+    "intelligence": 0,
+    "sea_creature_chance": 20,
+    "magic_find": 10,
+    "pet_luck": 0,
+    "ferocity": 0,
+    "ability_damage": 0
+  },
+  "stat_template": {
+    "damage": 0,
+    "health": 0,
+    "defense": 0,
+    "effective_health": 0,
+    "strength": 0,
+    "damage_increase": 0,
+    "speed": 0,
+    "crit_chance": 0,
+    "crit_damage": 0,
+    "bonus_attack_speed": 0,
+    "intelligence": 0,
+    "sea_creature_chance": 0,
+    "magic_find": 0,
+    "pet_luck": 0,
+    "ferocity": 0,
+    "ability_damage": 0
+  },
+  "slayer_cost": {
+    "1": 100,
+    "2": 2000,
+    "3": 10000,
+    "4": 50000,
+    "5": 100000
+  },
+  "mob_mounts": {
+    "sea_emperor": [
+      "guardian_emperor",
+      "skeleton_emperor"
+    ],
+    "monster_of_the_deep": [
+      "zombie_deep",
+      "chicken_deep"
+    ]
+  },
+  "mob_names": {
+    "unburried_zombie": "Crypt Ghoul",
+    "zealot_enderman": "Zealot",
+    "invisible_creeper": "Sneaky Creeper",
+    "generator_ghast": "Minion Ghast",
+    "generator_magma_cube": "Minion Magma Cube",
+    "generator_slime": "Minion Slime",
+    "brood_mother_spider": "Brood Mother"
+  },
+  "area_names": {
+    "dynamic": "Private Island",
+    "hub": "Hub",
+    "mining_1": "Gold Mine",
+    "mining_2": "Deep Caverns",
+    "combat_1": "Spider's Den",
+    "combat_2": "Blazing Fortress",
+    "combat_3": "The End",
+    "farming_1": "The Barn",
+    "farming_2": "Mushroom Desert",
+    "foraging_1": "The Park",
+    "winter": "Jerry's Workshop"
+  },
+  "bag_size": {
+    "talisman_bag": {
+      "collection": "REDSTONE",
+      "sizes": [
+        {
+          "tier": 2,
+          "slots": 3
+        },
+        {
+          "tier": 7,
+          "slots": 9
+        },
+        {
+          "tier": 9,
+          "slots": 15
+        },
+        {
+          "tier": 10,
+          "slots": 21
+        },
+        {
+          "tier": 11,
+          "slots": 27
+        },
+        {
+          "tier": 12,
+          "slots": 33
+        },
+        {
+          "tier": 13,
+          "slots": 39
+        },
+        {
+          "tier": 14,
+          "slots": 45
+        },
+        {
+          "tier": 15,
+          "slots": 51
+        }
+      ]
+    },
+    "potion_bag": {
+      "collection": "NETHER_STALK",
+      "sizes": [
+        {
+          "tier": 2,
+          "slots": 9
+        },
+        {
+          "tier": 5,
+          "slots": 18
+        },
+        {
+          "tier": 8,
+          "slots": 27
+        },
+        {
+          "tier": 10,
+          "slots": 36
+        },
+        {
+          "tier": 11,
+          "slots": 45
+        }
+      ]
+    },
+    "fishing_bag": {
+      "collection": "RAW_FISH",
+      "sizes": [
+        {
+          "tier": 3,
+          "slots": 9
+        },
+        {
+          "tier": 7,
+          "slots": 18
+        },
+        {
+          "tier": 9,
+          "slots": 27
+        },
+        {
+          "tier": 10,
+          "slots": 36
+        },
+        {
+          "tier": 11,
+          "slots": 45
+        }
+      ]
+    },
+    "quiver": {
+      "collection": "STRING",
+      "sizes": [
+        {
+          "tier": 3,
+          "slots": 27
+        },
+        {
+          "tier": 6,
+          "slots": 36
+        },
+        {
+          "tier": 9,
+          "slots": 45
+        }
+      ]
+    }
+  },
+  "minecraft_formatting": {
+    "0": {
+      "type": "color",
+      "color": "#000000",
+      "css": "color: #000000"
+    },
+    "1": {
+      "type": "color",
+      "color": "#0000AA",
+      "niceColor": "#3251AE",
+      "css": "color: #0000AA"
+    },
+    "2": {
+      "type": "color",
+      "color": "#00AA00",
+      "css": "color: #00AA00"
+    },
+    "3": {
+      "type": "color",
+      "color": "#00AAAA",
+      "css": "color: #00AAAA"
+    },
+    "4": {
+      "type": "color",
+      "color": "#CC3333",
+      "css": "color: #CC3333"
+    },
+    "5": {
+      "type": "color",
+      "color": "#eb17eb",
+      "css": "color: #eb17eb"
+    },
+    "6": {
+      "type": "color",
+      "color": "#FFAA00",
+      "css": "color: #FFAA00"
+    },
+    "7": {
+      "type": "color",
+      "color": "#AAAAAA",
+      "niceColor": "#333333",
+      "css": "color: #AAAAAA"
+    },
+    "8": {
+      "type": "color",
+      "color": "#777777",
+      "css": "color: #777777"
+    },
+    "9": {
+      "type": "color",
+      "color": "#5555FF",
+      "css": "color: #8888FF"
+    },
+    "a": {
+      "type": "color",
+      "color": "#55FF55",
+      "niceColor": "#40BB40",
+      "css": "color: #55FF55"
+    },
+    "b": {
+      "type": "color",
+      "color": "#55FFFF",
+      "niceColor": "#51C4D7",
+      "css": "color: #55FFFF"
+    },
+    "c": {
+      "type": "color",
+      "color": "#FF5555",
+      "niceColor": "#C43C3C",
+      "css": "color: #FF5555"
+    },
+    "d": {
+      "type": "color",
+      "color": "#FF55FF",
+      "niceColor": "#D985BC",
+      "css": "color: #FF55FF"
+    },
+    "e": {
+      "type": "color",
+      "color": "#FFFF55",
+      "niceColor": "#EAA522",
+      "css": "color: #FFFF55"
+    },
+    "f": {
+      "type": "color",
+      "color": "#FFFFFF",
+      "niceColor": "#000000",
+      "css": "color: #FFFFFF"
+    },
+    "k": {
+      "type": "format",
+      "css": "display: none"
+    },
+    "l": {
+      "type": "format",
+      "css": "font-weight: bold"
+    },
+    "m": {
+      "type": "format",
+      "css": "text-decoration: line-through"
+    },
+    "n": {
+      "type": "format",
+      "css": "text-decoration: underline"
+    },
+    "o": {
+      "type": "format",
+      "css": "font-style: italic"
+    },
+    "r": {
+      "type": "reset"
+    }
+  },
+  "color_names": {
+    "BLACK": "0",
+    "DARK_BLUE": "1",
+    "DARK_GREEN": "2",
+    "DARK_AQUA": "3",
+    "DARK_RED": "4",
+    "DARK_PURPLE": "5",
+    "GOLD": "6",
+    "GRAY": "7",
+    "DARK_GRAY": "8",
+    "BLUE": "9",
+    "GREEN": "a",
+    "AQUA": "b",
+    "RED": "c",
+    "LIGHT_PURPLE": "d",
+    "YELLOW": "e",
+    "WHITE": "f"
+  },
+  "ranks": {
+    "OWNER": {
+      "color": "c",
+      "tag": "OWNER"
+    },
+    "ADMIN": {
+      "color": "c",
+      "tag": "ADMIN"
+    },
+    "BUILD TEAM": {
+      "color": "3",
+      "tag": "BUILD TEAM"
+    },
+    "MODERATOR": {
+      "color": "2",
+      "tag": "MOD"
+    },
+    "HELPER": {
+      "color": "9",
+      "tag": "HELPER"
+    },
+    "JR HELPER": {
+      "color": "9",
+      "tag": "JR HELPER"
+    },
+    "YOUTUBER": {
+      "color": "c",
+      "tag": "YOUTUBE"
+    },
+    "SUPERSTAR": {
+      "color": "6",
+      "tag": "MVP",
+      "plus": "++"
+    },
+    "MVP_PLUS": {
+      "color": "b",
+      "tag": "MVP",
+      "plus": "+"
+    },
+    "MVP": {
+      "color": "b",
+      "tag": "MVP"
+    },
+    "VIP_PLUS": {
+      "color": "a",
+      "tag": "VIP",
+      "plus": "+"
+    },
+    "VIP": {
+      "color": "a",
+      "tag": "VIP"
+    },
+    "PIG+++": {
+      "color": "d",
+      "tag": "PIG",
+      "plus": "+++"
+    },
+    "NONE": null
+  },
+  "max_favorites": 5,
   "pet_rarity_offset": {
     "common": 0,
     "uncommon": 6,
     "rare": 11,
     "epic": 16,
-    "legendary": 20
+    "legendary": 20,
+    "mythic": 20
   },
   "pet_levels": [
     100,
@@ -383,7 +2362,7 @@
     },
     "GUARDIAN": {
       "head": "\/head\/221025434045bda7025b3e514b316a4b770c6faa4ba9adb4be3809526db77f9d",
-      "type": "combat",
+      "type": "enchanting",
       "emoji": "\ud83d\udc21"
     },
     "SQUID": {
@@ -456,6 +2435,11 @@
       "type": "fishing",
       "emoji": "\u2744\ufe0f"
     },
+    "MEGALODON": {
+      "head": "\/head\/a94ae433b301c7fb7c68cba625b0bd36b0b14190f20e34a7c8ee0d9de06d53b9",
+      "type": "fishing",
+      "emoji": "\ud83e\udd88"
+    },
     "GOLEM": {
       "head": "\/head\/89091d79ea0f59ef7ef94d7bba6e5f17f2f7d4572c44f90f76c4819a714",
       "type": "combat",
@@ -475,6 +2459,136 @@
       "head": "\/head\/e4b45cbaa19fe3d68c856cd3846c03b5f59de81a480eec921ab4fa3cd81317",
       "type": "combat",
       "emoji": "\ud83d\udc31"
+    },
+    "SPIRIT": {
+      "head": "\/head\/8d9ccc670677d0cebaad4058d6aaf9acfab09abea5d86379a059902f2fe22655",
+      "type": "combat",
+      "emoji": "\ud83d\udc7b"
+    },
+    "GRIFFIN": {
+      "head": "\/head\/4c27e3cb52a64968e60c861ef1ab84e0a0cb5f07be103ac78da67761731f00c8",
+      "type": "combat",
+      "emoji": "\ud83e\udd85"
+    }
+  },
+  "pet_skins": {
+    "ENDERMAN": {
+      "ENDERMAN": {
+        "name": "Spooky",
+        "head": "\/head\/ea84cc8818c293484fdaafc8fa2f0bf39e55733a247d68023df2c6c6b9b671d0"
+      }
+    },
+    "GUARDIAN": {
+      "GUARDIAN": {
+        "name": "Watcher",
+        "head": "\/head\/37cc76e7af29f5f3fbfd6ece794160811eff96f753459fa61d7ad176a064e3c5"
+      }
+    },
+    "TIGER": {
+      "TIGER_TWILIGHT": {
+        "name": "Twilight",
+        "head": "\/head\/896211dc599368dbd9056c0116ab61063991db793be93066a858eb4e9ce56438"
+      }
+    },
+    "RABBIT": {
+      "RABBIT": {
+        "name": "Pretty",
+        "head": "\/head\/a34631d940fddb689ddef6a3b352c50220c460dba05cd18dc83192b59dc647f8"
+      }
+    },
+    "WITHER_SKELETON": {
+      "WITHER": {
+        "name": "Dark",
+        "head": "\/head\/224c2d14a0219af5ccfcaa36e8a333e271724ed61276611f9529e16c10273a0d"
+      }
+    },
+    "ROCK": {
+      "ROCK_COOL": {
+        "name": "Cool",
+        "head": "\/head\/fefcdbb7d95502acc1ae35a32a40ce4dec8f4c9f0da26c9d9fe7c2c3eb748f6"
+      },
+      "ROCK_SMILE": {
+        "name": "Smile",
+        "head": "\/head\/713c8b2916a275db4c1762cf5f13d7b95b91d60baf5164a447d6efa7704cf11b"
+      },
+      "ROCK_THINKING": {
+        "name": "Thinking",
+        "head": "\/head\/dd2f781f03c365bbc5dd1e7186ab38dc69465e836c9fe066a9a844f34a4da92"
+      },
+      "ROCK_LAUGH": {
+        "name": "Laughing",
+        "head": "\/head\/8cc1ef513d5f616675242174acde7b9d6259a47c4fe8f6e4b6e20920319d7073"
+      },
+      "ROCK_DERP": {
+        "name": "Derp",
+        "head": "\/head\/c4f89fbd12c209f7f26c1f34a1bd7f47635814759c09688dd212b205c73a8c02"
+      },
+      "ROCK_EMBARRASSED": {
+        "name": "Embarrassed",
+        "head": "\/head\/27ff34992e66599e8529008be3fb577cb0ab545294253e25a0cc988e416c849"
+      }
+    },
+    "SHEEP": {
+      "SHEEP_WHITE": {
+        "name": "White",
+        "head": "\/head\/b92a1a5c325f25f7438a0abb4f86ba6cf75552d02c7349a7292981459b31d2f7"
+      },
+      "SHEEP_PURPLE": {
+        "name": "Purple",
+        "head": "\/head\/99a88cf7dd33063587c6b540e6130abc5d07f1a65c47573ab3c1ad3ccec8857f"
+      },
+      "SHEEP_BLACK": {
+        "name": "Black",
+        "head": "\/head\/aa9dcda642a807cd2daa4aa6be87cef96e08a8c8f5cec2657dda4266c6a884c2"
+      },
+      "SHEEP_PINK": {
+        "name": "Pink",
+        "head": "\/head\/afa7747684dcb96192d90342cea62742ec363da07cb5e6e25eecec888cd2076"
+      },
+      "SHEEP_LIGHT_BLUE": {
+        "name": "Light Blue",
+        "head": "\/head\/722220de1a863bc5d9b9e7a6a3b03214c9f3d698ed3fe0d28220f3b93b7685c5"
+      },
+      "SHEEP_LIGHT_GREEN": {
+        "name": "Light Green",
+        "head": "\/head\/cf183ec2fe58faa43e568419b7a0dc446ece4ea0be52ec784c94e1d74b75939d"
+      }
+    },
+    "SILVERFISH": {
+      "SILVERFISH": {
+        "name": "Fortified",
+        "head": "\/head\/d8552ff591042c4a38f8ba0626784ae28c4545a97d423fd9037c341035593273"
+      }
+    },
+    "ELEPHANT": {
+      "ELEPHANT_PINK": {
+        "name": "Pink",
+        "head": "\/head\/570eef474ec0e56cc34c2307eaa39f024612f8cd7248e7d5b14169ebd307c742"
+      },
+      "ELEPHANT_BLUE": {
+        "name": "Blue",
+        "head": "\/head\/4b62969c005815d0409136380febc5ac468aaba9bda4db80954fa5426ee0a323"
+      },
+      "ELEPHANT_ORANGE": {
+        "name": "Orange",
+        "head": "\/head\/554a34a80c474206d3700b8fced6b44fab0b0ed0b05c1293ff0c5d86eda251d1"
+      }
+    },
+    "JERRY": {
+      "JERRY_RED_ELF": {
+        "name": "Red Elf",
+        "head": "\/head\/1d82f9c36e824c1e37963a849bf5abd76d3b349125023504af58369086089ee9"
+      },
+      "JERRY_GREEN_ELF": {
+        "name": "Green Elf",
+        "head": "\/head\/4ec5455f43426ca1874b5c7b4a492ec3722a502f8b9599e758e133fed8b3c1e4"
+      }
+    },
+    "BABY_YETI": {
+      "YETI_GROWN_UP": {
+        "name": "Grown-up",
+        "head": "\/head\/f5f29a975529276d916fc67998833c11ee178ff21e5941afdfb0fa7010f8374e"
+      }
     }
   },
   "pet_value": {
@@ -482,7 +2596,8 @@
     "uncommon": 2,
     "rare": 3,
     "epic": 4,
-    "legendary": 5
+    "legendary": 5,
+    "mythic": 6
   },
   "pet_rewards": {
     "0": {
@@ -515,22 +2630,26 @@
       "description": "\u00a77Gives +\u00a7a10% \u00a77pet exp for all skills"
     },
     "PET_ITEM_BIG_TEETH_COMMON": {
-      "description": "\u00a77Increases \u00a79Crit Chance \u00a77by \u00a7a5%",
+      "description": "\u00a77Increases \u00a79\u2623 Crit Chance \u00a77by \u00a7a5",
       "stats": {
         "crit_chance": 5
       }
     },
     "PET_ITEM_IRON_CLAWS_COMMON": {
-      "description": "\u00a77Increases the pet's \u00a79Crit Damage \u00a77by \u00a7a40% \u00a77and \u00a79Crit Chance \u00a77by \u00a7a40%"
+      "description": "\u00a77Increases the pet's \u00a79\u2620 Crit Damage \u00a77by \u00a7a40% \u00a77and \u00a79\u2623 Crit Chance \u00a77by \u00a7a40%",
+      "multStats": {
+        "crit_chance": 1.4,
+        "crit_damage": 1.4
+      }
     },
     "PET_ITEM_SHARPENED_CLAWS_UNCOMMON": {
-      "description": "\u00a77Increases \u00a79Crit Damage \u00a77by \u00a7a15%",
+      "description": "\u00a77Increases \u00a79\u2620 Crit Damage \u00a77by \u00a7a15",
       "stats": {
         "crit_damage": 15
       }
     },
     "PET_ITEM_HARDENED_SCALES_UNCOMMON": {
-      "description": "\u00a77Increases \u00a7aDefense \u00a77by \u00a7a25",
+      "description": "\u00a77Increases \u00a7a\u2748 Defense \u00a77by \u00a7a25",
       "stats": {
         "defense": 25
       }
@@ -539,13 +2658,16 @@
       "description": "\u00a77Your pet fuses its power with placed \u00a7aOrbs \u00a77to give them \u00a7a2x \u00a77duration"
     },
     "PET_ITEM_LUCKY_CLOVER": {
-      "description": "\u00a77Increases \u00a7bMagic Find \u00a77by \u00a7a7",
+      "description": "\u00a77Increases \u00a7b\u272f Magic Find \u00a77by \u00a7a7",
       "stats": {
         "magic_find": 7
       }
     },
     "PET_ITEM_TEXTBOOK": {
-      "description": "\u00a77Increases the pet's \u00a7bIntelligence \u00a77by \u00a7a100%"
+      "description": "\u00a77Increases the pet's \u00a7b\u270e Intelligence \u00a77by \u00a7a100%",
+      "multStats": {
+        "intelligence": 2
+      }
     },
     "PET_ITEM_SADDLE": {
       "description": "\u00a77Increase horse speed by \u00a7a50% \u00a77 and jump boost by \u00a7a100%"
@@ -583,479 +2705,183 @@
     "PET_ITEM_FORAGING_SKILL_BOOST_COMMON": {
       "description": "\u00a77Gives +\u00a7a20% \u00a77pet exp for Foraging"
     },
+    "PET_ITEM_FORAGING_SKILL_BOOST_UNCOMMON": {
+      "description": "\u00a77Gives +\u00a7a30% \u00a77pet exp for Foraging"
+    },
+    "PET_ITEM_FORAGING_SKILL_BOOST_RARE": {
+      "description": "\u00a77Gives +\u00a7a40% \u00a77pet exp for Foraging"
+    },
     "PET_ITEM_FORAGING_SKILL_BOOST_EPIC": {
       "description": "\u00a77Gives +\u00a7a50% \u00a77pet exp for Foraging"
     },
     "PET_ITEM_MINING_SKILL_BOOST_COMMON": {
       "description": "\u00a77Gives +\u00a7a20% \u00a77pet exp for Mining"
     },
+    "PET_ITEM_MINING_SKILL_BOOST_UNCOMMON": {
+      "description": "\u00a77Gives +\u00a7a30% \u00a77pet exp for Mining"
+    },
     "PET_ITEM_MINING_SKILL_BOOST_RARE": {
       "description": "\u00a77Gives +\u00a7a40% \u00a77pet exp for Mining"
+    },
+    "PET_ITEM_MINING_SKILL_BOOST_EPIC": {
+      "description": "\u00a77Gives +\u00a7a50% \u00a77pet exp for Mining"
     },
     "PET_ITEM_FARMING_SKILL_BOOST_COMMON": {
       "description": "\u00a77Gives +\u00a7a20% \u00a77pet exp for Farming"
     },
+    "PET_ITEM_FARMING_SKILL_BOOST_UNCOMMON": {
+      "description": "\u00a77Gives +\u00a7a30% \u00a77pet exp for Farming"
+    },
     "PET_ITEM_FARMING_SKILL_BOOST_RARE": {
       "description": "\u00a77Gives +\u00a7a40% \u00a77pet exp for Farming"
+    },
+    "PET_ITEM_FARMING_SKILL_BOOST_EPIC": {
+      "description": "\u00a77Gives +\u00a7a50% \u00a77pet exp for Farming"
+    },
+    "REINFORCED_SCALES": {
+      "description": "\u00a77Increases \u00a7a\u2748 Defense \u00a77by \u00a7a40",
+      "stats": {
+        "defense": 40
+      }
+    },
+    "GOLD_CLAWS": {
+      "description": "\u00a77Increases the pet's \u00a79\u2620 Crit Damage \u00a77by \u00a7a50% \u00a77and \u00a79\u2623 Crit Chance \u00a77by \u00a7a50%",
+      "multStats": {
+        "crit_chance": 1.5,
+        "crit_damage": 1.5
+      }
+    },
+    "ALL_SKILLS_SUPER_BOOST": {
+      "description": "\u00a77Gives +\u00a7a20% \u00a77pet exp for all skills"
+    },
+    "BIGGER_TEETH": {
+      "description": "\u00a77Increases \u00a79\u2623 Crit Chance \u00a77by \u00a7a10",
+      "stats": {
+        "crit_chance": 10
+      }
+    },
+    "SERRATED_CLAWS": {
+      "description": "\u00a77Increases \u00a79\u2620 Crit Damage \u00a77by \u00a7a25",
+      "stats": {
+        "crit_damage": 25
+      }
+    },
+    "WASHED_UP_SOUVENIR": {
+      "description": "\u00a77Increases \u00a73\u03b1 Sea Creature Chance \u00a77by \u00a7a5",
+      "stats": {
+        "sea_creature_chance": 5
+      }
+    },
+    "ANTIQUE_REMEDIES": {
+      "description": "\u00a77Increases the pet's \u00a7c\u2741 Strength \u00a77by \u00a7a80%",
+      "multStats": {
+        "strength": 1.8
+      }
+    },
+    "CROCHET_TIGER_PLUSHIE": {
+      "description": "\u00a77Increases \u00a7e\u2694\ufe0f Bonus Attack Speed \u00a77by \u00a7a35",
+      "stats": {
+        "bonus_attack_speed": 35
+      }
+    },
+    "DWARF_TURTLE_SHELMET": {
+      "description": "\u00a77Makes the pet's owner immune to knockback."
+    },
+    "PET_ITEM_VAMPIRE_FANG": {
+      "description": "\u00a77Upgrades a Bat pet from \u00a76Legendary \u00a77to \u00a7dMythic \u00a77adding a bonus perk and bonus stats!"
+    },
+    "PET_ITEM_SPOOKY_CUPCAKE": {
+      "description": "\u00a77Increases \u00a7c\u2741 Strength \u00a77by \u00a7a30 \u00a77and \u00a7f\u2726 Speed \u00a77by \u00a7a20",
+      "stats": {
+        "strength": 30,
+        "speed": 20
+      }
+    },
+    "MINOS_RELIC": {
+      "description": "\u00a77Increases all pet stats by \u00a7a33.3%",
+      "multAllStats": 1.333
     }
   },
-  "base_stats": {
-    "damage": 0,
-    "health": 100,
-    "defense": 0,
-    "effective_health": 100,
-    "strength": 0,
-    "damage_increase": 0,
-    "speed": 100,
-    "crit_chance": 20,
-    "crit_damage": 50,
-    "intelligence": 0,
-    "sea_creature_chance": 20,
-    "magic_find": 10,
-    "pet_luck": 0
-  },
-  "stat_template": {
-    "damage": 0,
-    "health": 0,
-    "defense": 0,
-    "effective_health": 0,
-    "strength": 0,
-    "damage_increase": 0,
-    "speed": 0,
-    "crit_chance": 0,
-    "crit_damage": 0,
-    "intelligence": 0,
-    "sea_creature_chance": 0,
-    "magic_find": 0,
-    "pet_luck": 0
-  },
-  "slayer_cost": {
-    "1": 100,
-    "2": 2000,
-    "3": 10000,
-    "4": 50000
-  },
-  "bonus_stats": {
-    "fairy_souls": {
-      "5": {
-        "health": 3,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "10": {
-        "health": 3,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "15": {
-        "health": 4,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "20": {
-        "health": 4,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "25": {
-        "health": 5,
-        "defense": 2,
-        "strength": 2,
-        "speed": 0
-      },
-      "30": {
-        "health": 5,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "35": {
-        "health": 6,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "40": {
-        "health": 6,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "45": {
-        "health": 7,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "50": {
-        "health": 7,
-        "defense": 2,
-        "strength": 2,
-        "speed": 1
-      },
-      "55": {
-        "health": 8,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "60": {
-        "health": 8,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "65": {
-        "health": 9,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "70": {
-        "health": 9,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "75": {
-        "health": 10,
-        "defense": 2,
-        "strength": 2,
-        "speed": 0
-      },
-      "80": {
-        "health": 10,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "85": {
-        "health": 11,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "90": {
-        "health": 11,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "95": {
-        "health": 12,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "100": {
-        "health": 12,
-        "defense": 2,
-        "strength": 2,
-        "speed": 1
-      },
-      "105": {
-        "health": 13,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "110": {
-        "health": 13,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "115": {
-        "health": 14,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "120": {
-        "health": 14,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "125": {
-        "health": 15,
-        "defense": 2,
-        "strength": 2,
-        "speed": 0
-      },
-      "130": {
-        "health": 15,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "135": {
-        "health": 16,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "140": {
-        "health": 16,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "145": {
-        "health": 17,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "150": {
-        "health": 17,
-        "defense": 2,
-        "strength": 2,
-        "speed": 1
-      },
-      "155": {
-        "health": 18,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "160": {
-        "health": 18,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "165": {
-        "health": 19,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "170": {
-        "health": 19,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "175": {
-        "health": 20,
-        "defense": 2,
-        "strength": 2,
-        "speed": 0
-      },
-      "180": {
-        "health": 20,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "185": {
-        "health": 21,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "190": {
-        "health": 21,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "195": {
-        "health": 22,
-        "defense": 1,
-        "strength": 1,
-        "speed": 0
-      },
-      "200": {
-        "health": 22,
-        "defense": 2,
-        "strength": 2,
-        "speed": 1
-      }
-    },
-    "taming_skill": {
-      "1": {
-        "pet_luck": 1
-      }
-    },
-    "farming_skill": {
-      "1": {
-        "health": 2
-      },
-      "15": {
-        "health": 3
-      },
-      "20": {
-        "health": 4
-      },
-      "26": {
-        "health": 5
-      }
-    },
-    "combat_skill": {
-      "1": {
-        "crit_chance": 1,
-        "damage_increase": 0.04
-      }
-    },
-    "mining_skill": {
-      "1": {
-        "defense": 1
-      },
-      "15": {
-        "defense": 2
-      }
-    },
-    "foraging_skill": {
-      "1": {
-        "strength": 1
-      },
-      "15": {
-        "strength": 2
-      }
-    },
-    "fishing_skill": {
-      "1": {
-        "health": 2
-      },
-      "15": {
-        "health": 3
-      },
-      "20": {
-        "health": 4
-      },
-      "26": {
-        "health": 5
-      }
-    },
-    "enchanting_skill": {
-      "1": {
-        "intelligence": 1
-      },
-      "15": {
-        "intelligence": 2
-      }
-    },
-    "alchemy_skill": {
-      "1": {
-        "intelligence": 1
-      },
-      "15": {
-        "intelligence": 2
-      }
-    },
-    "carpentry_skill": {
-      "1": {}
-    },
-    "runecrafting_skill": {
-      "1": {}
-    },
-    "zombie_slayer": {
-      "1": {
-        "health": 2
-      },
-      "3": {
-        "health": 3
-      },
-      "5": {
-        "health": 4
-      },
-      "7": {
-        "health": 5
-      },
-      "9": {
-        "health": 6
-      }
-    },
-    "spider_slayer": {
-      "1": {
-        "crit_damage": 1
-      },
-      "5": {
-        "crit_damage": 2
-      },
-      "7": {
-        "crit_damage": 0,
-        "crit_chance": 1
-      },
-      "8": {
-        "crit_chance": 0,
-        "crit_damage": 3
-      }
-    },
-    "wolf_slayer": {
-      "1": {
-        "speed": 1
-      },
-      "2": {
-        "health": 2
-      },
-      "3": {
-        "speed": 1
-      },
-      "4": {
-        "health": 2
-      },
-      "5": {
-        "crit_damage": 1
-      },
-      "6": {
-        "health": 3
-      },
-      "7": {
-        "crit_damage": 2
-      },
-      "8": {
-        "speed": 1
-      }
-    },
-    "enchantments": {
-      "sharpness": {
-        "1": {
-          "damage_multiplicator": 0.05
-        }
-      },
-      "ender": {
-        "1": {
-          "damage_multiplicator": 0.12
-        }
-      },
-      "giant_killer": {
-        "1": {
-          "damage_multiplicator": 0.05
-        }
-      },
-      "cubism": {
-        "1": {
-          "damage_multiplicator": 0.1
-        }
-      },
-      "impaling": {
-        "1": {
-          "damage_multiplicator": 0.125
-        }
-      },
-      "critical": {
-        "1": {
-          "crit_damage": 10
-        }
-      },
-      "first_strike": {
-        "1": {
-          "damage_multiplicator": 0.25
-        }
-      },
-      "power": {
-        "1": {
-          "damage_multiplicator": 0.08
-        }
-      }
-    }
+  "item_tags": {
+    "SUPER_COMPACTOR_3000": "sc3000 sc3k",
+    "ENCHANTED_LAPIS_LAZULI": "elapis",
+    "ENCHANTED_IRON_INGOT": "eiron",
+    "ENCHANTED_IRON_BLOCK": "eiron",
+    "ENCHANTED_STRING": "estring",
+    "ENCHANTED_ROTTEN_FLESH": "eflesh erotten",
+    "ENCHANTED_WET_SPONGE": "ewet",
+    "ENCHANTED_DIAMOND": "edia",
+    "ENCHANTED_DIAMOND_BLOCK": "edb",
+    "ENCHANTED_LAVA_BUCKET": "elava",
+    "ENCHANTED_GLOWSTONE_DUST": "edust",
+    "ENCHANTED_GLOWSTONE": "eblock block",
+    "ENCHANTED_REDSTONE_LAMP": "elamp",
+    "ENCHANTED_REDSTONE_DUST": "edust",
+    "ENCHANTED_REDSTONE_BLOCK": "eblock",
+    "CATALYST": "cata",
+    "SUPERIOR_FRAGMENT": "sup frag drag",
+    "STRONG_FRAGMENT": "frag drag",
+    "PROTECTOR_FRAGMENT": "frag drag",
+    "WISE_FRAGMENT": "frag drag",
+    "YOUNG_FRAGMENT": "frag drag",
+    "OLD_FRAGMENT": "old frag drag",
+    "UNSTABLE_FRAGMENT": "frag drag",
+    "ENCHANTED_GOLD": "egold ingot",
+    "ENCHANTED_GOLD_BLOCK": "egold",
+    "ENCHANTED_COAL": "ecoal",
+    "ENCHANTED_COAL_BLOCK": "ecoal",
+    "ENCHANTED_COBBLESTONE": "ecobble",
+    "INK_SACK": "eink sack",
+    "TARANTULA_WEB": "tara",
+    "ENCHANTED_POTATO": "epotato",
+    "ENCHANTED_SLIME_BALL": "eslime",
+    "ENCHANTED_SLIME_BLOCK": "eslime",
+    "ENCHANTED_BIRCH_LOG": "ebirch",
+    "ENCHANTED_SUGAR": "esugar",
+    "ENCHANTED_MELON": "emelon",
+    "ENCHANTED_BLAZE_ROD": "erod",
+    "ENCHANTED_CAKE": "ecake",
+    "ENCHANTED_SNOW_BLOCK": "esnow",
+    "ENCHANTED_CACTUS_GREEN": "ecactus",
+    "ENCHANTED_COOKIE": "ecookie",
+    "ENCHANTED_SAND": "esand",
+    "ENCHANTED_COCOA": "ecocoa",
+    "ENCHANTED_LEATHER": "eleather",
+    "ENCHANTED_SPONGE": "esponge",
+    "ENCHANTED_GRILLED_PORK": "epork",
+    "ENCHANTED_DARK_OAK_LOG": "edoak doak",
+    "ENCHANTED_ACACIA_LOG": "eacacia",
+    "ENCHANTED_SPRUCE_LOG": "espruce",
+    "ENCHANTED_RAW_CHICKEN": "echicken",
+    "ENCHANTED_WATER_LILY": "elily",
+    "ENCHANTED_SUGAR_CANE": "ecane",
+    "ENCHANTED_FERMENTED_SPIDER_EYE": "eferm ferm",
+    "ENCHANTED_JUNGLE_LOG": "ejungle",
+    "ENCHANTED_OAK_LOG": "eoak",
+    "ENCHANTED_CLAY_BALL": "eclay",
+    "REVENANT_VISCERA": "rev",
+    "ENCHANTED_HAY_BLOCK": "ehay",
+    "ENCHANTED_PAPER": "epaper",
+    "ENCHANTED_BONE": "ebone",
+    "ENCHANTED_RABBIT_FOOT": "efoot",
+    "ENCHANTED_ICE": "eice",
+    "ENCHANTED_OBSIDIAN": "eobsidian",
+    "ENCHANTED_QUARTZ": "equartz",
+    "ENCHANTED_RAW_FISH": "efish",
+    "ENCHANTED_RAW_BEEF": "ecow",
+    "ENCHANTED_FEATHER": "efeather",
+    "ENCHANTED_CARROT": "ecarrot",
+    "ENCHANTED_PUMPKIN": "epumpkin",
+    "ENCHANTED_COOKED_FISH": "ecooked",
+    "ENCHANTED_MAGMA_CREAM": "emagma ecream",
+    "ENCHANTED_COOKED_MUTTON": "emutton",
+    "ENCHANTED_BLAZE_POWDER": "eblaze",
+    "ENCHANTED_BAKED_POTATO": "ebaked",
+    "SUMMONING_EYE": "sum",
+    "ENDER_STONE": "endstone",
+    "ENCHANTED_ENDSTONE": "endstone",
+    "HOT_POTATO_BOOK": "hpb",
+    "RABBIT_FOOT": "rabbit"
   },
   "talisman_upgrades": {
     "WOLF_TALISMAN": [
@@ -1085,12 +2911,17 @@
     "HEALING_TALISMAN": [
       "HEALING_RING"
     ],
+    "CANDY_ARTIFACT": [
+      "CANDY_RELIC"
+    ],
     "CANDY_RING": [
-      "CANDY_ARTIFACT"
+      "CANDY_ARTIFACT",
+      "CANDY_RELIC"
     ],
     "CANDY_TALISMAN": [
       "CANDY_RING",
-      "CANDY_ARTIFACT"
+      "CANDY_ARTIFACT",
+      "CANDY_RELIC"
     ],
     "INTIMIDATION_RING": [
       "INTIMIDATION_ARTIFACT"
@@ -1143,220 +2974,518 @@
     ],
     "SPEED_RING": [
       "SPEED_ARTIFACT"
+    ],
+    "PERSONAL_COMPACTOR_4000": [
+      "PERSONAL_COMPACTOR_5000",
+      "PERSONAL_COMPACTOR_6000",
+      "PERSONAL_COMPACTOR_7000"
+    ],
+    "PERSONAL_COMPACTOR_5000": [
+      "PERSONAL_COMPACTOR_6000",
+      "PERSONAL_COMPACTOR_7000"
+    ],
+    "PERSONAL_COMPACTOR_6000": [
+      "PERSONAL_COMPACTOR_7000"
+    ],
+    "SCARF_STUDIES": [
+      "SCARF_THESIS",
+      "SCARF_GRIMOIRE"
+    ],
+    "SCARF_THESIS": [
+      "SCARF_GRIMOIRE"
+    ],
+    "CAT_TALISMAN": [
+      "LYNX_TALISMAN",
+      "CHEETAH_TALISMAN"
+    ],
+    "LYNX_TALISMAN": [
+      "CHEETAH_TALISMAN"
+    ],
+    "SHADY_RING": [
+      "CROOKED_ARTIFACT",
+      "SEAL_OF_THE_FAMILY"
+    ],
+    "CROOKED_ARTIFACT": [
+      "SEAL_OF_THE_FAMILY"
+    ],
+    "TREASURE_TALISMAN": [
+      "TREASURE_RING",
+      "TREASURE_ARTIFACT"
+    ],
+    "TREASURE_RING": [
+      "TREASURE_ARTIFACT"
+    ],
+    "BEASTMASTER_CREST_COMMON": [
+      "BEASTMASTER_CREST_UNCOMMON",
+      "BEASTMASTER_CREST_RARE",
+      "BEASTMASTER_CREST_EPIC",
+      "BEASTMASTER_CREST_LEGENDARY"
+    ],
+    "BEASTMASTER_CREST_UNCOMMON": [
+      "BEASTMASTER_CREST_RARE",
+      "BEASTMASTER_CREST_EPIC",
+      "BEASTMASTER_CREST_LEGENDARY"
+    ],
+    "BEASTMASTER_CREST_RARE": [
+      "BEASTMASTER_CREST_EPIC",
+      "BEASTMASTER_CREST_LEGENDARY"
+    ],
+    "BEASTMASTER_CREST_EPIC": [
+      "BEASTMASTER_CREST_LEGENDARY"
+    ],
+    "RAGGEDY_SHARK_TOOTH_NECKLACE": [
+      "DULL_SHARK_TOOTH_NECKLACE",
+      "HONED_SHARK_TOOTH_NECKLACE",
+      "SHARP_SHARK_TOOTH_NECKLACE",
+      "RAZOR_SHARP_SHARK_TOOTH_NECKLACE"
+    ],
+    "DULL_SHARK_TOOTH_NECKLACE": [
+      "HONED_SHARK_TOOTH_NECKLACE",
+      "SHARP_SHARK_TOOTH_NECKLACE",
+      "RAZOR_SHARP_SHARK_TOOTH_NECKLACE"
+    ],
+    "HONED_SHARK_TOOTH_NECKLACE": [
+      "SHARP_SHARK_TOOTH_NECKLACE",
+      "RAZOR_SHARP_SHARK_TOOTH_NECKLACE"
+    ],
+    "SHARP_SHARK_TOOTH_NECKLACE": [
+      "RAZOR_SHARP_SHARK_TOOTH_NECKLACE"
+    ],
+    "BAT_PERSON_TALISMAN": [
+      "BAT_PERSON_RING",
+      "BAT_PERSON_ARTIFACT"
+    ],
+    "BAT_PERSON_RING": [
+      "BAT_PERSON_ARTIFACT"
+    ],
+    "LUCKY_HOOF": [
+      "ETERNAL_HOOF"
+    ],
+    "WITHER_ARTIFACT": [
+      "WITHER_RELIC"
+    ],
+    "WEDDING_RING_0": [
+      "WEDDING_RING_2",
+      "WEDDING_RING_4",
+      "WEDDING_RING_7",
+      "WEDDING_RING_9"
+    ],
+    "WEDDING_RING_2": [
+      "WEDDING_RING_4",
+      "WEDDING_RING_7",
+      "WEDDING_RING_9"
+    ],
+    "WEDDING_RING_4": [
+      "WEDDING_RING_7",
+      "WEDDING_RING_9"
+    ],
+    "WEDDING_RING_7": [
+      "WEDDING_RING_9"
+    ],
+    "CAMPFIRE_TALISMAN_1": [
+      "CAMPFIRE_TALISMAN_4",
+      "CAMPFIRE_TALISMAN_8",
+      "CAMPFIRE_TALISMAN_13",
+      "CAMPFIRE_TALISMAN_21"
+    ],
+    "CAMPFIRE_TALISMAN_4": [
+      "CAMPFIRE_TALISMAN_8",
+      "CAMPFIRE_TALISMAN_13",
+      "CAMPFIRE_TALISMAN_21"
+    ],
+    "CAMPFIRE_TALISMAN_8": [
+      "CAMPFIRE_TALISMAN_13",
+      "CAMPFIRE_TALISMAN_21"
+    ],
+    "CAMPFIRE_TALISMAN_13": [
+      "CAMPFIRE_TALISMAN_21"
     ]
   },
-  "talisman_duplicates": {},
-  "minions": {
-    "COBBLESTONE": {
-      "type": "mining",
-      "head": "\/head\/2f93289a82bd2a06cbbe61b733cfdc1f1bd93c4340f7a90abd9bdda774109071"
+  "talisman_duplicates": {
+    "WEDDING_RING_0": [
+      "WEDDING_RING_1"
+    ],
+    "WEDDING_RING_2": [
+      "WEDDING_RING_3"
+    ],
+    "WEDDING_RING_4": [
+      "WEDDING_RING_5",
+      "WEDDING_RING_6"
+    ],
+    "WEDDING_RING_7": [
+      "WEDDING_RING_8"
+    ],
+    "CAMPFIRE_TALISMAN_1": [
+      "CAMPFIRE_TALISMAN_2",
+      "CAMPFIRE_TALISMAN_3"
+    ],
+    "CAMPFIRE_TALISMAN_4": [
+      "CAMPFIRE_TALISMAN_5",
+      "CAMPFIRE_TALISMAN_6",
+      "CAMPFIRE_TALISMAN_7"
+    ],
+    "CAMPFIRE_TALISMAN_8": [
+      "CAMPFIRE_TALISMAN_9",
+      "CAMPFIRE_TALISMAN_10",
+      "CAMPFIRE_TALISMAN_11",
+      "CAMPFIRE_TALISMAN_12"
+    ],
+    "CAMPFIRE_TALISMAN_13": [
+      "CAMPFIRE_TALISMAN_14",
+      "CAMPFIRE_TALISMAN_15",
+      "CAMPFIRE_TALISMAN_16",
+      "CAMPFIRE_TALISMAN_17",
+      "CAMPFIRE_TALISMAN_18",
+      "CAMPFIRE_TALISMAN_19",
+      "CAMPFIRE_TALISMAN_20"
+    ],
+    "CAMPFIRE_TALISMAN_21": [
+      "CAMPFIRE_TALISMAN_22",
+      "CAMPFIRE_TALISMAN_23",
+      "CAMPFIRE_TALISMAN_24",
+      "CAMPFIRE_TALISMAN_25",
+      "CAMPFIRE_TALISMAN_26",
+      "CAMPFIRE_TALISMAN_27",
+      "CAMPFIRE_TALISMAN_28",
+      "CAMPFIRE_TALISMAN_29"
+    ]
+  },
+  "talismans": {
+    "WEDDING_RING_0": {
+      "name": "Shiny Yellow Rock",
+      "rarity": "common",
+      "texture": "\/item\/WEDDING_RING_0"
     },
-    "OBSIDIAN": {
-      "type": "mining",
-      "head": "\/head\/320c29ab966637cb9aecc34ee76d5a0130461e0c4fdb08cdaf80939fa1209102"
+    "WEDDING_RING_2": {
+      "name": "Mediocre Ring of Love",
+      "rarity": "uncommon",
+      "texture": "\/head\/8fb265c8cc6136063b4eb15450fe1fe1ab7738b0bf54d265490e1ef49da60b7c"
     },
-    "GLOWSTONE": {
-      "type": "mining",
-      "head": "\/head\/20f4d7c26b0310990a7d3a3b45948b95dd4ab407a16a4b6d3b7cb4fba031aeed"
+    "WEDDING_RING_4": {
+      "name": "Modest Ring of Love",
+      "rarity": "rare",
+      "texture": "\/head\/8fb265c8cc6136063b4eb15450fe1fe1ab7738b0bf54d265490e1ef49da60b7c"
     },
-    "GRAVEL": {
-      "type": "mining",
-      "head": "\/head\/7458507ed31cf9a38986ac8795173c609637f03da653f30483a721d3fbe602d"
+    "WEDDING_RING_7": {
+      "name": "Exquisite Ring of Love",
+      "rarity": "epic",
+      "texture": "\/head\/8fb265c8cc6136063b4eb15450fe1fe1ab7738b0bf54d265490e1ef49da60b7c"
     },
-    "SAND": {
-      "type": "mining",
-      "head": "\/head\/81f8e2ad021eefd1217e650e848b57622144d2bf8a39fbd50dab937a7eac10de"
+    "WEDDING_RING_9": {
+      "name": "Legendary Ring of Love",
+      "rarity": "legendary",
+      "texture": "\/head\/8fb265c8cc6136063b4eb15450fe1fe1ab7738b0bf54d265490e1ef49da60b7c"
     },
-    "CLAY": {
-      "type": "fishing",
-      "head": "\/head\/af9b312c8f53da289060e6452855072e07971458abbf338ddec351e16c171ff8"
+    "CAMPFIRE_TALISMAN_1": {
+      "name": "Campfire Initiate Badge",
+      "rarity": "common",
+      "texture": "\/head\/af41cc2250d2f5cfcf4384aa0cf3e23c19767549a2a8abd7532bd52c5a1de"
     },
-    "ICE": {
-      "type": "mining",
-      "head": "\/head\/e500064321b12972f8e5750793ec1c823da4627535e9d12feaee78394b86dabe"
+    "CAMPFIRE_TALISMAN_4": {
+      "name": "Campfire Adept Badge",
+      "rarity": "uncommon",
+      "texture": "\/head\/af41cc2250d2f5cfcf4384aa0cf3e23c19767549a2a8abd7532bd52c5a1de"
     },
-    "SNOW": {
-      "type": "mining",
-      "head": "\/head\/f6d180684c3521c9fc89478ba4405ae9ce497da8124fa0da5a0126431c4b78c3"
+    "CAMPFIRE_TALISMAN_8": {
+      "name": "Campfire Cultist Badge",
+      "rarity": "rare",
+      "texture": "\/head\/a3cfd94e925eab4330a768afcae6c128b0a28e23149eee41c9c6df894c24f3de"
     },
-    "COAL": {
-      "type": "mining",
-      "head": "\/head\/425b8d2ea965c780652d29c26b1572686fd74f6fe6403b5a3800959feb2ad935"
+    "CAMPFIRE_TALISMAN_13": {
+      "name": "Campfire Scion Badge",
+      "rarity": "epic",
+      "texture": "\/head\/a3cfd94e925eab4330a768afcae6c128b0a28e23149eee41c9c6df894c24f3de"
     },
-    "IRON": {
-      "type": "mining",
-      "head": "\/head\/af435022cb3809a68db0fccfa8993fc1954dc697a7181494905b03fdda035e4a"
+    "CAMPFIRE_TALISMAN_21": {
+      "name": "Campfire God Badge",
+      "rarity": "legendary",
+      "texture": "\/head\/4080bbefca87dc0f36536b6508425cfc4b95ba6e8f5e6a46ff9e9cb488a9ed"
     },
-    "GOLD": {
-      "type": "mining",
-      "head": "\/head\/f6da04ed8c810be29bba53c62e712d65cfb25238117b94d7e85a4615775bf14f"
+    "FARMING_TALISMAN": null,
+    "VACCINE_TALISMAN": {
+      "name": "Vaccine Talisman",
+      "rarity": "common",
+      "texture": "\/head\/71408ede8b4f444015c59abd5cd32b8769de51881edabcc15abb6519f5b49"
     },
-    "DIAMOND": {
-      "type": "mining",
-      "head": "\/head\/2354bbe604dfe58bf92e7729730d0c8e37844e831ee3816d7e8427c27a1824a2"
+    "WOOD_TALISMAN": {
+      "name": "Wood Affinity Talisman",
+      "rarity": "uncommon",
+      "texture": "\/head\/219ad5215ba6c7e4e4d0668f02d3a9c937ac536acc75ac49e7bd7b1c8ccf80"
     },
-    "LAPIS": {
-      "type": "mining",
-      "head": "\/head\/64fd97b9346c1208c1db3957530cdfc5789e3e65943786b0071cf2b2904a6b5c"
+    "SKELETON_TALISMAN": null,
+    "COIN_TALISMAN": {
+      "name": "Talisman of Coins",
+      "rarity": "common",
+      "texture": "\/head\/452dca68c8f8af533fb737faeeacbe717b968767fc18824dc2d37ac789fc77"
     },
-    "REDSTONE": {
-      "type": "mining",
-      "head": "\/head\/1edefcf1a89d687a0a4ecf1589977af1e520fc673c48a0434be426612e8faa67"
+    "MAGNETIC_TALISMAN": null,
+    "GRAVITY_TALISMAN": null,
+    "VILLAGE_TALISMAN": null,
+    "MINE_TALISMAN": null,
+    "NIGHT_VISION_CHARM": null,
+    "LAVA_TALISMAN": null,
+    "SCAVENGER_TALISMAN": null,
+    "FIRE_TALISMAN": null,
+    "PIGGY_BANK": null,
+    "CRACKED_PIGGY_BANK": null,
+    "BROKEN_PIGGY_BANK": null,
+    "PIGS_FOOT": null,
+    "WOLF_PAW": null,
+    "FROZEN_CHICKEN": null,
+    "FISH_AFFINITY_TALISMAN": null,
+    "FARMER_ORB": null,
+    "HASTE_RING": null,
+    "EXPERIENCE_ARTIFACT": null,
+    "NEW_YEAR_CAKE_BAG": null,
+    "DAY_CRYSTAL": {
+      "name": "Day Crystal",
+      "rarity": "rare",
+      "texture": "\/item\/DAY_CRYSTAL"
     },
-    "EMERALD": {
-      "type": "mining",
-      "head": "\/head\/9bf57f3401b130c6b53808f2b1e119cc7b984622dac7077bbd53454e1f65bbf0"
+    "NIGHT_CRYSTAL": {
+      "name": "Night Crystal",
+      "rarity": "rare",
+      "texture": "\/item\/NIGHT_CRYSTAL"
     },
-    "QUARTZ": {
-      "type": "mining",
-      "head": "\/head\/d270093be62dfd3019f908043db570b5dfd366fd5345fccf9da340e75c701a60"
+    "FEATHER_TALISMAN": null,
+    "FEATHER_RING": null,
+    "FEATHER_ARTIFACT": null,
+    "POTION_AFFINITY_TALISMAN": null,
+    "RING_POTION_AFFINITY": null,
+    "ARTIFACT_POTION_AFFINITY": null,
+    "HEALING_TALISMAN": null,
+    "HEALING_RING": null,
+    "CANDY_TALISMAN": null,
+    "CANDY_RING": null,
+    "CANDY_ARTIFACT": null,
+    "MELODY_HAIR": {
+      "name": "Melody's Hair",
+      "rarity": "epic",
+      "texture": "\/item\/MELODY_HAIR"
     },
-    "ENDER_STONE": {
-      "name": "End Stone",
-      "type": "mining",
-      "head": "\/head\/7994be3dcfbb4ed0a5a7495b7335af1a3ced0b5888b5007286a790767c3b57e6"
+    "SEA_CREATURE_TALISMAN": {
+      "name": "Sea Creature Talisman",
+      "rarity": "common",
+      "texture": "\/head\/eaa44b170d749ce4099aa78d98945d193651484089efb87ba88892c6fed2af31"
     },
-    "WHEAT": {
-      "type": "farming",
-      "head": "\/head\/bbc571c5527336352e2fee2b40a9edfa2e809f64230779aa01253c6aa535881b"
+    "SEA_CREATURE_RING": null,
+    "SEA_CREATURE_ARTIFACT": null,
+    "INTIMIDATION_TALISMAN": null,
+    "INTIMIDATION_RING": null,
+    "INTIMIDATION_ARTIFACT": null,
+    "WOLF_TALISMAN": null,
+    "WOLF_RING": null,
+    "BAT_TALISMAN": null,
+    "BAT_RING": null,
+    "BAT_ARTIFACT": null,
+    "DEVOUR_RING": null,
+    "ZOMBIE_TALISMAN": null,
+    "ZOMBIE_RING": null,
+    "ZOMBIE_ARTIFACT": null,
+    "SPIDER_TALISMAN": null,
+    "SPIDER_RING": null,
+    "SPIDER_ARTIFACT": null,
+    "ENDER_ARTIFACT": null,
+    "TARANTULA_TALISMAN": null,
+    "SURVIVOR_CUBE": null,
+    "WITHER_ARTIFACT": null,
+    "RED_CLAW_TALISMAN": null,
+    "RED_CLAW_RING": null,
+    "RED_CLAW_ARTIFACT": null,
+    "BAIT_RING": null,
+    "SHADY_RING": null,
+    "CROOKED_ARTIFACT": null,
+    "SEAL_OF_THE_FAMILY": null,
+    "HUNTER_TALISMAN": null,
+    "HUNTER_RING": null,
+    "PARTY_HAT_CRAB": null,
+    "POTATO_TALISMAN": null,
+    "EMERALD_RING": {
+      "name": "Emerald Ring",
+      "rarity": "uncommon",
+      "texture": "\/head\/f36b821c1afdd5a5d14e3b3bd0a32263c8df5df5db6e1e88bf65e97b27a8530"
     },
-    "MELON": {
-      "type": "farming",
-      "head": "\/head\/95d54539ac8d3fba9696c91f4dcc7f15c320ab86029d5c92f12359abd4df811e"
+    "PERSONAL_COMPACTOR_4000": {
+      "name": "Personal Compactor 4000",
+      "rarity": "uncommon",
+      "texture": "\/item\/PERSONAL_COMPACTOR_4000"
     },
-    "PUMPKIN": {
-      "type": "farming",
-      "head": "\/head\/f3fb663e843a7da787e290f23c8af2f97f7b6f572fa59a0d4d02186db6eaabb7"
+    "PERSONAL_COMPACTOR_5000": {
+      "name": "Personal Compactor 5000",
+      "rarity": "rare",
+      "texture": "\/item\/PERSONAL_COMPACTOR_5000"
     },
-    "CARROT": {
-      "type": "farming",
-      "head": "\/head\/4baea990b45d330998cb0c1f8515c27b24f93bff1df0db056e647f8200d03b9d"
+    "PERSONAL_COMPACTOR_6000": {
+      "name": "Personal Compactor 6000",
+      "rarity": "epic",
+      "texture": "\/item\/PERSONAL_COMPACTOR_6000"
     },
-    "POTATO": {
-      "type": "farming",
-      "head": "\/head\/7dda35a044cb0374b516015d991a0f65bf7d0fb6566e350496642cf2059ff1d9"
+    "PERSONAL_COMPACTOR_7000": {
+      "name": "Personal Compactor 7000",
+      "rarity": "legendary",
+      "texture": "\/item\/PERSONAL_COMPACTOR_7000"
     },
-    "MUSHROOM": {
-      "type": "farming",
-      "head": "\/head\/4a3b58341d196a9841ef1526b367209cbc9f96767c24f5f587cf413d42b74a93"
+    "SPEED_TALISMAN": {
+      "name": "Speed Talisman",
+      "rarity": "common",
+      "texture": "\/head\/8624bacb5f1986e6477abce4ae7dca1820a5260b6233b55ba1d9ba936c84b"
     },
-    "CACTUS": {
-      "type": "farming",
-      "head": "\/head\/ef93ec6e67a6cd272c9a9684b67df62584cb084a265eee3cde141d20e70d7d72"
+    "SPEED_RING": {
+      "name": "Speed Ring",
+      "rarity": "uncommon",
+      "texture": "\/head\/c2da40a91f8fa7e1cbdd934da92a7668dc95d75b57c9c80a381c5e178cee6ba7"
     },
-    "COCOA": {
-      "type": "farming",
-      "head": "\/head\/acb680e96f6177cd8ffaf27e9625d8b544d720afc50738801818d0e745c0e5f7"
+    "SPEED_ARTIFACT": {
+      "name": "Speed Artifact",
+      "rarity": "rare",
+      "texture": "\/head\/f06706eecb2d558ace27abda0b0b7b801d36d17dd7a890a9520dbe522374f8a6"
     },
-    "SUGAR_CANE": {
-      "type": "farming",
-      "head": "\/head\/2fced0e80f0d7a5d1f45a1a7217e6a99ea9720156c63f6efc84916d4837fabde"
+    "CAT_TALISMAN": {
+      "name": "Cat Talisman",
+      "rarity": "uncommon",
+      "texture": "\/head\/3a12188258601bcb7f76e3e2489555a26c0d76e6efec2fd966ca372b6dde00"
     },
-    "NETHER_WARTS": {
-      "name": "Nether Wart",
-      "type": "farming",
-      "head": "\/head\/71a4620bb3459c1c2fa74b210b1c07b4a02254351f75173e643a0e009a63f558"
+    "LYNX_TALISMAN": {
+      "name": "Lynx Talisman",
+      "rarity": "rare",
+      "texture": "\/head\/12b84e9c79815a39b7be8ce6e91248d71f760f42b5a4de5e266b44b87a952229"
     },
-    "FLOWER": {
-      "type": "foraging",
-      "head": "\/head\/baa7c59b2f792d8d091aecacf47a19f8ab93f3fd3c48f6930b1c2baeb09e0f9b"
+    "CHEETAH_TALISMAN": {
+      "name": "Cheetah Talisman",
+      "rarity": "epic",
+      "texture": "\/head\/1553f8856dd46de7e05d46f5fc2fb58eafba6829b11b160a1545622e89caaa33"
     },
-    "FISHING": {
-      "type": "fishing",
-      "head": "\/head\/53ea0fd89524db3d7a3544904933830b4fc8899ef60c113d948bb3c4fe7aabb1"
+    "SCARF_STUDIES": {
+      "name": "Scarf's Studies",
+      "rarity": "rare",
+      "texture": "\/head\/6de4ab129e137f9f4cbf7060318ee1748dc39da9b5d129a8da0e614e2337693"
     },
-    "ZOMBIE": {
-      "type": "combat",
-      "head": "\/head\/196063a884d3901c41f35b69a8c9f401c61ac9f6330f964f80c35352c3e8bfb0"
+    "SCARF_THESIS": {
+      "name": "Scarf's Thesis",
+      "rarity": "epic",
+      "texture": "\/head\/8ce4c87eb4dde27459e3e7f85921e7e57b11199260caa5ce63f139ee3d188c"
     },
-    "REVENANT": {
-      "type": "combat",
-      "head": "\/head\/a3dce8555923558d8d74c2a2b261b2b2d630559db54ef97ed3f9c30e9a20aba"
+    "SCARF_GRIMOIRE": {
+      "name": "Scarf's Grimoire",
+      "rarity": "legendary",
+      "texture": "\/head\/bafb195cc75f31b619a077b7853653254ac18f220dc32d1412982ff437b4d57a"
     },
-    "SKELETON": {
-      "type": "combat",
-      "head": "\/head\/2fe009c5cfa44c05c88e5df070ae2533bd682a728e0b33bfc93fd92a6e5f3f64"
+    "TREASURE_TALISMAN": {
+      "name": "Treasure Talisman",
+      "rarity": "rare",
+      "texture": "\/head\/31f320025142596396032cc0088e2ac36489f24cfa5e9dda13e081cf69f77f4d"
     },
-    "CREEPER": {
-      "type": "combat",
-      "head": "\/head\/54a92c2f8c1b3774e80492200d0b2218d7b019314a73c9cb5b9f04cfcacec471"
+    "TREASURE_RING": {
+      "name": "Treasure Ring",
+      "rarity": "epic",
+      "texture": "\/head\/6a1cc5525a217a399b5b86c32f0f22dd91378874b5f44d5a383e18bc0f3bc301"
     },
-    "SPIDER": {
-      "type": "combat",
-      "head": "\/head\/e77c4c284e10dea038f004d7eb43ac493de69f348d46b5c1f8ef8154ec2afdd0"
+    "TREASURE_ARTIFACT": {
+      "name": "Treasure Artifact",
+      "rarity": "legendary",
+      "texture": "\/head\/e10f20a55b6e188ebe7578459b64a6fbd825067bc497b925ca43c2643d059025"
     },
-    "TARANTULA": {
-      "type": "combat",
-      "head": "\/head\/97e86007064c9ce26eb4bad8ac9aa30aac309e70a9e0b615936318dea40a721"
+    "MINERAL_TALISMAN": {
+      "name": "Mineral Talisman",
+      "rarity": "rare",
+      "texture": "\/head\/3cbd70f73e2e09566ef914c697b13f48b97bfd6c11c83e540a15ff4d736b9c16"
     },
-    "CAVESPIDER": {
-      "name": "Cave Spider",
-      "type": "combat",
-      "head": "\/head\/5d815df973bcd01ee8dfdb3bd74f0b7cb8fef2a70559e4faa5905127bbb4a435"
+    "BEASTMASTER_CREST_COMMON": {
+      "name": "Beastmaster Crest",
+      "rarity": "common",
+      "texture": "\/head\/53415667de3fb89c5f40c880c39e4971a0caa7f3a9d2c8f712ba37fadcee"
     },
-    "BLAZE": {
-      "type": "combat",
-      "head": "\/head\/3208fbd64e97c6e00853d36b3a201e4803cae43dcbd6936a3cece050912e1f20"
+    "BEASTMASTER_CREST_UNCOMMON": {
+      "name": "Beastmaster Crest",
+      "rarity": "uncommon",
+      "texture": "\/head\/53415667de3fb89c5f40c880c39e4971a0caa7f3a9d2c8f712ba37fadcee"
     },
-    "MAGMA_CUBE": {
-      "type": "combat",
-      "head": "\/head\/18c9a7a24da7e3182e4f62fa62762e21e1680962197c7424144ae1d2c42174f7"
+    "BEASTMASTER_CREST_RARE": {
+      "name": "Beastmaster Crest",
+      "rarity": "rare",
+      "texture": "\/head\/53415667de3fb89c5f40c880c39e4971a0caa7f3a9d2c8f712ba37fadcee"
     },
-    "ENDERMAN": {
-      "type": "combat",
-      "head": "\/head\/e460d20ba1e9cd1d4cfd6d5fb0179ff41597ac6d2461bd7ccdb58b20291ec46e"
+    "BEASTMASTER_CREST_EPIC": {
+      "name": "Beastmaster Crest",
+      "rarity": "epic",
+      "texture": "\/head\/53415667de3fb89c5f40c880c39e4971a0caa7f3a9d2c8f712ba37fadcee"
     },
-    "GHAST": {
-      "type": "combat",
-      "head": "\/head\/2478547d122ec83a818b46f3b13c5230429559e40c7d144d4ec225f92c1494b3"
+    "BEASTMASTER_CREST_LEGENDARY": {
+      "name": "Beastmaster Crest",
+      "rarity": "legendary",
+      "texture": "\/head\/53415667de3fb89c5f40c880c39e4971a0caa7f3a9d2c8f712ba37fadcee"
     },
-    "SLIME": {
-      "type": "combat",
-      "head": "\/head\/c95eced85db62c922724efca804ea0060c4a87fcdedf2fd5c4f9ac1130a6eb26"
+    "RAGGEDY_SHARK_TOOTH_NECKLACE": {
+      "name": "Raggedy Shark Tooth Necklace",
+      "rarity": "common",
+      "texture": "\/head\/d77309ddebbdc278ee2772d92fa4905dd850c5f213a77ffaed5a67eecb23984a"
     },
-    "COW": {
-      "type": "farming",
-      "head": "\/head\/c2fd8976e1b64aebfd38afbe62aa1429914253df3417ace1f589e5cf45fbd717"
+    "DULL_SHARK_TOOTH_NECKLACE": {
+      "name": "Dull Shark Tooth Necklace",
+      "rarity": "uncommon",
+      "texture": "\/head\/f3ab3aa1ade74915dacd298613904361c18877eebfa81d9f936309f271e1389a"
     },
-    "PIG": {
-      "type": "farming",
-      "head": "\/head\/a9bb5f0c56408c73cfa412345c8fc51f75b6c7311ae60e7099c4781c48760562"
+    "HONED_SHARK_TOOTH_NECKLACE": {
+      "name": "Honed Shark Tooth Necklace",
+      "rarity": "rare",
+      "texture": "\/head\/e6b120938d83bf49ddab3a78666a0bf37a3de7b46b9d97b984da3be62ce3e5e3"
     },
-    "CHICKEN": {
-      "type": "farming",
-      "head": "\/head\/a04b7da13b0a97839846aa5648f5ac6736ba0ca9fbf38cd366916e417153fd7f"
+    "SHARP_SHARK_TOOTH_NECKLACE": {
+      "name": "Sharp Shark Tooth Necklace",
+      "rarity": "epic",
+      "texture": "\/head\/228e3fb6bd9887d60434ccd279ec3e59227826c9a2f8dd9ce9899ea6683d4ee8"
     },
-    "SHEEP": {
-      "type": "farming",
-      "head": "\/head\/fd15d4b8bce708f77f963f1b4e87b1b969fef1766a3e9b67b249c59d5e80e8c5"
+    "RAZOR_SHARP_SHARK_TOOTH_NECKLACE": {
+      "name": "Razor Sharp Shark Tooth Necklace",
+      "rarity": "legendary",
+      "texture": "\/head\/7792676664ac711488641f72b25961835613da9ffd43ea3bdd163cb365343a6"
     },
-    "RABBIT": {
-      "type": "farming",
-      "head": "\/head\/ef59c052d339bb6305cad370fd8c52f58269a957dfaf433a255597d95e68a373"
+    "HEGEMONY_ARTIFACT": {
+      "name": "Hegemony Artifact",
+      "rarity": "legendary",
+      "texture": "\/head\/313384a293cfbba3489b483ebc1de7584ca2726d7f5c3a620513474925e87b97"
     },
-    "OAK": {
-      "type": "foraging",
-      "head": "\/head\/57e4a30f361204ea9cded3fbff850160731a0081cc452cfe26aed48e97f6364b"
+    "BITS_TALISMAN": {
+      "name": "Bits Talisman",
+      "rarity": "rare",
+      "texture": "\/head\/2ebadb1725aa85bb2810d0b73bf7cd74db3d9d8fc61c4cf9e543dbcc199187cc"
     },
-    "BIRCH": {
-      "type": "foraging",
-      "head": "\/head\/eb74109dbb88178afb7a9874afc682904cedb3df75978a51f7beeb28f924251"
+    "BAT_PERSON_TALISMAN": {
+      "name": "Bat Person Talisman",
+      "rarity": "common",
+      "texture": "\/head\/b841a49b199a59c431bf3fc3783f6b6545ce78c38042617f66ebd87cdd548e8c"
     },
-    "SPRUCE": {
-      "type": "foraging",
-      "head": "\/head\/7ba04bfe516955fd43932dcb33bd5eac20b38a231d9fa8415b3fb301f60f7363"
+    "BAT_PERSON_RING": {
+      "name": "Bat Person Ring",
+      "rarity": "uncommon",
+      "texture": "\/head\/b4451ecf2584a36de4297031c6d852977d3e249e85a3f0add967fcd7d6bde953"
     },
-    "DARK_OAK": {
-      "type": "foraging",
-      "head": "\/head\/5ecdc8d6b2b7e081ed9c36609052c91879b89730b9953adbc987e25bf16c5581"
+    "BAT_PERSON_ARTIFACT": {
+      "name": "Bat Person Artifact",
+      "rarity": "rare",
+      "texture": "\/head\/c4444c3982720b30938f504c4374232b11a4f6f56cd57c973d8abb07fd0dcff7"
     },
-    "ACACIA": {
-      "type": "foraging",
-      "head": "\/head\/42183eaf5b133b838db13d145247e389ab4b4f33c67846363792dc3d82b524c0"
+    "CANDY_RELIC": {
+      "name": "Candy Relic",
+      "rarity": "legendary",
+      "texture": "\/head\/39668767f1141835e2c49ad2b415598f1b166be9173902a0257e77704f913e1f"
     },
-    "JUNGLE": {
-      "type": "foraging",
-      "head": "\/head\/2fe73d981690c1be346a16331819c4e8800859fcdc3e5153718c6ad45861924c"
+    "LUCKY_HOOF": null,
+    "ETERNAL_HOOF": null,
+    "WITHER_RELIC": {
+      "name": "Wither Relic",
+      "rarity": "epic",
+      "texture": "\/head\/964e1c3e315c8d8fffc37985b6681c5bd16a6f97ffd07199e8a05efbef103793"
+    },
+    "CATACOMBS_EXPERT_RING": {
+      "name": "Catacombs Expert Ring",
+      "rarity": "epic",
+      "texture": "\/head\/c078c68f6f9669370ea39be72945a3a8688e0e024e5d6158fd854fb2b80fb"
+    },
+    "AUTO_RECOMBOBULATOR": {
+      "name": "Auto Recombobulator",
+      "rarity": "legendary",
+      "texture": "\/head\/5dff8dbbab15bfbb11e23b1f50b34ef548ad9832c0bd7f5a13791adad0057e1b"
     }
   }
 }
