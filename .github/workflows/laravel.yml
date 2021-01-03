@@ -39,7 +39,6 @@ jobs:
           ${{ runner.os }}-
     - name: Install Composer Dependencies
       uses: php-actions/composer@v5
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
     - name: Install NPM Dependencies
       run: npm install
     - name: Generate key
