@@ -39,6 +39,9 @@ jobs:
           ${{ runner.os }}-
     - name: Install Composer Dependencies
       uses: php-actions/composer@v5
+      with:
+        php_version: 7.4
+        args: --ignore-platform-reqs
     - name: Install NPM Dependencies
       run: npm install
     - name: Generate key
