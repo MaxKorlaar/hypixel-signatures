@@ -1,6 +1,6 @@
 <?php
-    /**
- * Copyright (c) 2020 Max Korlaar
+    /*
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,9 +35,9 @@
     use Cache;
     use File;
     use Illuminate\Console\Command;
+    use Illuminate\Contracts\Filesystem\FileNotFoundException;
     use Illuminate\Http\Client\RequestException;
     use Illuminate\Support\Collection;
-    use Illuminate\Support\Facades\Http;
     use JsonException;
     use Symfony\Component\Process\Exception\ProcessFailedException;
     use Symfony\Component\Process\Process;
@@ -54,45 +54,49 @@
          * @var string
          */
         protected $signature = 'skyblock:get-constants';
-        protected string $constantsUrl = 'https://github.com/LeaPhant/skyblock-stats/raw/master/src/constants.js';
-        protected string $licenseUrl = 'https://github.com/LeaPhant/skyblock-stats/raw/master/LICENSE';
+        protected string $constantsPath;
+        protected string $licensePath;
 
         /**
          * The console command description.
          *
          * @var string
          */
-        protected $description = 'Downloads and parses the constants used in various SkyBlock calculations from the skyblock-stats GitHub repository';
+        protected $description = 'Parses the constants used in various SkyBlock calculations from the SkyCrypt GitHub repository';
+
+        public function __construct() {
+            $this->licensePath   = resource_path('data/skyblock/SkyCrypt/LICENSE');
+            $this->constantsPath = resource_path('data/skyblock/SkyCrypt/src/constants');
+
+            parent::__construct();
+        }
 
         /**
          * Execute the console command.
          *
          * @return int
          * @throws RequestException|JsonException
+         * @throws FileNotFoundException
          */
         public function handle(): int {
-            $this->info('Now attempting to download SkyBlock constants from ' . $this->constantsUrl);
-            $licenseResponse = Http::get($this->licenseUrl);
-            if (!$licenseResponse->successful()) {
-                $this->error('Could not download license information from ' . $this->licenseUrl . ', aborting');
+            if (!File::exists($this->licensePath)) {
+                $this->error('Could not copy license information from ' . $this->licensePath . ', aborting. Did you initialize the git submodules yet?');
+
                 return 1;
             }
+
+            File::copy($this->licensePath, resource_path('data/skyblock/LICENSE'));
+
+            $licenseResponse = File::get($this->licensePath);
 
             $this->info('License information for the source code that is being obtained:');
-            $this->line($licenseResponse->body());
+            $this->line($licenseResponse);
 
-            File::put(resource_path('data/skyblock/LICENSE'), $licenseResponse->body());
+            if (!File::isDirectory($this->constantsPath)) {
+                $this->error($this->constantsPath . ' is not a directory, aborting');
 
-            $response = Http::get($this->constantsUrl);
-            if (!$response->successful()) {
-                $this->error('Could not download SkyBlock constants from GitHub');
-                $response->throw();
                 return 1;
             }
-
-            $constantsRaw = $response->body();
-
-            File::put(resource_path('data/skyblock/constants.js'), $constantsRaw);
 
             $this->info('Parsing source code and converting it to JSON. This requires Node.js to be installed on your system.');
 
@@ -105,30 +109,14 @@
 
             $constants = new Collection(json_decode($process->getOutput(), false, 512, JSON_THROW_ON_ERROR));
 
-            File::put(resource_path('data/skyblock/constants.json'), $constants->only([
-                'leveling_xp',
-                'runecrafting_xp',
-                'bonus_stats',
-                'stat_template',
-                'base_stats',
-                'slayer_xp',
-                'slayer_cost',
-                'pet_rarity_offset',
-                'pet_levels',
-                'pet_data',
-                'pet_items',
-                'pet_value',
-                'pet_rewards',
-                'item_types',
-                'talisman_upgrades',
-                'talisman_duplicates',
-                'minions'
-            ])->toJson());
+            File::put(resource_path('data/skyblock/constants.json'), $constants->toJson());
+
             File::delete(resource_path('data/skyblock/constants.js'));
 
             $this->info('Successfully downloaded and parsed constants.js to constants.json');
 
             Cache::pull('skyblock.constants');
+
             return 0;
         }
 
