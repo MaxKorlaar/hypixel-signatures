@@ -129,7 +129,6 @@
       <path value="$PROJECT_DIR$/vendor/mobiledetect/mobiledetectlib" />
       <path value="$PROJECT_DIR$/vendor/league/pipeline" />
       <path value="$PROJECT_DIR$/vendor/hisorange/browser-detect" />
-      <path value="$PROJECT_DIR$/vendor/piwik/device-detector" />
       <path value="$PROJECT_DIR$/vendor/mustangostang/spyc" />
       <path value="$PROJECT_DIR$/vendor/jaybizzle/crawler-detect" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
@@ -143,6 +142,7 @@
       <path value="$PROJECT_DIR$/vendor/react/promise" />
       <path value="$PROJECT_DIR$/vendor/phpunit/php-token-stream" />
       <path value="$PROJECT_DIR$/vendor/lunakid/anim-gif" />
+      <path value="$PROJECT_DIR$/vendor/matomo/device-detector" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.4" />

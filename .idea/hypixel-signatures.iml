@@ -74,7 +74,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-text-template" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-timer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/piwik/device-detector" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/plancke/hypixel-php" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pocketmine/binaryutils" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/pocketmine/nbt" />
@@ -147,6 +146,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/matomo/device-detector" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
