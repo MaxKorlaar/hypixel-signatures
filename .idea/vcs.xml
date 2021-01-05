@@ -5,7 +5,16 @@
       <inspection_tool class="GrazieCommit" enabled="true" level="TYPO" enabled_by_default="true" />
     </profile>
   </component>
+  <component name="GithubSharedProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+        <option value="testing" />
+      </list>
+    </option>
+  </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/resources/data/skyblock/SkyCrypt" vcs="Git" />
   </component>
 </project>

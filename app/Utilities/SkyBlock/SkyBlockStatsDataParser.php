@@ -348,20 +348,20 @@
                 // Emerald Armor set adds 1 HP and 1 Defense per 3000 emeralds in collection
                 $emeraldBonus = min(350, floor($profile['collection']['EMERALD'] / 3000));
 
-                $items['armor'][0]['stats']['health']  += $emeraldBonus;
-                $items['armor'][0]['stats']['defense'] += $emeraldBonus;
+                $items['armor'][0]['stats']['health']  = ($items['armor'][0]['stats']['health'] ?? 0) + $emeraldBonus;
+                $items['armor'][0]['stats']['defense'] = ($items['armor'][0]['stats']['defense'] ?? 0) + $emeraldBonus;
             } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
                     return Str::startsWith($armorPiece->getTagId(), 'FAIRY_');
                 })->count() === 4) {
-                $items['armor'][0]['stats']['speed'] += 10;
+                $items['armor'][0]['stats']['speed'] += ($items['armor'][0]['stats']['speed'] ?? 0) + 10;
             } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
                     return Str::startsWith($armorPiece->getTagId(), 'SPEEDSTER_');
                 })->count() === 4) {
-                $items['armor'][0]['stats']['speed'] += 20;
+                $items['armor'][0]['stats']['speed'] += ($items['armor'][0]['stats']['speed'] ?? 0) + 20;
             } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
                     return Str::startsWith($armorPiece->getTagId(), 'YOUNG_DRAGON_');
                 })->count() === 4) {
-                $items['armor'][0]['stats']['speed'] += 70;
+                $items['armor'][0]['stats']['speed'] = ($items['armor'][0]['stats']['speed'] ?? 0) + 70;
             }
 
             /**
