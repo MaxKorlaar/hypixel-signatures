@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -72,7 +72,7 @@ namespace App\Jobs\Guild;
          * @throws LimiterTimeoutException
          */
         public function handle(): void {
-            Redis::throttle('hypixel.guild.player_data')->allow(500)->every(60)->block(0)->then(function () {
+            Redis::throttle('hypixel.guild.player_data')->allow(1000)->every(60)->block(0)->then(function () {
                 $api = new HypixelAPI();
 
                 $player = $api->getPlayerByUuid($this->uuid);
@@ -81,7 +81,7 @@ namespace App\Jobs\Guild;
                 if (($player instanceof HypixelObject) && $player->getResponse() !== null && !$player->getResponse()->wasSuccessful()) {
                     Log::error('Bad API response in LoadPlayerData', [$player->getResponse()->getData()]);
 
-                    return $this->release(120);
+                    return $this->release(30);
                 }
 
                 if ($player !== null) {

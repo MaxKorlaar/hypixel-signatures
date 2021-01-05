@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -157,7 +157,7 @@
         |
         */
 
-        'memory_limit' => 64,
+        'memory_limit' => 128,
 
         /*
         |--------------------------------------------------------------------------
@@ -178,14 +178,14 @@
                     'balance'     => 'auto',
                     'processes'   => 1,
                     'tries'       => 5,
-                    'retry_after' => 60,
-                    'timeout'     => 600
+                    'retry_after' => 120,
+                    'timeout'     => 60
                 ],
                 'supervisor-2' => [
                     'connection'  => 'redis',
                     'queue'       => ['hypixel-api'],
                     'balance'     => 'auto',
-                    'processes'   => 10,
+                    'processes'   => 20,
                     'tries'       => 1,
                     'retry_after' => 60,
                     'timeout'     => 15
@@ -209,7 +209,7 @@
                     'processes'   => 20,
                     'tries'       => 5,
                     'retry_after' => 60,
-                    'timeout'     => 30
+                    'timeout' => 15
                 ],
             ],
         ],
