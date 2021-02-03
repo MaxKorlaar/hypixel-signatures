@@ -19,6 +19,7 @@ mix-manifest.json
 # Edit at https://www.gitignore.io/?templates=composer,phpstorm
 
 ### Composer ###
+composer-setup.php
 composer.phar
 /vendor/
 
@@ -38,23 +39,23 @@ composer.phar
 .idea/**/shelf
 
 # Generated files
-.idea/**/contentModel.xml
+#.idea/**/contentModel.xml
 
 # Sensitive or high-churn files
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml
-.idea/deployment.xml
-.idea/sshConfigs.xml
-.idea/webServers.xml
+#.idea/**/dataSources/
+#.idea/**/dataSources.ids
+#.idea/**/dataSources.local.xml
+#.idea/**/sqlDataSources.xml
+#.idea/**/dynamic.xml
+#.idea/**/uiDesigner.xml
+#.idea/**/dbnavigator.xml
+#.idea/deployment.xml
+#.idea/sshConfigs.xml
+#.idea/webServers.xml
 
 # Gradle
-.idea/**/gradle.xml
-.idea/**/libraries
+#.idea/**/gradle.xml
+#.idea/**/libraries
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
@@ -70,7 +71,7 @@ composer.phar
 cmake-build-*/
 
 # Mongo Explorer plugin
-.idea/**/mongoSettings.xml
+#.idea/**/mongoSettings.xml
 
 # File-based project format
 *.iws
@@ -85,7 +86,7 @@ out/
 atlassian-ide-plugin.xml
 
 # Cursive Clojure plugin
-.idea/replstate.xml
+#.idea/replstate.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
@@ -94,10 +95,10 @@ crashlytics-build.properties
 fabric.properties
 
 # Editor-based Rest Client
-.idea/httpRequests
+#.idea/httpRequests
 
 # Android studio 3.1+ serialized cache file
-.idea/caches/build_file_checksums.ser
+#.idea/caches/build_file_checksums.ser
 
 ### PhpStorm Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
@@ -108,17 +109,22 @@ fabric.properties
 # *.ipr
 
 # Sonarlint plugin
-.idea/**/sonarlint/
+#.idea/**/sonarlint/
 
 # SonarQube Plugin
-.idea/**/sonarIssues.xml
+#.idea/**/sonarIssues.xml
 
 # Markdown Navigator plugin
-.idea/**/markdown-navigator.xml
-.idea/**/markdown-navigator/
+#.idea/**/markdown-navigator.xml
+#.idea/**/markdown-navigator/
 
 # End of https://www.gitignore.io/api/composer,phpstorm
-.idea/$CACHE_FILE$
-.idea/commandlinetools/Laravel*.xml
+#.idea/$CACHE_FILE$
+#.idea/commandlinetools/Laravel*.xml
+
+.idea
 
 .vagrant
+
+.phpstorm.meta.php
+_ide_helper.php
