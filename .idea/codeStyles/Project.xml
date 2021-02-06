@@ -7,10 +7,12 @@
       <option name="HEX_COLOR_UPPER_CASE" value="true" />
       <option name="KEEP_SINGLE_LINE_BLOCKS" value="true" />
     </CssCodeStyleSettings>
-    <DB2CodeStyleSettings version="0">
-      <option name="myVersion" value="0" />
-      <option name="ALIAS_CASE" value="4" />
+    <DB2CodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
       <option name="TYPE_CASE" value="3" />
+      <option name="CUSTOM_TYPE_CASE" value="3" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="0" />
       <option name="QUERY_TRUE_INDENT" value="false" />
       <option name="QUERY_ALIGN_ELEMENTS" value="false" />
       <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
@@ -42,10 +44,12 @@
       <option name="EXPR_CASE_THEN_WRAP" value="true" />
       <option name="PRIMARY_KEY_NAME_TEMPLATE" value="{table}_{columns}_pk" />
     </DB2CodeStyleSettings>
-    <DerbyCodeStyleSettings version="0">
-      <option name="myVersion" value="0" />
-      <option name="ALIAS_CASE" value="4" />
+    <DerbyCodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
       <option name="TYPE_CASE" value="3" />
+      <option name="CUSTOM_TYPE_CASE" value="3" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="0" />
       <option name="QUERY_TRUE_INDENT" value="false" />
       <option name="QUERY_ALIGN_ELEMENTS" value="false" />
       <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
@@ -77,10 +81,12 @@
       <option name="EXPR_CASE_THEN_WRAP" value="true" />
       <option name="PRIMARY_KEY_NAME_TEMPLATE" value="{table}_{columns}_pk" />
     </DerbyCodeStyleSettings>
-    <H2CodeStyleSettings version="0">
-      <option name="myVersion" value="0" />
-      <option name="ALIAS_CASE" value="4" />
+    <H2CodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
       <option name="TYPE_CASE" value="3" />
+      <option name="CUSTOM_TYPE_CASE" value="3" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="0" />
       <option name="QUERY_TRUE_INDENT" value="false" />
       <option name="QUERY_ALIGN_ELEMENTS" value="false" />
       <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
@@ -112,10 +118,12 @@
       <option name="EXPR_CASE_THEN_WRAP" value="true" />
       <option name="PRIMARY_KEY_NAME_TEMPLATE" value="{table}_{columns}_pk" />
     </H2CodeStyleSettings>
-    <HSQLCodeStyleSettings version="0">
-      <option name="myVersion" value="0" />
-      <option name="ALIAS_CASE" value="4" />
+    <HSQLCodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
       <option name="TYPE_CASE" value="3" />
+      <option name="CUSTOM_TYPE_CASE" value="3" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="0" />
       <option name="QUERY_TRUE_INDENT" value="false" />
       <option name="QUERY_ALIGN_ELEMENTS" value="false" />
       <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
@@ -156,10 +164,12 @@
       <option name="ALIGN_OBJECT_PROPERTIES" value="1" />
       <option name="ALIGN_VAR_STATEMENTS" value="2" />
     </JSCodeStyleSettings>
-    <MSSQLCodeStyleSettings version="0">
-      <option name="myVersion" value="0" />
-      <option name="ALIAS_CASE" value="4" />
+    <MSSQLCodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
       <option name="TYPE_CASE" value="3" />
+      <option name="CUSTOM_TYPE_CASE" value="3" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="0" />
       <option name="QUERY_TRUE_INDENT" value="false" />
       <option name="QUERY_ALIGN_ELEMENTS" value="false" />
       <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
@@ -191,10 +201,12 @@
       <option name="EXPR_CASE_THEN_WRAP" value="true" />
       <option name="PRIMARY_KEY_NAME_TEMPLATE" value="{table}_{columns}_pk" />
     </MSSQLCodeStyleSettings>
-    <MySQLCodeStyleSettings version="0">
-      <option name="myVersion" value="0" />
-      <option name="ALIAS_CASE" value="4" />
+    <MySQLCodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
       <option name="TYPE_CASE" value="3" />
+      <option name="CUSTOM_TYPE_CASE" value="3" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="0" />
       <option name="QUERY_TRUE_INDENT" value="false" />
       <option name="QUERY_ALIGN_ELEMENTS" value="false" />
       <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
@@ -226,10 +238,12 @@
       <option name="EXPR_CASE_THEN_WRAP" value="true" />
       <option name="PRIMARY_KEY_NAME_TEMPLATE" value="{table}_{columns}_pk" />
     </MySQLCodeStyleSettings>
-    <OracleCodeStyleSettings version="0">
-      <option name="myVersion" value="0" />
-      <option name="ALIAS_CASE" value="4" />
+    <OracleCodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
       <option name="TYPE_CASE" value="3" />
+      <option name="CUSTOM_TYPE_CASE" value="3" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="0" />
       <option name="QUERY_TRUE_INDENT" value="false" />
       <option name="QUERY_ALIGN_ELEMENTS" value="false" />
       <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
@@ -277,10 +291,12 @@
       <option name="KEEP_RPAREN_AND_LBRACE_ON_ONE_LINE" value="true" />
       <option name="FORCE_SHORT_DECLARATION_ARRAY_STYLE" value="true" />
     </PHPCodeStyleSettings>
-    <PostgresCodeStyleSettings version="0">
-      <option name="myVersion" value="0" />
-      <option name="ALIAS_CASE" value="4" />
+    <PostgresCodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
       <option name="TYPE_CASE" value="3" />
+      <option name="CUSTOM_TYPE_CASE" value="3" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="0" />
       <option name="QUERY_TRUE_INDENT" value="false" />
       <option name="QUERY_ALIGN_ELEMENTS" value="false" />
       <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
@@ -312,10 +328,12 @@
       <option name="EXPR_CASE_THEN_WRAP" value="true" />
       <option name="PRIMARY_KEY_NAME_TEMPLATE" value="{table}_{columns}_pk" />
     </PostgresCodeStyleSettings>
-    <SQLiteCodeStyleSettings version="0">
-      <option name="myVersion" value="0" />
-      <option name="ALIAS_CASE" value="4" />
+    <SQLiteCodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
       <option name="TYPE_CASE" value="3" />
+      <option name="CUSTOM_TYPE_CASE" value="3" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="0" />
       <option name="QUERY_TRUE_INDENT" value="false" />
       <option name="QUERY_ALIGN_ELEMENTS" value="false" />
       <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
@@ -347,10 +365,11 @@
       <option name="EXPR_CASE_THEN_WRAP" value="true" />
       <option name="PRIMARY_KEY_NAME_TEMPLATE" value="{table}_{columns}_pk" />
     </SQLiteCodeStyleSettings>
-    <SqlCodeStyleSettings version="0">
-      <option name="myVersion" value="0" />
-      <option name="ALIAS_CASE" value="4" />
+    <SqlCodeStyleSettings version="5">
       <option name="TYPE_CASE" value="3" />
+      <option name="CUSTOM_TYPE_CASE" value="3" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="0" />
       <option name="QUERY_TRUE_INDENT" value="false" />
       <option name="QUERY_ALIGN_ELEMENTS" value="false" />
       <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />
@@ -383,10 +402,12 @@
       <option name="PRIMARY_KEY_NAME_TEMPLATE" value="{table}_{columns}_pk" />
       <option name="WRAP_INSIDE_SELECT" value="0" />
     </SqlCodeStyleSettings>
-    <SybaseCodeStyleSettings version="0">
-      <option name="myVersion" value="0" />
-      <option name="ALIAS_CASE" value="4" />
+    <SybaseCodeStyleSettings version="5">
+      <option name="USE_GENERAL_STYLE" value="false" />
       <option name="TYPE_CASE" value="3" />
+      <option name="CUSTOM_TYPE_CASE" value="3" />
+      <option name="ALIAS_CASE" value="4" />
+      <option name="BUILT_IN_CASE" value="0" />
       <option name="QUERY_TRUE_INDENT" value="false" />
       <option name="QUERY_ALIGN_ELEMENTS" value="false" />
       <option name="QUERY_ALIGN_LINE_COMMENTS" value="false" />

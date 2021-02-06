@@ -49,7 +49,7 @@ git pull
 
 @task('composer')
 cd /var/www/hypixel-signatures
-composer install
+composer install -o --no-dev
 @endtask
 
 @task('node')
