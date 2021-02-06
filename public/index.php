@@ -1,6 +1,6 @@
 <?php
-/**
- * Copyright (c) 2020 Max Korlaar
+/*
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,6 +38,10 @@
      */
 
     define('LARAVEL_START', microtime(true));
+
+    if (file_exists(__DIR__ . '/../storage/framework/maintenance.php')) {
+        require __DIR__ . '/../storage/framework/maintenance.php';
+    }
 
     /*
     |--------------------------------------------------------------------------
