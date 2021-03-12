@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,6 +36,8 @@ import BedWarsTable from "./guild/BedWarsTable";
 import TNTGamesTable from "./guild/TNTGamesTable";
 import MegaWallsTable from "./guild/MegaWallsTable";
 import GeneralStatisticsTable from "./guild/GeneralStatisticsTable";
+import MurderMysteryTable from "./guild/MurderMysteryTable";
+import formatTime from "./guild/_filters/timeFormat";
 
 const axios = require('axios').default;
 
@@ -53,10 +55,12 @@ Vue.filter('number_format', value => {
     return (new Intl.NumberFormat()).format(value);
 });
 
+Vue.filter('time_format', formatTime);
+
 // noinspection ObjectAllocationIgnored
 new Vue({
     el:         '#guild-members-app',
-    components: {SkyWarsTable, MembersTable, BedWarsTable, TNTGamesTable, MegaWallsTable, GeneralStatisticsTable},
+    components: {SkyWarsTable, MembersTable, BedWarsTable, TNTGamesTable, MegaWallsTable, MurderMysteryTable, GeneralStatisticsTable},
     data:       {
         members: [],
         meta:    {

@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -80,6 +80,9 @@
 
     Route::get('/guild/{name}/games/megawalls', 'Guild\MegaWallsController@getMegaWallsStatistics')->name('guild.games.megawalls');
     Route::get('/guild/{name}/games/megawalls.json', 'Guild\MegaWallsController@getMegaWallsStatistics')->name('guild.games.megawalls.json');
+
+    Route::get('/guild/{name}/games/murder-mystery', 'Guild\MurderMysteryController@getMurderMysteryStatistics')->name('guild.games.murdermystery');
+    Route::get('/guild/{name}/games/murder-mystery.json', 'Guild\MurderMysteryController@getMurderMysteryStatistics')->name('guild.games.murdermystery.json');
 
     Route::get('/guild/{name}/members/general', 'Guild\GeneralStatsController@getGeneralStatistics')->name('guild.members.general');
     Route::get('/guild/{name}/members/general.json', 'Guild\GeneralStatsController@getGeneralStatistics')->name('guild.members.general.json');
