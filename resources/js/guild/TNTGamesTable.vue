@@ -1,5 +1,5 @@
 <!--
-  - Copyright (c) 2020 Max Korlaar
+  - Copyright (c) 2021 Max Korlaar
   - All rights reserved.
   -
   - Redistribution and use in source and binary forms, with or without
@@ -175,18 +175,14 @@
 import SortableTable from "../components/SortableTable";
 import SortableHeader from "../components/SortableHeader";
 import CalculatedCell from "../components/CalculatedCell";
+import formatTime from "./_filters/timeFormat";
 
 export default {
     name:       "TNTGamesTable",
     components: {SortableTable, SortableHeader, CalculatedCell},
     props:      ['members'],
     methods:    {
-        formatTime(totalSeconds) {
-            let minutes = Math.floor(totalSeconds / 60).toString().padStart(2, '0'),
-                seconds = Math.floor(totalSeconds % 60).toString().padStart(2, '0');
-
-            return minutes + ':' + seconds;
-        }
+        formatTime
     }
 }
 </script>

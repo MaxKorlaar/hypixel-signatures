@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,14 +58,15 @@
                 'description'         => " - View :name's members, guild statistics and even guild game statistics for SkyWars, Bed Wars and more games on :site"
             ],
 
-            'members'               => 'Member list',
-            'general_statistics'    => 'General statistics',
-            'skywars_statistics'    => 'SkyWars statistics',
-            'bedwars_statistics'    => 'Bed Wars statistics',
-            'tntgames_statistics'   => 'TNT-Games statistics',
-            'megawalls_statistics'  => 'Mega Walls statistics',
-            'crazywalls_statistics' => 'Crazy Walls statistics',
-            'quakecraft_statistics' => 'Quakecraft statistics',
+            'members'                  => 'Member list',
+            'general_statistics'       => 'General statistics',
+            'skywars_statistics'       => 'SkyWars statistics',
+            'bedwars_statistics'       => 'Bed Wars statistics',
+            'tntgames_statistics'      => 'TNT-Games statistics',
+            'megawalls_statistics'     => 'Mega Walls statistics',
+            'crazywalls_statistics'    => 'Crazy Walls statistics',
+            'quakecraft_statistics'    => 'Quakecraft statistics',
+            'murdermystery_statistics' => 'Murder Mystery statistics',
 
             'current_members'   => 'Current member count',
             'level'             => 'Level',
@@ -109,7 +110,7 @@
                     'description' => 'View the general Hypixel statistics of the Hypixel guild :name on :site. You can browse through the list and compare general statistics, such as Hypixel level or achievement points of guild members.'
                 ],
             ],
-            'skywars'   => [
+            'skywars'       => [
                 'page_title' => ':name SkyWars statistics',
                 'title'      => "<a href=':link'>:name</a>'s SkyWars statistics",
 
@@ -118,7 +119,7 @@
                     'description' => 'View the SkyWars statistics of the Hypixel guild :name on :site. You can browse through the list and compare SkyWars statistics of guild members.'
                 ],
             ],
-            'bedwars'   => [
+            'bedwars'       => [
                 'page_title' => ':name Bed Wars statistics',
                 'title'      => "<a href=':link'>:name</a>'s Bed Wars statistics",
 
@@ -127,7 +128,7 @@
                     'description' => 'View the Bed Wars statistics of the Hypixel guild :name on :site. You can browse through the list and compare Bed Wars statistics of guild members.'
                 ],
             ],
-            'tntgames'  => [
+            'tntgames'      => [
                 'page_title' => ':name TNT-Games statistics',
                 'title'      => "<a href=':link'>:name</a>'s TNT-Games statistics",
 
@@ -136,13 +137,22 @@
                     'description' => 'View the TNT-Games statistics of the Hypixel guild :name on :site. You can browse through the list and compare TNT-Games statistics of guild members.'
                 ],
             ],
-            'megawalls' => [
+            'megawalls'     => [
                 'page_title' => ':name Mega Walls statistics',
                 'title'      => "<a href=':link'>:name</a>'s Mega Walls statistics",
 
                 'social' => [
                     'title'       => ':name TNT-Games statistics - :site',
                     'description' => 'View the Mega Walls statistics of the Hypixel guild :name on :site. You can browse through the list and compare Mega Walls statistics of guild members.'
+                ],
+            ],
+            'murdermystery' => [
+                'page_title' => ':name Murder Mystery statistics',
+                'title'      => "<a href=':link'>:name</a>'s Murder Mystery statistics",
+
+                'social' => [
+                    'title'       => ':name Murder Mystery statistics - :site',
+                    'description' => 'View the Murder Mystery statistics of the Hypixel guild :name on :site. You can browse through the list and compare Murder Mystery statistics of guild members, such as their wins, kills, and quickest wins as detective and murderer.'
                 ],
             ],
         ],
