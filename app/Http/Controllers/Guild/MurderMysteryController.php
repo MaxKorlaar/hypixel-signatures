@@ -101,8 +101,6 @@
                 /** @var GameStats $stats */
                 $stats = $player->getStats()->getGameFromID(GameTypes::MURDER_MYSTERY);
 
-                //                                dd($stats, $player->getName());
-
                 $wins        = $stats->getInt('wins');
                 $kills       = $stats->getInt('kills');
                 $deaths      = $stats->getInt('deaths');
