@@ -1,6 +1,6 @@
 <?php
-/**
- * Copyright (c) 2020 Max Korlaar
+/*
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,10 +58,10 @@
          * @return void
          */
         protected function schedule(Schedule $schedule) {
-            $schedule->command('hypixel-cache:clear-recent')->monthly();
-            $schedule->command('clean:directories')->daily();
-            $schedule->command('horizon:snapshot')->everyFiveMinutes();
-            $schedule->command('cloudflare:reload')->weekly();
+            $schedule->command('hypixel-cache:clear-recent')->monthly()->storeOutput();
+            $schedule->command('clean:directories')->daily()->storeOutput();
+            $schedule->command('horizon:snapshot')->everyFiveMinutes()->storeOutput();
+            $schedule->command('cloudflare:reload')->weekly()->storeOutput();
 
             // $schedule->command('inspire')
             //          ->hourly();
