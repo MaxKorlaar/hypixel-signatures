@@ -26,7 +26,7 @@
     "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
-    "@primer/css": "^15.2.0",
+    "@primer/css": "^16.1.1",
     "bourbon": "^7.0.0",
     "moment": "^2.29.1",
     "vue-google-adsense": "^1.9.2",
