@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c878fdcd6670680e24df67ad764d89ed",
+    "content-hash": "3d9f0dfd3f83804516611c3d628e713f",
     "packages": [
         {
             "name": "brick/math",
@@ -2576,25 +2576,25 @@
         },
         {
             "name": "pocketmine/binaryutils",
-            "version": "0.1.13",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pmmp/BinaryUtils.git",
-                "reference": "0abee38d4e2861621f262c79a2a3d699d8a697f4"
+                "reference": "595c4ca4b8056777729c8cc5db9614c731eaf63b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pmmp/BinaryUtils/zipball/0abee38d4e2861621f262c79a2a3d699d8a697f4",
-                "reference": "0abee38d4e2861621f262c79a2a3d699d8a697f4",
+                "url": "https://api.github.com/repos/pmmp/BinaryUtils/zipball/595c4ca4b8056777729c8cc5db9614c731eaf63b",
+                "reference": "595c4ca4b8056777729c8cc5db9614c731eaf63b",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2 || ^8.0",
+                "php": "^7.4 || ^8.0",
                 "php-64bit": "*"
             },
             "require-dev": {
                 "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "0.12.67",
+                "phpstan/phpstan": "0.12.85",
                 "phpstan/phpstan-strict-rules": "^0.12.4"
             },
             "type": "library",
@@ -2610,34 +2610,33 @@
             "description": "Classes and methods for conveniently handling binary data",
             "support": {
                 "issues": "https://github.com/pmmp/BinaryUtils/issues",
-                "source": "https://github.com/pmmp/BinaryUtils/tree/0.1.13"
+                "source": "https://github.com/pmmp/BinaryUtils/tree/0.2.0"
             },
-            "time": "2021-01-15T14:19:13+00:00"
+            "time": "2021-05-18T15:23:45+00:00"
         },
         {
             "name": "pocketmine/nbt",
-            "version": "0.2.16",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pmmp/NBT.git",
-                "reference": "be6d54a8a314967d938b501eee49d4641e2ab07d"
+                "reference": "98c4a04b55a915e18f83d3b0c9beb24a71abcd31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pmmp/NBT/zipball/be6d54a8a314967d938b501eee49d4641e2ab07d",
-                "reference": "be6d54a8a314967d938b501eee49d4641e2ab07d",
+                "url": "https://api.github.com/repos/pmmp/NBT/zipball/98c4a04b55a915e18f83d3b0c9beb24a71abcd31",
+                "reference": "98c4a04b55a915e18f83d3b0c9beb24a71abcd31",
                 "shasum": ""
             },
             "require": {
-                "ext-zlib": "*",
-                "php": "^7.2 || ^8.0",
+                "php": "^7.4 || ^8.0",
                 "php-64bit": "*",
-                "pocketmine/binaryutils": "^0.1.9"
+                "pocketmine/binaryutils": "^0.2.0"
             },
             "require-dev": {
-                "irstea/phpunit-shim": "^7.5 || ^8.0",
+                "irstea/phpunit-shim": "^9.5",
                 "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "0.12.67",
+                "phpstan/phpstan": "0.12.85",
                 "phpstan/phpstan-strict-rules": "^0.12.4"
             },
             "type": "library",
@@ -2653,9 +2652,9 @@
             "description": "PHP library for working with Named Binary Tags",
             "support": {
                 "issues": "https://github.com/pmmp/NBT/issues",
-                "source": "https://github.com/pmmp/NBT/tree/0.2.16"
+                "source": "https://github.com/pmmp/NBT/tree/0.3.0"
             },
-            "time": "2021-01-15T15:27:28+00:00"
+            "time": "2021-05-18T15:46:33+00:00"
         },
         {
             "name": "psr/container",
