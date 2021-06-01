@@ -1,6 +1,6 @@
 <?php
-    /**
- * Copyright (c) 2020 Max Korlaar
+    /*
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,10 +40,10 @@
     use Illuminate\Support\Collection;
     use Illuminate\Support\Str;
     use JsonSerializable;
-    use pocketmine\nbt\BigEndianNBTStream;
+    use pocketmine\nbt\BigEndianNbtSerializer;
     use pocketmine\nbt\tag\CompoundTag;
     use pocketmine\nbt\tag\ListTag;
-    use pocketmine\nbt\tag\NamedTag;
+    use pocketmine\nbt\tag\Tag;
     use Ramsey\Uuid\UuidFactory;
 
     /**
@@ -59,9 +59,9 @@
         /**
          * SkyBlockItem constructor.
          *
-         * @param                         $nbtItem
+         * @param CompoundTag $nbtItem
          */
-        public function __construct($nbtItem) {
+        public function __construct(CompoundTag $nbtItem) {
             $this->data = $this->simplify($nbtItem);
 
             if ($this->hasData()) {
@@ -75,14 +75,14 @@
         }
 
         /**
-         * @param NamedTag $item
+         * @param Tag $item
          *
          * @return mixed|Collection
          */
-        private function simplify(NamedTag $item) {
+        private function simplify(Tag $item) {
             if ($item instanceof CompoundTag || $item instanceof ListTag) {
                 return (new Collection($item->getValue()))->mapWithKeys(function ($mapItem, $key) {
-                    /** @var NamedTag $mapItem */
+                    /** @var Tag $mapItem */
                     return [$key => $this->simplify($mapItem)];
                 });
             }
@@ -121,15 +121,17 @@
          *
          * @return Collection
          */
-        private function getBackpackContents($backpackData): Collection {
+        private function getBackpackContents(string $backpackData): Collection {
             $data = gzdecode($backpackData);
 
-            $nbtStream = new BigEndianNBTStream();
+            $nbtStream = new BigEndianNbtSerializer();
             $nbtData   = $nbtStream->read($data);
 
-            /** @var ListTag $itemsTag */
-            $itemsTag = $nbtData->getValue()['i'];
-            $items    = $itemsTag->getValue();
+            /** @var CompoundTag $itemsTag */
+            $compoundTag = $nbtData->getTag();
+
+            /** @var ListTag $items */
+            $items = $compoundTag->getValue()['i'];
 
             $return = new Collection();
 

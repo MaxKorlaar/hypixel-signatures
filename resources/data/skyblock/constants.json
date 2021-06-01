@@ -7,16 +7,20 @@
     },
     "farming_skill": {
       "1": {
-        "health": 2
+        "health": 2,
+        "farming_fortune": 4
       },
       "15": {
-        "health": 3
+        "health": 3,
+        "farming_fortune": 4
       },
       "20": {
-        "health": 4
+        "health": 4,
+        "farming_fortune": 4
       },
       "26": {
-        "health": 5
+        "health": 5,
+        "farming_fortune": 4
       }
     },
     "combat_skill": {
@@ -27,18 +31,22 @@
     },
     "mining_skill": {
       "1": {
-        "defense": 1
+        "defense": 1,
+        "mining_fortune": 4
       },
       "15": {
-        "defense": 2
+        "defense": 2,
+        "mining_fortune": 4
       }
     },
     "foraging_skill": {
       "1": {
-        "strength": 1
+        "strength": 1,
+        "foraging_fortune": 4
       },
       "15": {
-        "strength": 2
+        "strength": 2,
+        "foraging_fortune": 4
       }
     },
     "fishing_skill": {
@@ -138,6 +146,7 @@
         "speed": 1
       }
     },
+    "enderman_slayer": {},
     "enchantments": {
       "sharpness": {
         "1": {
@@ -450,6 +459,14 @@
       "skyblockId": "ENDER_STONE",
       "name": "End Stone",
       "id": 121,
+      "damage": 0,
+      "maxTier": 9
+    },
+    {
+      "type": "mining",
+      "skyblockId": "MITHRIL_ORE",
+      "name": "Mithril",
+      "id": 138,
       "damage": 0,
       "maxTier": 9
     },
@@ -871,13 +888,18 @@
           },
           "last_breath": {
             "name": "Last Breath",
-            "required": 400,
+            "required": 500,
             "tier": 5
+          },
+          "shadow_assasin_chestplate": {
+            "name": "Shadow Assasin Chestplate",
+            "required": 750,
+            "tier": 6
           },
           "diamond_livid_head": {
             "name": "Diamond Livid Head",
             "required": 1000,
-            "tier": 6
+            "tier": 7
           }
         }
       },
@@ -996,6 +1018,34 @@
       "catacombs_7": {
         "name": "floor_7",
         "texture": "76965e3fd619de6b0a7ce1673072520a9360378e1cb8c19d4baf0c86769d3764"
+      },
+      "master_catacombs_1": {
+        "name": "floor_1",
+        "texture": "1eb5b21af330af122b268b7aa390733bd1b699b4d0923233ecd24f81e08b9bce"
+      },
+      "master_catacombs_2": {
+        "name": "floor_2",
+        "texture": "32292e4e0fa62667256ef8da0f01982a996499f4d5d894bd058c3e6f3d2fb2d9"
+      },
+      "master_catacombs_3": {
+        "name": "floor_3",
+        "texture": "c969f6b148648aa8d027228a52fb5a3ca1ee84dc76e47851f14db029a730a8a3"
+      },
+      "master_catacombs_4": {
+        "name": "floor_4",
+        "texture": "d7b69021f9c09647dfd9b34df3deaff70cfc740f6a26f612dd47503fc34c97f0"
+      },
+      "master_catacombs_5": {
+        "name": "floor_5",
+        "texture": "d65cbce40e60e7a59a87fa8f4ecb6ccfc1514338c262614bf33739a6263f5405"
+      },
+      "master_catacombs_6": {
+        "name": "floor_6",
+        "texture": "d65cbce40e60e7a59a87fa8f4ecb6ccfc1514338c262614bf33739a6263f5405"
+      },
+      "master_catacombs_7": {
+        "name": "floor_7",
+        "texture": "d65cbce40e60e7a59a87fa8f4ecb6ccfc1514338c262614bf33739a6263f5405"
       }
     },
     "level_bonuses": {
@@ -1100,6 +1150,18 @@
       "the_apprentice_2": {
         "name": "The Apprentice 2",
         "pages": 14
+      },
+      "the_apprentice_3": {
+        "name": "The Apprentice 3",
+        "pages": 34
+      },
+      "the_follower_2": {
+        "name": "The Follower 2",
+        "pages": 13
+      },
+      "murderer": {
+        "name": "Murderer",
+        "pages": 18
       }
     }
   },
@@ -1167,8 +1229,8 @@
   },
   "default_skill_caps": {
     "farming": 50,
-    "mining": 50,
-    "combat": 50,
+    "mining": 60,
+    "combat": 60,
     "foraging": 50,
     "fishing": 50,
     "enchanting": 60,
@@ -1279,9 +1341,9 @@
   "slayer_xp": {
     "zombie": {
       "1": 5,
-      "2": 25,
-      "3": 100,
-      "4": 500,
+      "2": 15,
+      "3": 200,
+      "4": 1000,
       "5": 5000,
       "6": 20000,
       "7": 100000,
@@ -1291,8 +1353,8 @@
     "spider": {
       "1": 5,
       "2": 25,
-      "3": 100,
-      "4": 500,
+      "3": 200,
+      "4": 1000,
       "5": 5000,
       "6": 20000,
       "7": 100000,
@@ -1301,7 +1363,18 @@
     },
     "wolf": {
       "1": 10,
-      "2": 25,
+      "2": 30,
+      "3": 250,
+      "4": 1500,
+      "5": 5000,
+      "6": 20000,
+      "7": 100000,
+      "8": 400000,
+      "9": 1000000
+    },
+    "enderman": {
+      "1": 10,
+      "2": 30,
       "3": 250,
       "4": 1500,
       "5": 5000,
@@ -1315,7 +1388,8 @@
     "1": 5,
     "2": 25,
     "3": 100,
-    "4": 500
+    "4": 500,
+    "5": 1500
   },
   "minion_types": [
     "farming",
@@ -1345,16 +1419,21 @@
     "450": 22,
     "500": 23,
     "550": 24,
-    "600": 25
+    "600": 25,
+    "650": 26
   },
+  "minions_max_uniques": 609,
+  "minions_max_slots": 25,
   "minions": {
     "COBBLESTONE": {
       "type": "mining",
-      "head": "\/head\/2f93289a82bd2a06cbbe61b733cfdc1f1bd93c4340f7a90abd9bdda774109071"
+      "head": "\/head\/2f93289a82bd2a06cbbe61b733cfdc1f1bd93c4340f7a90abd9bdda774109071",
+      "tiers": 12
     },
     "OBSIDIAN": {
       "type": "mining",
-      "head": "\/head\/320c29ab966637cb9aecc34ee76d5a0130461e0c4fdb08cdaf80939fa1209102"
+      "head": "\/head\/320c29ab966637cb9aecc34ee76d5a0130461e0c4fdb08cdaf80939fa1209102",
+      "tiers": 12
     },
     "GLOWSTONE": {
       "type": "mining",
@@ -1382,31 +1461,43 @@
     },
     "COAL": {
       "type": "mining",
-      "head": "\/head\/425b8d2ea965c780652d29c26b1572686fd74f6fe6403b5a3800959feb2ad935"
+      "head": "\/head\/425b8d2ea965c780652d29c26b1572686fd74f6fe6403b5a3800959feb2ad935",
+      "tiers": 12
     },
     "IRON": {
       "type": "mining",
-      "head": "\/head\/af435022cb3809a68db0fccfa8993fc1954dc697a7181494905b03fdda035e4a"
+      "head": "\/head\/af435022cb3809a68db0fccfa8993fc1954dc697a7181494905b03fdda035e4a",
+      "tiers": 12
     },
     "GOLD": {
       "type": "mining",
-      "head": "\/head\/f6da04ed8c810be29bba53c62e712d65cfb25238117b94d7e85a4615775bf14f"
+      "head": "\/head\/f6da04ed8c810be29bba53c62e712d65cfb25238117b94d7e85a4615775bf14f",
+      "tiers": 12
     },
     "DIAMOND": {
       "type": "mining",
-      "head": "\/head\/2354bbe604dfe58bf92e7729730d0c8e37844e831ee3816d7e8427c27a1824a2"
+      "head": "\/head\/2354bbe604dfe58bf92e7729730d0c8e37844e831ee3816d7e8427c27a1824a2",
+      "tiers": 12
     },
     "LAPIS": {
       "type": "mining",
-      "head": "\/head\/64fd97b9346c1208c1db3957530cdfc5789e3e65943786b0071cf2b2904a6b5c"
+      "head": "\/head\/64fd97b9346c1208c1db3957530cdfc5789e3e65943786b0071cf2b2904a6b5c",
+      "tiers": 12
     },
     "REDSTONE": {
       "type": "mining",
-      "head": "\/head\/1edefcf1a89d687a0a4ecf1589977af1e520fc673c48a0434be426612e8faa67"
+      "head": "\/head\/1edefcf1a89d687a0a4ecf1589977af1e520fc673c48a0434be426612e8faa67",
+      "tiers": 12
     },
     "EMERALD": {
       "type": "mining",
-      "head": "\/head\/9bf57f3401b130c6b53808f2b1e119cc7b984622dac7077bbd53454e1f65bbf0"
+      "head": "\/head\/9bf57f3401b130c6b53808f2b1e119cc7b984622dac7077bbd53454e1f65bbf0",
+      "tiers": 12
+    },
+    "MITHRIL": {
+      "type": "mining",
+      "head": "\/head\/c62fa670ff8599b32ab344195ba15f3ef64c3a8aa8a37821c08375950cb74cd0",
+      "tiers": 12
     },
     "QUARTZ": {
       "type": "mining",
@@ -1419,43 +1510,53 @@
     },
     "WHEAT": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/bbc571c5527336352e2fee2b40a9edfa2e809f64230779aa01253c6aa535881b"
     },
     "MELON": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/95d54539ac8d3fba9696c91f4dcc7f15c320ab86029d5c92f12359abd4df811e"
     },
     "PUMPKIN": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/f3fb663e843a7da787e290f23c8af2f97f7b6f572fa59a0d4d02186db6eaabb7"
     },
     "CARROT": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/4baea990b45d330998cb0c1f8515c27b24f93bff1df0db056e647f8200d03b9d"
     },
     "POTATO": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/7dda35a044cb0374b516015d991a0f65bf7d0fb6566e350496642cf2059ff1d9"
     },
     "MUSHROOM": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/4a3b58341d196a9841ef1526b367209cbc9f96767c24f5f587cf413d42b74a93"
     },
     "CACTUS": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/ef93ec6e67a6cd272c9a9684b67df62584cb084a265eee3cde141d20e70d7d72"
     },
     "COCOA": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/acb680e96f6177cd8ffaf27e9625d8b544d720afc50738801818d0e745c0e5f7"
     },
     "SUGAR_CANE": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/2fced0e80f0d7a5d1f45a1a7217e6a99ea9720156c63f6efc84916d4837fabde"
     },
     "NETHER_WARTS": {
       "name": "Nether Wart",
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/71a4620bb3459c1c2fa74b210b1c07b4a02254351f75173e643a0e009a63f558"
     },
     "FLOWER": {
@@ -1472,7 +1573,8 @@
     },
     "REVENANT": {
       "type": "combat",
-      "head": "\/head\/a3dce8555923558d8d74c2a2b261b2b2d630559db54ef97ed3f9c30e9a20aba"
+      "head": "\/head\/a3dce8555923558d8d74c2a2b261b2b2d630559db54ef97ed3f9c30e9a20aba",
+      "tiers": 12
     },
     "SKELETON": {
       "type": "combat",
@@ -1517,22 +1619,27 @@
     },
     "COW": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/c2fd8976e1b64aebfd38afbe62aa1429914253df3417ace1f589e5cf45fbd717"
     },
     "PIG": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/a9bb5f0c56408c73cfa412345c8fc51f75b6c7311ae60e7099c4781c48760562"
     },
     "CHICKEN": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/a04b7da13b0a97839846aa5648f5ac6736ba0ca9fbf38cd366916e417153fd7f"
     },
     "SHEEP": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/fd15d4b8bce708f77f963f1b4e87b1b969fef1766a3e9b67b249c59d5e80e8c5"
     },
     "RABBIT": {
       "type": "farming",
+      "tiers": 12,
       "head": "\/head\/ef59c052d339bb6305cad370fd8c52f58269a957dfaf433a255597d95e68a373"
     },
     "OAK": {
@@ -1584,9 +1691,12 @@
     "uncommon": "\u00a7a",
     "rare": "\u00a79",
     "epic": "\u00a75",
-    "legendary": "\u00a76"
+    "legendary": "\u00a76",
+    "mythic": "\u00a7d",
+    "supreme": "\u00a74"
   },
   "rarity_colors": {
+    "4": "supreme",
     "5": "epic",
     "6": "legendary",
     "9": "rare",
@@ -1700,6 +1810,8 @@
     "Lethality VI",
     "Compact 10",
     "Compact X",
+    "Cultivating 10",
+    "Cultivating X",
     "First Strike 5",
     "First Strike V",
     "Execute 6",
@@ -1709,7 +1821,9 @@
     "Venomous 6",
     "Venomous VI",
     "Cleave 6",
-    "Cleave VI"
+    "Cleave VI",
+    "Harvesting 6",
+    "Harvesting VI"
   ],
   "expertise_kills_ladder": [
     50,
@@ -1745,7 +1859,11 @@
     "magic_find": 10,
     "pet_luck": 0,
     "ferocity": 0,
-    "ability_damage": 0
+    "ability_damage": 0,
+    "mining_speed": 0,
+    "mining_fortune": 0,
+    "farming_fortune": 0,
+    "foraging_fortune": 0
   },
   "stat_template": {
     "damage": 0,
@@ -1763,12 +1881,16 @@
     "magic_find": 0,
     "pet_luck": 0,
     "ferocity": 0,
-    "ability_damage": 0
+    "ability_damage": 0,
+    "mining_speed": 0,
+    "mining_fortune": 0,
+    "farming_fortune": 0,
+    "foraging_fortune": 0
   },
   "slayer_cost": {
-    "1": 100,
-    "2": 2000,
-    "3": 10000,
+    "1": 2000,
+    "2": 7500,
+    "3": 20000,
     "4": 50000,
     "5": 100000
   },
@@ -1789,13 +1911,18 @@
     "generator_ghast": "Minion Ghast",
     "generator_magma_cube": "Minion Magma Cube",
     "generator_slime": "Minion Slime",
-    "brood_mother_spider": "Brood Mother"
+    "brood_mother_spider": "Brood Mother",
+    "obsidian_wither": "Obsidian Defender",
+    "sadan_statue": "Terracotta",
+    "diamond_guy": "Angry Archaeologist",
+    "tentaclees": "Fels"
   },
   "area_names": {
     "dynamic": "Private Island",
     "hub": "Hub",
     "mining_1": "Gold Mine",
     "mining_2": "Deep Caverns",
+    "mining_3": "Dwarven Mines",
     "combat_1": "Spider's Den",
     "combat_2": "Blazing Fortress",
     "combat_3": "The End",
@@ -1803,229 +1930,6 @@
     "farming_2": "Mushroom Desert",
     "foraging_1": "The Park",
     "winter": "Jerry's Workshop"
-  },
-  "bag_size": {
-    "talisman_bag": {
-      "collection": "REDSTONE",
-      "sizes": [
-        {
-          "tier": 2,
-          "slots": 3
-        },
-        {
-          "tier": 7,
-          "slots": 9
-        },
-        {
-          "tier": 9,
-          "slots": 15
-        },
-        {
-          "tier": 10,
-          "slots": 21
-        },
-        {
-          "tier": 11,
-          "slots": 27
-        },
-        {
-          "tier": 12,
-          "slots": 33
-        },
-        {
-          "tier": 13,
-          "slots": 39
-        },
-        {
-          "tier": 14,
-          "slots": 45
-        },
-        {
-          "tier": 15,
-          "slots": 51
-        }
-      ]
-    },
-    "potion_bag": {
-      "collection": "NETHER_STALK",
-      "sizes": [
-        {
-          "tier": 2,
-          "slots": 9
-        },
-        {
-          "tier": 5,
-          "slots": 18
-        },
-        {
-          "tier": 8,
-          "slots": 27
-        },
-        {
-          "tier": 10,
-          "slots": 36
-        },
-        {
-          "tier": 11,
-          "slots": 45
-        }
-      ]
-    },
-    "fishing_bag": {
-      "collection": "RAW_FISH",
-      "sizes": [
-        {
-          "tier": 3,
-          "slots": 9
-        },
-        {
-          "tier": 7,
-          "slots": 18
-        },
-        {
-          "tier": 9,
-          "slots": 27
-        },
-        {
-          "tier": 10,
-          "slots": 36
-        },
-        {
-          "tier": 11,
-          "slots": 45
-        }
-      ]
-    },
-    "quiver": {
-      "collection": "STRING",
-      "sizes": [
-        {
-          "tier": 3,
-          "slots": 27
-        },
-        {
-          "tier": 6,
-          "slots": 36
-        },
-        {
-          "tier": 9,
-          "slots": 45
-        }
-      ]
-    }
-  },
-  "minecraft_formatting": {
-    "0": {
-      "type": "color",
-      "color": "#000000",
-      "css": "color: #000000"
-    },
-    "1": {
-      "type": "color",
-      "color": "#0000AA",
-      "niceColor": "#3251AE",
-      "css": "color: #0000AA"
-    },
-    "2": {
-      "type": "color",
-      "color": "#00AA00",
-      "css": "color: #00AA00"
-    },
-    "3": {
-      "type": "color",
-      "color": "#00AAAA",
-      "css": "color: #00AAAA"
-    },
-    "4": {
-      "type": "color",
-      "color": "#CC3333",
-      "css": "color: #CC3333"
-    },
-    "5": {
-      "type": "color",
-      "color": "#eb17eb",
-      "css": "color: #eb17eb"
-    },
-    "6": {
-      "type": "color",
-      "color": "#FFAA00",
-      "css": "color: #FFAA00"
-    },
-    "7": {
-      "type": "color",
-      "color": "#AAAAAA",
-      "niceColor": "#333333",
-      "css": "color: #AAAAAA"
-    },
-    "8": {
-      "type": "color",
-      "color": "#777777",
-      "css": "color: #777777"
-    },
-    "9": {
-      "type": "color",
-      "color": "#5555FF",
-      "css": "color: #8888FF"
-    },
-    "a": {
-      "type": "color",
-      "color": "#55FF55",
-      "niceColor": "#40BB40",
-      "css": "color: #55FF55"
-    },
-    "b": {
-      "type": "color",
-      "color": "#55FFFF",
-      "niceColor": "#51C4D7",
-      "css": "color: #55FFFF"
-    },
-    "c": {
-      "type": "color",
-      "color": "#FF5555",
-      "niceColor": "#C43C3C",
-      "css": "color: #FF5555"
-    },
-    "d": {
-      "type": "color",
-      "color": "#FF55FF",
-      "niceColor": "#D985BC",
-      "css": "color: #FF55FF"
-    },
-    "e": {
-      "type": "color",
-      "color": "#FFFF55",
-      "niceColor": "#EAA522",
-      "css": "color: #FFFF55"
-    },
-    "f": {
-      "type": "color",
-      "color": "#FFFFFF",
-      "niceColor": "#000000",
-      "css": "color: #FFFFFF"
-    },
-    "k": {
-      "type": "format",
-      "css": "display: none"
-    },
-    "l": {
-      "type": "format",
-      "css": "font-weight: bold"
-    },
-    "m": {
-      "type": "format",
-      "css": "text-decoration: line-through"
-    },
-    "n": {
-      "type": "format",
-      "css": "text-decoration: underline"
-    },
-    "o": {
-      "type": "format",
-      "css": "font-style: italic"
-    },
-    "r": {
-      "type": "reset"
-    }
   },
   "color_names": {
     "BLACK": "0",
@@ -2062,6 +1966,10 @@
       "color": "2",
       "tag": "MOD"
     },
+    "GAME_MASTER": {
+      "color": "2",
+      "tag": "GM"
+    },
     "HELPER": {
       "color": "9",
       "tag": "HELPER"
@@ -2077,12 +1985,14 @@
     "SUPERSTAR": {
       "color": "6",
       "tag": "MVP",
-      "plus": "++"
+      "plus": "++",
+      "plusColor": "c"
     },
     "MVP_PLUS": {
       "color": "b",
       "tag": "MVP",
-      "plus": "+"
+      "plus": "+",
+      "plusColor": "c"
     },
     "MVP": {
       "color": "b",
@@ -2091,7 +2001,8 @@
     "VIP_PLUS": {
       "color": "a",
       "tag": "VIP",
-      "plus": "+"
+      "plus": "+",
+      "plusColor": "6"
     },
     "VIP": {
       "color": "a",
@@ -2100,11 +2011,107 @@
     "PIG+++": {
       "color": "d",
       "tag": "PIG",
-      "plus": "+++"
+      "plus": "+++",
+      "plusColor": "b"
+    },
+    "MAYOR": {
+      "color": "d",
+      "tag": "MAYOR"
+    },
+    "MINISTER": {
+      "color": "c",
+      "tag": "MINISTER"
     },
     "NONE": null
   },
+  "farming_crops": {
+    "INK_SACK:3": {
+      "name": "Cocoa Beans",
+      "icon": "351_3"
+    },
+    "POTATO_ITEM": {
+      "name": "Potato",
+      "icon": "392_0"
+    },
+    "CARROT_ITEM": {
+      "name": "Carrot",
+      "icon": "391_0"
+    },
+    "CACTUS": {
+      "name": "Cactus",
+      "icon": "81_0"
+    },
+    "SUGAR_CANE": {
+      "name": "Sugar Cane",
+      "icon": "338_0"
+    },
+    "MUSHROOM_COLLECTION": {
+      "name": "Mushroom",
+      "icon": "40_0"
+    },
+    "PUMPKIN": {
+      "name": "Pumpkin",
+      "icon": "86_0"
+    },
+    "NETHER_STALK": {
+      "name": "Nether Wart",
+      "icon": "372_0"
+    },
+    "WHEAT": {
+      "name": "Wheat",
+      "icon": "296_0"
+    },
+    "MELON": {
+      "name": "Melon",
+      "icon": "360_0"
+    }
+  },
+  "experiments": {
+    "games": {
+      "simon": {
+        "name": "Chronomatron"
+      },
+      "numbers": {
+        "name": "Ultrasequencer"
+      },
+      "pairings": {
+        "name": "Superpairs"
+      }
+    },
+    "tiers": [
+      {
+        "name": "Beginner",
+        "icon": "351:12"
+      },
+      {
+        "name": "High",
+        "icon": "351:10"
+      },
+      {
+        "name": "Grand",
+        "icon": "351:11"
+      },
+      {
+        "name": "Supreme",
+        "icon": "351:14"
+      },
+      {
+        "name": "Transcendent",
+        "icon": "351:1"
+      },
+      {
+        "name": "Metaphysical",
+        "icon": "351:13"
+      }
+    ]
+  },
   "max_favorites": 5,
+  "increase_most_stats_exclude": [
+    "mining_speed",
+    "mining_fortune",
+    "farming_fortune",
+    "foraging_fortune"
+  ],
   "pet_rarity_offset": {
     "common": 0,
     "uncommon": 6,
@@ -2469,125 +2476,300 @@
       "head": "\/head\/4c27e3cb52a64968e60c861ef1ab84e0a0cb5f07be103ac78da67761731f00c8",
       "type": "combat",
       "emoji": "\ud83e\udd85"
+    },
+    "MITHRIL_GOLEM": {
+      "head": "\/head\/c1b2dfe8ed5dffc5b1687bc1c249c39de2d8a6c3d90305c95f6d1a1a330a0b1",
+      "type": "mining",
+      "emoji": "\ud83d\uddff"
+    },
+    "GRANDMA_WOLF": {
+      "head": "\/head\/4e794274c1bb197ad306540286a7aa952974f5661bccf2b725424f6ed79c7884",
+      "type": "combat",
+      "emoji": "\ud83d\udc75"
+    },
+    "RAT": {
+      "head": "\/head\/a8abb471db0ab78703011979dc8b40798a941f3a4dec3ec61cbeec2af8cffe8",
+      "type": "combat",
+      "emoji": "\ud83d\udc00"
     }
   },
   "pet_skins": {
     "ENDERMAN": {
       "ENDERMAN": {
         "name": "Spooky",
-        "head": "\/head\/ea84cc8818c293484fdaafc8fa2f0bf39e55733a247d68023df2c6c6b9b671d0"
+        "head": "\/head\/ea84cc8818c293484fdaafc8fa2f0bf39e55733a247d68023df2c6c6b9b671d0",
+        "release": 1560284720000
       }
     },
     "GUARDIAN": {
       "GUARDIAN": {
         "name": "Watcher",
-        "head": "\/head\/37cc76e7af29f5f3fbfd6ece794160811eff96f753459fa61d7ad176a064e3c5"
+        "head": "\/head\/37cc76e7af29f5f3fbfd6ece794160811eff96f753459fa61d7ad176a064e3c5",
+        "release": 1560284720000
       }
     },
     "TIGER": {
       "TIGER_TWILIGHT": {
         "name": "Twilight",
-        "head": "\/head\/896211dc599368dbd9056c0116ab61063991db793be93066a858eb4e9ce56438"
+        "head": "\/resources\/img\/items\/tiger_twilight.png",
+        "release": 1560284720000,
+        "animation": {
+          "day": "\/head\/896211dc599368dbd9056c0116ab61063991db793be93066a858eb4e9ce56438",
+          "night": "\/head\/25afc37dc1909ee0a3eb8d0404271fc47660cff1153495412d6e9896632eaa8e"
+        }
       }
     },
     "RABBIT": {
       "RABBIT": {
         "name": "Pretty",
-        "head": "\/head\/a34631d940fddb689ddef6a3b352c50220c460dba05cd18dc83192b59dc647f8"
+        "head": "\/head\/a34631d940fddb689ddef6a3b352c50220c460dba05cd18dc83192b59dc647f8",
+        "release": 1560284720000
+      },
+      "RABBIT_AQUAMARINE": {
+        "name": "Aquamarine",
+        "head": "\/head\/35a2119d122961852c010c1007ab2aff95b4bbeb74407463f6d2e1ff0792c812",
+        "release": 1618506000000
+      },
+      "RABBIT_ROSE": {
+        "name": "Rose",
+        "head": "\/head\/d7cddf5b20cb50d6600e5333c6bb3fb15b4741f17e3675fc2bfc09c2cd09e619",
+        "release": 1618506000000
       }
     },
     "WITHER_SKELETON": {
       "WITHER": {
         "name": "Dark",
-        "head": "\/head\/224c2d14a0219af5ccfcaa36e8a333e271724ed61276611f9529e16c10273a0d"
+        "head": "\/head\/224c2d14a0219af5ccfcaa36e8a333e271724ed61276611f9529e16c10273a0d",
+        "release": 1560284720000
       }
     },
     "ROCK": {
       "ROCK_COOL": {
         "name": "Cool",
-        "head": "\/head\/fefcdbb7d95502acc1ae35a32a40ce4dec8f4c9f0da26c9d9fe7c2c3eb748f6"
+        "head": "\/head\/fefcdbb7d95502acc1ae35a32a40ce4dec8f4c9f0da26c9d9fe7c2c3eb748f6",
+        "release": 1560284720000
       },
       "ROCK_SMILE": {
         "name": "Smile",
-        "head": "\/head\/713c8b2916a275db4c1762cf5f13d7b95b91d60baf5164a447d6efa7704cf11b"
+        "head": "\/head\/713c8b2916a275db4c1762cf5f13d7b95b91d60baf5164a447d6efa7704cf11b",
+        "release": 1560284720000
       },
       "ROCK_THINKING": {
         "name": "Thinking",
-        "head": "\/head\/dd2f781f03c365bbc5dd1e7186ab38dc69465e836c9fe066a9a844f34a4da92"
+        "head": "\/head\/dd2f781f03c365bbc5dd1e7186ab38dc69465e836c9fe066a9a844f34a4da92",
+        "release": 1560284720000
       },
       "ROCK_LAUGH": {
         "name": "Laughing",
-        "head": "\/head\/8cc1ef513d5f616675242174acde7b9d6259a47c4fe8f6e4b6e20920319d7073"
+        "head": "\/head\/8cc1ef513d5f616675242174acde7b9d6259a47c4fe8f6e4b6e20920319d7073",
+        "release": 1560284720000
       },
       "ROCK_DERP": {
         "name": "Derp",
-        "head": "\/head\/c4f89fbd12c209f7f26c1f34a1bd7f47635814759c09688dd212b205c73a8c02"
+        "head": "\/head\/c4f89fbd12c209f7f26c1f34a1bd7f47635814759c09688dd212b205c73a8c02",
+        "release": 1560284720000
       },
       "ROCK_EMBARRASSED": {
         "name": "Embarrassed",
-        "head": "\/head\/27ff34992e66599e8529008be3fb577cb0ab545294253e25a0cc988e416c849"
+        "head": "\/head\/27ff34992e66599e8529008be3fb577cb0ab545294253e25a0cc988e416c849",
+        "release": 1560284720000
       }
     },
     "SHEEP": {
       "SHEEP_WHITE": {
         "name": "White",
-        "head": "\/head\/b92a1a5c325f25f7438a0abb4f86ba6cf75552d02c7349a7292981459b31d2f7"
+        "head": "\/head\/b92a1a5c325f25f7438a0abb4f86ba6cf75552d02c7349a7292981459b31d2f7",
+        "release": 1560284720000
       },
       "SHEEP_PURPLE": {
         "name": "Purple",
-        "head": "\/head\/99a88cf7dd33063587c6b540e6130abc5d07f1a65c47573ab3c1ad3ccec8857f"
+        "head": "\/head\/99a88cf7dd33063587c6b540e6130abc5d07f1a65c47573ab3c1ad3ccec8857f",
+        "release": 1560284720000
       },
       "SHEEP_BLACK": {
         "name": "Black",
-        "head": "\/head\/aa9dcda642a807cd2daa4aa6be87cef96e08a8c8f5cec2657dda4266c6a884c2"
+        "head": "\/head\/aa9dcda642a807cd2daa4aa6be87cef96e08a8c8f5cec2657dda4266c6a884c2",
+        "release": 1560284720000
       },
       "SHEEP_PINK": {
         "name": "Pink",
-        "head": "\/head\/afa7747684dcb96192d90342cea62742ec363da07cb5e6e25eecec888cd2076"
+        "head": "\/head\/afa7747684dcb96192d90342cea62742ec363da07cb5e6e25eecec888cd2076",
+        "release": 1560284720000
       },
       "SHEEP_LIGHT_BLUE": {
         "name": "Light Blue",
-        "head": "\/head\/722220de1a863bc5d9b9e7a6a3b03214c9f3d698ed3fe0d28220f3b93b7685c5"
+        "head": "\/head\/722220de1a863bc5d9b9e7a6a3b03214c9f3d698ed3fe0d28220f3b93b7685c5",
+        "release": 1560284720000
       },
       "SHEEP_LIGHT_GREEN": {
         "name": "Light Green",
-        "head": "\/head\/cf183ec2fe58faa43e568419b7a0dc446ece4ea0be52ec784c94e1d74b75939d"
+        "head": "\/head\/cf183ec2fe58faa43e568419b7a0dc446ece4ea0be52ec784c94e1d74b75939d",
+        "release": 1560284720000
+      },
+      "SHEEP_NEON_YELLOW": {
+        "name": "Neon Yellow",
+        "head": "\/head\/94263428c23da9165b2639a8f2428ff4835227945c9e1038461cf644d67cc82a",
+        "release": 1560284720000
+      },
+      "SHEEP_NEON_RED": {
+        "name": "Neon Red",
+        "head": "\/head\/4918be142a20b2b39bc582f421f6ae87b3184b5c9523d16fbe6d69530107886a",
+        "release": 1560284720000
+      },
+      "SHEEP_NEON_BLUE": {
+        "name": "Neon Blue",
+        "head": "\/head\/e55b3fe9311c99342ea565483cbf9e969a258faf7afa30270fb9a0929377acfd",
+        "release": 1560284720000
+      },
+      "SHEEP_NEON_GREEN": {
+        "name": "Neon Green",
+        "head": "\/head\/2c14d66911554bd0882339074bf6b8110c2d3509b69e7a6144e4d5a7164bacc8",
+        "release": 1560284720000
       }
     },
     "SILVERFISH": {
       "SILVERFISH": {
         "name": "Fortified",
-        "head": "\/head\/d8552ff591042c4a38f8ba0626784ae28c4545a97d423fd9037c341035593273"
+        "head": "\/head\/d8552ff591042c4a38f8ba0626784ae28c4545a97d423fd9037c341035593273",
+        "release": 1560284720000
+      },
+      "SILVERFISH_FOSSILIZED": {
+        "name": "Fossilized",
+        "head": "\/head\/ca3a363368ed1e06cee3900717f062e02ec39aee1747675392255b48f7f83600",
+        "release": 1611334800000
       }
     },
     "ELEPHANT": {
       "ELEPHANT_PINK": {
         "name": "Pink",
-        "head": "\/head\/570eef474ec0e56cc34c2307eaa39f024612f8cd7248e7d5b14169ebd307c742"
+        "head": "\/head\/570eef474ec0e56cc34c2307eaa39f024612f8cd7248e7d5b14169ebd307c742",
+        "release": 1560284720000
       },
       "ELEPHANT_BLUE": {
         "name": "Blue",
-        "head": "\/head\/4b62969c005815d0409136380febc5ac468aaba9bda4db80954fa5426ee0a323"
+        "head": "\/head\/4b62969c005815d0409136380febc5ac468aaba9bda4db80954fa5426ee0a323",
+        "release": 1560284720000
       },
       "ELEPHANT_ORANGE": {
         "name": "Orange",
-        "head": "\/head\/554a34a80c474206d3700b8fced6b44fab0b0ed0b05c1293ff0c5d86eda251d1"
+        "head": "\/head\/554a34a80c474206d3700b8fced6b44fab0b0ed0b05c1293ff0c5d86eda251d1",
+        "release": 1560284720000
+      },
+      "ELEPHANT_RED": {
+        "name": "Red",
+        "head": "\/head\/ba5c66ec66cb6b4b5550085f583b4e5c1cee5247bec5fbcc5c318c30c66cab42",
+        "release": 1613235600000
+      },
+      "ELEPHANT_PURPLE": {
+        "name": "Purple",
+        "head": "\/head\/5ff9df290b6c5a4984fc6e516605f9816b9882f7bf04db08d3f7ee32d1969a44",
+        "release": 1613235600000
+      },
+      "ELEPHANT_GREEN": {
+        "name": "Green",
+        "head": "\/head\/360c122ade5b2fedca14aa78c834a7b0ac9cb5da2a0c93112163086f90c13b68",
+        "release": 1613235600000
+      },
+      "ELEPHANT_MONOCHROME": {
+        "name": "Monochrome",
+        "head": "\/resources\/img\/items\/elephant_monochrome.png",
+        "release": 1616432400000,
+        "animation": {
+          "day": "\/head\/4bdf0f628c05e86cabdee2f5858dd5def7f8b8d940cbf25f9937e2ffb53432f4",
+          "night": "\/head\/176e8db6cd2db2fd11747c750d24040f3435b3301d91949f33f9615d16dab060"
+        }
       }
     },
     "JERRY": {
       "JERRY_RED_ELF": {
         "name": "Red Elf",
-        "head": "\/head\/1d82f9c36e824c1e37963a849bf5abd76d3b349125023504af58369086089ee9"
+        "head": "\/head\/1d82f9c36e824c1e37963a849bf5abd76d3b349125023504af58369086089ee9",
+        "release": 1560284720000
       },
       "JERRY_GREEN_ELF": {
         "name": "Green Elf",
-        "head": "\/head\/4ec5455f43426ca1874b5c7b4a492ec3722a502f8b9599e758e133fed8b3c1e4"
+        "head": "\/head\/4ec5455f43426ca1874b5c7b4a492ec3722a502f8b9599e758e133fed8b3c1e4",
+        "release": 1560284720000
       }
     },
     "BABY_YETI": {
       "YETI_GROWN_UP": {
         "name": "Grown-up",
-        "head": "\/head\/f5f29a975529276d916fc67998833c11ee178ff21e5941afdfb0fa7010f8374e"
+        "head": "\/head\/f5f29a975529276d916fc67998833c11ee178ff21e5941afdfb0fa7010f8374e",
+        "release": 1560284720000
+      }
+    },
+    "MONKEY": {
+      "MONKEY_GOLDEN": {
+        "name": "Golden",
+        "head": "\/head\/e9281c4d87d68526b0749d4361e6ef786c8a35717aa053da704b1d53410d37a6",
+        "release": 1610557200000
+      },
+      "MONKEY_GORILLA": {
+        "name": "Gorilla",
+        "head": "\/resources\/img\/items\/monkey_gorilla.png",
+        "release": 1620925200000,
+        "animation": {
+          "0": "\/head\/ac75d405235a58c68bddadad082e895e84feadfffd9f69c00a2194498732d48",
+          "1000": "\/head\/2a8be837b3361464b5ca555029658f0fdc9432cb351f088996f6da7210e1fc75",
+          "1200": "\/head\/75c6a5d6361a7b847fa6bbf6905c381f764a84f1c820d8e82c76e7db0feb9ee7",
+          "1500": "\/head\/e6227de20348cf220bb15a6c5d1c7d5405b0bbd9f759cecf891c3991f07f4f9f",
+          "1800": "\/head\/20cbac153bc024d35a6d7df3d57b6ee814ae01e643bcd2f77a2aaae0acd771d2",
+          "3600": "\/head\/e6227de20348cf220bb15a6c5d1c7d5405b0bbd9f759cecf891c3991f07f4f9f",
+          "3800": "\/head\/75c6a5d6361a7b847fa6bbf6905c381f764a84f1c820d8e82c76e7db0feb9ee7",
+          "4100": "\/head\/2a8be837b3361464b5ca555029658f0fdc9432cb351f088996f6da7210e1fc75",
+          "4300": "\/head\/ac75d405235a58c68bddadad082e895e84feadfffd9f69c00a2194498732d48"
+        }
+      }
+    },
+    "SKELETON_HORSE": {
+      "HORSE_ZOMBIE": {
+        "name": "Zombie",
+        "head": "\/head\/578211e1b4d99d1c7bfda4838e48fc884c3eae376f58d932bc2f78b0a919f8e7",
+        "release": 1611939600000
+      }
+    },
+    "ENDER_DRAGON": {
+      "DRAGON_NEON_BLUE": {
+        "name": "Neon Blue",
+        "head": "\/head\/96a4b9fbcf8c3e7e1232e57d6a2870ba3ea30f76407ae1197fd52e9f76ca46ac",
+        "release": 1612803600000
+      },
+      "DRAGON_NEON_PURPLE": {
+        "name": "Neon Purple",
+        "head": "\/head\/54bdf5ba6289b29e27c57db1ec7f76151c39492d409268e00a9838e8c963159",
+        "release": 1612803600000
+      },
+      "DRAGON_NEON_RED": {
+        "name": "Neon Red",
+        "head": "\/head\/e05c9b4f4218677c5b4bcc9c7d9e29e18d1684a536781fede1280fc5e6961538",
+        "release": 1612803600000
+      }
+    },
+    "BLUE_WHALE": {
+      "WHALE_ORCA": {
+        "name": "Orca",
+        "head": "\/head\/b008ca9c00cecf499685030e8ef0c230a32908619ce9dc10690b69111591faa1",
+        "release": 1615309200000
+      }
+    },
+    "CHICKEN": {
+      "CHICKEN_BABY_CHICK": {
+        "name": "Baby Chick",
+        "head": "\/head\/1bde55ed54cb5c87661b86c349186a9d5baffb3cb934b449a2d329e399d34bf",
+        "release": 1617642000000
+      }
+    },
+    "BLACK_CAT": {
+      "BLACK_CAT_IVORY": {
+        "name": "Ivory",
+        "head": "\/head\/f51b17d7ded6c7e8f3b2dac12378a6fc4e9228b911986f64c8af45837ae6d9e1",
+        "release": 1619456400000
+      },
+      "BLACK_CAT_ONYX": {
+        "name": "Onyx",
+        "head": "\/head\/be924115d3a8bbacfd4fafb6cc70f99a2f7580e4583a50fa9b9c285a98ac0c56",
+        "release": 1619456400000
       }
     }
   },
@@ -2627,15 +2809,21 @@
   },
   "pet_items": {
     "PET_ITEM_ALL_SKILLS_BOOST_COMMON": {
+      "name": "All Skills Exp Boost",
+      "tier": "COMMON",
       "description": "\u00a77Gives +\u00a7a10% \u00a77pet exp for all skills"
     },
     "PET_ITEM_BIG_TEETH_COMMON": {
+      "name": "Big Teeth",
+      "tier": "COMMON",
       "description": "\u00a77Increases \u00a79\u2623 Crit Chance \u00a77by \u00a7a5",
       "stats": {
         "crit_chance": 5
       }
     },
     "PET_ITEM_IRON_CLAWS_COMMON": {
+      "name": "Iron Claws",
+      "tier": "COMMON",
       "description": "\u00a77Increases the pet's \u00a79\u2620 Crit Damage \u00a77by \u00a7a40% \u00a77and \u00a79\u2623 Crit Chance \u00a77by \u00a7a40%",
       "multStats": {
         "crit_chance": 1.4,
@@ -2643,108 +2831,168 @@
       }
     },
     "PET_ITEM_SHARPENED_CLAWS_UNCOMMON": {
+      "name": "Sharpened Claws",
+      "tier": "UNCOMMON",
       "description": "\u00a77Increases \u00a79\u2620 Crit Damage \u00a77by \u00a7a15",
       "stats": {
         "crit_damage": 15
       }
     },
     "PET_ITEM_HARDENED_SCALES_UNCOMMON": {
+      "name": "Hardened Scales",
+      "tier": "UNCOMMON",
       "description": "\u00a77Increases \u00a7a\u2748 Defense \u00a77by \u00a7a25",
       "stats": {
         "defense": 25
       }
     },
     "PET_ITEM_BUBBLEGUM": {
+      "name": "Bubblegum",
+      "tier": "RARE",
       "description": "\u00a77Your pet fuses its power with placed \u00a7aOrbs \u00a77to give them \u00a7a2x \u00a77duration"
     },
     "PET_ITEM_LUCKY_CLOVER": {
+      "name": "Lucky Clover",
+      "tier": "EPIC",
       "description": "\u00a77Increases \u00a7b\u272f Magic Find \u00a77by \u00a7a7",
       "stats": {
         "magic_find": 7
       }
     },
     "PET_ITEM_TEXTBOOK": {
+      "name": "Textbook",
+      "tier": "LEGENDARY",
       "description": "\u00a77Increases the pet's \u00a7b\u270e Intelligence \u00a77by \u00a7a100%",
       "multStats": {
         "intelligence": 2
       }
     },
     "PET_ITEM_SADDLE": {
+      "name": "Saddle",
+      "tier": "UNCOMMON",
       "description": "\u00a77Increase horse speed by \u00a7a50% \u00a77 and jump boost by \u00a7a100%"
     },
     "PET_ITEM_EXP_SHARE": {
+      "name": "Exp Share",
+      "tier": "EPIC",
       "description": "\u00a77While unequipped this pet gains \u00a7a25% \u00a77of the equipped pet's xp, this is \u00a77split between all pets holding the item."
     },
     "PET_ITEM_TIER_BOOST": {
+      "name": "Tier Boost",
+      "tier": "LEGENDARY",
       "description": "\u00a77Boosts the \u00a7ararity \u00a77of your pet by 1 tier!"
     },
     "PET_ITEM_COMBAT_SKILL_BOOST_COMMON": {
+      "name": "Combat Exp Boost",
+      "tier": "COMMON",
       "description": "\u00a77Gives +\u00a7a20% \u00a77pet exp for Combat"
     },
     "PET_ITEM_COMBAT_SKILL_BOOST_UNCOMMON": {
+      "name": "Combat Exp Boost",
+      "tier": "UNCOMMON",
       "description": "\u00a77Gives +\u00a7a30% \u00a77pet exp for Combat"
     },
     "PET_ITEM_COMBAT_SKILL_BOOST_RARE": {
+      "name": "Combat Exp Boost",
+      "tier": "RARE",
       "description": "\u00a77Gives +\u00a7a40% \u00a77pet exp for Combat"
     },
     "PET_ITEM_COMBAT_SKILL_BOOST_EPIC": {
+      "name": "Combat Exp Boost",
+      "tier": "EPIC",
       "description": "\u00a77Gives +\u00a7a50% \u00a77pet exp for Combat"
     },
     "PET_ITEM_FISHING_SKILL_BOOST_COMMON": {
+      "name": "Fishing Exp Boost",
+      "tier": "COMMON",
       "description": "\u00a77Gives +\u00a7a20% \u00a77pet exp for Fishing"
     },
     "PET_ITEM_FISHING_SKILL_BOOST_UNCOMMON": {
+      "name": "Fishing Exp Boost",
+      "tier": "UNCOMMON",
       "description": "\u00a77Gives +\u00a7a30% \u00a77pet exp for Fishing"
     },
     "PET_ITEM_FISHING_SKILL_BOOST_RARE": {
+      "name": "Fishing Exp Boost",
+      "tier": "RARE",
       "description": "\u00a77Gives +\u00a7a40% \u00a77pet exp for Fishing"
     },
     "PET_ITEM_FISHING_SKILL_BOOST_EPIC": {
+      "name": "Fishing Exp Boost",
+      "tier": "EPIC",
       "description": "\u00a77Gives +\u00a7a50% \u00a77pet exp for Fishing"
     },
     "PET_ITEM_FORAGING_SKILL_BOOST_COMMON": {
+      "name": "Foraging Exp Boost",
+      "tier": "COMMON",
       "description": "\u00a77Gives +\u00a7a20% \u00a77pet exp for Foraging"
     },
     "PET_ITEM_FORAGING_SKILL_BOOST_UNCOMMON": {
+      "name": "Foraging Exp Boost",
+      "tier": "UNCOMMON",
       "description": "\u00a77Gives +\u00a7a30% \u00a77pet exp for Foraging"
     },
     "PET_ITEM_FORAGING_SKILL_BOOST_RARE": {
+      "name": "Foraging Exp Boost",
+      "tier": "RARE",
       "description": "\u00a77Gives +\u00a7a40% \u00a77pet exp for Foraging"
     },
     "PET_ITEM_FORAGING_SKILL_BOOST_EPIC": {
+      "name": "Foraging Exp Boost",
+      "tier": "EPIC",
       "description": "\u00a77Gives +\u00a7a50% \u00a77pet exp for Foraging"
     },
     "PET_ITEM_MINING_SKILL_BOOST_COMMON": {
+      "name": "Mining Exp Boost",
+      "tier": "COMMON",
       "description": "\u00a77Gives +\u00a7a20% \u00a77pet exp for Mining"
     },
     "PET_ITEM_MINING_SKILL_BOOST_UNCOMMON": {
+      "name": "Mining Exp Boost",
+      "tier": "UNCOMMON",
       "description": "\u00a77Gives +\u00a7a30% \u00a77pet exp for Mining"
     },
     "PET_ITEM_MINING_SKILL_BOOST_RARE": {
+      "name": "Mining Exp Boost",
+      "tier": "RARE",
       "description": "\u00a77Gives +\u00a7a40% \u00a77pet exp for Mining"
     },
     "PET_ITEM_MINING_SKILL_BOOST_EPIC": {
+      "name": "Mining Exp Boost",
+      "tier": "EPIC",
       "description": "\u00a77Gives +\u00a7a50% \u00a77pet exp for Mining"
     },
     "PET_ITEM_FARMING_SKILL_BOOST_COMMON": {
+      "name": "Farming Exp Boost",
+      "tier": "COMMON",
       "description": "\u00a77Gives +\u00a7a20% \u00a77pet exp for Farming"
     },
     "PET_ITEM_FARMING_SKILL_BOOST_UNCOMMON": {
+      "name": "Farming Exp Boost",
+      "tier": "UNCOMMON",
       "description": "\u00a77Gives +\u00a7a30% \u00a77pet exp for Farming"
     },
     "PET_ITEM_FARMING_SKILL_BOOST_RARE": {
+      "name": "Farming Exp Boost",
+      "tier": "RARE",
       "description": "\u00a77Gives +\u00a7a40% \u00a77pet exp for Farming"
     },
     "PET_ITEM_FARMING_SKILL_BOOST_EPIC": {
+      "name": "Farming Exp Boost",
+      "tier": "EPIC",
       "description": "\u00a77Gives +\u00a7a50% \u00a77pet exp for Farming"
     },
     "REINFORCED_SCALES": {
+      "name": "Reinforced Scales",
+      "tier": "RARE",
       "description": "\u00a77Increases \u00a7a\u2748 Defense \u00a77by \u00a7a40",
       "stats": {
         "defense": 40
       }
     },
     "GOLD_CLAWS": {
+      "name": "Gold Claws",
+      "tier": "UNCOMMON",
       "description": "\u00a77Increases the pet's \u00a79\u2620 Crit Damage \u00a77by \u00a7a50% \u00a77and \u00a79\u2623 Crit Chance \u00a77by \u00a7a50%",
       "multStats": {
         "crit_chance": 1.5,
@@ -2752,45 +3000,63 @@
       }
     },
     "ALL_SKILLS_SUPER_BOOST": {
+      "name": "All Skills Exp Super-Boost",
+      "tier": "COMMON",
       "description": "\u00a77Gives +\u00a7a20% \u00a77pet exp for all skills"
     },
     "BIGGER_TEETH": {
+      "name": "Bigger Teeth",
+      "tier": "UNCOMMON",
       "description": "\u00a77Increases \u00a79\u2623 Crit Chance \u00a77by \u00a7a10",
       "stats": {
         "crit_chance": 10
       }
     },
     "SERRATED_CLAWS": {
+      "name": "Serrated Claws",
+      "tier": "RARE",
       "description": "\u00a77Increases \u00a79\u2620 Crit Damage \u00a77by \u00a7a25",
       "stats": {
         "crit_damage": 25
       }
     },
     "WASHED_UP_SOUVENIR": {
+      "name": "Washed-up Souvenir",
+      "tier": "LEGENDARY",
       "description": "\u00a77Increases \u00a73\u03b1 Sea Creature Chance \u00a77by \u00a7a5",
       "stats": {
         "sea_creature_chance": 5
       }
     },
     "ANTIQUE_REMEDIES": {
+      "name": "Antique Remedies",
+      "tier": "EPIC",
       "description": "\u00a77Increases the pet's \u00a7c\u2741 Strength \u00a77by \u00a7a80%",
       "multStats": {
         "strength": 1.8
       }
     },
     "CROCHET_TIGER_PLUSHIE": {
+      "name": "Crochet Tiger Plushie",
+      "tier": "EPIC",
       "description": "\u00a77Increases \u00a7e\u2694\ufe0f Bonus Attack Speed \u00a77by \u00a7a35",
       "stats": {
         "bonus_attack_speed": 35
       }
     },
     "DWARF_TURTLE_SHELMET": {
+      "name": "Dwarf Turtle Shelmet",
+      "tier": "RARE",
       "description": "\u00a77Makes the pet's owner immune to knockback."
     },
     "PET_ITEM_VAMPIRE_FANG": {
+      "name": "Vampire Fang",
+      "tier": "LEGENDARY",
       "description": "\u00a77Upgrades a Bat pet from \u00a76Legendary \u00a77to \u00a7dMythic \u00a77adding a bonus perk and bonus stats!"
     },
     "PET_ITEM_SPOOKY_CUPCAKE": {
+      "name": "Spooky Cupcake",
+      "tier": "UNCOMMON",
       "description": "\u00a77Increases \u00a7c\u2741 Strength \u00a77by \u00a7a30 \u00a77and \u00a7f\u2726 Speed \u00a77by \u00a7a20",
       "stats": {
         "strength": 30,
@@ -2798,8 +3064,25 @@
       }
     },
     "MINOS_RELIC": {
+      "name": "Minos Relic",
+      "tier": "EPIC",
       "description": "\u00a77Increases all pet stats by \u00a7a33.3%",
       "multAllStats": 1.333
+    },
+    "PET_ITEM_TOY_JERRY": {
+      "name": "Jerry 3D Glasses",
+      "tier": "LEGENDARY",
+      "description": "\u00a77Upgrades a Jerry pet from \u00a76Legendary \u00a77to \u00a7dMythic \u00a77and granting it a new perk!"
+    },
+    "REAPER_GEM": {
+      "name": "Reaper Gem",
+      "tier": "LEGENDARY",
+      "description": "\u00a77Gain \u00a7c8\u2afd Ferocity \u00a77for 5s on kill"
+    },
+    "PET_ITEM_FLYING_PIG": {
+      "name": "Flying Pig",
+      "tier": "UNCOMMON",
+      "description": "\u00a77Grants your pig pet the ability to fly while on your private island! You also don't need to hold a carrot on a stick to control your pig."
     }
   },
   "item_tags": {
@@ -2987,6 +3270,18 @@
     "PERSONAL_COMPACTOR_6000": [
       "PERSONAL_COMPACTOR_7000"
     ],
+    "PERSONAL_DELETOR_4000": [
+      "PERSONAL_DELETOR_5000",
+      "PERSONAL_DELETOR_6000",
+      "PERSONAL_DELETOR_7000"
+    ],
+    "PERSONAL_DELETOR_5000": [
+      "PERSONAL_DELETOR_6000",
+      "PERSONAL_DELETOR_7000"
+    ],
+    "PERSONAL_DELETOR_6000": [
+      "PERSONAL_DELETOR_7000"
+    ],
     "SCARF_STUDIES": [
       "SCARF_THESIS",
       "SCARF_GRIMOIRE"
@@ -3099,6 +3394,66 @@
     ],
     "CAMPFIRE_TALISMAN_13": [
       "CAMPFIRE_TALISMAN_21"
+    ],
+    "JERRY_TALISMAN_GREEN": [
+      "JERRY_TALISMAN_BLUE",
+      "JERRY_TALISMAN_PURPLE",
+      "JERRY_TALISMAN_GOLDEN"
+    ],
+    "JERRY_TALISMAN_BLUE": [
+      "JERRY_TALISMAN_PURPLE",
+      "JERRY_TALISMAN_GOLDEN"
+    ],
+    "JERRY_TALISMAN_PURPLE": [
+      "JERRY_TALISMAN_GOLDEN"
+    ],
+    "TITANIUM_TALISMAN": [
+      "TITANIUM_RING",
+      "TITANIUM_ARTIFACT",
+      "TITANIUM_RELIC"
+    ],
+    "TITANIUM_RING": [
+      "TITANIUM_ARTIFACT",
+      "TITANIUM_RELIC"
+    ],
+    "TITANIUM_ARTIFACT": [
+      "TITANIUM_RELIC"
+    ],
+    "BAIT_RING": [
+      "SPIKED_ATROCITY"
+    ],
+    "MASTER_SKULL_TIER_1": [
+      "MASTER_SKULL_TIER_2",
+      "MASTER_SKULL_TIER_3",
+      "MASTER_SKULL_TIER_4",
+      "MASTER_SKULL_TIER_5",
+      "MASTER_SKULL_TIER_6",
+      "MASTER_SKULL_TIER_7"
+    ],
+    "MASTER_SKULL_TIER_2": [
+      "MASTER_SKULL_TIER_3",
+      "MASTER_SKULL_TIER_4",
+      "MASTER_SKULL_TIER_5",
+      "MASTER_SKULL_TIER_6",
+      "MASTER_SKULL_TIER_7"
+    ],
+    "MASTER_SKULL_TIER_3": [
+      "MASTER_SKULL_TIER_4",
+      "MASTER_SKULL_TIER_5",
+      "MASTER_SKULL_TIER_6",
+      "MASTER_SKULL_TIER_7"
+    ],
+    "MASTER_SKULL_TIER_4": [
+      "MASTER_SKULL_TIER_5",
+      "MASTER_SKULL_TIER_6",
+      "MASTER_SKULL_TIER_7"
+    ],
+    "MASTER_SKULL_TIER_5": [
+      "MASTER_SKULL_TIER_6",
+      "MASTER_SKULL_TIER_7"
+    ],
+    "MASTER_SKULL_TIER_6": [
+      "MASTER_SKULL_TIER_7"
     ]
   },
   "talisman_duplicates": {
@@ -3325,6 +3680,26 @@
       "rarity": "legendary",
       "texture": "\/item\/PERSONAL_COMPACTOR_7000"
     },
+    "PERSONAL_DELETOR_4000": {
+      "name": "Personal Deletor 4000",
+      "rarity": "uncommon",
+      "texture": "\/item\/PERSONAL_DELETOR_4000"
+    },
+    "PERSONAL_DELETOR_5000": {
+      "name": "Personal Deletor 5000",
+      "rarity": "rare",
+      "texture": "\/item\/PERSONAL_DELETOR_5000"
+    },
+    "PERSONAL_DELETOR_6000": {
+      "name": "Personal Deletor 6000",
+      "rarity": "epic",
+      "texture": "\/item\/PERSONAL_DELETOR_6000"
+    },
+    "PERSONAL_DELETOR_7000": {
+      "name": "Personal Deletor 7000",
+      "rarity": "legendary",
+      "texture": "\/item\/PERSONAL_DELETOR_7000"
+    },
     "SPEED_TALISMAN": {
       "name": "Speed Talisman",
       "rarity": "common",
@@ -3474,7 +3849,7 @@
     "ETERNAL_HOOF": null,
     "WITHER_RELIC": {
       "name": "Wither Relic",
-      "rarity": "epic",
+      "rarity": "legendary",
       "texture": "\/head\/964e1c3e315c8d8fffc37985b6681c5bd16a6f97ffd07199e8a05efbef103793"
     },
     "CATACOMBS_EXPERT_RING": {
@@ -3486,6 +3861,106 @@
       "name": "Auto Recombobulator",
       "rarity": "legendary",
       "texture": "\/head\/5dff8dbbab15bfbb11e23b1f50b34ef548ad9832c0bd7f5a13791adad0057e1b"
+    },
+    "JERRY_TALISMAN_GOLDEN": {
+      "name": "Golden Jerry Artifact",
+      "rarity": "legendary",
+      "texture": "\/head\/29251e18657e7304eaceac5f8d446d248ea46af2eab145f8185cece779f1648"
+    },
+    "JERRY_TALISMAN_PURPLE": {
+      "name": "Purple Jerry Talisman",
+      "rarity": "epic",
+      "texture": "\/head\/ff8bd61b60a425d2e0deb1df9665327750ceba822a0be85e2f4a3a722e20f7d6"
+    },
+    "JERRY_TALISMAN_BLUE": {
+      "name": "Blue Jerry Talisman",
+      "rarity": "rare",
+      "texture": "\/head\/d3b919f040922eb17733b42d216b7cdefeaea366be14c1ae6993ca7e5909e0f0"
+    },
+    "JERRY_TALISMAN_GREEN": {
+      "name": "Green Jerry Talisman",
+      "rarity": "uncommon",
+      "texture": "\/head\/2567251d71b6f3a4dc03fa01e441de7edf9354794e74aec16c04f141ddf31c70"
+    },
+    "KING_TALISMAN": {
+      "name": "King Talisman",
+      "rarity": "common",
+      "texture": "\/head\/ba3fe344a6a027b6c66d8541146d4819df36ab91e9fc4df532748a0d76d74b13"
+    },
+    "TITANIUM_TALISMAN": {
+      "name": "Titanium Talisman",
+      "rarity": "uncommon",
+      "texture": "\/head\/10feda53576c8a6e57466f5dbdb99ea480ed122a09fdd850ed8c2e755f55cac2"
+    },
+    "TITANIUM_RING": {
+      "name": "Titanium Ring",
+      "rarity": "rare",
+      "texture": "\/head\/2c3edd919c0cc6d9668ffd210e46d2c07fe088c44d85f47d251b4f87481174f5"
+    },
+    "TITANIUM_ARTIFACT": {
+      "name": "Titanium Artifact",
+      "rarity": "epic",
+      "texture": "\/head\/98ec21d20f1aaf5635f48beda88626403c6385b81673fb7cfa7ff82179c63e39"
+    },
+    "TITANIUM_RELIC": {
+      "name": "Titanium Relic",
+      "rarity": "legendary",
+      "texture": "\/head\/d2f2405a7b8defddb0b8268bea8f2e12fc09bbc7de12981f85db2a7001ac81eb"
+    },
+    "REAPER_ORB": {
+      "name": "Reaper Orb",
+      "rarity": "legendary",
+      "texture": "\/head\/3a7cda9004fc197d66afbc2b003a5b9ef13cf4600b1fc7490067590f047181e"
+    },
+    "DANTE_TALISMAN": {
+      "name": "Dante Talisman",
+      "rarity": "common",
+      "texture": "\/head\/cf92982f1a302310643a20ce51623f8199b7545e70dc6b93ed6bd61dc42ff213"
+    },
+    "SPIKED_ATROCITY": {
+      "name": "Spiked Atrocity",
+      "rarity": "epic",
+      "texture": "\/head\/df4eeca825dddb7f861352ecb0be2df4615728b63894b7c54418af0105a39172"
+    },
+    "BLOOD_GOD_CREST": {
+      "name": "Blood God Crest",
+      "rarity": "common",
+      "texture": "\/head\/5b8b51eaefe0e3a10ad7fa1627801d2ce4412b4e432685906192f83283708233"
+    },
+    "MASTER_SKULL_TIER_1": {
+      "name": "Master Skull - Tier 1",
+      "rarity": "common",
+      "texture": "\/head\/d48935509b5dee1e0daa28f51a3cc741b2b2e18b4efa1aab5883a5378623"
+    },
+    "MASTER_SKULL_TIER_2": {
+      "name": "Master Skull - Tier 2",
+      "rarity": "common",
+      "texture": "\/head\/d48935509b5dee1e0daa28f51a3cc741b2b2e18b4efa1aab5883a5378623"
+    },
+    "MASTER_SKULL_TIER_3": {
+      "name": "Master Skull - Tier 3",
+      "rarity": "uncommon",
+      "texture": "\/head\/d48935509b5dee1e0daa28f51a3cc741b2b2e18b4efa1aab5883a5378623"
+    },
+    "MASTER_SKULL_TIER_4": {
+      "name": "Master Skull - Tier 4",
+      "rarity": "uncommon",
+      "texture": "\/head\/d48935509b5dee1e0daa28f51a3cc741b2b2e18b4efa1aab5883a5378623"
+    },
+    "MASTER_SKULL_TIER_5": {
+      "name": "Master Skull - Tier 5",
+      "rarity": "rare",
+      "texture": "\/head\/d48935509b5dee1e0daa28f51a3cc741b2b2e18b4efa1aab5883a5378623"
+    },
+    "MASTER_SKULL_TIER_6": {
+      "name": "Master Skull - Tier 6",
+      "rarity": "epic",
+      "texture": "\/head\/d48935509b5dee1e0daa28f51a3cc741b2b2e18b4efa1aab5883a5378623"
+    },
+    "MASTER_SKULL_TIER_7": {
+      "name": "Master Skull - Tier 7",
+      "rarity": "legendary",
+      "texture": "\/head\/d48935509b5dee1e0daa28f51a3cc741b2b2e18b4efa1aab5883a5378623"
     }
   }
 }

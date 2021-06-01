@@ -44,7 +44,8 @@
     use Plancke\HypixelPHP\resources\games\SkyBlockResources;
     use Plancke\HypixelPHP\responses\player\Player;
     use Plancke\HypixelPHP\responses\Resource;
-    use pocketmine\nbt\BigEndianNBTStream;
+    use pocketmine\nbt\BigEndianNbtSerializer;
+    use pocketmine\nbt\tag\CompoundTag;
     use pocketmine\nbt\tag\ListTag;
     use Ramsey\Uuid\UuidFactory;
     use UnexpectedValueException;
@@ -610,6 +611,10 @@
             $steps           = $skillBonusStats->keys()->sort();
 
             $bonus = $this->getStatTemplate();
+
+            if ($steps->isEmpty()) {
+                return $bonus;
+            }
 
             for ($skillLevel = $steps[0]; $skillLevel <= $max; $skillLevel += $incremention) {
                 if ($level < $skillLevel) {
@@ -1318,12 +1323,14 @@
         private function getItemsFromData($dataBase64): Collection {
             $data = gzdecode(base64_decode($dataBase64));
 
-            $nbtStream = new BigEndianNBTStream();
+            $nbtStream = new BigEndianNbtSerializer();
             $nbtData   = $nbtStream->read($data);
 
-            /** @var ListTag $itemsTag */
-            $itemsTag = $nbtData->getValue()['i'];
-            $nbtItems = $itemsTag->getValue();
+            /** @var CompoundTag $itemsTag */
+            $compoundTag = $nbtData->getTag();
+
+            /** @var ListTag $nbtItems */
+            $nbtItems = $compoundTag->getValue()['i'];
 
             $items = new Collection();
 

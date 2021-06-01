@@ -1,6 +1,6 @@
 <?php
-    /**
- * Copyright (c) 2020 Max Korlaar
+    /*
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -131,7 +131,7 @@
          * @param     $destY
          * @param int $size
          */
-        private function copyIcon($imageName, &$image, $destX, $destY, $size = 2): void {
+        private function copyIcon($imageName, &$image, $destX, $destY, int $size = 2): void {
             $icon  = imagecreatefrompng(resource_path("images/{$imageName}.png"));
             $iconX = imagesx($icon);
             $iconY = imagesy($icon);
@@ -144,6 +144,4 @@
 
             imagecopyresized($image, $icon, $destX + 2, $destY + 2, 0, 0, $iconX * $size, $iconY * $size, $iconX, $iconY);
         }
-
-
     }
