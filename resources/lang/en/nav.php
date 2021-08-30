@@ -36,5 +36,5 @@
         'friends'       => 'Friends',
         'guild'         => 'Guild',
         'player_status' => 'Online Status',
-        'beta_warning' => '<b>Heads up!</b> Hypixel.Paniek.de is still in beta, and may ocasionally break. If you have any feedback or would like to see more functionality added to this site, don\'t hesitate to get in touch with me: <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">@MaxKorlaar on Twitter</a> or on the <a href="https://hypixel.net/threads/2880476/" target="_blank" rel="noopener">Hypixel Forums</a>.'
+        'beta_warning' => '<b>Heads up!</b> Hypixel.Paniek.de is still in beta, and may occasionally break. If you have any feedback, or would like to see more functionality added to this site, don\'t hesitate to get in touch with me: <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">@MaxKorlaar on Twitter</a> or on the <a href="https://hypixel.net/threads/2880476/" target="_blank" rel="noopener">Hypixel Forums</a>.'
     ];
