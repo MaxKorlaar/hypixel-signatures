@@ -37,7 +37,7 @@
             {% for player in recently_viewed %}
                 <a class="item" href="{{ route('friends.list', [player.uuid]) }}">
                     <div class="image-container">
-                        <img loading="lazy" src="{{ route(Browser.isSafari ? 'player.skin.head.png' : 'player.skin.head',  [player.uuid]) }}" alt="">
+                        <img loading="lazy" src="{{ route('player.skin.head', [player.uuid]) }}" alt="">
                     </div>
                     <div class="name-container">
                         <h3>{{ player.username }}</h3>

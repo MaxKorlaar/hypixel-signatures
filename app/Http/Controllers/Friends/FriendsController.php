@@ -38,7 +38,6 @@
     use App\Jobs\Friends\LoadPlayerData;
     use App\Utilities\HypixelAPI;
     use App\Utilities\MinecraftAvatar\MojangAPI;
-    use Browser;
     use Cache;
     use Illuminate\Contracts\Foundation\Application;
     use Illuminate\Contracts\View\Factory;
@@ -200,7 +199,7 @@
                     $friendArray = [
                         'uuid'        => $friendUuid,
                         'since'       => $friend['started'],
-                        'skin_url'    => route(Browser::isSafari() ? 'player.skin.head.png' : 'player.skin.head', [$friendUuid]),
+                        'skin_url'    => route('player.skin.head', [$friendUuid]),
                         'friends_url' => route('friends.list', [$friendUuid]),
                     ];
 

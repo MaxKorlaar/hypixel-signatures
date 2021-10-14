@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -190,9 +190,6 @@
             |
             */
             'facades' => [
-                'Browser' => [
-                    'is_safe' => true
-                ]
             ],
 
             /*
