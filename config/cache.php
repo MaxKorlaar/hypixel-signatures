@@ -1,6 +1,6 @@
 <?php
-    /**
- * Copyright (c) 2020 Max Korlaar
+    /*
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -138,7 +138,7 @@
                 'player_skin'  => 604800, // 1 week
                 'guild_banner' => 604800,
             ],
-            'recent_players'   => 2678400, // 1 month
+            'recent_players'   => 86400 * 5, // 5 days
             'recent_guilds'    => 2678400,
         ],
 

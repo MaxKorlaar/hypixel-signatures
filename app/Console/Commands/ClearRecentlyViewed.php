@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,7 +61,8 @@ namespace App\Console\Commands;
          * @return mixed
          */
         public function handle(): void {
-            Redis::connection('cache')->del('recent_friends');
+            Redis::connection('cache')->zPopMin('recent_friends', min(0, Redis::connection('cache')->zCount('recent_friends', '-inf', '+inf') - 50));
+
             Redis::connection('cache')->del('recent_guilds');
             Redis::connection('cache')->del('recent_online_players');
 

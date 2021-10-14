@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,6 +56,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/status.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .version()
+    .vue()
     .extract(['vue', 'axios'])
     .purgeCss()
     .webpackConfig({
