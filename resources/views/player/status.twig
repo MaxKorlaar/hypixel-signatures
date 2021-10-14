@@ -10,7 +10,7 @@
         {% if enabled %}
             <div class="status-container" :class="{ loading: loading }">
                 <div class="image-container">
-                    <img src="{{ route(Browser.isSafari ? 'player.skin.full.png' : 'player.skin.full',  { uuid: player.uuid, size: 10 }) }}" alt="">
+                    <img src="{{ route('player.skin.full',  { uuid: player.uuid, size: 10 }) }}" alt="">
                 </div>
                 <div class="text-container" v-cloak>
                     <h2>{{ trans('player.status.name_is_currently', { username: player.name }) }}</h2>

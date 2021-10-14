@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2021 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,7 +36,6 @@
     use App\Http\Controllers\Controller;
     use App\Jobs\Guild\LoadMemberData;
     use App\Utilities\HypixelAPI;
-    use Browser;
     use Cache;
     use Illuminate\Contracts\Foundation\Application;
     use Illuminate\Contracts\View\Factory;
@@ -125,7 +124,7 @@
                 foreach ($rankMembers as $member) {
                     $uuid        = $member->getUUID();
                     $memberArray = $member->getData() + [
-                            'skin_url' => route(Browser::isSafari() ? 'player.skin.head.png' : 'player.skin.head', [$uuid, 'size' => 3]),
+                            'skin_url' => route('player.skin.head', [$uuid, 'size' => 3]),
                             'loading'  => false
                         ];
 
