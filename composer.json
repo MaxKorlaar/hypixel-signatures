@@ -23,7 +23,7 @@
     "laravel/tinker": "^2.0",
     "lunakid/anim-gif": "dev-dev-array-access-bug",
     "marvinlabs/laravel-discord-logger": "^1.1",
-    "monicahq/laravel-cloudflare": "^1.6",
+    "monicahq/laravel-cloudflare": "^2",
     "morrislaptop/laravel-queue-clear": "^1.2",
     "plancke/hypixel-php": "dev-master",
     "pocketmine/nbt": "^0.3.0",
@@ -33,7 +33,7 @@
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.9",
-    "roave/security-advisories": "dev-master",
+    "roave/security-advisories": "dev-latest",
     "facade/ignition": "^2.0",
     "fakerphp/faker": "^1.13",
     "laravel/homestead": "^12",
