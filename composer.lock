@@ -1,40 +1,40 @@
 {
-  "_readme": [
-    "This file locks the dependencies of your project to a known state",
-    "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
-    "This file is @generated automatically"
-  ],
-  "content-hash": "0497f34672f3a35f3634e3db40b51b34",
-  "packages": [
-    {
-      "name": "brick/math",
-      "version": "0.9.3",
-      "source": {
-        "type": "git",
-        "url": "https://github.com/brick/math.git",
-        "reference": "ca57d18f028f84f777b2168cd1911b0dee2343ae"
-      },
-      "dist": {
-        "type": "zip",
-        "url": "https://api.github.com/repos/brick/math/zipball/ca57d18f028f84f777b2168cd1911b0dee2343ae",
-        "reference": "ca57d18f028f84f777b2168cd1911b0dee2343ae",
-        "shasum": ""
-      },
-      "require": {
-        "ext-json": "*",
-        "php": "^7.1 || ^8.0"
-      },
-      "require-dev": {
-        "php-coveralls/php-coveralls": "^2.2",
-        "phpunit/phpunit": "^7.5.15 || ^8.5 || ^9.0",
-        "vimeo/psalm": "4.9.2"
-      },
-      "type": "library",
-      "autoload": {
-        "psr-4": {
-          "Brick\\Math\\": "src/"
-        }
-      },
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "62739c3fadbd0a760c82228a6f0e64bd",
+    "packages": [
+        {
+            "name": "brick/math",
+            "version": "0.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/brick/math.git",
+                "reference": "ca57d18f028f84f777b2168cd1911b0dee2343ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/brick/math/zipball/ca57d18f028f84f777b2168cd1911b0dee2343ae",
+                "reference": "ca57d18f028f84f777b2168cd1911b0dee2343ae",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "php-coveralls/php-coveralls": "^2.2",
+                "phpunit/phpunit": "^7.5.15 || ^8.5 || ^9.0",
+                "vimeo/psalm": "4.9.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Brick\\Math\\": "src/"
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
@@ -143,34 +143,30 @@
         },
         {
             "name": "doctrine/inflector",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "9cf661f4eb38f7c881cac67c75ea9b00bf97b210"
+                "reference": "8b7ff3e4b7de6b2c84da85637b59fd2880ecaa89"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/9cf661f4eb38f7c881cac67c75ea9b00bf97b210",
-                "reference": "9cf661f4eb38f7c881cac67c75ea9b00bf97b210",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/8b7ff3e4b7de6b2c84da85637b59fd2880ecaa89",
+                "reference": "8b7ff3e4b7de6b2c84da85637b59fd2880ecaa89",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2 || ^8.0"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^7.0",
-                "phpstan/phpstan": "^0.11",
-                "phpstan/phpstan-phpunit": "^0.11",
-                "phpstan/phpstan-strict-rules": "^0.11",
-                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0"
+                "doctrine/coding-standard": "^8.2",
+                "phpstan/phpstan": "^0.12",
+                "phpstan/phpstan-phpunit": "^0.12",
+                "phpstan/phpstan-strict-rules": "^0.12",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+                "vimeo/psalm": "^4.10"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Doctrine\\Inflector\\": "lib/Doctrine/Inflector"
@@ -218,7 +214,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/inflector/issues",
-                "source": "https://github.com/doctrine/inflector/tree/2.0.x"
+                "source": "https://github.com/doctrine/inflector/tree/2.0.4"
             },
             "funding": [
                 {
@@ -234,7 +230,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-05-29T15:13:26+00:00"
+            "time": "2021-10-22T20:16:43+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -2503,18 +2499,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MaxKorlaar/hypixel-php.git",
-              "reference": "af348efbecae86acae508916ba2e8912993c67fe"
+                "reference": "af348efbecae86acae508916ba2e8912993c67fe"
             },
             "dist": {
-              "type": "zip",
-              "url": "https://api.github.com/repos/MaxKorlaar/hypixel-php/zipball/af348efbecae86acae508916ba2e8912993c67fe",
-              "reference": "af348efbecae86acae508916ba2e8912993c67fe",
-              "shasum": ""
+                "type": "zip",
+                "url": "https://api.github.com/repos/MaxKorlaar/hypixel-php/zipball/af348efbecae86acae508916ba2e8912993c67fe",
+                "reference": "af348efbecae86acae508916ba2e8912993c67fe",
+                "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
-              "php": "^7.3|^8.0"
+                "php": "^7.3|^8.0"
             },
             "require-dev": {
                 "ext-mongodb": "^1.4.2",
@@ -2559,7 +2555,7 @@
                 "issues": "https://github.com/Plancke/hypixel-php/issues",
                 "source": "https://github.com/MaxKorlaar/hypixel-php/tree/master"
             },
-          "time": "2021-10-14T19:17:11+00:00"
+            "time": "2021-10-14T19:17:11+00:00"
         },
         {
             "name": "pocketmine/binaryutils",
@@ -6278,141 +6274,141 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                  "dev-master": "2.0.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
-          "autoload": {
-            "psr-0": {
-              "Barryvdh": [
-                "src/"
-              ]
-            }
-          },
-          "notification-url": "https://packagist.org/downloads/",
-          "license": [
-            "MIT"
-          ],
-          "authors": [
-            {
-              "name": "Mike van Riel",
-              "email": "mike.vanriel@naenius.com"
-            }
-          ],
-          "support": {
-            "source": "https://github.com/barryvdh/ReflectionDocBlock/tree/v2.0.6"
-          },
-          "time": "2018-12-13T10:34:14+00:00"
+            "autoload": {
+                "psr-0": {
+                    "Barryvdh": [
+                        "src/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mike van Riel",
+                    "email": "mike.vanriel@naenius.com"
+                }
+            ],
+            "support": {
+                "source": "https://github.com/barryvdh/ReflectionDocBlock/tree/v2.0.6"
+            },
+            "time": "2018-12-13T10:34:14+00:00"
         },
-      {
-        "name": "composer/ca-bundle",
-        "version": "1.2.11",
-        "source": {
-          "type": "git",
-          "url": "https://github.com/composer/ca-bundle.git",
-          "reference": "0b072d51c5a9c6f3412f7ea3ab043d6603cb2582"
+        {
+            "name": "composer/ca-bundle",
+            "version": "1.2.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/ca-bundle.git",
+                "reference": "0b072d51c5a9c6f3412f7ea3ab043d6603cb2582"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/0b072d51c5a9c6f3412f7ea3ab043d6603cb2582",
+                "reference": "0b072d51c5a9c6f3412f7ea3ab043d6603cb2582",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "ext-pcre": "*",
+                "php": "^5.3.2 || ^7.0 || ^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12.55",
+                "psr/log": "^1.0",
+                "symfony/phpunit-bridge": "^4.2 || ^5",
+                "symfony/process": "^2.5 || ^3.0 || ^4.0 || ^5.0 || ^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\CaBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "Lets you find a path to the system CA bundle, and includes a fallback to the Mozilla CA bundle.",
+            "keywords": [
+                "cabundle",
+                "cacert",
+                "certificate",
+                "ssl",
+                "tls"
+            ],
+            "support": {
+                "irc": "irc://irc.freenode.org/composer",
+                "issues": "https://github.com/composer/ca-bundle/issues",
+                "source": "https://github.com/composer/ca-bundle/tree/1.2.11"
+            },
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-09-25T20:32:43+00:00"
         },
-        "dist": {
-          "type": "zip",
-          "url": "https://api.github.com/repos/composer/ca-bundle/zipball/0b072d51c5a9c6f3412f7ea3ab043d6603cb2582",
-          "reference": "0b072d51c5a9c6f3412f7ea3ab043d6603cb2582",
-          "shasum": ""
-        },
-        "require": {
-          "ext-openssl": "*",
-          "ext-pcre": "*",
-          "php": "^5.3.2 || ^7.0 || ^8.0"
-        },
-        "require-dev": {
-          "phpstan/phpstan": "^0.12.55",
-          "psr/log": "^1.0",
-          "symfony/phpunit-bridge": "^4.2 || ^5",
-          "symfony/process": "^2.5 || ^3.0 || ^4.0 || ^5.0 || ^6.0"
-        },
-        "type": "library",
-        "extra": {
-          "branch-alias": {
-            "dev-main": "1.x-dev"
-          }
-        },
-        "autoload": {
-          "psr-4": {
-            "Composer\\CaBundle\\": "src"
-          }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-          "MIT"
-        ],
-        "authors": [
-          {
-            "name": "Jordi Boggiano",
-            "email": "j.boggiano@seld.be",
-            "homepage": "http://seld.be"
-          }
-        ],
-        "description": "Lets you find a path to the system CA bundle, and includes a fallback to the Mozilla CA bundle.",
-        "keywords": [
-          "cabundle",
-          "cacert",
-          "certificate",
-          "ssl",
-          "tls"
-        ],
-        "support": {
-          "irc": "irc://irc.freenode.org/composer",
-          "issues": "https://github.com/composer/ca-bundle/issues",
-          "source": "https://github.com/composer/ca-bundle/tree/1.2.11"
-        },
-        "funding": [
-          {
-            "url": "https://packagist.com",
-            "type": "custom"
-          },
-          {
-            "url": "https://github.com/composer",
-            "type": "github"
-          },
-          {
-            "url": "https://tidelift.com/funding/github/packagist/composer/composer",
-            "type": "tidelift"
-          }
-        ],
-        "time": "2021-09-25T20:32:43+00:00"
-      },
-      {
-        "name": "composer/composer",
-        "version": "dev-main",
-        "source": {
-          "type": "git",
-          "url": "https://github.com/composer/composer.git",
-          "reference": "1ef707670387d4a307cb34c7fc9c43b8466fb9b3"
-        },
-        "dist": {
-          "type": "zip",
-          "url": "https://api.github.com/repos/composer/composer/zipball/1ef707670387d4a307cb34c7fc9c43b8466fb9b3",
-          "reference": "1ef707670387d4a307cb34c7fc9c43b8466fb9b3",
-          "shasum": ""
-        },
-        "require": {
-          "composer/ca-bundle": "^1.0",
-          "composer/metadata-minifier": "^1.0",
-          "composer/semver": "^3.0",
-          "composer/spdx-licenses": "^1.2",
-          "composer/xdebug-handler": "^2.0",
-          "justinrainbow/json-schema": "^5.2.11",
-          "php": "^5.3.2 || ^7.0 || ^8.0",
-          "psr/log": "^1.0 || ^2.0",
-          "react/promise": "^1.2 || ^2.7",
-          "seld/jsonlint": "^1.4",
-          "seld/phar-utils": "^1.0",
-          "symfony/console": "^2.8.52 || ^3.4.35 || ^4.4 || ^5.0 || ^6.0",
-          "symfony/filesystem": "^2.8.52 || ^3.4.35 || ^4.4 || ^5.0 || ^6.0",
-          "symfony/finder": "^2.8.52 || ^3.4.35 || ^4.4 || ^5.0 || ^6.0",
-          "symfony/process": "^2.8.52 || ^3.4.35 || ^4.4 || ^5.0 || ^6.0"
-        },
-        "require-dev": {
-          "phpspec/prophecy": "^1.10",
-          "symfony/phpunit-bridge": "^4.2 || ^5.0 || ^6.0"
+        {
+            "name": "composer/composer",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/composer.git",
+                "reference": "1ef707670387d4a307cb34c7fc9c43b8466fb9b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/composer/zipball/1ef707670387d4a307cb34c7fc9c43b8466fb9b3",
+                "reference": "1ef707670387d4a307cb34c7fc9c43b8466fb9b3",
+                "shasum": ""
+            },
+            "require": {
+                "composer/ca-bundle": "^1.0",
+                "composer/metadata-minifier": "^1.0",
+                "composer/semver": "^3.0",
+                "composer/spdx-licenses": "^1.2",
+                "composer/xdebug-handler": "^2.0",
+                "justinrainbow/json-schema": "^5.2.11",
+                "php": "^5.3.2 || ^7.0 || ^8.0",
+                "psr/log": "^1.0 || ^2.0",
+                "react/promise": "^1.2 || ^2.7",
+                "seld/jsonlint": "^1.4",
+                "seld/phar-utils": "^1.0",
+                "symfony/console": "^2.8.52 || ^3.4.35 || ^4.4 || ^5.0 || ^6.0",
+                "symfony/filesystem": "^2.8.52 || ^3.4.35 || ^4.4 || ^5.0 || ^6.0",
+                "symfony/finder": "^2.8.52 || ^3.4.35 || ^4.4 || ^5.0 || ^6.0",
+                "symfony/process": "^2.8.52 || ^3.4.35 || ^4.4 || ^5.0 || ^6.0"
+            },
+            "require-dev": {
+                "phpspec/prophecy": "^1.10",
+                "symfony/phpunit-bridge": "^4.2 || ^5.0 || ^6.0"
             },
             "suggest": {
                 "ext-openssl": "Enabling the openssl extension allows you to access https URLs for repositories and packages",
@@ -6476,7 +6472,7 @@
                     "type": "tidelift"
                 }
             ],
-        "time": "2021-10-14T19:05:56+00:00"
+            "time": "2021-10-14T19:05:56+00:00"
         },
         {
             "name": "composer/metadata-minifier",
@@ -6945,16 +6941,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "3.1.3",
+            "version": "3.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "96b0053775a544b4a6ab47654dac0621be8b4cf8"
+                "reference": "821b4f01a36ce63ed36c090ea74767b72db367e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/96b0053775a544b4a6ab47654dac0621be8b4cf8",
-                "reference": "96b0053775a544b4a6ab47654dac0621be8b4cf8",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/821b4f01a36ce63ed36c090ea74767b72db367e9",
+                "reference": "821b4f01a36ce63ed36c090ea74767b72db367e9",
                 "shasum": ""
             },
             "require": {
@@ -6967,14 +6963,14 @@
             "require-dev": {
                 "doctrine/coding-standard": "9.0.0",
                 "jetbrains/phpstorm-stubs": "2021.1",
-                "phpstan/phpstan": "0.12.99",
-                "phpstan/phpstan-strict-rules": "^0.12.11",
+                "phpstan/phpstan": "1.1.1",
+                "phpstan/phpstan-strict-rules": "^1",
                 "phpunit/phpunit": "9.5.10",
                 "psalm/plugin-phpunit": "0.16.1",
-                "squizlabs/php_codesniffer": "3.6.0",
+                "squizlabs/php_codesniffer": "3.6.1",
                 "symfony/cache": "^5.2|^6.0",
                 "symfony/console": "^2.0.5|^3.0|^4.0|^5.0|^6.0",
-                "vimeo/psalm": "4.10.0"
+                "vimeo/psalm": "4.12.0"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
@@ -7034,7 +7030,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/3.1.3"
+                "source": "https://github.com/doctrine/dbal/tree/3.1.4"
             },
             "funding": [
                 {
@@ -7050,7 +7046,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-02T16:15:05+00:00"
+            "time": "2021-11-15T16:44:33+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -10469,12 +10465,12 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-      "php": "^7.4|^8.0",
-      "ext-curl": "*",
-      "ext-gd": "*",
-      "ext-json": "*",
-      "ext-zlib": "*"
+        "php": "^8.0",
+        "ext-curl": "*",
+        "ext-gd": "*",
+        "ext-json": "*",
+        "ext-zlib": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
