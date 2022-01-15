@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62739c3fadbd0a760c82228a6f0e64bd",
+    "content-hash": "a7f8368b1216814f91b50299152f8676",
     "packages": [
         {
             "name": "brick/math",
@@ -7651,16 +7651,16 @@
         },
         {
             "name": "laravel/homestead",
-            "version": "v12.7.0",
+            "version": "v13.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/homestead.git",
-                "reference": "cd25cb0215380571da116f8a5ffd8be1e0fc891c"
+                "reference": "6dd850dadb1c56708e1dcb1c226dca58dd3e8a31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/homestead/zipball/cd25cb0215380571da116f8a5ffd8be1e0fc891c",
-                "reference": "cd25cb0215380571da116f8a5ffd8be1e0fc891c",
+                "url": "https://api.github.com/repos/laravel/homestead/zipball/6dd850dadb1c56708e1dcb1c226dca58dd3e8a31",
+                "reference": "6dd850dadb1c56708e1dcb1c226dca58dd3e8a31",
                 "shasum": ""
             },
             "require": {
@@ -7699,9 +7699,9 @@
             "description": "A virtual machine for web artisans.",
             "support": {
                 "issues": "https://github.com/laravel/homestead/issues",
-                "source": "https://github.com/laravel/homestead/tree/v12.7.0"
+                "source": "https://github.com/laravel/homestead/tree/v13.0.2"
             },
-            "time": "2021-10-04T14:18:19+00:00"
+            "time": "2021-12-21T21:59:11+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -10275,28 +10275,28 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v5.3.6",
+            "version": "v5.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "4500fe63dc9c6ffc32d3b1cb0448c329f9c814b7"
+                "reference": "b9eb163846a61bb32dfc147f7859e274fab38b58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/4500fe63dc9c6ffc32d3b1cb0448c329f9c814b7",
-                "reference": "4500fe63dc9c6ffc32d3b1cb0448c329f9c814b7",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/b9eb163846a61bb32dfc147f7859e274fab38b58",
+                "reference": "b9eb163846a61bb32dfc147f7859e274fab38b58",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
-                "symfony/deprecation-contracts": "^2.1",
-                "symfony/polyfill-ctype": "~1.8"
+                "symfony/deprecation-contracts": "^2.1|^3",
+                "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
-                "symfony/console": "<4.4"
+                "symfony/console": "<5.3"
             },
             "require-dev": {
-                "symfony/console": "^4.4|^5.0"
+                "symfony/console": "^5.3|^6.0"
             },
             "suggest": {
                 "symfony/console": "For validating YAML files using the lint command"
@@ -10330,7 +10330,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v5.3.6"
+                "source": "https://github.com/symfony/yaml/tree/v5.4.2"
             },
             "funding": [
                 {
@@ -10346,7 +10346,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-29T06:20:01+00:00"
+            "time": "2021-12-16T21:58:21+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -10416,5 +10416,5 @@
         "ext-zlib": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }
