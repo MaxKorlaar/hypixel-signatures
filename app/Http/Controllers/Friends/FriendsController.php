@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2021 Max Korlaar
+ * Copyright (c) 2021-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,9 +63,14 @@
          * @return View
          */
         public function getIndex(): View {
-            $recentlyViewed = (new Collection(Redis::connection('cache')->zRange('recent_friends')))->sortDesc()->map(static function ($value, $key) {
+            $recentlyViewed = (new Collection(
+                Redis::connection('cache')
+                    ->zRevRangeByScore('recent_friends', '+inf', '0', [
+                        'withscores' => true, 'limit' => [0, 20]
+                    ])
+            ))->map(static function ($value, $key) {
                 return ['uuid' => $key, 'views' => $value] + Cache::get('recent_friends.' . $key, []);
-            })->slice(0, 20);
+            });
 
             return view('friends.index', [
                 'recently_viewed' => $recentlyViewed
@@ -94,7 +99,6 @@
             $mojangAPI = new MojangAPI();
 
             $data = $mojangAPI->getUUID($username);
-            // todo:           https://redis.io/commands/zrevrangebyscore
 
             if (!$data['success']) {
                 if ($data['status_code'] === 204) {
@@ -134,8 +138,8 @@
                 if ($player instanceof Player) {
                     $friendsList = $this->getFriendsListJSON($uuid);
 
-                    Redis::connection('cache')->zIncrBy('recent_friends', $uuid, 1);
-                    Redis::connection('cache')->expire('recent_friends', config('cache.times.recent_players'));
+                    Redis::connection('cache')->zIncrBy('recent_friends', 1, $uuid);
+
                     Cache::set('recent_friends.' . $uuid, [
                         'username'      => $player->getName(),
                         'friends_count' => $friendsList['meta']['total_friends']

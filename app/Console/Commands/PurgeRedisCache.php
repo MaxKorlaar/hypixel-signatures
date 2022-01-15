@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2021-2022 Max Korlaar
+ * Copyright (c) 2022-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,55 +33,35 @@
     namespace App\Console\Commands;
 
     use Illuminate\Console\Command;
-    use Illuminate\Support\Facades\Redis;
+    use Illuminate\Support\Facades\Cache;
 
     /**
-     * Class ClearRecentlyViewed
      *
-     * @package App\Console\Commands
      */
-    class ClearRecentlyViewed extends Command {
+    class PurgeRedisCache extends Command {
         /**
          * The name and signature of the console command.
          *
          * @var string
          */
-        protected $signature = 'hypixel-cache:clear-recent';
+        protected $signature = 'hypixel-cache:purge';
 
         /**
          * The console command description.
          *
          * @var string
          */
-        protected $description = 'Clear list of recently viewed players and guilds by site visitors';
+        protected $description = 'Purge the Redis cache of Hypixel related data';
+
 
         /**
          * Execute the console command.
          *
-         * @return mixed
+         * @return int
          */
-        public function handle(): void {
-            $recentFriendsCount = Redis::connection('cache')->zCount('recent_friends', '-inf', '+inf');
+        public function handle(): int {
+            Cache::flush();
 
-            $this->info('recent_friends size: ' . $recentFriendsCount);
-
-            Redis::connection('cache')->zPopMin('recent_friends', max(0, $recentFriendsCount - 10));
-            Redis::connection('cache')->expire('recent_friends', config('cache.times.recent_players'));
-
-            $recentGuildsCount = Redis::connection('cache')->zCount('recent_guilds', '-inf', '+inf');
-
-            $this->info('recent_guilds size: ' . $recentGuildsCount);
-
-            Redis::connection('cache')->zPopMin('recent_guilds', max(0, $recentGuildsCount - 10));
-            Redis::connection('cache')->expire('recent_guilds', config('cache.times.recent_guilds'));
-
-            $recentOnlinePlayersCount = Redis::connection('cache')->zCount('recent_online_players', '-inf', '+inf');
-
-            $this->info('recent_online_players size: ' . $recentOnlinePlayersCount);
-
-            Redis::connection('cache')->zPopMin('recent_online_players', max(0, $recentOnlinePlayersCount - 10));
-            Redis::connection('cache')->expire('recent_online_players', config('cache.times.recent_players'));
-
-            $this->info('Cleared recently viewed players');
+            return 0;
         }
     }

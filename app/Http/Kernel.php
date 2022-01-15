@@ -1,6 +1,6 @@
 <?php
-/**
- * Copyright (c) 2020 Max Korlaar
+    /*
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,7 +38,6 @@
     use App\Http\Middleware\RedirectIfAuthenticated;
     use App\Http\Middleware\SetLanguage;
     use App\Http\Middleware\TrimStrings;
-    use App\Http\Middleware\TrustProxies;
     use App\Http\Middleware\VerifyCsrfToken;
     use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
     use Illuminate\Auth\Middleware\Authorize;
@@ -55,6 +54,7 @@
     use Illuminate\Session\Middleware\AuthenticateSession;
     use Illuminate\Session\Middleware\StartSession;
     use Illuminate\View\Middleware\ShareErrorsFromSession;
+    use Monicahq\Cloudflare\Http\Middleware\TrustProxies;
 
     /**
      * Class Kernel

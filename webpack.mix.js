@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Max Korlaar
+ * Copyright (c) 2021-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -67,7 +67,7 @@ mix.js('resources/js/app.js', 'public/js')
         ]
     })
     .browserSync({
-        proxy: 'localhost:8000',
+        proxy: '0.0.0.0:8000',
         files: [
             "resources/views/**/*.twig",
             'app/**/*.php',

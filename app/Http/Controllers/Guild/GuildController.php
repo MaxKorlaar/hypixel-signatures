@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,11 +61,14 @@
          * @return View
          */
         public function getIndex(): View {
-            $recentlyViewed = (new Collection(Redis::connection('cache')->hGetAll('recent_guilds')))->sortDesc()->map(static function ($value, $key) {
-                return ['id' => $key, 'views' => $value] + Cache::get('recent_guilds.' . $key, [
-                        'name' => $key
-                    ]);
-            })->slice(0, 20);
+            $recentlyViewed = (new Collection(
+                Redis::connection('cache')
+                    ->zRevRangeByScore('recent_guilds', '+inf', '0', [
+                        'withscores' => true, 'limit' => [0, 20]
+                    ])
+            ))->map(static function ($value, $key) {
+                return ['id' => $key, 'views' => $value] + Cache::get('recent_guilds.' . $key, ['name' => $key]);
+            });
 
             return view('guild.index', [
                 'recently_viewed' => $recentlyViewed
@@ -137,8 +140,8 @@
                     return redirect()->route('guild')->withErrors(['username' => 'This guild does not exist']);
                 }
 
-                Redis::connection('cache')->hIncrBy('recent_guilds', $guild->getID(), 1);
-                Redis::connection('cache')->expire('recent_guilds', config('cache.times.recent_guilds'));
+                Redis::connection('cache')->zIncrBy('recent_guilds', 1, $guild->getID());
+
                 Cache::set('recent_guilds.' . $guild->getID(), [
                     'name'         => $guild->getName(),
                     'id'           => $guild->getID(),
