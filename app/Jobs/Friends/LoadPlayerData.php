@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2021 Max Korlaar
+ * Copyright (c) 2021-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,7 +58,7 @@
         /**
          * Create a new job instance.
          *
-         * @param $uuid
+         * @param string $uuid
          */
         public function __construct(string $uuid) {
             $this->queue = 'hypixel-api';

@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -82,7 +82,12 @@
                 ],
             ]);
 
-            $recentGuilds = (new Collection(Redis::connection('cache')->hGetAll('recent_guilds')))->sortDesc()->map(static function ($value, $key) {
+            $recentGuilds = (new Collection(
+                Redis::connection('cache')
+                    ->zRevRangeByScore('recent_guilds', '+inf', '0', [
+                        'withscores' => true
+                    ])
+            ))->map(static function ($value, $key) {
                 $guildData = Cache::get('recent_guilds.' . $key, [
                     'name' => $key
                 ]);
@@ -120,7 +125,12 @@
                 ];
             })->flatten(1);
 
-            $recentFriends = (new Collection(Redis::connection('cache')->hGetAll('recent_friends')))->sortDesc()->map(static function ($value, $uuid) {
+            $recentFriends = (new Collection(
+                Redis::connection('cache')
+                    ->zRevRangeByScore('recent_friends', '+inf', '0', [
+                        'withscores' => true
+                    ])
+            ))->map(static function ($value, $uuid) {
                 return [
                     'url'       => route('friends.list', [$uuid]),
                     'frequency' => 'daily',
@@ -128,7 +138,12 @@
                 ];
             });
 
-            $recentOnlinePlayers = (new Collection(Redis::connection('cache')->hGetAll('recent_online_players')))->sortDesc()->map(static function ($value, $uuid) {
+            $recentOnlinePlayers = (new Collection(
+                Redis::connection('cache')
+                    ->zRevRangeByScore('recent_online_players', '+inf', '0', [
+                        'withscores' => true
+                    ])
+            ))->map(static function ($value, $uuid) {
                 return [
                     'url'       => route('player.status', [$uuid]),
                     'frequency' => 'daily',
@@ -136,7 +151,9 @@
                 ];
             });
 
-            return response(view('meta.sitemap', ['pages' => $pages->concat($recentGuilds)->concat($recentFriends)->concat($recentOnlinePlayers)]), 200, [
+            return response(view('meta.sitemap', [
+                'pages' => $pages->concat($recentGuilds)->concat($recentFriends)->concat($recentOnlinePlayers)
+            ]), 200, [
                 'Content-Type' => 'text/xml'
             ]);
         }

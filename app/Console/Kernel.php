@@ -59,7 +59,7 @@
          */
         protected function schedule(Schedule $schedule) {
             $schedule->command('hypixel-cache:clear-recent')->monthly()->storeOutput();
-            $schedule->command('clean:directories')->daily()->storeOutput();
+            $schedule->command('clean:directories')->everyFourHours()->storeOutput();
             $schedule->command('horizon:snapshot')->everyFiveMinutes()->storeOutput();
             $schedule->command('cloudflare:reload')->weekly()->storeOutput();
 

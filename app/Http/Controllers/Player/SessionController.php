@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -60,9 +60,14 @@
          * @return View
          */
         public function getIndex(): View {
-            $recentlyViewed = (new Collection(Redis::connection('cache')->hGetAll('recent_online_players')))->sortDesc()->map(static function ($value, $key) {
+            $recentlyViewed = (new Collection(
+                Redis::connection('cache')
+                    ->zRevRangeByScore('recent_online_players', '+inf', '0', [
+                        'withscores' => true, 'limit' => [0, 20]
+                    ])
+            ))->map(static function ($value, $key) {
                 return ['uuid' => $key, 'views' => $value] + Cache::get('recent_online_players.' . $key, []);
-            })->slice(0, 20);
+            });
 
             return view('player.index', [
                 'recently_viewed' => $recentlyViewed
@@ -78,17 +83,6 @@
          */
         public function redirectToStatus(ViewStatusByUsernameRequest $request): ?RedirectResponse {
             return $this->redirectToStatusByUsername($request->input('username'));
-        }
-
-        /**
-         * @param string $username
-         *
-         * @return RedirectResponse
-         * @throws InvalidArgumentException
-         * @throws JsonException
-         */
-        public function getStatusByUsername(string $username): RedirectResponse {
-            return $this->redirectToStatusByUsername($username);
         }
 
         /**
@@ -118,6 +112,16 @@
             return redirect()->route('player.status', [$data['data']['id']]);
         }
 
+        /**
+         * @param string $username
+         *
+         * @return RedirectResponse
+         * @throws InvalidArgumentException
+         * @throws JsonException
+         */
+        public function getStatusByUsername(string $username): RedirectResponse {
+            return $this->redirectToStatusByUsername($username);
+        }
 
         /**
          * @param Request $request
@@ -150,7 +154,7 @@
                 $lastLogout     = $player->getInt('lastLogout');
                 $lastLogin      = $player->getInt('lastLogin');
 
-                $lastSeen = $lastLogin > $lastLogout ? $lastLogin : $lastLogout;
+                $lastSeen = max($lastLogin, $lastLogout);
 
                 if ($status !== null) {
                     $returnStatus = [
@@ -179,8 +183,7 @@
                     ];
                 }
 
-                Redis::connection('cache')->hIncrBy('recent_online_players', $uuid, 1);
-                Redis::connection('cache')->expire('recent_online_players', config('cache.times.recent_players'));
+                Redis::connection('cache')->zIncrBy('recent_online_players', 1, $uuid);
 
                 return view('player.status', [
                     'player'  => $player,
