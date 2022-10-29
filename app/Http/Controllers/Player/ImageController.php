@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -65,8 +65,7 @@
          * @return bool|resource
          */
         private function getHead(Request $request, string $uuid) {
-            $threedAvatar = new ThreeDAvatar();
-            return $threedAvatar->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, true, true, true, -30);
+            return (new ThreeDAvatar())->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, true, true, true, -30);
         }
 
         /**
@@ -106,8 +105,7 @@
          * @return bool|resource
          */
         private function getSkin(Request $request, string $uuid) {
-            $threedAvatar = new ThreeDAvatar();
-            return $threedAvatar->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, false, true, true, -30);
+            return (new ThreeDAvatar())->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, false, true, true, -30);
         }
 
         /**

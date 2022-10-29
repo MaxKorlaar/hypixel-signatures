@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -101,15 +101,17 @@
         }
 
         /**
-         * @param      $username
-         * @param bool $save
+         * @param string $username
+         * @param bool   $save
          *
          * @return resource|string
          * @throws InvalidArgumentException
          * @throws JsonException
          */
-        public function getSkin($username, $save = false) {
+        public function getSkin(string $username, bool $save = false) {
             $this->fallbackUrl = $this->fallbackSkinRegular;
+
+            ini_set('default_socket_timeout', round(config('signatures.api_timeout') / 1000));
 
             if (strlen($username) >= 32) {
                 if (strlen($username) === 32) {
