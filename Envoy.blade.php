@@ -54,10 +54,10 @@ composer install -o --no-dev
 
 @task('node')
 cd /var/www/hypixel-signatures
-pnpm install --shamefully-hoist
+pnpm install
 @endtask
 
 @task('build')
 cd /var/www/hypixel-signatures
-pnpm run prod
+pnpm run production
 @endtask
