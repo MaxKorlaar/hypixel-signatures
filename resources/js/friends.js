@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 import Vue from 'vue';
-import VueLazyload from 'vue-lazyload';
 import Ads from 'vue-google-adsense';
 import vue_script2 from "vue-script2";
 
@@ -38,13 +37,6 @@ Vue.use(Ads.InFeedAdsense);
 
 const axios = require('axios').default;
 
-Vue.use(VueLazyload, {
-    observer:        true,
-    observerOptions: {
-        rootMargin: '250px',
-        threshold:  0.1
-    }
-})
 // noinspection ObjectAllocationIgnored
 new Vue({
     el:       '#friends-list-app',

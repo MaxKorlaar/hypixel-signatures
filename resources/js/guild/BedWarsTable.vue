@@ -1,5 +1,5 @@
 <!--
-  - Copyright (c) 2020 Max Korlaar
+  - Copyright (c) 2020-2022 Max Korlaar
   - All rights reserved.
   -
   - Redistribution and use in source and binary forms, with or without
@@ -65,7 +65,7 @@
             </template>
             <template v-slot="data">
                 <td>
-                    <img alt="" v-lazy="data.item.skin_url">
+                    <img :src="data.item.skin_url" alt="" height="42" loading="lazy" width="38">
                     <div class="loader" v-if="data.item.loading">
                         <span></span>
                         <span></span>
