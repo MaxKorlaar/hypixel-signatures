@@ -67,7 +67,7 @@ mix.js('resources/js/app.js', 'public/js')
         ]
     })
     .browserSync({
-        proxy: '0.0.0.0:8000',
+        proxy: 'hypixel-signatures.test',
         files: [
             "resources/views/**/*.twig",
             'app/**/*.php',

@@ -1,6 +1,6 @@
 <?php
-    /**
- * Copyright (c) 2020 Max Korlaar
+    /*
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
         'about_text' => [
             "I've created this website for the players and fans of the 'Hypixel' Minecraft server. It is the most popular Minecraft server in the world, with lots of public statistics you can do fun stuff with. I've done exactly that on my website: You can view people their minigame statistics in the form of dynamic 'signatures': Images that you can place in forum posts and your forum signature, so that others can view your latest achievements with ease.",
             "The <i>dynamic</i> part means that these signatures automatically update themselves, meaning you only have to select and use your signature once and we'll automatically make sure its contents are up to date.",
-            "I'm always open to suggestions! Missing something? Feel free to <a href='https://twitter.com/MaxKorlaar'>hit me up on Twitter</a>, leave suggestions in our Discord server linked down below, <a href='https://hypixel.net/threads/2880476/'>reply to the forum thread on Hypixel.net</a> or <a href='https://github.com/MaxKorlaar/hypixel-signatures'>check out the source code for yourself on GitHub</a>.",
+            "I'm always open to suggestions! Missing something? Feel free to <a href='https://twitter.com/MaxKorlaar'>hit me up on Twitter</a>, leave suggestions in our Discord server linked on this page, <a href='https://hypixel.net/threads/2880476/'>reply to the forum thread on Hypixel.net</a> or <a href='https://github.com/MaxKorlaar/hypixel-signatures'>check out the source code for yourself on GitHub</a>.",
         ],
 
         'discord' => 'Discord server',

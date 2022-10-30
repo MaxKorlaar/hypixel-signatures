@@ -122,3 +122,5 @@ fabric.properties
 .idea/commandlinetools/Laravel*.xml
 
 .vagrant
+.phpstorm.meta.php
+_ide_helper.php

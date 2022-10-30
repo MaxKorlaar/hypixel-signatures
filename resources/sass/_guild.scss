@@ -1,5 +1,5 @@
 /*!
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -153,14 +153,15 @@
 
         &::after {
           content: " #" counter(index);
-          display: none;
+          opacity: 0.3;
+          transition: all .2s ease;
         }
       }
 
       &:hover, &:focus {
         .formatted-name {
           &::after {
-            display: revert;
+            opacity: 1;
           }
         }
       }

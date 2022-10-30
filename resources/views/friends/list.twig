@@ -34,7 +34,7 @@
             <template v-for="(player, index) in friends.slice(0, visible_friends_count)">
                 <a :class="{ loading: player.loading }" class="item" :href="player.friends_url">
                     <div class="image-container">
-                        <img v-lazy="player.skin_url" width="71" height="64" alt="">
+                        <img loading="lazy" :src="player.skin_url" width="71" height="64" alt="">
                     </div>
                     <div class="name-container">
                         <div class="loader" v-if="player.loading">

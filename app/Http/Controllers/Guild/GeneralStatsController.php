@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -103,8 +103,7 @@
                     return $quest['completions'];
                 })->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
 
-                $challenges          = new Collection($player->getArray('challenges')['all_time'] ?? []);
-                $challengesCompleted = $challenges->values()->sum();
+                $challengesCompleted = $player->getArray('achievements')['general_challenger'] ?? 0;
 
                 return [
                     'level'                => $player->getLevel(),

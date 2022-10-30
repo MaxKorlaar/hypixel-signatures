@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,10 +30,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-    /**
-     * Created by Max in 2020
-     */
-
     namespace App\Utilities;
 
     use Illuminate\Support\Facades\Request;
@@ -47,7 +43,7 @@
      * @package App\Utilities
      */
     class LaravelLogger extends HypixelPHPLogger {
-        protected $levels = [
+        protected array $levels = [
             LOG_DEBUG   => 'debug',
             LOG_INFO    => 'info',
             LOG_NOTICE  => 'notice',
@@ -62,7 +58,7 @@
          * @param int    $level
          * @param string $line
          */
-        protected function actuallyLog($level, $line) {
+        protected function actuallyLog($level, $line): void {
             if (Str::contains($line, ['vendor/plancke/hypixel-php', '(200/429)', 'Operation timed out after'])) {
                 if (!Str::containsAll($line, ['DefaultFetcher.php', '(200/429)'])) {
                     Log::stack(['daily'])->log($this->levels[$level], $line, ['url' => Request::url()]);

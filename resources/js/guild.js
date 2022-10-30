@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Max Korlaar
+ * Copyright (c) 2021-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,6 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 import Vue from 'vue';
-import VueLazyload from 'vue-lazyload';
 import SkyWarsTable from "./guild/SkyWarsTable";
 import MembersTable from "./guild/MembersTable";
 import BedWarsTable from "./guild/BedWarsTable";
@@ -40,14 +39,6 @@ import MurderMysteryTable from "./guild/MurderMysteryTable";
 import formatTime from "./guild/_filters/timeFormat";
 
 const axios = require('axios').default;
-
-Vue.use(VueLazyload, {
-    observer:        true,
-    observerOptions: {
-        rootMargin: '250px',
-        threshold:  0.1
-    }
-});
 
 Vue.filter('number_format', value => {
     if (isNaN(value)) return value;

@@ -1,6 +1,6 @@
 <?php
-/*
- * Copyright (c) 2020 Max Korlaar
+    /*
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,7 +35,7 @@
     use App\Utilities\MinecraftAvatar\MCavatar;
     use Exception;
     use Illuminate\Support\Facades\Log;
-    use Psr\SimpleCache\InvalidArgumentException;
+    use InvalidArgumentException;
 
     /****** MINECRAFT 3D Skin Generator *****
      * The contents of this project were first developed by Pierre Gros on 17th April 2012.
@@ -138,7 +138,6 @@
         /** Function renders the 3d image
          *
          * @return resource|string
-         * @throws InvalidArgumentException
          */
         public function get3DRender() {
             $this->getPlayerSkin(); // Download and check the player skin
@@ -164,8 +163,8 @@
             $this->generatePolygons();
             $this->memberRotation();
             $this->createProjectionPlan();
-            return $this->displayImage('return');
 
+            return $this->displayImage('return');
         }
 
         /* Function gets the player skin URL via the Mojang service by UUID
@@ -179,7 +178,7 @@
          */
         private function getPlayerSkin(): bool {
             if (trim($this->playerName) === '') {
-                throw new \InvalidArgumentException('Playername or UUID is empty');
+                throw new InvalidArgumentException('Playername or UUID is empty');
             }
 
             $MCavatar = new MCavatar();
@@ -527,8 +526,7 @@
                 ]]; // 7
         }
 
-        private function generatePolygons() {
-            $this->polygons   = [];
+        private function generatePolygons(): void {
             $cube_faces_array = ['front'  => [],
                                  'back'   => [],
                                  'top'    => [],

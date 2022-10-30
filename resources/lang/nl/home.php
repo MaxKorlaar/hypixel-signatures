@@ -1,6 +1,6 @@
 <?php
-    /**
- * Copyright (c) 2020 Max Korlaar
+    /*
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,7 +45,7 @@
         'about_text' => [
             "Ik heb deze website gemaakt voor spelers en fans van de 'Hypixel' Minecraft-server. Het is de populairste Minecraft-server ter wereld, en ze hebben een heleboel openbare statistieken waar je leuke berekeningen mee kan doen. Dat is ook precies wat ik op mijn site heb gedaan: Je kan de minigame-statistieken van spelers bekijken in de vorm van dynamische 'handtekeningen': Afbeeldingen die je in forumberichten en je forum-handtekening kan plaatsen, zodat anderen gemakkelijk kunnen zien wat je hebt bereikt.",
             'Het <i>dynamische</i> aan deze handtekeningen is dat ze zichzelf automatisch bijwerken, zodat jij dat niet hoeft te doen. Het enige wat je hoeft te doen is één keer je afbeelding te selecteren en te plaatsen waar je wil, en dan zorgen wij ervoor dat \'ie altijd up-to-date is.',
-            "Ik sta altijd open voor suggesties! Mis je iets? Stuur me gerust <a href='https://twitter.com/MaxKorlaar'>een bericht op Twitter</a>, laat suggesties achter in de Discord-server hieronder, <a href='https://hypixel.net/threads/2880476/'>reageer op de forumdraad op Hypixel.net</a> of <a href='https://github.com/MaxKorlaar/hypixel-signatures'>bekijk zelf de broncode van deze site op GitHub</a>."
+            "Ik sta altijd open voor suggesties! Mis je iets? Stuur me gerust <a href='https://twitter.com/MaxKorlaar'>een bericht op Twitter</a>, laat suggesties achter in de Discord-server op deze pagina, <a href='https://hypixel.net/threads/2880476/'>reageer op de forumdraad op Hypixel.net</a> of <a href='https://github.com/MaxKorlaar/hypixel-signatures'>bekijk zelf de broncode van deze site op GitHub</a>."
         ],
 
         'discord' => 'Discord-server',

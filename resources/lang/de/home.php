@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020 Max Korlaar
+ * Copyright (c) 2020-2022 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
         'about_text' => [
             "Ich habe diese Website für die Spieler und Fans des Minecraft-Servers 'Hypixel' erstellt. Es ist der beliebteste Minecraft-Server der Welt, mit vielen öffentlichen Statistiken, mit denen Sie Spaß haben können. Genau das habe ich auf meiner Website getan: Sie können die Minispielstatistiken der Benutzer in Form von dynamischen Signaturen anzeigen: Bilder, die Sie in Forenbeiträgen und in Ihrer Forensignatur platzieren können, damit andere Ihre neuesten Erfolge problemlos angezeigt werden können.",
             'Der <i>dynamische</i> Teil bedeutet, dass sich diese Signaturen automatisch aktualisieren. Dies bedeutet, dass Sie Ihre Signatur nur einmal auswählen und verwenden müssen und wir automatisch sicherstellen, dass ihr Inhalt auf dem neuesten Stand ist.',
-            "Ich bin immer offen für Vorschläge! Vermissen Sie etwas? Fühlen Sie sich frei, <a href='https://twitter.com/MaxKorlaar'>mich auf Twitter zu kontaktieren</a> und Vorschläge in unserem unten verlinkten Discord-Server zu hinterlassen, <a href='https://hypixel.net/threads/2880476/'>Antworte auf den Forenthread auf Hypixel.net</a> oder <a href='https://github.com/MaxKorlaar/hypixel-signatures'>überprüfe den Quellcode auf GitHub</a>.",
+            "Ich bin immer offen für Vorschläge! Vermissen Sie etwas? Fühlen Sie sich frei, <a href='https://twitter.com/MaxKorlaar'>mich auf Twitter zu kontaktieren</a> und Vorschläge in unserem verlinkten Discord-Server zu hinterlassen, <a href='https://hypixel.net/threads/2880476/'>Antworte auf den Forenthread auf Hypixel.net</a> oder <a href='https://github.com/MaxKorlaar/hypixel-signatures'>überprüfe den Quellcode auf GitHub</a>.",
         ],
 
         'discord' => 'Discord server',
