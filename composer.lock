@@ -4,7 +4,7 @@
     "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
     "This file is @generated automatically"
   ],
-  "content-hash" : "c5e77e52b21e53741331d5f76f8c4bcf",
+  "content-hash" : "da436bc065274edb6d99030bfe0041fd",
   "packages" : [
     {
       "name" : "brick/math",
@@ -1750,8 +1750,8 @@
       "version" : "dev-dev-array-access-bug",
       "source" : {
         "type" : "git",
-        "url" : "https://github.com/mattkirwan/AnimGif.git",
-        "reference" : "b1ce0c706afeeb7d4419fb184c86790e6b6836df"
+        "url" : "https://github.com/MaxKorlaar/AnimGif",
+        "reference" : "20304ef06d54ab769003ed357dc3f6b51579ed95"
       },
       "require" : {
         "php" : ">=5.3.0"
@@ -1786,7 +1786,7 @@
         "encode",
         "gif"
       ],
-      "time" : "2020-09-09T16:32:00+00:00"
+      "time" : "2022-11-08T23:42:08+00:00"
     },
     {
       "name" : "marvinlabs/laravel-discord-logger",
