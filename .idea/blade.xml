@@ -2,9 +2,11 @@
 <project version="4">
   <component name="BladeInjectionConfiguration" default="false">
     <directives>
+      <data directive="@after" />
       <data directive="@append" />
       <data directive="@auth" injection="true" prefix="&lt;?php if(auth()-&gt;guard(" suffix=")-&gt;check()): ?&gt;" />
       <data directive="@aware" injection="true" prefix="&lt;?php $attributes = $attributes-&gt;exceptProps(" suffix="); ?&gt;" />
+      <data directive="@before" />
       <data directive="@break" injection="true" prefix="&lt;?php if(" suffix=") break; ?&gt;" />
       <data directive="@can" injection="true" prefix="&lt;?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)-&gt;check(" suffix=")): ?&gt;" />
       <data directive="@canany" injection="true" prefix="&lt;?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)-&gt;any(" suffix=")): ?&gt;" />
@@ -20,6 +22,7 @@
       <data directive="@dd" injection="true" prefix="&lt;?php dd(" suffix="); ?&gt;" />
       <data directive="@default" />
       <data directive="@disabled" injection="true" prefix="&lt;?php if(" suffix="): echo 'disabled'; endif; ?&gt;" />
+      <data directive="@discord" injection="true" prefix="&lt;?php Laravel\Envoy\Discord::make(" suffix=");?&gt;" />
       <data directive="@dump" injection="true" prefix="&lt;?php dump(" suffix="); ?&gt;" />
       <data directive="@each" injection="true" prefix="&lt;?php echo $__env-&gt;renderEach(" suffix="); ?&gt;" />
       <data directive="@else" />
@@ -30,7 +33,9 @@
       <data directive="@elseguest" injection="true" prefix="&lt;?php elseif(auth()-&gt;guard(" suffix=")-&gt;guest()): ?&gt;" />
       <data directive="@elseif" injection="true" prefix="&lt;?php elseif(" suffix="): ?&gt;" />
       <data directive="@empty" injection="true" prefix="&lt;?php if(empty(" suffix=")): ?&gt;" />
+      <data directive="@endafter" />
       <data directive="@endauth" />
+      <data directive="@endbefore" />
       <data directive="@endcan" />
       <data directive="@endcanany" />
       <data directive="@endcannot" />
@@ -40,6 +45,7 @@
       <data directive="@endempty" />
       <data directive="@endenv" />
       <data directive="@enderror" />
+      <data directive="@endfinished" />
       <data directive="@endfor" />
       <data directive="@endforeach" />
       <data directive="@endforelse" />
@@ -56,21 +62,27 @@
       <data directive="@endpushif" />
       <data directive="@endpushonce" />
       <data directive="@endsection" />
+      <data directive="@endsetup" />
       <data directive="@endslot" />
+      <data directive="@endstory" />
+      <data directive="@endsuccess" />
       <data directive="@endswitch" />
+      <data directive="@endtask" />
       <data directive="@endunless" />
       <data directive="@endverbatim" />
       <data directive="@endwhile" />
       <data directive="@env" injection="true" prefix="&lt;?php if(app()-&gt;environment(" suffix=")): ?&gt;" />
-      <data directive="@error" injection="true" prefix="&lt;?php $__errorArgs = [" suffix="];&#10;$__bag = $errors-&gt;getBag($__errorArgs[1] ?? 'default');&#10;if ($__bag-&gt;has($__errorArgs[0])) :&#10;if (isset($message)) { $__messageOriginal = $message; }&#10;$message = $__bag-&gt;first($__errorArgs[0]); ?&gt;" />
+      <data directive="@error" />
       <data directive="@extends" injection="true" prefix="&lt;?php echo $__env-&gt;make(" suffix=", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))-&gt;render(); ?&gt;" />
       <data directive="@extendsfirst" injection="true" prefix="&lt;?php echo $__env-&gt;first(" suffix=", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))-&gt;render(); ?&gt;" />
+      <data directive="@finished" />
       <data directive="@for" injection="true" prefix="&lt;?php for(" suffix="): ?&gt;" />
       <data directive="@foreach" injection="true" prefix="&lt;?php foreach(" suffix="): ?&gt;" />
       <data directive="@forelse" injection="true" prefix="&lt;?php foreach(" suffix="): ?&gt;" />
       <data directive="@guest" injection="true" prefix="&lt;?php if(auth()-&gt;guard(" suffix=")-&gt;guest()): ?&gt;" />
       <data directive="@hasSection" injection="true" prefix="&lt;?php if (! empty(trim($__env-&gt;yieldContent(" suffix=")))): ?&gt;" />
       <data directive="@if" injection="true" prefix="&lt;?php if(" suffix="): ?&gt;" />
+      <data directive="@import" injection="true" prefix="&lt;?php require_once(" suffix=");?&gt;" />
       <data directive="@include" injection="true" prefix="&lt;?php echo $__env-&gt;make(" suffix=", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))-&gt;render(); ?&gt;" />
       <data directive="@includeFirst" injection="true" prefix="&lt;?php echo $__env-&gt;first(" suffix=", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))-&gt;render(); ?&gt;" />
       <data directive="@includeUnless" injection="true" prefix="&lt;?php echo $__env-&gt;renderUnless(" suffix=", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path'])); ?&gt;" />
@@ -80,6 +92,7 @@
       <data directive="@json" injection="true" prefix="&lt;?php echo json_encode(" suffix=") ?&gt;" />
       <data directive="@lang" injection="true" prefix="&lt;?php echo app('translator')-&gt;get(" suffix="); ?&gt;" />
       <data directive="@method" injection="true" prefix="&lt;?php echo method_field(" suffix="); ?&gt;" />
+      <data directive="@microsoftTeams" injection="true" prefix="&lt;?php Laravel\Envoy\MicrosoftTeams::make(" suffix=");?&gt;" />
       <data directive="@once" />
       <data directive="@overwrite" />
       <data directive="@parent" />
@@ -95,11 +108,18 @@
       <data directive="@section" injection="true" prefix="&lt;?php $__env-&gt;startSection(" suffix="); ?&gt;" />
       <data directive="@sectionMissing" injection="true" prefix="&lt;?php if (empty(trim($__env-&gt;yieldContent(" suffix=")))): ?&gt;" />
       <data directive="@selected" injection="true" prefix="&lt;?php if(" suffix="): echo 'selected'; endif; ?&gt;" />
+      <data directive="@servers" injection="true" prefix="&lt;?php (new \Laravel\Envoy\TaskContainer())-&gt;servers(" suffix=");?&gt;" />
+      <data directive="@setup" />
       <data directive="@show" />
+      <data directive="@slack" injection="true" prefix="&lt;?php Laravel\Envoy\Slack::make(" suffix=");?&gt;" />
       <data directive="@slot" injection="true" prefix="&lt;?php $__env-&gt;slot(" suffix="); ?&gt;" />
       <data directive="@stack" injection="true" prefix="&lt;?php echo $__env-&gt;yieldPushContent(" suffix="); ?&gt;" />
       <data directive="@stop" />
+      <data directive="@story" injection="true" prefix="&lt;?php (new \Laravel\Envoy\TaskContainer())-&gt;startMacro(" suffix=");?&gt;" />
+      <data directive="@success" />
       <data directive="@switch" injection="true" prefix="&lt;?php switch(" suffix="): ?&gt;" />
+      <data directive="@task" injection="true" prefix="&lt;?php (new \Laravel\Envoy\TaskContainer())-&gt;startTask(" suffix=");?&gt;" />
+      <data directive="@telegram" injection="true" prefix="&lt;?php Laravel\Envoy\Telegram::make(" suffix=");?&gt;" />
       <data directive="@unless" injection="true" prefix="&lt;?php if (! (" suffix=")): ?&gt;" />
       <data directive="@unset" injection="true" prefix="&lt;?php unset(" suffix="); ?&gt;" />
       <data directive="@verbatim" />
