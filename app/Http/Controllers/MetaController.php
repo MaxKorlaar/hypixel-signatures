@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020-2022 Max Korlaar
+ * Copyright (c) 2020-2023 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -71,11 +71,6 @@
                     'frequency' => 'daily',
                 ],
                 [
-                    'url'       => route('friends'),
-                    'priority'  => 1,
-                    'frequency' => 'daily',
-                ],
-                [
                     'url'       => route('player.status.index'),
                     'priority'  => 1,
                     'frequency' => 'daily',
@@ -125,19 +120,6 @@
                 ];
             })->flatten(1);
 
-            $recentFriends = (new Collection(
-                Redis::connection('cache')
-                    ->zRevRangeByScore('recent_friends', '+inf', '0', [
-                        'withscores' => true
-                    ])
-            ))->map(static function ($value, $uuid) {
-                return [
-                    'url'       => route('friends.list', [$uuid]),
-                    'frequency' => 'daily',
-                    'priority'  => .6
-                ];
-            });
-
             $recentOnlinePlayers = (new Collection(
                 Redis::connection('cache')
                     ->zRevRangeByScore('recent_online_players', '+inf', '0', [
@@ -152,7 +134,7 @@
             });
 
             return response(view('meta.sitemap', [
-                'pages' => $pages->concat($recentGuilds)->concat($recentFriends)->concat($recentOnlinePlayers)
+                'pages' => $pages->concat($recentGuilds)->concat($recentOnlinePlayers)
             ]), 200, [
                 'Content-Type' => 'text/xml'
             ]);

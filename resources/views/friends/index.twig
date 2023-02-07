@@ -2,6 +2,9 @@
 {% block page_title %}{{ trans('friends.title') }}{% endblock %}
 {% block content %}
     <div class="friends-list">
+        <div class="beta-banner">
+            {{ trans('friends.api_disabled_warning') }}
+        </div>
         <div class="callout">
             {% for text in trans('friends.callout') %}
                 <p>
@@ -32,19 +35,21 @@
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         {% endif %}
-        <h1>{{ trans('friends.recently_viewed') }}</h1>
-        <div class="recently-viewed-grid players-grid">
-            {% for player in recently_viewed %}
-                <a class="item" href="{{ route('friends.list', [player.uuid]) }}">
-                    <div class="image-container">
-                        <img loading="lazy" src="{{ route('player.skin.head', [player.uuid]) }}" alt="">
-                    </div>
-                    <div class="name-container">
-                        <h3>{{ player.username }}</h3>
-                        {{ trans('friends.recently_viewed_friends_and_views', { count: player.friends_count, views: player.views }) }}
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
+        {% if recently_viewed is not empty %}
+            <h1>{{ trans('friends.recently_viewed') }}</h1>
+            <div class="recently-viewed-grid players-grid">
+                {% for player in recently_viewed %}
+                    <a class="item" href="{{ route('friends.list', [player.uuid]) }}">
+                        <div class="image-container">
+                            <img loading="lazy" src="{{ route('player.skin.head', [player.uuid]) }}" alt="">
+                        </div>
+                        <div class="name-container">
+                            <h3>{{ player.username }}</h3>
+                            {{ trans('friends.recently_viewed_friends_and_views', { count: player.friends_count, views: player.views }) }}
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

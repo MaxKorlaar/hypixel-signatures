@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2021-2022 Max Korlaar
+ * Copyright (c) 2021-2023 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -124,7 +124,10 @@
          * @throws InvalidArgumentException
          */
         public function getFriends($uuid) {
+            throw new HypixelFetchException(trans('friends.api_disabled_warning'));
+
             $api = new HypixelAPI();
+
             try {
                 $player = $api->getPlayerByUuid($uuid);
 
@@ -185,7 +188,7 @@
                 $friends = $player->getFriends();
 
                 if ($friends === null) {
-                    throw new HypixelFetchException("An unknown error has ocurred while trying to retrieve {$player->getName()}'s friend list.
+                    throw new HypixelFetchException("An unknown error has occurred while trying to retrieve {$player->getName()}'s friend list.
                     Unfortunately, " . config('app.name') . " is only allowed to request data from Hypixel's API a limited
                     amount of times per minute. You're likely seeing this error because we just ran into this limit. Please try to load
                     this page again in a few moments, or wait a few seconds for us to automatically try it again.");
