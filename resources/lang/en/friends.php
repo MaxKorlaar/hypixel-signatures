@@ -59,8 +59,8 @@
 
             'tweet_text' => "I'm browsing :username's friend list on Hypixel!",
 
-            'loading_friends'      => 'Loading friends ({{ meta.loaded }} / {{ meta.total_friends }})…',
-            'friends_since'        => 'since {{ new Date(player.since).toLocaleDateString() }}',
-            'api_disabled_warning' => 'Unfortunately, citing privacy concerns, Hypixel does not allow users to look up players\' friends list via their API anymore. As a result of this change the friends list browser on Hypixel.Paniek.de is disabled.'
-        ]
+            'loading_friends' => 'Loading friends ({{ meta.loaded }} / {{ meta.total_friends }})…',
+            'friends_since'   => 'since {{ new Date(player.since).toLocaleDateString() }}',
+        ],
+        'api_disabled_warning' => 'Unfortunately, citing privacy concerns, Hypixel does not allow users to look up players\' friends list via their API anymore. As a result of this change the friends list browser on Hypixel.Paniek.de is disabled.'
     ];
