@@ -175,6 +175,8 @@
          * @throws HypixelPHPException
          */
         public function getFriendsListJSON(string $uuid, int $max = 60): ?array {
+            throw new HypixelFetchException(trans('friends.api_disabled_warning'));
+
             $api = new HypixelAPI();
 
             $player = $api->getPlayerByUuid($uuid);
