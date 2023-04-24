@@ -17,7 +17,7 @@
     "guzzlehttp/guzzle" : "^7",
     "intervention/image" : "^2.5",
     "laravel/framework" : "^8.25",
-    "laravel/horizon" : "^5.6",
+    "laravel/horizon" : "^515.0",
     "laravel/slack-notification-channel" : "^2.0",
     "laravel/tinker" : "^2.0",
     "lunakid/anim-gif" : "dev-dev-array-access-bug",
