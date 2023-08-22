@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020-2022 Max Korlaar
+ * Copyright (c) 2020-2023 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -196,7 +196,7 @@
                     'formatted_tag'     => ColorUtils::getColorParser()->parse($guild->getTagColor() . $guild->getTag()),
                     'preferred_games'   => $preferredGames,
                     'most_active_games' => $mostActiveGames,
-                    'description' => ColorUtils::getColorParser()->parse(preg_replace('/([&§]([0-9A-FK-ORa-fk-or]))/iu', ColorUtils::COLOR_CHAR . "\$2", $this->linkify($guild->getDescription())))
+                    'description' => ColorUtils::getColorParser()->parse(preg_replace('/([&§]([0-9A-FK-ORa-fk-or]))/iu', ColorUtils::COLOR_CHAR . "\$2", $this->linkify(e($guild->getDescription()))))
                 ]);
             }
 
