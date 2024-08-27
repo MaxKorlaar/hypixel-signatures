@@ -9,7 +9,7 @@
   },
   "devDependencies" : {
     "axios" : "^0.22.0",
-    "browser-sync" : "^2.27.10",
+    "browser-sync" : "^2.29.3",
     "browser-sync-webpack-plugin" : "^2.3.0",
     "cross-env" : "^7.0.3",
     "laravel-mix" : "^6.0.49",
@@ -17,18 +17,18 @@
     "laravel-mix-purgecss" : "^6.0.0",
     "lodash" : "^4.17.21",
     "moment-locales-webpack-plugin" : "^1.2.0",
-    "postcss" : "^8.4.18",
+    "postcss" : "^8.4.41",
     "resolve-url-loader" : "^4.0.0",
-    "sass" : "^1.55.0",
+    "sass" : "^1.77.8",
     "sass-loader" : "^12.6.0",
-    "vue" : "^2.7.13",
-    "vue-loader" : "^15.10.0",
-    "vue-template-compiler" : "^2.7.13"
+    "vue" : "^2.7.16",
+    "vue-loader" : "^15.11.1",
+    "vue-template-compiler" : "^2.7.16"
   },
   "dependencies" : {
     "@primer/css" : "^15.2.0",
-    "bourbon" : "^7.2.0",
-    "moment" : "^2.29.4",
+    "bourbon" : "^7.3.0",
+    "moment" : "^2.30.1",
     "vue-google-adsense" : "^1.10.1",
     "vue-script2" : "^2.1.0"
   },
