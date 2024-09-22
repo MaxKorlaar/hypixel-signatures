@@ -10,6 +10,7 @@ jobs:
   node:
     name: Node
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
 
     steps:
       - name: Checkout the project
@@ -41,6 +42,7 @@ jobs:
   php:
     name: PHP ${{ matrix.php }}
     runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
     strategy:
       matrix:
         php: [ '8.2', '8.3' ]
@@ -53,7 +55,9 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          coverage: xdebug
+          coverage: none
+          ini-values: opcache.enable_cli=1, opcache.jit=tracing, opcache.jit_buffer_size=64M
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -113,7 +117,8 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          coverage: xdebug
+          coverage: none
+          ini-values: opcache.enable_cli=1, opcache.jit=tracing, opcache.jit_buffer_size=64M
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
