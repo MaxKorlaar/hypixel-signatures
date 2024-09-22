@@ -25,8 +25,8 @@ importers:
         version: 2.1.0
     devDependencies:
       axios:
-        specifier: ^0.28.0
-        version: 0.28.0
+        specifier: ^1.7.7
+        version: 1.7.7
       browser-sync:
         specifier: ^2.29.3
         version: 2.29.3
@@ -1023,8 +1023,8 @@ packages:
   axios@0.21.4:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
 
-  axios@0.28.0:
-    resolution: {integrity: sha512-Tu7NYoGY4Yoc7I+Npf9HhUMtEEpV7ZiLH9yndTCoNhcpBH0kwcvFbzYN9/u5QKI5A6uefjsNNWaz5olJVYS62Q==}
+  axios@1.7.7:
+    resolution: {integrity: sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==}
 
   babel-loader@8.3.0:
     resolution: {integrity: sha512-H8SvsMF+m9t15HNLMipppzkC+Y2Yq+v3SonZyU70RBL/h1gxPkH08Ot8pEE9Z4Kd+czyWJClmFS8qzIP9OZ04Q==}
@@ -4972,7 +4972,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  axios@0.28.0:
+  axios@1.7.7:
     dependencies:
       follow-redirects: 1.15.6(debug@4.3.2)
       form-data: 4.0.0
