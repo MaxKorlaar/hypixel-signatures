@@ -15,7 +15,7 @@
     "ext-zlib" : "*",
     "fideloper/proxy" : "^4.0",
     "guzzlehttp/guzzle" : "^7",
-    "intervention/image" : "^2.5",
+    "intervention/image" : "^3.8",
     "laravel/framework" : "^8.25",
     "laravel/horizon" : "^5.6",
     "laravel/slack-notification-channel" : "^2.0",
