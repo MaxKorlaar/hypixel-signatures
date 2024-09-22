@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "68420842cd35550fd21a291fca5d010c",
+    "content-hash": "1d1e5598cba874804e6f4510b061c74d",
     "packages": [
         {
             "name": "brick/math",
@@ -2768,16 +2768,16 @@
         },
         {
             "name": "pocketmine/nbt",
-            "version": "0.3.4",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pmmp/NBT.git",
-                "reference": "62c02464c6708b2467c1e1a2af01af09d5114eda"
+                "reference": "20540271cb59e04672cb163dca73366f207974f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pmmp/NBT/zipball/62c02464c6708b2467c1e1a2af01af09d5114eda",
-                "reference": "62c02464c6708b2467c1e1a2af01af09d5114eda",
+                "url": "https://api.github.com/repos/pmmp/NBT/zipball/20540271cb59e04672cb163dca73366f207974f1",
+                "reference": "20540271cb59e04672cb163dca73366f207974f1",
                 "shasum": ""
             },
             "require": {
@@ -2787,7 +2787,7 @@
             },
             "require-dev": {
                 "phpstan/extension-installer": "^1.0",
-                "phpstan/phpstan": "1.10.3",
+                "phpstan/phpstan": "1.10.25",
                 "phpstan/phpstan-strict-rules": "^1.0",
                 "phpunit/phpunit": "^9.5"
             },
@@ -2804,9 +2804,9 @@
             "description": "PHP library for working with Named Binary Tags",
             "support": {
                 "issues": "https://github.com/pmmp/NBT/issues",
-                "source": "https://github.com/pmmp/NBT/tree/0.3.4"
+                "source": "https://github.com/pmmp/NBT/tree/1.0.0"
             },
-            "time": "2023-04-10T11:31:20+00:00"
+            "time": "2023-07-14T13:01:49+00:00"
         },
         {
             "name": "psr/clock",
