@@ -65,21 +65,21 @@
 
             $this->info('recent_friends size: ' . $recentFriendsCount);
 
-            Redis::connection('cache')->zPopMin('recent_friends', max(0, $recentFriendsCount - 10));
+            Redis::connection('cache')->zPopMin('recent_friends', max(0, $recentFriendsCount - 20));
             Redis::connection('cache')->expire('recent_friends', config('cache.times.recent_players'));
 
             $recentGuildsCount = Redis::connection('cache')->zCount('recent_guilds', '-inf', '+inf');
 
             $this->info('recent_guilds size: ' . $recentGuildsCount);
 
-            Redis::connection('cache')->zPopMin('recent_guilds', max(0, $recentGuildsCount - 10));
+            Redis::connection('cache')->zPopMin('recent_guilds', max(0, $recentGuildsCount - 20));
             Redis::connection('cache')->expire('recent_guilds', config('cache.times.recent_guilds'));
 
             $recentOnlinePlayersCount = Redis::connection('cache')->zCount('recent_online_players', '-inf', '+inf');
 
             $this->info('recent_online_players size: ' . $recentOnlinePlayersCount);
 
-            Redis::connection('cache')->zPopMin('recent_online_players', max(0, $recentOnlinePlayersCount - 10));
+            Redis::connection('cache')->zPopMin('recent_online_players', max(0, $recentOnlinePlayersCount - 20));
             Redis::connection('cache')->expire('recent_online_players', config('cache.times.recent_players'));
 
             foreach (config('recents.blocklist.players') as $uuid) {
