@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2021 Max Korlaar
+ * Copyright (c) 2021-2024 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -140,6 +140,7 @@
             ],
             'recent_players'   => 86400 * 5, // 5 days
             'recent_guilds'    => 2678400,
+            'recents_decay' => 60 * 5
         ],
 
     ];

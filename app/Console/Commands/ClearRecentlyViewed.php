@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2021-2022 Max Korlaar
+ * Copyright (c) 2021-2024 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -81,6 +81,10 @@
 
             Redis::connection('cache')->zPopMin('recent_online_players', max(0, $recentOnlinePlayersCount - 10));
             Redis::connection('cache')->expire('recent_online_players', config('cache.times.recent_players'));
+
+            foreach (config('recents.blocklist.players') as $uuid) {
+                Redis::connection('cache')->zRem('recent_online_players', $uuid);
+            }
 
             $this->info('Cleared recently viewed players');
         }

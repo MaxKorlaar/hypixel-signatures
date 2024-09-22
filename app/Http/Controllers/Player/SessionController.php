@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020-2022 Max Korlaar
+ * Copyright (c) 2020-2024 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,6 +41,7 @@
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\Support\Collection;
+    use Illuminate\Support\Facades\RateLimiter;
     use Illuminate\Support\Facades\Redis;
     use Illuminate\View\View;
     use JsonException;
@@ -132,6 +133,10 @@
          * @throws HypixelPHPException
          */
         public function getStatus(Request $request, string $uuid) {
+            if (in_array($uuid, config('recents.blocklist.players'), true)) {
+                return abort(404);
+            }
+
             $api = new HypixelAPI();
 
             $api->getApi()->getCacheHandler()->setCacheTime(CacheTimes::PLAYER, 2 * 60);
@@ -183,7 +188,14 @@
                     ];
                 }
 
-                Redis::connection('cache')->zIncrBy('recent_online_players', 1, $uuid);
+                RateLimiter::attempt(
+                    "increase_recent_online_players_views:{$request->ip()}:{$uuid}",
+                    1,
+                    static function () use ($uuid) {
+                        Redis::connection('cache')->zIncrBy('recent_online_players', 1, $uuid);
+                    },
+                    config('cache.times.recents_decay')
+                );
 
                 return view('player.status', [
                     'player'  => $player,

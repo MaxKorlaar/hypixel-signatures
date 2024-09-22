@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020-2023 Max Korlaar
+ * Copyright (c) 2020-2024 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,9 @@
     use App\Utilities\MinecraftAvatar\MojangAPI;
     use Cache;
     use Illuminate\Http\RedirectResponse;
+    use Illuminate\Http\Request;
     use Illuminate\Support\Collection;
+    use Illuminate\Support\Facades\RateLimiter;
     use Illuminate\Support\Facades\Redis;
     use Illuminate\Support\Str;
     use Illuminate\View\View;
@@ -126,7 +128,7 @@
          * @throws HypixelFetchException
          * @throws InvalidArgumentException
          */
-        public function getInfo(string $nameOrId) {
+        public function getInfo(Request $request, string $nameOrId) {
             $HypixelAPI = new HypixelAPI();
 
             if (HypixelAPI::isValidMongoId($nameOrId)) {
@@ -140,7 +142,14 @@
                     return redirect()->route('guild')->withErrors(['username' => 'This guild does not exist']);
                 }
 
-                Redis::connection('cache')->zIncrBy('recent_guilds', 1, $guild->getID());
+                RateLimiter::attempt(
+                    "increase_recent_guilds_views:{$request->ip()}:{$guild->getID()}",
+                    1,
+                    static function () use ($guild) {
+                        Redis::connection('cache')->zIncrBy('recent_guilds', 1, $guild->getID());
+                    },
+                    config('cache.times.recents_decay')
+                );
 
                 Cache::set('recent_guilds.' . $guild->getID(), [
                     'name'         => $guild->getName(),
