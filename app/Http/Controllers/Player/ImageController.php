@@ -35,7 +35,8 @@
     use App\Http\Controllers\Controller;
     use App\Utilities\MinecraftAvatar\ThreeDAvatar;
     use Illuminate\Http\Request;
-    use Image;
+    use Illuminate\Http\Response;
+    use Intervention\Image\Laravel\Facades\Image;
 
     /**
      * Class ImageController
@@ -47,15 +48,17 @@
          * @param Request $request
          * @param string  $uuid
          *
-         * @return mixed
+         * @return Response
          */
-        public function getHeadAsWebP(Request $request, string $uuid) {
+        public function getHeadAsWebP(Request $request, string $uuid): Response {
             $headImage = $this->getHead($request, $uuid);
 
-            return Image::make($headImage)->response('webp')->setCache([
-                'public'  => true,
-                'max_age' => config('cache.times.public.player_skin')
-            ]);
+            return response(Image::read($headImage)->encodeByExtension('webp'))
+                ->header('Content-Type', 'image/webp')
+                ->setCache([
+                    'public'  => true,
+                    'max_age' => config('cache.times.public.player_skin')
+                ]);
         }
 
         /**
@@ -72,30 +75,34 @@
          * @param Request $request
          * @param string  $uuid
          *
-         * @return mixed
+         * @return Response
          */
-        public function getHeadAsPNG(Request $request, string $uuid) {
+        public function getHeadAsPNG(Request $request, string $uuid): Response {
             $headImage = $this->getHead($request, $uuid);
 
-            return Image::make($headImage)->response('png')->setCache([
-                'public'  => true,
-                'max_age' => config('cache.times.public.player_skin')
-            ]);
+            return response(Image::read($headImage)->encodeByExtension('png'))
+                ->header('Content-Type', 'image/png')
+                ->setCache([
+                    'public'  => true,
+                    'max_age' => config('cache.times.public.player_skin')
+                ]);
         }
 
         /**
          * @param Request $request
          * @param string  $uuid
          *
-         * @return mixed
+         * @return Response
          */
-        public function getSkinAsWebP(Request $request, string $uuid) {
+        public function getSkinAsWebP(Request $request, string $uuid): Response {
             $skin = $this->getSkin($request, $uuid);
 
-            return Image::make($skin)->response('webp')->setCache([
-                'public'  => true,
-                'max_age' => config('cache.times.public.player_skin')
-            ]);
+            return response(Image::read($skin)->encodeByExtension('webp'))
+                ->header('Content-Type', 'image/webp')
+                ->setCache([
+                    'public'  => true,
+                    'max_age' => config('cache.times.public.player_skin')
+                ]);
         }
 
         /**
@@ -112,14 +119,16 @@
          * @param Request $request
          * @param string  $uuid
          *
-         * @return mixed
+         * @return Response
          */
-        public function getSkinAsPNG(Request $request, string $uuid) {
+        public function getSkinAsPNG(Request $request, string $uuid): Response {
             $skin = $this->getSkin($request, $uuid);
 
-            return Image::make($skin)->response('png')->setCache([
-                'public'  => true,
-                'max_age' => config('cache.times.public.player_skin')
-            ]);
+            return response(Image::read($skin)->encodeByExtension('png'))
+                ->header('Content-Type', 'image/png')
+                ->setCache([
+                    'public'  => true,
+                    'max_age' => config('cache.times.public.player_skin')
+                ]);
         }
     }

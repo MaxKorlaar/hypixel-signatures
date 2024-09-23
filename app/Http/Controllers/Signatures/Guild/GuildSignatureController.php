@@ -41,7 +41,7 @@
     use Illuminate\Http\Response;
     use Illuminate\Support\Collection;
     use Illuminate\Support\Str;
-    use Image;
+    use Intervention\Image\Laravel\Facades\Image;
     use Plancke\HypixelPHP\classes\gameType\GameTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\guild\Guild;
@@ -157,9 +157,11 @@
                 $box->draw('Description: ' . $guild->getDescription());
             }
 
-            return Image::make($image)->response('png')->setCache([
-                'public'  => true,
-                'max_age' => 600
-            ]);
+            return response(Image::read($image)->encodeByExtension('png'))
+                ->header('Content-Type', 'image/png')
+                ->setCache([
+                    'public'  => true,
+                    'max_age' => 600
+                ]);
         }
     }

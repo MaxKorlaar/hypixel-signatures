@@ -39,7 +39,7 @@
     use GDText\Color;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
-    use Image;
+    use Intervention\Image\Laravel\Facades\Image;
     use Log;
     use Plancke\HypixelPHP\classes\HypixelObject;
     use Plancke\HypixelPHP\exceptions\BadResponseCodeException;
@@ -200,11 +200,9 @@
             $box->setFontColor(new Color(0, 0, 0));
             $box->draw($error);
 
-            /** @var Response $response */
-            $response = Image::make($image)->response('png');
-            $response->setStatusCode($statusCode);
-
-            return $response;
+            return response(Image::read($image)->encodeByExtension('png'))
+                ->header('Content-Type', 'image/png')
+                ->setStatusCode($statusCode);
         }
 
         /**
@@ -238,7 +236,7 @@
          * @param     $imageHeight
          * @param int $size
          */
-        protected function addWatermark($image, $font, $imageWidth, $imageHeight, $size = 16): void {
+        protected function addWatermark($image, $font, $imageWidth, $imageHeight, int $size = 16): void {
             $grey = imagecolorallocate($image, 203, 203, 203);
 
             $watermarkBoundingBox = imagettfbbox($size, 0, $font, config('signatures.watermark'));

@@ -35,7 +35,7 @@
     use App\Utilities\ColourHelper;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
-    use Image;
+    use Intervention\Image\Laravel\Facades\Image;
     use Plancke\HypixelPHP\classes\gameType\GameTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\player\GameStats;
@@ -132,9 +132,11 @@
 
             $this->addWatermark($image, $fontSourceSansProLight, 460, 160); // Watermark/advertisement
 
-            return Image::make($image)->response('png')->setCache([
-                'public'  => true,
-                'max_age' => 600
-            ]);
+            return response(Image::read($image)->encodeByExtension('png'))
+                ->header('Content-Type', 'image/png')
+                ->setCache([
+                    'public'  => true,
+                    'max_age' => 600
+                ]);
         }
     }

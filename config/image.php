@@ -1,34 +1,36 @@
 <?php
-    /*
-     * Copyright (c) 2020-2024 Max Korlaar
-     * All rights reserved.
-     *
-     * Redistribution and use in source and binary forms, with or without
-     * modification, are permitted provided that the following conditions are met:
-     *
-     *  Redistributions of source code must retain the above copyright notice, this
-     *   list of conditions and the following disclaimer.
-     *
-     *  Redistributions in binary form must reproduce the above copyright notice,
-     *   this list of conditions, a visible attribution to the original author(s)
-     *   of the software available to the public, and the following disclaimer
-     *   in the documentation and/or other materials provided with the distribution.
-     *
-     *  Neither the name of the copyright holder nor the names of its
-     *   contributors may be used to endorse or promote products derived from
-     *   this software without specific prior written permission.
-     *
-     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-     * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-     * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-     * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-     * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-     * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-     * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-     * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-     * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-     * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-     */
+/*
+ * Copyright (c) 2024 Max Korlaar
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ *  Redistributions of source code must retain the above copyright notice, this
+ *   list of conditions and the following disclaimer.
+ *
+ *  Redistributions in binary form must reproduce the above copyright notice,
+ *   this list of conditions, a visible attribution to the original author(s)
+ *   of the software available to the public, and the following disclaimer
+ *   in the documentation and/or other materials provided with the distribution.
+ *
+ *  Neither the name of the copyright holder nor the names of its
+ *   contributors may be used to endorse or promote products derived from
+ *   this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+use Intervention\Image\Drivers\Gd\Driver;
 
     return [
 
@@ -37,14 +39,36 @@
         | Image Driver
         |--------------------------------------------------------------------------
         |
-        | Intervention Image supports "GD Library" and "Imagick" to process images
-        | internally. You may choose one of them according to your PHP
-        | configuration. By default PHP's "GD Library" implementation is used.
+        | Intervention Image supports “GD Library” and “Imagick” to process images
+        | internally. Depending on your PHP setup, you can choose one of them.
         |
-        | Supported: "gd", "imagick"
+        | Included options:
+        |   - \Intervention\Image\Drivers\Gd\Driver::class
+        |   - \Intervention\Image\Drivers\Imagick\Driver::class
         |
         */
 
-        'driver' => 'gd'
+        'driver' => Driver::class,
 
+        /*
+        |--------------------------------------------------------------------------
+        | Configuration Options
+        |--------------------------------------------------------------------------
+        |
+        | These options control the behavior of Intervention Image.
+        |
+        | - "autoOrientation" controls whether an imported image should be
+        |    automatically rotated according to any existing Exif data.
+        |
+        | - "decodeAnimation" decides whether a possibly animated image is
+        |    decoded as such or whether the animation is discarded.
+        |
+        | - "blendingColor" Defines the default blending color.
+        */
+
+        'options' => [
+            'autoOrientation' => true,
+            'decodeAnimation' => true,
+            'blendingColor'   => 'ffffff',
+        ]
     ];

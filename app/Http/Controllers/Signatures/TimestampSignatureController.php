@@ -36,7 +36,7 @@
     use DateTime;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
-    use Image;
+    use Intervention\Image\Laravel\Facades\Image;
     use Plancke\HypixelPHP\responses\player\Player;
 
     /**
@@ -70,10 +70,11 @@
 
             $this->addWatermark($image, $fontSourceSansProLight, 400, 100, 10); // Watermark/advertisement
 
-            return Image::make($image)->response('png')->setCache([
-                'public'  => true,
-                'max_age' => 600
-            ]);
+            return response(Image::read($image)->encodeByExtension('png'))
+                ->header('Content-Type', 'image/png')
+                ->setCache([
+                    'public'  => true,
+                    'max_age' => 600
+                ]);
         }
-
     }

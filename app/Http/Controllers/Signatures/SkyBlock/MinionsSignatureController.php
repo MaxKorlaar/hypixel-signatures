@@ -41,7 +41,7 @@
     use GDText\Color;
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
-    use Image;
+    use Intervention\Image\Laravel\Facades\Image;
     use Plancke\HypixelPHP\responses\player\Player;
 
     /**
@@ -145,9 +145,11 @@
 
             $this->addWatermark($image, $fontMinecraftRegular, $imageWidth, $imageHeight, $size * 2.5); // Watermark/advertisement
 
-            return Image::make($image)->response('png')->setCache([
-                'public'  => true,
-                'max_age' => 600
-            ]);
+            return response(Image::read($image)->encodeByExtension('png'))
+                ->header('Content-Type', 'image/png')
+                ->setCache([
+                    'public'  => true,
+                    'max_age' => 600
+                ]);
         }
     }

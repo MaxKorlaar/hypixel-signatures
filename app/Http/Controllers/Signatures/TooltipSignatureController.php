@@ -37,7 +37,7 @@
     use Illuminate\Http\Response;
     use Illuminate\Support\Arr;
     use Illuminate\Support\Collection;
-    use Image;
+    use Intervention\Image\Laravel\Facades\Image;
     use Plancke\HypixelPHP\responses\player\Player;
     use Plancke\HypixelPHP\util\Leveling;
 
@@ -160,10 +160,11 @@
             // Karma
             ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 5 * $spacing, '§7Karma: §d' . number_format($player->getInt('karma')), true);
 
-            return Image::make($image)->response('png')->setCache([
-                'public'  => true,
-                'max_age' => 600
-            ]);
+            return response(Image::read($image)->encodeByExtension('png'))
+                ->header('Content-Type', 'image/png')
+                ->setCache([
+                    'public'  => true,
+                    'max_age' => 600
+                ]);
         }
-
     }

@@ -33,7 +33,7 @@
     return [
         'api_key'                      => env('HYPIXEL_API_KEY'),
         'api_timeout'                  => 1000 * 15,
-        'watermark'                    => 'Hypixel.Paniek.de',
+        'watermark' => 'Hypixel.Paniek.de is looking for contributors/developers',
         'google_ads_client_id'         => 'ca-pub-9570587520778628',
         'signature_debug_background'   => env('SIGNATURE_DEBUG_BACKGROUND', false),
         'google_analytics_tracking_id' => 'UA-157532904-4'
