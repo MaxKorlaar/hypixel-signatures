@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@primer/css':
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^21.4.0
+        version: 21.4.0
       bourbon:
         specifier: ^7.3.0
         version: 7.3.0
@@ -68,7 +68,7 @@ importers:
         version: 2.7.16
       vue-loader:
         specifier: ^15.11.1
-        version: 15.11.1(css-loader@5.2.7(webpack@5.94.0(webpack-cli@4.10.0)))(lodash@4.17.21)(vue-template-compiler@2.7.16)(webpack@5.94.0(webpack-cli@4.10.0))
+        version: 15.11.1(css-loader@5.2.7(webpack@5.94.0(webpack-cli@4.10.0)))(lodash@4.17.21)(prettier@3.3.3)(vue-template-compiler@2.7.16)(webpack@5.94.0(webpack-cli@4.10.0))
       vue-template-compiler:
         specifier: ^2.7.16
         version: 2.7.16
@@ -677,6 +677,42 @@ packages:
     peerDependencies:
       postcss: ^8.0.0
 
+  '@github/auto-check-element@5.4.2':
+    resolution: {integrity: sha512-8SU9sI/0LpDOXybZ6juzALHbtwwDpaitaTHwKRIr4uV/AFy4iUG8LsMYE4tYRsj0w0eTlR7+c+S737eveOcKnQ==}
+
+  '@github/auto-complete-element@3.6.2':
+    resolution: {integrity: sha512-AgkrawNa2Focapn05yc/mNVTlAOqPFlMPhqkkMygPtOddms6NYxlCuVx8OM6aCTzBeEJlYur+/CS56hk4mvwmA==}
+
+  '@github/catalyst@1.6.0':
+    resolution: {integrity: sha512-u8A+DameixqpeyHzvnJWTGj+wfiskQOYHzSiJscCWVfMkIT3rxnbHMtGh3lMthaRY21nbUOK71WcsCnCrXhBJQ==}
+
+  '@github/clipboard-copy-element@1.3.0':
+    resolution: {integrity: sha512-wyntkQkwoLbLo+Hqg2LIVMXDIzcvUb9bSDz+clX6nVJItwzh103rHxdXFRZD+DmxVbuEW5xSznYQXkz1jZT+xg==}
+
+  '@github/combobox-nav@2.3.1':
+    resolution: {integrity: sha512-gwxPzLw8XKecy1nP63i9lOBritS3bWmxl02UX6G0TwMQZbMem1BCS1tEZgYd3mkrkiDrUMWaX+DbFCuDFo3K+A==}
+
+  '@github/details-menu-element@1.0.13':
+    resolution: {integrity: sha512-gMkii86w/oUP5dq8yOWZn1sgbgtFj3AYETxxtpsqRggZktgd8te4+npAn4Hm+936c/lxmEzXqfjARL/CzGR4+w==}
+
+  '@github/image-crop-element@5.0.0':
+    resolution: {integrity: sha512-Vgm2OwWAs1ESoib/t5sjxsAYo6YTOxxAjWDRxswX7qrqoyCejTZ3hshdo4Ep5e+Mz/GVTZC3rdMtg06dk/eT4g==}
+
+  '@github/include-fragment-element@6.3.0':
+    resolution: {integrity: sha512-BJTt8ZE/arsbC9lQtTH8c1hZS0ZigiN+kzH54ffQ6MhHLT83h0OpSdS9NEVocPl2uuO6w3qxnEKTDzUGMQ5rdQ==}
+
+  '@github/mini-throttle@2.1.1':
+    resolution: {integrity: sha512-KtOPaB+FiKJ6jcKm9UKyaM5fPURHGf+xcp+b4Mzoi81hOc6M1sIGpMZMAVbNzfa2lW5+RPGKq888Px0j76OZ/A==}
+
+  '@github/relative-time-element@4.4.3':
+    resolution: {integrity: sha512-EVKokqx9/DdUAZ2l9WVyY51EtRCO2gQWWMvsRIn7r4glJ91q9CXcnILVHZVCpfD52ucXUhUvtYsAjNJ4qP4uIg==}
+
+  '@github/remote-input-element@0.4.0':
+    resolution: {integrity: sha512-apsMwsFW24F+w2wzT8oKoBi9lpm6GeFOmtuL+1YwDVmIiwixfHOD3MnEsEOv0RwmHsMdWmIjP9mxWyTWPKZHGg==}
+
+  '@github/tab-container-element@3.4.0':
+    resolution: {integrity: sha512-Yx70pO8A0p7Stnm9knKkUNX8i4bjuwDYZarRkM8JH0Z+ffhpe++oNAPbzGI9GEcGugRHvKuSC6p4YOdoHtTniQ==}
+
   '@jridgewell/gen-mapping@0.3.5':
     resolution: {integrity: sha512-IzL8ZoEDIBRWEzlCcRhOaCupYyN5gdIK+Q6fbFdPDg6HqX6jpkItn7DFIpW9LQzXG6Df9sA7+OKnq0qlz/GaQg==}
     engines: {node: '>=6.0.0'}
@@ -712,6 +748,9 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@oddbird/popover-polyfill@0.4.4':
+    resolution: {integrity: sha512-n9q0ZXYRct6aYmOjjF5E+i5i0RSjVCkoKDJWILzJAkDBk4jmWOAZFjQfExtcAiJa0buX/Lx/CzBdGgiSSAlbrw==}
 
   '@parcel/watcher-android-arm64@2.4.1':
     resolution: {integrity: sha512-LOi/WTbbh3aTn2RYddrO8pnapixAziFl6SMxHM69r3tvdSm94JtCenaKgk1GRg5FJ5wpMCpHeW+7yqPlvZv7kg==}
@@ -789,12 +828,23 @@ packages:
     resolution: {integrity: sha512-HNjmfLQEVRZmHRET336f20H/8kOozUGwk7yajvsonjNxbj2wBTK1WsQuHkD5yYh9RxFGL2EyDHryOihOwUoKDA==}
     engines: {node: '>= 10.0.0'}
 
-  '@primer/css@15.2.0':
-    resolution: {integrity: sha512-/vNDchWrxlXqd6E+SWQcChPHJVzGia9aCaTYoz8O9sJTnUSiTKOgSNCQuOXyUInPruTRSqj+z3MZxayKcTsWhA==}
-    hasBin: true
+  '@prettier/sync@0.5.2':
+    resolution: {integrity: sha512-Yb569su456XNx5BsH/Vyem7xD6g/y9iLmLUzRKM1a/dhU/D7HqqvkAG72znulXlMXztbV0iiu9O5AL8K98TzZQ==}
+    peerDependencies:
+      prettier: '*'
 
-  '@primer/octicons@9.6.0':
-    resolution: {integrity: sha512-B5Wzk5izRXXz0JqEXJkVUtqhCXSpUKgqYkVwegMkp5sziBW+ksd9LPbONlCWyyLODwf9GsI2sBXekR7m+JJDBw==}
+  '@primer/behaviors@1.7.2':
+    resolution: {integrity: sha512-I5dGgtzV9n1ZX3J1KHkLVWjvEbzanstaXFTDr/+tdn4E2GAA/NUHfTLMq6i5+Pt4P/p/paLI50EgExElENzCYQ==}
+
+  '@primer/css@21.4.0':
+    resolution: {integrity: sha512-mBq0F6lvAuPioW30RP1CyvSkW76UpAzZp1HM+5N/cfpwuarYVsCWYkWQlDtJqIsGYNSa1E2GgL17HzzDt4Bofg==}
+    engines: {node: '>=16.0.0'}
+
+  '@primer/primitives@9.1.2':
+    resolution: {integrity: sha512-KecRJpUdIf14J3gVpoyMMJeQD6Sh5kcHk93N5bYch4XGB0GOZP3ypxz+NByMjr/2HHPsRfCCO5EEgNjmeWYUGQ==}
+
+  '@primer/view-components@0.34.0':
+    resolution: {integrity: sha512-ZtIMakgQ8q+wm/1zdN2wjecyK0ctpBIcubdG11lK0vKhys/RBIfB6qSaQC0FuCi5xDso55sRsucH0TxRL+XdDQ==}
 
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
@@ -2459,6 +2509,9 @@ packages:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
 
+  make-synchronized@0.2.9:
+    resolution: {integrity: sha512-4wczOs8SLuEdpEvp3vGo83wh8rjJ78UsIk7DIX5fxdfmfMJGog4bQzxfvOwq7Q3yCHLC4jp1urPHIxRS/A93gA==}
+
   md5.js@1.3.5:
     resolution: {integrity: sha512-xitP+WxNPcTTOgnTJcrhM0xvdPepipPSf3I8EIpGKeFLjt3PlJLIDG3u8EX53ZIubkb+5U2+3rELYpEhHhzdkg==}
 
@@ -3004,6 +3057,11 @@ packages:
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
+    hasBin: true
+
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+    engines: {node: '>=14'}
     hasBin: true
 
   pretty-time@1.1.0:
@@ -4602,6 +4660,34 @@ snapshots:
       postcss: 8.4.47
       purgecss: 3.1.3
 
+  '@github/auto-check-element@5.4.2':
+    dependencies:
+      '@github/mini-throttle': 2.1.1
+
+  '@github/auto-complete-element@3.6.2':
+    dependencies:
+      '@github/combobox-nav': 2.3.1
+
+  '@github/catalyst@1.6.0': {}
+
+  '@github/clipboard-copy-element@1.3.0': {}
+
+  '@github/combobox-nav@2.3.1': {}
+
+  '@github/details-menu-element@1.0.13': {}
+
+  '@github/image-crop-element@5.0.0': {}
+
+  '@github/include-fragment-element@6.3.0': {}
+
+  '@github/mini-throttle@2.1.1': {}
+
+  '@github/relative-time-element@4.4.3': {}
+
+  '@github/remote-input-element@0.4.0': {}
+
+  '@github/tab-container-element@3.4.0': {}
+
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:
       '@jridgewell/set-array': 1.2.1
@@ -4637,6 +4723,8 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
+
+  '@oddbird/popover-polyfill@0.4.4': {}
 
   '@parcel/watcher-android-arm64@2.4.1':
     optional: true
@@ -4694,13 +4782,37 @@ snapshots:
       '@parcel/watcher-win32-ia32': 2.4.1
       '@parcel/watcher-win32-x64': 2.4.1
 
-  '@primer/css@15.2.0':
+  '@prettier/sync@0.5.2(prettier@3.3.3)':
     dependencies:
-      '@primer/octicons': 9.6.0
+      make-synchronized: 0.2.9
+      prettier: 3.3.3
 
-  '@primer/octicons@9.6.0':
+  '@primer/behaviors@1.7.2': {}
+
+  '@primer/css@21.4.0':
     dependencies:
-      object-assign: 4.1.1
+      '@primer/primitives': 9.1.2
+      '@primer/view-components': 0.34.0
+
+  '@primer/primitives@9.1.2':
+    dependencies:
+      '@prettier/sync': 0.5.2(prettier@3.3.3)
+      prettier: 3.3.3
+
+  '@primer/view-components@0.34.0':
+    dependencies:
+      '@github/auto-check-element': 5.4.2
+      '@github/auto-complete-element': 3.6.2
+      '@github/catalyst': 1.6.0
+      '@github/clipboard-copy-element': 1.3.0
+      '@github/details-menu-element': 1.0.13
+      '@github/image-crop-element': 5.0.0
+      '@github/include-fragment-element': 6.3.0
+      '@github/relative-time-element': 4.4.3
+      '@github/remote-input-element': 0.4.0
+      '@github/tab-container-element': 3.4.0
+      '@oddbird/popover-polyfill': 0.4.4
+      '@primer/behaviors': 1.7.2
 
   '@socket.io/component-emitter@3.1.2': {}
 
@@ -6546,6 +6658,8 @@ snapshots:
     dependencies:
       semver: 6.3.1
 
+  make-synchronized@0.2.9: {}
+
   md5.js@1.3.5:
     dependencies:
       hash-base: 3.1.0
@@ -7061,6 +7175,8 @@ snapshots:
 
   prettier@2.8.8:
     optional: true
+
+  prettier@3.3.3: {}
 
   pretty-time@1.1.0: {}
 
@@ -7681,7 +7797,7 @@ snapshots:
 
   vue-hot-reload-api@2.3.4: {}
 
-  vue-loader@15.11.1(css-loader@5.2.7(webpack@5.94.0(webpack-cli@4.10.0)))(lodash@4.17.21)(vue-template-compiler@2.7.16)(webpack@5.94.0(webpack-cli@4.10.0)):
+  vue-loader@15.11.1(css-loader@5.2.7(webpack@5.94.0(webpack-cli@4.10.0)))(lodash@4.17.21)(prettier@3.3.3)(vue-template-compiler@2.7.16)(webpack@5.94.0(webpack-cli@4.10.0)):
     dependencies:
       '@vue/component-compiler-utils': 3.3.0(lodash@4.17.21)
       css-loader: 5.2.7(webpack@5.94.0(webpack-cli@4.10.0))
@@ -7691,6 +7807,7 @@ snapshots:
       vue-style-loader: 4.1.3
       webpack: 5.94.0(webpack-cli@4.10.0)
     optionalDependencies:
+      prettier: 3.3.3
       vue-template-compiler: 2.7.16
     transitivePeerDependencies:
       - arc-templates
