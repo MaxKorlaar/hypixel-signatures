@@ -13,6 +13,5 @@
 		"ghcr.io/devcontainers/features/node:1": {
 			"pnpmVersion": "latest"
 		}
-	},
-	"postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"
+	}
 }
