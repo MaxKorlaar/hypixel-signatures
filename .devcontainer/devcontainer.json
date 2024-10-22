@@ -7,7 +7,8 @@
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
   "forwardPorts": [
     8000, // artisan serve
-    3306 // MySQL
+    3306, // MySQL
+    9003 // Xdebug
   ],
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
