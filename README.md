@@ -7,14 +7,15 @@
 This project is the open source version of the 'new' hypixel.maxkorlaar.com, which will be moved over to hypixel.paniek.de.
 The website is written in PHP using the Laravel framework.
 
-
 ### Priorities
+
 The signatures will be made based on a popularity vote. In [this Strawpoll](https://www.strawpoll.me/20018435), users can vote on the signatures they would most likely want to see and use.
 
-## Using pnpm (Performant NPM)
+## Getting started (for developers)
 
-If you're using pnpm, execute `pnpm install --shamefully-hoist` instead of `pnpm install`.
+See [Getting Started](docs/Getting%20started.md) for more information.
 
 ### Acknowledgements
+
 * This projects makes heavy use of [hypixel-php](https://github.com/Plancke/hypixel-php) by Plancke.
 * For SkyBlock statistics, a lot of logic has been taken and inspired from the [skyblock-stats](https://github.com/LeaPhant/skyblock-stats) repository by Lea Seibert. I was kindly allowed to use her logic and variables in this project.
