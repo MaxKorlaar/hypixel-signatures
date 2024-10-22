@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@primer/css':
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^21.5.0
+        version: 21.5.0(@primer/primitives@9.1.2)
       bourbon:
         specifier: ^7.3.0
         version: 7.3.0
@@ -68,7 +68,7 @@ importers:
         version: 2.7.16
       vue-loader:
         specifier: ^15.11.1
-        version: 15.11.1(css-loader@5.2.7(webpack@5.94.0(webpack-cli@4.10.0)))(lodash@4.17.21)(vue-template-compiler@2.7.16)(webpack@5.94.0(webpack-cli@4.10.0))
+        version: 15.11.1(css-loader@5.2.7(webpack@5.94.0(webpack-cli@4.10.0)))(lodash@4.17.21)(prettier@3.3.3)(vue-template-compiler@2.7.16)(webpack@5.94.0(webpack-cli@4.10.0))
       vue-template-compiler:
         specifier: ^2.7.16
         version: 2.7.16
@@ -789,12 +789,19 @@ packages:
     resolution: {integrity: sha512-HNjmfLQEVRZmHRET336f20H/8kOozUGwk7yajvsonjNxbj2wBTK1WsQuHkD5yYh9RxFGL2EyDHryOihOwUoKDA==}
     engines: {node: '>= 10.0.0'}
 
-  '@primer/css@15.2.0':
-    resolution: {integrity: sha512-/vNDchWrxlXqd6E+SWQcChPHJVzGia9aCaTYoz8O9sJTnUSiTKOgSNCQuOXyUInPruTRSqj+z3MZxayKcTsWhA==}
-    hasBin: true
+  '@prettier/sync@0.5.2':
+    resolution: {integrity: sha512-Yb569su456XNx5BsH/Vyem7xD6g/y9iLmLUzRKM1a/dhU/D7HqqvkAG72znulXlMXztbV0iiu9O5AL8K98TzZQ==}
+    peerDependencies:
+      prettier: '*'
 
-  '@primer/octicons@9.6.0':
-    resolution: {integrity: sha512-B5Wzk5izRXXz0JqEXJkVUtqhCXSpUKgqYkVwegMkp5sziBW+ksd9LPbONlCWyyLODwf9GsI2sBXekR7m+JJDBw==}
+  '@primer/css@21.5.0':
+    resolution: {integrity: sha512-zkvHxWpVcjURujbWaq4YL8R/9g9qkM6275KMXXgNs/T2o8GekUDH6Qx2cpIPVd/AHtwIwDsy4+yjWcNWsuRgkA==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@primer/primitives': ^9.0.3
+
+  '@primer/primitives@9.1.2':
+    resolution: {integrity: sha512-KecRJpUdIf14J3gVpoyMMJeQD6Sh5kcHk93N5bYch4XGB0GOZP3ypxz+NByMjr/2HHPsRfCCO5EEgNjmeWYUGQ==}
 
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
@@ -2459,6 +2466,9 @@ packages:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
 
+  make-synchronized@0.2.9:
+    resolution: {integrity: sha512-4wczOs8SLuEdpEvp3vGo83wh8rjJ78UsIk7DIX5fxdfmfMJGog4bQzxfvOwq7Q3yCHLC4jp1urPHIxRS/A93gA==}
+
   md5.js@1.3.5:
     resolution: {integrity: sha512-xitP+WxNPcTTOgnTJcrhM0xvdPepipPSf3I8EIpGKeFLjt3PlJLIDG3u8EX53ZIubkb+5U2+3rELYpEhHhzdkg==}
 
@@ -3004,6 +3014,11 @@ packages:
   prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
+    hasBin: true
+
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+    engines: {node: '>=14'}
     hasBin: true
 
   pretty-time@1.1.0:
@@ -4694,13 +4709,19 @@ snapshots:
       '@parcel/watcher-win32-ia32': 2.4.1
       '@parcel/watcher-win32-x64': 2.4.1
 
-  '@primer/css@15.2.0':
+  '@prettier/sync@0.5.2(prettier@3.3.3)':
     dependencies:
-      '@primer/octicons': 9.6.0
+      make-synchronized: 0.2.9
+      prettier: 3.3.3
 
-  '@primer/octicons@9.6.0':
+  '@primer/css@21.5.0(@primer/primitives@9.1.2)':
     dependencies:
-      object-assign: 4.1.1
+      '@primer/primitives': 9.1.2
+
+  '@primer/primitives@9.1.2':
+    dependencies:
+      '@prettier/sync': 0.5.2(prettier@3.3.3)
+      prettier: 3.3.3
 
   '@socket.io/component-emitter@3.1.2': {}
 
@@ -6546,6 +6567,8 @@ snapshots:
     dependencies:
       semver: 6.3.1
 
+  make-synchronized@0.2.9: {}
+
   md5.js@1.3.5:
     dependencies:
       hash-base: 3.1.0
@@ -7061,6 +7084,8 @@ snapshots:
 
   prettier@2.8.8:
     optional: true
+
+  prettier@3.3.3: {}
 
   pretty-time@1.1.0: {}
 
@@ -7681,7 +7706,7 @@ snapshots:
 
   vue-hot-reload-api@2.3.4: {}
 
-  vue-loader@15.11.1(css-loader@5.2.7(webpack@5.94.0(webpack-cli@4.10.0)))(lodash@4.17.21)(vue-template-compiler@2.7.16)(webpack@5.94.0(webpack-cli@4.10.0)):
+  vue-loader@15.11.1(css-loader@5.2.7(webpack@5.94.0(webpack-cli@4.10.0)))(lodash@4.17.21)(prettier@3.3.3)(vue-template-compiler@2.7.16)(webpack@5.94.0(webpack-cli@4.10.0)):
     dependencies:
       '@vue/component-compiler-utils': 3.3.0(lodash@4.17.21)
       css-loader: 5.2.7(webpack@5.94.0(webpack-cli@4.10.0))
@@ -7691,6 +7716,7 @@ snapshots:
       vue-style-loader: 4.1.3
       webpack: 5.94.0(webpack-cli@4.10.0)
     optionalDependencies:
+      prettier: 3.3.3
       vue-template-compiler: 2.7.16
     transitivePeerDependencies:
       - arc-templates
