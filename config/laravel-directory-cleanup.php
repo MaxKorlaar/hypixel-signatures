@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2021-2024 Max Korlaar
+ * Copyright (c) 2021-2025 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,7 +46,7 @@
             ],
 
             storage_path('app/cache') => [
-                'deleteAllOlderThanMinutes' => 60 * 24 * 2
+                'deleteAllOlderThanMinutes' => 60 * 24
             ]
 
             /*
