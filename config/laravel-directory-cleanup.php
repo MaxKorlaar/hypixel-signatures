@@ -42,11 +42,11 @@
              */
 
             storage_path('app/public/minecraft-avatars') => [
-                'deleteAllOlderThanMinutes' => 60 * 24 * 2
+                'deleteAllOlderThanMinutes' => 60 * 24
             ],
 
             storage_path('app/cache') => [
-                'deleteAllOlderThanMinutes' => 60 * 24
+                'deleteAllOlderThanMinutes' => 60 * 3
             ]
 
             /*
