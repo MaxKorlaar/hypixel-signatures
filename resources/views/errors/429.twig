@@ -1,0 +1,18 @@
+{% extends 'errors/_error.twig' %}
+{% block head %}
+    {{ parent() }}
+    {% if retry_after is defined and retry_after %}
+        <meta http-equiv="refresh" content="{{ retry_after }}"/>
+    {% else %}
+        <meta http-equiv="refresh" content="120"/>
+    {% endif %}
+{% endblock %}
+{% block title %}
+    Rate Limit Exceeded
+{% endblock %}
+{% block error %}
+    You're making requests too quickly! Please slow down.<br>
+    {% if retry_after is defined and retry_after %}
+        You can try again in <strong>{{ (retry_after / 60) | round }} minutes</strong>.
+    {% endif %}
+{% endblock %}

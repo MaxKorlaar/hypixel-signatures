@@ -73,19 +73,27 @@
          */
         protected function configureRateLimiting(): void {
             RateLimiter::for('player-status', static function (Request $request) {
-                return Limit::perHour(120)->by($request->ip());
+                return Limit::perHour(120)->by($request->ip())->response(function () {
+                    return response()->view('errors.429', ['retry_after' => 3600], 429);
+                });
             });
 
             RateLimiter::for('friends', static function (Request $request) {
-                return Limit::perHour(200)->by($request->ip());
+                return Limit::perHour(200)->by($request->ip())->response(function () {
+                    return response()->view('errors.429', ['retry_after' => 3600], 429);
+                });
             });
 
             RateLimiter::for('guild', static function (Request $request) {
-                return Limit::perHour(400)->by($request->ip());
+                return Limit::perHour(400)->by($request->ip())->response(function () {
+                    return response()->view('errors.429', ['retry_after' => 3600], 429);
+                });
             });
 
             RateLimiter::for('player', static function (Request $request) {
-                return Limit::perHour(600)->by($request->ip());
+                return Limit::perHour(600)->by($request->ip())->response(function () {
+                    return response()->view('errors.429', ['retry_after' => 3600], 429);
+                });
             });
         }
 
