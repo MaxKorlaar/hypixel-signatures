@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2024 Max Korlaar
+ * Copyright (c) 2020-2025 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@ new Vue({
             this.getStatus().finally(() => {
                 setTimeout(() => {
                     this.getStatusInterval();
-                }, 10 * 1000);
+                }, 30 * 1000);
             });
         },
         getStatus() {
@@ -82,6 +82,6 @@ new Vue({
 
         setTimeout(() => {
             this.getStatusInterval();
-        }, 10 * 1000);
+        }, 30 * 1000);
     }
 });

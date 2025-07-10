@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020-2024 Max Korlaar
+ * Copyright (c) 2020-2025 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -80,6 +80,6 @@
             'offline'   => 'Offline',
             'last_seen' => 'Laatst gezien {{ last_seen }}',
 
-            'help_text' => 'Op deze pagina zie je de huidige online status van :username op de Hypixel Minecraft-server. Ondanks dat we proberen om de meest recente status te tonen, kan het zijn dat de resultaten ongeveer tot een minuut oud zijn door het gebruik van caching. Als iemand ervoor kiest om de sessie-status uit te schakelen voor hun account in de Hypixel-API, is het voor ons onmogelijk om hun huidige status op te zoeken. Deze pagina ververst automatisch elke 10 seconden.',
+            'help_text' => 'Op deze pagina zie je de huidige online status van :username op de Hypixel Minecraft-server. Ondanks dat we proberen om de meest recente status te tonen, kan het zijn dat de resultaten ongeveer tot een minuut oud zijn door het gebruik van caching. Als iemand ervoor kiest om de sessie-status uit te schakelen voor hun account in de Hypixel-API, is het voor ons onmogelijk om hun huidige status op te zoeken. Deze pagina ververst automatisch elke 30 seconden.',
         ],
     ];
