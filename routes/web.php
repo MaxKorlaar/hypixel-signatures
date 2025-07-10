@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2021-2024 Max Korlaar
+ * Copyright (c) 2021-2025 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,27 +47,27 @@
     Route::get('/signatures', 'IndexController@signatureIndex')->name('signatures');
 
     Route::get('/player/{username}/uuid', 'Player\PlayerController@getUuid')->name('player.get_uuid');
-    Route::get('/player/{uuid}/profile', 'Player\PlayerController@getProfile')->name('player.get_profile');
+    Route::get('/player/{uuid}/profile', 'Player\PlayerController@getProfile')->name('player.get_profile')->middleware(['throttle:player']);
 
     Route::get('/player/status', 'Player\SessionController@getIndex')->name('player.status.index');
     Route::post('/player/status', 'Player\SessionController@redirectToStatus')->name('player.status.form_redirect');
-    Route::get('/player/{uuid}/status', 'Player\SessionController@getStatus')->name('player.status');
-    Route::get('/player/{username}/status', 'Player\SessionController@getStatusByUsername')->name('player.status.username');
-    Route::get('/player/{uuid}/status.json', 'Player\SessionController@getStatus')->name('player.status.json');
+    Route::get('/player/{uuid}/status', 'Player\SessionController@getStatus')->name('player.status')->middleware(['throttle:player-status']);
+    Route::get('/player/{username}/status', 'Player\SessionController@getStatusByUsername')->name('player.status.username')->middleware(['throttle:player-status']);
+    Route::get('/player/{uuid}/status.json', 'Player\SessionController@getStatus')->name('player.status.json')->middleware(['throttle:player-status']);
 
-    Route::get('/player/{uuid}/skyblock/profiles', 'SkyBlockController@getProfiles')->name('skyblock.get_profiles');
+    Route::get('/player/{uuid}/skyblock/profiles', 'SkyBlockController@getProfiles')->name('skyblock.get_profiles')->middleware(['throttle:player']);
 
     Route::get('/friends/', 'Friends\FriendsController@getIndex')->name('friends');
     Route::post('/friends/', 'Friends\FriendsController@redirectToList')->name('friends.form_redirect');
-    Route::get('/friends/{uuid}', 'Friends\FriendsController@getFriends')->name('friends.list');
-    Route::get('/friends/{username}', 'Friends\FriendsController@getFriendsByUsername')->name('friends.list.username');
-    Route::get('/friends/{uuid}/json', 'Friends\FriendsController@getFriendsListJSON')->name('friends.list.json');
+    Route::get('/friends/{uuid}', 'Friends\FriendsController@getFriends')->name('friends.list')->middleware(['throttle:friends']);
+    Route::get('/friends/{username}', 'Friends\FriendsController@getFriendsByUsername')->name('friends.list.username')->middleware(['throttle:friends']);
+    Route::get('/friends/{uuid}/json', 'Friends\FriendsController@getFriendsListJSON')->name('friends.list.json')->middleware(['throttle:friends']);
 
     Route::get('/guild/', 'Guild\GuildController@getIndex')->name('guild');
     Route::post('/guild/', 'Guild\GuildController@redirectToInfo')->name('guild.form_redirect');
-    Route::get('/guild/{name}', 'Guild\GuildController@getInfo')->name('guild.info');
-    Route::get('/guild/{name}/members', 'Guild\MemberController@getMembers')->name('guild.members');
-    Route::get('/guild/{name}/members.json', 'Guild\MemberController@getMembers')->name('guild.members.json');
+    Route::get('/guild/{name}', 'Guild\GuildController@getInfo')->name('guild.info')->middleware(['throttle:guild']);
+    Route::get('/guild/{name}/members', 'Guild\MemberController@getMembers')->name('guild.members')->middleware(['throttle:guild']);
+    Route::get('/guild/{name}/members.json', 'Guild\MemberController@getMembers')->name('guild.members.json')->middleware(['throttle:guild']);
 
     Route::get('/guild/{name}/games/skywars', 'Guild\SkyWarsController@getSkyWarsStatistics')->name('guild.games.skywars');
     Route::get('/guild/{name}/games/skywars.json', 'Guild\SkyWarsController@getSkyWarsStatistics')->name('guild.games.skywars.json');
