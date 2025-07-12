@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-  "content-hash" : "92049db59ef9beca0dea3e626053fcbb",
+    "content-hash": "cceb346bc0bbaaf4fbcbb27bf897f815",
     "packages": [
         {
             "name": "brick/math",
@@ -1096,83 +1096,83 @@
             "time": "2024-08-16T14:57:26+00:00"
         },
         {
-          "name" : "intervention/image-laravel",
-          "version" : "1.3.0",
-          "source" : {
-            "type" : "git",
-            "url" : "https://github.com/Intervention/image-laravel.git",
-            "reference" : "24738a017d42a6fa8d9adabdbd69a2c19c5b0d30"
-          },
-          "dist" : {
-            "type" : "zip",
-            "url" : "https://api.github.com/repos/Intervention/image-laravel/zipball/24738a017d42a6fa8d9adabdbd69a2c19c5b0d30",
-            "reference" : "24738a017d42a6fa8d9adabdbd69a2c19c5b0d30",
-            "shasum" : ""
-          },
-          "require" : {
-            "illuminate/support" : "^8|^9|^10|^11",
-            "intervention/image" : "^3.7",
-            "php" : "^8.1"
-          },
-          "require-dev" : {
-            "orchestra/testbench" : "^8.18",
-            "phpunit/phpunit" : "^10.0"
-          },
-          "type" : "library",
-          "extra" : {
-            "laravel" : {
-              "providers" : [
-                "Intervention\\Image\\Laravel\\ServiceProvider"
-              ],
-              "aliases" : {
-                "Image" : "Intervention\\Image\\Laravel\\Facades\\Image"
-              }
-            }
-          },
-          "autoload" : {
-            "psr-4" : {
-              "Intervention\\Image\\Laravel\\" : "src"
-            }
-          },
-          "notification-url" : "https://packagist.org/downloads/",
-          "license" : [
-            "MIT"
-          ],
-          "authors" : [
-            {
-              "name" : "Oliver Vogel",
-              "email" : "oliver@intervention.io",
-              "homepage" : "https://intervention.io/"
-            }
-          ],
-          "description" : "Laravel Integration of Intervention Image",
-          "homepage" : "https://image.intervention.io/",
-          "keywords" : [
-            "gd",
-            "image",
-            "imagick",
-            "laravel",
-            "resize",
-            "thumbnail",
-            "watermark"
-          ],
-          "support" : {
-            "issues" : "https://github.com/Intervention/image-laravel/issues",
-            "source" : "https://github.com/Intervention/image-laravel/tree/1.3.0"
-          },
-          "funding" : [
-            {
-              "url" : "https://paypal.me/interventionio",
-              "type" : "custom"
+            "name": "intervention/image-laravel",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image-laravel.git",
+                "reference": "24738a017d42a6fa8d9adabdbd69a2c19c5b0d30"
             },
-            {
-              "url" : "https://github.com/Intervention",
-              "type" : "github"
-            }
-          ],
-          "time" : "2024-06-15T08:20:20+00:00"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image-laravel/zipball/24738a017d42a6fa8d9adabdbd69a2c19c5b0d30",
+                "reference": "24738a017d42a6fa8d9adabdbd69a2c19c5b0d30",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8|^9|^10|^11",
+                "intervention/image": "^3.7",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.18",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Intervention\\Image\\Laravel\\ServiceProvider"
+                    ],
+                    "aliases": {
+                        "Image": "Intervention\\Image\\Laravel\\Facades\\Image"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\Laravel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@intervention.io",
+                    "homepage": "https://intervention.io/"
+                }
+            ],
+            "description": "Laravel Integration of Intervention Image",
+            "homepage": "https://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "resize",
+                "thumbnail",
+                "watermark"
+            ],
+            "support": {
+                "issues": "https://github.com/Intervention/image-laravel/issues",
+                "source": "https://github.com/Intervention/image-laravel/tree/1.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/interventionio",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Intervention",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-06-15T08:20:20+00:00"
         },
-      {
+        {
             "name": "laravel/framework",
             "version": "v8.83.27",
             "source": {
@@ -2739,22 +2739,22 @@
         },
         {
             "name": "plancke/hypixel-php",
-            "version": "dev-master",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/MaxKorlaar/hypixel-php.git",
-                "reference": "af348efbecae86acae508916ba2e8912993c67fe"
+                "url": "https://github.com/Plancke/hypixel-php.git",
+                "reference": "de48cd84b5733d1a106210edd329b7d17265a2b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MaxKorlaar/hypixel-php/zipball/af348efbecae86acae508916ba2e8912993c67fe",
-                "reference": "af348efbecae86acae508916ba2e8912993c67fe",
+                "url": "https://api.github.com/repos/Plancke/hypixel-php/zipball/de48cd84b5733d1a106210edd329b7d17265a2b1",
+                "reference": "de48cd84b5733d1a106210edd329b7d17265a2b1",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
-                "php": "^7.3|^8.0"
+                "php": "^7.0|^8.0"
             },
             "require-dev": {
                 "ext-mongodb": "^1.4.2",
@@ -2765,18 +2765,13 @@
                 "ext-mongodb": "^1.4.2",
                 "mongodb/mongodb": "^1.4.2"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Plancke\\HypixelPHP\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Plancke\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2797,9 +2792,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Plancke/hypixel-php/issues",
-                "source": "https://github.com/MaxKorlaar/hypixel-php/tree/master"
+                "source": "https://github.com/Plancke/hypixel-php/tree/1.5.1"
             },
-            "time": "2021-10-14T19:17:11+00:00"
+            "time": "2025-07-11T22:24:29+00:00"
         },
         {
             "name": "pocketmine/binaryutils",
@@ -10394,7 +10389,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "lunakid/anim-gif": 20,
-        "plancke/hypixel-php": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,
@@ -10406,6 +10400,6 @@
         "ext-json": "*",
         "ext-zlib": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
