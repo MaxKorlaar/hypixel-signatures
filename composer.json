@@ -24,7 +24,7 @@
     "marvinlabs/laravel-discord-logger" : "^1.1",
     "monicahq/laravel-cloudflare" : "^3",
     "morrislaptop/laravel-queue-clear" : "^1.2",
-    "plancke/hypixel-php" : "dev-master",
+    "plancke/hypixel-php" : "^1.5.0",
     "pocketmine/nbt" : "^1.0.0",
     "rcrowe/twigbridge" : "^0.12",
     "spatie/laravel-directory-cleanup" : "^1.5",
@@ -84,10 +84,6 @@
     ]
   },
   "repositories" : [
-    {
-      "type" : "vcs",
-      "url" : "https://github.com/MaxKorlaar/hypixel-php"
-    },
     {
       "type" : "git",
       "url" : "https://github.com/MaxKorlaar/AnimGif"
