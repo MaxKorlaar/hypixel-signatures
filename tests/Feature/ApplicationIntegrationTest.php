@@ -1,6 +1,6 @@
 <?php
     /*
-     * Copyright (c) 2020-2024 Max Korlaar
+     * Copyright (c) 2020-2025 Max Korlaar
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@
     class ApplicationIntegrationTest extends TestCase {
 
         public function testPlayerProfileEndpoint(): void {
-            $uuid = '069a79f4-44e9-4726-a5be-fca90e38aaf5';
+            $uuid = 'b876ec32-e396-476b-a115-8438d83c67d4';
             $response = $this->get(route('player.get_profile', ['uuid' => $uuid]));
             
             $this->assertContains($response->getStatusCode(), [200, 302, 404, 500]);
@@ -55,7 +55,7 @@
         }
 
         public function testSkyBlockProfilesEndpoint(): void {
-            $uuid = '069a79f4-44e9-4726-a5be-fca90e38aaf5';
+            $uuid = 'b876ec32-e396-476b-a115-8438d83c67d4';
             $response = $this->get(route('skyblock.get_profiles', ['uuid' => $uuid]));
             
             $this->assertContains($response->getStatusCode(), [200, 302, 404, 500]);
@@ -78,7 +78,7 @@
         }
 
         public function testFriendsListByUuid(): void {
-            $uuid = '069a79f4-44e9-4726-a5be-fca90e38aaf5';
+            $uuid = 'b876ec32-e396-476b-a115-8438d83c67d4';
             $response = $this->get(route('friends.list', ['uuid' => $uuid]));
             
             $this->assertContains($response->getStatusCode(), [200, 302, 404, 500]);
@@ -91,7 +91,7 @@
         }
 
         public function testFriendsListJsonEndpoint(): void {
-            $uuid = '069a79f4-44e9-4726-a5be-fca90e38aaf5';
+            $uuid = 'b876ec32-e396-476b-a115-8438d83c67d4';
             $response = $this->get(route('friends.list.json', ['uuid' => $uuid]));
             
             $this->assertContains($response->getStatusCode(), [200, 404, 500]);
@@ -149,7 +149,7 @@
 
         public function testThrottlingMiddleware(): void {
             // Test multiple requests to a throttled endpoint
-            $uuid = '069a79f4-44e9-4726-a5be-fca90e38aaf5';
+            $uuid = 'b876ec32-e396-476b-a115-8438d83c67d4';
             
             for ($i = 0; $i < 3; $i++) {
                 $response = $this->get(route('player.status', ['uuid' => $uuid]));
@@ -159,7 +159,7 @@
 
         public function testCorsHeaders(): void {
             // Test that CORS headers are properly set for API endpoints
-            $response = $this->get(route('player.status.json', ['uuid' => '069a79f4-44e9-4726-a5be-fca90e38aaf5']));
+            $response = $this->get(route('player.status.json', ['uuid' => 'b876ec32-e396-476b-a115-8438d83c67d4']));
             
             // Should have appropriate headers for API responses
             $this->assertContains($response->getStatusCode(), [200, 404, 500]);

@@ -1,6 +1,6 @@
 <?php
     /*
-     * Copyright (c) 2020-2024 Max Korlaar
+     * Copyright (c) 2020-2025 Max Korlaar
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without
@@ -43,7 +43,7 @@
 
         public function testUuidValidation(): void {
             // Test valid UUID format
-            $validUuid = '069a79f4-44e9-4726-a5be-fca90e38aaf5';
+            $validUuid = 'b876ec32-e396-476b-a115-8438d83c67d4';
             $this->assertTrue($this->isValidUuid($validUuid));
 
             // Test invalid UUID format

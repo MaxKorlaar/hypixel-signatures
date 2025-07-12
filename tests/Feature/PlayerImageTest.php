@@ -1,6 +1,6 @@
 <?php
     /*
-     * Copyright (c) 2020-2024 Max Korlaar
+     * Copyright (c) 2020-2025 Max Korlaar
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without
@@ -44,7 +44,7 @@
         /**
          * Test UUID (Notch's UUID)
          */
-        private const TEST_UUID = '069a79f4-44e9-4726-a5be-fca90e38aaf5';
+        private const TEST_UUID = 'b876ec32-e396-476b-a115-8438d83c67d4';
 
         public function testPlayerHeadAsWebP(): void {
             $response = $this->get(route('player.skin.head', ['uuid' => self::TEST_UUID]));

@@ -1,6 +1,6 @@
 <?php
     /*
-     * Copyright (c) 2020-2024 Max Korlaar
+     * Copyright (c) 2020-2025 Max Korlaar
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without
@@ -58,8 +58,8 @@
         }
 
         public function testPlayerStatusByUuidRoute(): void {
-            // Test with a sample UUID (Notch's UUID)
-            $uuid = '069a79f4-44e9-4726-a5be-fca90e38aaf5';
+            // Test with a sample UUID
+            $uuid = 'b876ec32-e396-476b-a115-8438d83c67d4';
             
             $response = $this->get(route('player.status', ['uuid' => $uuid]));
             
@@ -75,7 +75,7 @@
         }
 
         public function testPlayerStatusJsonEndpoint(): void {
-            $uuid = '069a79f4-44e9-4726-a5be-fca90e38aaf5';
+            $uuid = 'b876ec32-e396-476b-a115-8438d83c67d4';
             
             $response = $this->get(route('player.status.json', ['uuid' => $uuid]));
             
