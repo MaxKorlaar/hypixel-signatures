@@ -19,11 +19,12 @@ return static function (RectorConfig $rectorConfig): void {
 
     // Define sets of rules to apply
     $rectorConfig->sets([
-        LevelSetList::UP_TO_PHP_83,
+        LevelSetList::UP_TO_PHP_84,
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,
         SetList::EARLY_RETURN,
         LaravelSetList::LARAVEL_100,
+        LaravelSetList::LARAVEL_110,
         LaravelSetList::LARAVEL_CODE_QUALITY,
         LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,
     ]);

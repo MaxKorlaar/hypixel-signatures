@@ -25,6 +25,7 @@
     "plancke/hypixel-php" : "dev-master",
     "pocketmine/nbt" : "^1.0.0",
     "spatie/laravel-directory-cleanup" : "^1.5",
+    "twig/twig": "^3.0",
     "stil/gd-text" : "^1.1"
   },
   "require-dev" : {
