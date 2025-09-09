@@ -50,12 +50,10 @@
     final class SmallGeneralSignatureController extends GeneralSignatureController {
 
         /**
-         * @param Request $request
-         * @param Player  $player
          *
-         * @return Response
          * @throws HypixelPHPException
          */
+        #[\Override]
         protected function signature(Request $request, Player $player): Response {
             $image = BaseSignature::getImage(630, 100);
             [$black, $purple, $yellow] = self::getColours($image);
@@ -65,13 +63,11 @@
             $achievementPoints = Arr::get($player->getAchievementData(), 'standard.points.current', 0);
 
             $quests          = new Collection($player->getArray('quests'));
-            $questsCompleted = $quests->whereNotNull('completions')->map(static function ($quest) {
-                return $quest['completions'];
-            })->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
+            $questsCompleted = $quests->whereNotNull('completions')->map(static fn($quest) => $quest['completions'])->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
 
             if ($request->has('no_3d_avatar')) {
                 $avatarWidth = 0;
-                $textX       = $avatarWidth + 4;
+                $textX       = 4;
             } else {
                 $threedAvatar = new ThreeDAvatar();
                 $avatarImage  = $threedAvatar->getThreeDSkinFromCache($player->getUUID(), 3, 30, false, true, true);

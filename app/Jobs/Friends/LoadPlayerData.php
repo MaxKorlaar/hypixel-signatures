@@ -53,22 +53,16 @@
     class LoadPlayerData implements ShouldQueue {
         use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-        private string $uuid;
-
         /**
          * Create a new job instance.
-         *
-         * @param string $uuid
          */
-        public function __construct(string $uuid) {
+        public function __construct(private string $uuid) {
             $this->queue = 'hypixel-api';
-            $this->uuid  = $uuid;
         }
 
         /**
          * Execute the job.
          *
-         * @return void
          * @throws LimiterTimeoutException
          */
         public function handle(): void {

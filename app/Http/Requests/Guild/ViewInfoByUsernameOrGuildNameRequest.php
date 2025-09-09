@@ -42,8 +42,6 @@ namespace App\Http\Requests\Guild;
     class ViewInfoByUsernameOrGuildNameRequest extends FormRequest {
         /**
          * Determine if the user is authorized to make this request.
-         *
-         * @return bool
          */
         public function authorize(): bool {
             return true;
@@ -51,8 +49,6 @@ namespace App\Http\Requests\Guild;
 
         /**
          * Get the validation rules that apply to the request.
-         *
-         * @return array
          */
         public function rules(): array {
             return [

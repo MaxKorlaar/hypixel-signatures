@@ -58,8 +58,6 @@
 
         /**
          * SkyBlockItem constructor.
-         *
-         * @param CompoundTag $nbtItem
          */
         public function __construct(CompoundTag $nbtItem) {
             $this->data = $this->simplify($nbtItem);
@@ -75,13 +73,11 @@
         }
 
         /**
-         * @param Tag $item
-         *
          * @return mixed|Collection
          */
         private function simplify(Tag $item) {
             if ($item instanceof CompoundTag || $item instanceof ListTag) {
-                return (new Collection($item->getValue()))->mapWithKeys(function ($mapItem, $key) {
+                return new Collection($item->getValue())->mapWithKeys(function ($mapItem, $key) {
                     /** @var Tag $mapItem */
                     return [$key => $this->simplify($mapItem)];
                 });
@@ -117,9 +113,7 @@
         /**
          * @link https://github.com/LeaPhant/skyblock-stats/blob/91a03c50f7b0d2ddf0ba50a6f170e1ea8b05fd6f/src/lib.js#L204
          *
-         * @param string $backpackData
          *
-         * @return Collection
          */
         private function getBackpackContents(string $backpackData): Collection {
             $data = gzdecode($backpackData);
@@ -127,7 +121,6 @@
             $nbtStream = new BigEndianNbtSerializer();
             $nbtData   = $nbtStream->read($data);
 
-            /** @var CompoundTag $itemsTag */
             $compoundTag = $nbtData->getTag();
 
             /** @var ListTag $items */
@@ -162,13 +155,11 @@
 
         /**
          * @param $rawLore
-         *
-         * @return string
          */
         private function cleanLore($rawLore): string {
             $return = '';
 
-            foreach (preg_split('/§/u', $rawLore, -1, PREG_SPLIT_NO_EMPTY) as $part) {
+            foreach (preg_split('/§/u', (string) $rawLore, -1, PREG_SPLIT_NO_EMPTY) as $part) {
                 $return .= substr($part, 1);
             }
 
@@ -299,9 +290,6 @@
             }
         }
 
-        /**
-         * @return string|null
-         */
         public function getTagId(): ?string {
             if (Arr::has($this->data, 'tag.ExtraAttributes.id')) {
                 return $this['tag']['ExtraAttributes']['id'];
@@ -309,16 +297,10 @@
             return null;
         }
 
-        /**
-         * @param SkyBlockStatsDataParser $dataParser
-         */
         public static function setDataParser(SkyBlockStatsDataParser $dataParser): void {
             self::$dataParser = $dataParser;
         }
 
-        /**
-         * @param UuidFactory $uuidFactory
-         */
         public static function setUuidFactory(UuidFactory $uuidFactory): void {
             self::$uuidFactory = $uuidFactory;
         }
@@ -340,17 +322,13 @@
             $clonedObject = clone $object;
 
             if (method_exists($clonedObject, 'transform')) {
-                $clonedObject->transform(function ($item) {
-                    return $this->cloneObject($item);
-                });
+                $clonedObject->transform(fn($item) => $this->cloneObject($item));
             }
             return $clonedObject;
         }
 
         /**
          * Get the instance as an array.
-         *
-         * @return array
          */
         public function toArray(): array {
             return $this->data->toArray();
@@ -404,8 +382,6 @@
          * @param mixed $value  <p>
          *                      The value to set.
          *                      </p>
-         *
-         * @return void
          */
         public function offsetSet($offset, $value): void {
             $this->data->offsetSet($offset, $value);
@@ -419,8 +395,6 @@
          * @param mixed $offset <p>
          *                      The offset to unset.
          *                      </p>
-         *
-         * @return void
          */
         public function offsetUnset($offset): void {
             $this->data->offsetUnset($offset);
@@ -430,8 +404,6 @@
          * Convert the object to its JSON representation.
          *
          * @param int $options
-         *
-         * @return string
          */
         public function toJson($options = 0): string {
             return $this->data->toJson($options);

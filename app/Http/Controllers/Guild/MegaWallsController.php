@@ -52,8 +52,6 @@
      */
     class MegaWallsController extends MemberController {
         /**
-         * @param Request $request
-         * @param string  $nameOrId
          *
          * @return array[]|Application|Factory|RedirectResponse|View
          * @throws HypixelFetchException
@@ -91,9 +89,6 @@
         }
 
         /**
-         * @param Guild $guild
-         *
-         * @return array
          * @throws HypixelPHPException
          */
         private function getMegaWallsMemberList(Guild $guild): array {
@@ -104,28 +99,16 @@
                 $kills  = $stats->getInt('kills');
                 $deaths = $stats->getInt('deaths');
 
-                if ($deaths > 0) {
-                    $kd = round($kills / $deaths, 2);
-                } else {
-                    $kd = 'N/A';
-                }
+                $kd = $deaths > 0 ? round($kills / $deaths, 2) : 'N/A';
 
                 $wins   = $stats->getInt('wins');
                 $losses = $stats->getInt('losses');
-                if (($wins + $losses) > 0) {
-                    $winsPercentage = round(($wins / ($wins + $losses)) * 100, 1);
-                } else {
-                    $winsPercentage = 0;
-                }
+                $winsPercentage = $wins + $losses > 0 ? round(($wins / ($wins + $losses)) * 100, 1) : 0;
 
                 $finalKills  = $stats->getInt('final_kills');
                 $finalDeaths = $stats->getInt('finalDeaths') + $stats->getInt('final_deaths');
 
-                if ($finalDeaths > 0) {
-                    $finalKd = round($finalKills / $finalDeaths, 2);
-                } else {
-                    $finalKd = 'N/A';
-                }
+                $finalKd = $finalDeaths > 0 ? round($finalKills / $finalDeaths, 2) : 'N/A';
 
                 return [
                     'wins'            => $wins,

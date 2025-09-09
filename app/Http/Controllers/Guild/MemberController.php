@@ -55,8 +55,6 @@
      */
     class MemberController extends Controller {
         /**
-         * @param Request $request
-         * @param string  $nameOrId
          *
          * @return array[]|Application|Factory|RedirectResponse|View
          * @throws HypixelFetchException
@@ -94,14 +92,10 @@
         }
 
         /**
-         * @param Guild         $guild
          *
-         * @param callable|null $playerCallback
-         *
-         * @return array
          * @throws HypixelPHPException
          */
-        protected function getMemberList(Guild $guild, callable $playerCallback = null): array {
+        protected function getMemberList(Guild $guild, ?callable $playerCallback = null): array {
             $memberList   = [];
             $totalMembers = $guild->getMemberCount();
             $loaded       = 0;
@@ -119,7 +113,7 @@
                 return 0;
             });
 
-            foreach ($list as $rank => $rankMembers) {
+            foreach ($list as $rankMembers) {
                 /** @var GuildMember $member */
                 foreach ($rankMembers as $member) {
                     $uuid        = $member->getUUID();

@@ -70,11 +70,7 @@
             $wins   = $stats->getInt('wins') + $stats->getInt('wins_solo');
             $score  = $stats->getInt('score');
 
-            if ($deaths !== 0) {
-                $kd = round($kills / $deaths, 2);
-            } else {
-                $kd = 'None';
-            }
+            $kd = $deaths !== 0 ? round($kills / $deaths, 2) : 'None';
 
             if ($score >= 10210) {
                 $title = 'Champion';

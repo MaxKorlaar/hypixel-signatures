@@ -45,7 +45,7 @@
      * @package App\Http\Controllers
      */
     class RedirectOldSignaturesController extends Controller {
-        private const URL_MAPPING = [
+        private const array URL_MAPPING = [
             'main'              => 'signatures.general',
             'main-small'        => 'signatures.general_small',
             'tooltip'           => 'signatures.general_tooltip',
@@ -69,12 +69,11 @@
         /**
          * @param      $oldSignatureName
          * @param      $uuid
-         * @param null $other
          *
          * @return Application|RedirectResponse|Response|Redirector
          */
         public function redirect($oldSignatureName, $uuid, $other = null) {
-            $lowercaseOldSignatureName = strtolower($oldSignatureName);
+            $lowercaseOldSignatureName = strtolower((string) $oldSignatureName);
 
             if (isset(self::URL_MAPPING[$lowercaseOldSignatureName])) {
                 return redirect(route(self::URL_MAPPING[$lowercaseOldSignatureName], [$uuid]), 301);

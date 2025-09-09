@@ -52,11 +52,11 @@
     class MCavatar {
         public const STEVE_SKIN = 'https://hypixel.maxkorlaar.com/img/Steve_skin.png';
         public $name;
-        public $skinUrl;
+        public $skinUrl = 'http://skins.minecraft.net/MinecraftSkins/';
         public $size;
         public $imageStoragePath;
         public $helm = true;
-        public $fetchError = null;
+        public $fetchError;
         public int $imageQuality = 80;
 
         protected $fallbackUrl;
@@ -67,7 +67,6 @@
          * Defines url
          */
         public function __construct() {
-            $this->skinUrl          = 'http://skins.minecraft.net/MinecraftSkins/';
             $this->imageStoragePath = storage_path('app/public/minecraft-avatars') . '/';
 
             $this->fallbackSkinRegular = resource_path('images/skins/steve.png');
@@ -81,7 +80,7 @@
          * @return string Path to skin image
          */
         public function getSkinFromCache($username): string {
-            $imagepath = $this->imageStoragePath . 'full_skin/' . strtolower($username) . '.webp';
+            $imagepath = $this->imageStoragePath . 'full_skin/' . strtolower((string) $username) . '.webp';
 
             return Cache::lock('minecraft.avatar.' . $imagepath)->block(5, function () use ($imagepath, $username) {
                 if (file_exists($imagepath)) {
@@ -101,8 +100,6 @@
         }
 
         /**
-         * @param string $username
-         * @param bool   $save
          *
          * @return resource|string
          * @throws InvalidArgumentException
@@ -192,13 +189,12 @@
          * @param bool $helm
          *
          * @usage getFromCache('MegaMaxsterful');
-         * @return string
          */
         public function getFromCache($username, $size = 100, $helm = true): string {
             if ($helm) {
-                $imagepath = $this->imageStoragePath . $size . 'px/' . strtolower($username) . '.webp';
+                $imagepath = $this->imageStoragePath . $size . 'px/' . strtolower((string) $username) . '.webp';
             } else {
-                $imagepath = $this->imageStoragePath . $size . 'px-no-helm/' . strtolower($username) . '.webp';
+                $imagepath = $this->imageStoragePath . $size . 'px-no-helm/' . strtolower((string) $username) . '.webp';
             }
             $this->name = $username;
             $this->size = $size;
@@ -220,8 +216,6 @@
          * @param int  $size
          * @param bool $helm
          * @param bool $save
-         *
-         * @return string
          */
         public function getImage($username, $size = 100, $helm = true, $save = true): string {
             $this->name = $username;
@@ -257,12 +251,12 @@
                 if (!file_exists($this->imageStoragePath . $size . 'px/') && !mkdir($concurrentDirectory = $this->imageStoragePath . $size . 'px/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
                 }
-                $imagepath = $this->imageStoragePath . $size . 'px/' . strtolower($username) . '.webp';
+                $imagepath = $this->imageStoragePath . $size . 'px/' . strtolower((string) $username) . '.webp';
             } else {
                 if (!file_exists($this->imageStoragePath . $size . 'px-no-helm/') && !mkdir($concurrentDirectory = $this->imageStoragePath . $size . 'px-no-helm/', 0777, true) && !is_dir($concurrentDirectory)) {
                     throw new RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
                 }
-                $imagepath = $this->imageStoragePath . $size . 'px-no-helm/' . strtolower($username) . '.webp';
+                $imagepath = $this->imageStoragePath . $size . 'px-no-helm/' . strtolower((string) $username) . '.webp';
             }
 
             if ($save) {
@@ -286,9 +280,6 @@
             $this->name = $name;
         }
 
-        /**
-         * @return string
-         */
         public function getFallbackUrl(): string {
             return $this->fallbackUrl;
         }

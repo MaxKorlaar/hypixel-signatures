@@ -56,8 +56,6 @@
          * @param bool $shadow
          *
          * @param bool $antiAlias
-         *
-         * @return array
          */
         public static function minecraftStringToTTFText($image, $font, $fontSize, $startX, $startY, $string, $shadow = false, $antiAlias = true): array {
             $minecraftColours = [
@@ -79,14 +77,14 @@
                 'f' => '#FFFFFF'
             ];
 
-            if (strpos($string, '§') === false) {
+            if (!str_contains((string) $string, '§')) {
                 $string = '§7' . $string;
             }
 
             $currentX = $startX;
             $currentY = $startY + 16;
             $bbox     = [];
-            foreach (preg_split('/§/u', $string, -1, PREG_SPLIT_NO_EMPTY) as $part) {
+            foreach (preg_split('/§/u', (string) $string, -1, PREG_SPLIT_NO_EMPTY) as $part) {
                 $hexColour    = $minecraftColours[$part[0]] ?? $minecraftColours['7'];
                 $rgb          = self::hexToRGB($hexColour);
                 $colour       = imagecolorallocate($image, $rgb[0], $rgb[1], $rgb[2]) * ($antiAlias ? 1 : -1);
@@ -109,8 +107,6 @@
          * Converts Hexadecimal colour code into RGB
          *
          * @param $hex
-         *
-         * @return array
          */
         public static function hexToRGB($hex): array {
             $hex = str_replace('#', '', $hex);

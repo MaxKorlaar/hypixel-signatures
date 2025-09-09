@@ -47,9 +47,6 @@
      * @package App\Utilities
      */
     class HypixelAPI {
-        /**
-         * @var HypixelPHP $api
-         */
         protected HypixelPHP $api;
 
         /**
@@ -66,7 +63,6 @@
         }
 
         /**
-         * @param string $uuid
          *
          * @return HypixelObject|Response|Player|null
          * @throws HypixelPHPException
@@ -76,7 +72,6 @@
         }
 
         /**
-         * @param string $uuid
          *
          * @return HypixelObject|Response|Guild|null
          * @throws HypixelPHPException
@@ -86,7 +81,6 @@
         }
 
         /**
-         * @param string $name
          *
          * @return HypixelObject|Response|Guild|null
          * @throws HypixelPHPException
@@ -96,7 +90,6 @@
         }
 
         /**
-         * @param string $id
          *
          * @return HypixelObject|Response|Guild|null
          * @throws HypixelPHPException
@@ -105,18 +98,10 @@
             return $this->api->getGuild([FetchParams::GUILD_BY_ID => $id]);
         }
 
-        /**
-         * @return HypixelPHP
-         */
         public function getApi(): HypixelPHP {
             return $this->api;
         }
 
-        /**
-         * @param string $id
-         *
-         * @return bool
-         */
         public static function isValidMongoId(string $id): bool {
             return strlen($id) === 24 && ctype_xdigit($id);
         }

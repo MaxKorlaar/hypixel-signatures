@@ -44,12 +44,6 @@
      * @package App\Http\Controllers\Player
      */
     class ImageController extends Controller {
-        /**
-         * @param Request $request
-         * @param string  $uuid
-         *
-         * @return Response
-         */
         public function getHeadAsWebP(Request $request, string $uuid): Response {
             $headImage = $this->getHead($request, $uuid);
 
@@ -62,21 +56,13 @@
         }
 
         /**
-         * @param Request $request
-         * @param string  $uuid
          *
          * @return bool|resource
          */
         private function getHead(Request $request, string $uuid) {
-            return (new ThreeDAvatar())->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, true, true, true, -30);
+            return new ThreeDAvatar()->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, true, true, true, -30);
         }
 
-        /**
-         * @param Request $request
-         * @param string  $uuid
-         *
-         * @return Response
-         */
         public function getHeadAsPNG(Request $request, string $uuid): Response {
             $headImage = $this->getHead($request, $uuid);
 
@@ -88,12 +74,6 @@
                 ]);
         }
 
-        /**
-         * @param Request $request
-         * @param string  $uuid
-         *
-         * @return Response
-         */
         public function getSkinAsWebP(Request $request, string $uuid): Response {
             $skin = $this->getSkin($request, $uuid);
 
@@ -106,21 +86,13 @@
         }
 
         /**
-         * @param Request $request
-         * @param string  $uuid
          *
          * @return bool|resource
          */
         private function getSkin(Request $request, string $uuid) {
-            return (new ThreeDAvatar())->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, false, true, true, -30);
+            return new ThreeDAvatar()->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, false, true, true, -30);
         }
 
-        /**
-         * @param Request $request
-         * @param string  $uuid
-         *
-         * @return Response
-         */
         public function getSkinAsPNG(Request $request, string $uuid): Response {
             $skin = $this->getSkin($request, $uuid);
 

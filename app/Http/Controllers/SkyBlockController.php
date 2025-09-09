@@ -45,9 +45,6 @@ namespace App\Http\Controllers;
      */
     class SkyBlockController extends Controller {
         /**
-         * @param string $uuid
-         *
-         * @return array
          * @throws HypixelPHPException
          */
         public function getProfiles(string $uuid): array {

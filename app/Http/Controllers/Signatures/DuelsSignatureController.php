@@ -71,17 +71,9 @@
             $losses        = $stats->getInt('losses', 0);
             $bestWinStreak = $stats->getInt('best_overall_winstreak');
 
-            if ($deaths !== 0) {
-                $kd = round($kills / $deaths, 2);
-            } else {
-                $kd = 'None';
-            }
+            $kd = $deaths !== 0 ? round($kills / $deaths, 2) : 'None';
 
-            if ($wins !== 0) {
-                $winsPercentage = round(($wins / ($wins + $losses)) * 100, 2);
-            } else {
-                $winsPercentage = 0;
-            }
+            $winsPercentage = $wins !== 0 ? round(($wins / ($wins + $losses)) * 100, 2) : 0;
 
             if ($request->has('no_3d_avatar')) {
                 [, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);

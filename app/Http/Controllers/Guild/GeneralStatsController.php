@@ -51,8 +51,6 @@
      */
     class GeneralStatsController extends MemberController {
         /**
-         * @param Request $request
-         * @param string  $nameOrId
          *
          * @return array[]|Application|Factory|RedirectResponse|View
          * @throws HypixelFetchException
@@ -90,18 +88,13 @@
         }
 
         /**
-         * @param Guild $guild
-         *
-         * @return array
          * @throws HypixelPHPException
          */
         private function getGeneralMemberList(Guild $guild): array {
             return $this->getMemberList($guild, static function (Player $player) {
 
                 $quests          = new Collection($player->getArray('quests'));
-                $questsCompleted = $quests->whereNotNull('completions')->map(static function ($quest) {
-                    return $quest['completions'];
-                })->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
+                $questsCompleted = $quests->whereNotNull('completions')->map(static fn($quest) => $quest['completions'])->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
 
                 $challengesCompleted = $player->getArray('achievements')['general_challenger'] ?? 0;
 

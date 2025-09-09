@@ -47,9 +47,9 @@
         public function __construct($originCoord) {
             if (is_array($originCoord) && count($originCoord) == 3) {
                 $this->_originCoord = [
-                    'x' => (isset($originCoord['x']) ? $originCoord['x'] : 0),
-                    'y' => (isset($originCoord['y']) ? $originCoord['y'] : 0),
-                    'z' => (isset($originCoord['z']) ? $originCoord['z'] : 0)
+                    'x' => ($originCoord['x'] ?? 0),
+                    'y' => ($originCoord['y'] ?? 0),
+                    'z' => ($originCoord['z'] ?? 0)
                 ];
             } else {
                 $this->_originCoord = [

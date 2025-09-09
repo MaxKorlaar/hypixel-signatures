@@ -58,6 +58,7 @@
          *
          * @return void
          */
+        #[\Override]
         public function boot() {
             parent::boot();
 

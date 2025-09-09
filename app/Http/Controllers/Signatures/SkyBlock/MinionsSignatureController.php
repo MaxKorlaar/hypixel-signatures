@@ -51,12 +51,7 @@
      */
     class MinionsSignatureController extends SkyBlockSignatureController {
 
-        /**
-         * @param Request $request
-         * @param Player  $player
-         *
-         * @return Response
-         */
+        #[\Override]
         protected function signature(Request $request, Player $player): Response {
             if ($this->profileId === null) {
                 return self::generateErrorImage('No SkyBlock profile has been given', 400);
@@ -64,9 +59,9 @@
 
             try {
                 $minions = SkyBlockStatsDataParser::getSkyBlockMinions($player, $this->profileId)->where('max_level', '>', 0)->sortByDesc('max_level');
-            } catch (HypixelFetchException $exception) {
+            } catch (HypixelFetchException) {
                 return self::generateErrorImage('An error has occurred while trying to fetch this SkyBlock profile. Please try again later.');
-            } catch (SkyBlockEmptyProfileException $e) {
+            } catch (SkyBlockEmptyProfileException) {
                 return self::generateErrorImage('This SkyBlock profile has no data. It may have been deleted.');
             }
 

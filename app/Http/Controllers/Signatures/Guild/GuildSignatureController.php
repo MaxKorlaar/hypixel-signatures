@@ -55,10 +55,7 @@
     class GuildSignatureController extends BaseSignature {
 
         /**
-         * @param Request $request
-         * @param Player  $player
          *
-         * @return Response
          * @throws HypixelPHPException
          */
         protected function signature(Request $request, Player $player): Response {

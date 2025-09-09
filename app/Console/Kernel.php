@@ -53,10 +53,10 @@
         /**
          * Define the application's command schedule.
          *
-         * @param Schedule $schedule
          *
          * @return void
          */
+        #[\Override]
         protected function schedule(Schedule $schedule) {
             $schedule->command('hypixel-cache:clear-recent')->monthly()->storeOutput();
             $schedule->command('clean:directories')->everyFourHours()->storeOutput();
@@ -72,6 +72,7 @@
          *
          * @return void
          */
+        #[\Override]
         protected function commands() {
             $this->load(__DIR__ . '/Commands');
 

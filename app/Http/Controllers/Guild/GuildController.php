@@ -59,18 +59,13 @@
      * @package App\Http\Controllers\Guild
      */
     class GuildController extends Controller {
-        /**
-         * @return View
-         */
         public function getIndex(): View {
-            $recentlyViewed = (new Collection(
+            $recentlyViewed = new Collection(
                 Redis::connection('cache')
                     ->zRevRangeByScore('recent_guilds', '+inf', '0', [
                         'withscores' => true, 'limit' => [0, 20]
                     ])
-            ))->map(static function ($value, $key) {
-                return ['id' => $key, 'views' => $value] + Cache::get('recent_guilds.' . $key, ['name' => $key]);
-            });
+            )->map(static fn($value, $key) => ['id' => $key, 'views' => $value] + Cache::get('recent_guilds.' . $key, ['name' => $key]));
 
             return view('guild.index', [
                 'recently_viewed' => $recentlyViewed
@@ -78,9 +73,7 @@
         }
 
         /**
-         * @param ViewInfoByUsernameOrGuildNameRequest $request
          *
-         * @return RedirectResponse
          * @throws JsonException
          * @throws HypixelPHPException
          * @throws InvalidArgumentException
@@ -116,12 +109,11 @@
             }
 
             return back(302, [], route('friends'))->withInput()->withErrors([
-                'username' => 'An unknown error has occurred while trying to fetch the guild for ' . $data['data']['name'] ?? '' . '. They might not be in a guild at the moment'
+                'username' => 'An unknown error has occurred while trying to fetch the guild for ' . $data['data']['name'] ?? '. They might not be in a guild at the moment'
             ]);
         }
 
         /**
-         * @param string $nameOrId
          *
          * @return RedirectResponse|View
          * @throws HypixelPHPException
@@ -176,7 +168,7 @@
                     throw new HypixelFetchException('An unknown error has occurred while trying to fetch the guildmaster of ' . $guild->getName());
                 }
 
-                $preferredGames = (new Collection($guild->getPreferredGames()))->map(static function ($gameName) {
+                $preferredGames = new Collection($guild->getPreferredGames())->map(static function ($gameName) {
                     $gameType = GameTypes::fromEnum($gameName);
 
                     if ($gameType === null) {
@@ -217,9 +209,7 @@
          *
          * @param string $value
          * @param array  $protocols http/https, ftp, mail, twitter
-         * @param array  $attributes
          *
-         * @return string
          * @link https://gist.github.com/jasny/2000705
          *
          */
@@ -227,7 +217,7 @@
             // Link attributes
             $attr = '';
             foreach ($attributes as $key => $val) {
-                $attr .= ' ' . $key . '="' . htmlentities($val) . '"';
+                $attr .= ' ' . $key . '="' . htmlentities((string) $val) . '"';
             }
 
             $links = [];
@@ -237,27 +227,20 @@
 
             // Extract text links for each protocol
             foreach ((array)$protocols as $protocol) {
-                switch ($protocol) {
-                    case 'http':
-                    case 'https':
-                        $value = preg_replace_callback('~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![.,:])~i', static function ($match) use ($protocol, &$links, $attr) {
-                            if ($match[1]) {
-                                $protocol = $match[1];
-                            }
-                            $link = $match[2] ?: $match[3];
-                            return '<' . array_push($links, "<a $attr href=\"$protocol://$link\">$link</a>") . '>';
-                        }, $value);
-                        break;
-                    case 'mail':
-                        $value = preg_replace_callback('~([^\s<]+?@[^\s<]+?\.[^\s<]+)(?<![.,:])~', static function ($match) use (&$links, $attr) { return '<' . array_push($links, "<a $attr href=\"mailto:{$match[1]}\">{$match[1]}</a>") . '>'; }, $value);
-                        break;
-                    default:
-                        $value = preg_replace_callback('~' . preg_quote($protocol, '~') . '://([^\s<]+?)(?<![.,:])~i', static function ($match) use ($protocol, &$links, $attr) { return '<' . array_push($links, "<a $attr href=\"$protocol://{$match[1]}\">{$match[1]}</a>") . '>'; }, $value);
-                        break;
-                }
+                $value = match ($protocol) {
+                    'http', 'https' => preg_replace_callback('~(?:(https?)://([^\s<]+)|(www\.[^\s<]+?\.[^\s<]+))(?<![.,:])~i', static function ($match) use ($protocol, &$links, $attr) {
+                        if ($match[1] !== '' && $match[1] !== '0') {
+                            $protocol = $match[1];
+                        }
+                        $link = $match[2] ?: $match[3];
+                        return '<' . array_push($links, "<a $attr href=\"$protocol://$link\">$link</a>") . '>';
+                    }, (string) $value),
+                    'mail' => preg_replace_callback('~([^\s<]+?@[^\s<]+?\.[^\s<]+)(?<![.,:])~', static function ($match) use (&$links, $attr) { return '<' . array_push($links, "<a $attr href=\"mailto:{$match[1]}\">{$match[1]}</a>") . '>'; }, (string) $value),
+                    default => preg_replace_callback('~' . preg_quote((string) $protocol, '~') . '://([^\s<]+?)(?<![.,:])~i', static function ($match) use ($protocol, &$links, $attr) { return '<' . array_push($links, "<a $attr href=\"$protocol://{$match[1]}\">{$match[1]}</a>") . '>'; }, (string) $value),
+                };
             }
 
             // Insert all link
-            return preg_replace_callback('/<(\d+)>/', static function ($match) use (&$links) { return $links[$match[1] - 1]; }, $value);
+            return preg_replace_callback('/<(\d+)>/', static function ($match) use (&$links) { return $links[$match[1] - 1]; }, (string) $value);
         }
     }

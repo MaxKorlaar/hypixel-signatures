@@ -51,8 +51,6 @@
      */
     class SkyWarsController extends MemberController {
         /**
-         * @param Request $request
-         * @param string  $nameOrId
          *
          * @return array[]|Application|Factory|View
          * @throws HypixelFetchException
@@ -91,7 +89,6 @@
 
 
         /**
-         * @param Guild $guild
          *
          * @return array[]
          * @throws HypixelPHPException
@@ -103,67 +100,35 @@
 
                 $kills  = $stats->getInt('kills');
                 $deaths = $stats->getInt('deaths');
-                if ($deaths > 0) {
-                    $kd = round($kills / $deaths, 2);
-                } else {
-                    $kd = 'N/A';
-                }
+                $kd = $deaths > 0 ? round($kills / $deaths, 2) : 'N/A';
 
                 $wins   = $stats->getInt('wins');
                 $losses = $stats->getInt('losses');
-                if (($wins + $losses) > 0) {
-                    $winsPercentage = round(($wins / ($wins + $losses)) * 100, 1);
-                } else {
-                    $winsPercentage = 0;
-                }
+                $winsPercentage = $wins + $losses > 0 ? round(($wins / ($wins + $losses)) * 100, 1) : 0;
 
                 $killsSolo  = $stats->getInt('kills_solo');
                 $deathsSolo = $stats->getInt('deaths_solo');
-                if ($deathsSolo > 0) {
-                    $kdSolo = round($killsSolo / $deathsSolo, 2);
-                } else {
-                    $kdSolo = 'N/A';
-                }
+                $kdSolo = $deathsSolo > 0 ? round($killsSolo / $deathsSolo, 2) : 'N/A';
 
                 $winsSolo   = $stats->getInt('wins_solo');
                 $lossesSolo = $stats->getInt('losses_solo');
-                if (($winsSolo + $lossesSolo) > 0) {
-                    $winsPercentageSolo = round(($winsSolo / ($winsSolo + $lossesSolo)) * 100, 1);
-                } else {
-                    $winsPercentageSolo = 0;
-                }
+                $winsPercentageSolo = $winsSolo + $lossesSolo > 0 ? round(($winsSolo / ($winsSolo + $lossesSolo)) * 100, 1) : 0;
 
                 $killsTeam  = $stats->getInt('kills_team');
                 $deathsTeam = $stats->getInt('deaths_team');
-                if ($deathsTeam > 0) {
-                    $kdTeams = round($killsTeam / $deathsTeam, 2);
-                } else {
-                    $kdTeams = 'N/A';
-                }
+                $kdTeams = $deathsTeam > 0 ? round($killsTeam / $deathsTeam, 2) : 'N/A';
 
                 $winsTeam   = $stats->getInt('wins_team');
                 $lossesTeam = $stats->getInt('losses_team');
-                if (($winsTeam + $lossesTeam) > 0) {
-                    $winsPercentageTeams = round(($winsTeam / ($winsTeam + $lossesTeam)) * 100, 1);
-                } else {
-                    $winsPercentageTeams = 0;
-                }
+                $winsPercentageTeams = $winsTeam + $lossesTeam > 0 ? round(($winsTeam / ($winsTeam + $lossesTeam)) * 100, 1) : 0;
 
                 $killsMega  = $stats->getInt('kills_mega');
                 $deathsMega = $stats->getInt('deaths_mega');
-                if ($deathsMega > 0) {
-                    $kdMega = round($killsMega / $deathsMega, 2);
-                } else {
-                    $kdMega = 'N/A';
-                }
+                $kdMega = $deathsMega > 0 ? round($killsMega / $deathsMega, 2) : 'N/A';
 
                 $winsMega   = $stats->getInt('wins_mega');
                 $lossesMega = $stats->getInt('losses_mega');
-                if (($winsMega + $lossesMega) > 0) {
-                    $winsPercentageMega = round(($winsMega / ($winsMega + $lossesMega)) * 100, 1);
-                } else {
-                    $winsPercentageMega = 0;
-                }
+                $winsPercentageMega = $winsMega + $lossesMega > 0 ? round(($winsMega / ($winsMega + $lossesMega)) * 100, 1) : 0;
 
                 return [
                     'wins'            => $wins,
