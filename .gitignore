@@ -5,6 +5,7 @@
 /vendor
 .env
 .env.backup
+.env.testing
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
@@ -120,6 +121,7 @@ fabric.properties
 # End of https://www.gitignore.io/api/composer,phpstorm
 .idea/$CACHE_FILE$
 .idea/commandlinetools/Laravel*.xml
+.idea/copilot*
 
 .vagrant
 .phpstorm.meta.php
