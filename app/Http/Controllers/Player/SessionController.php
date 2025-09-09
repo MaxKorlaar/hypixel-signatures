@@ -58,12 +58,12 @@
      */
     class SessionController extends Controller {
         public function getIndex(): View {
-            $recentlyViewed = (new Collection(
+            $recentlyViewed = new Collection(
                 Redis::connection('cache')
                     ->zRevRangeByScore('recent_online_players', '+inf', '0', [
                         'withscores' => true, 'limit' => [0, 20]
                     ])
-            ))->map(static fn($value, $key) => ['uuid' => $key, 'views' => $value] + Cache::get('recent_online_players.' . $key, []));
+            )->map(static fn($value, $key) => ['uuid' => $key, 'views' => $value] + Cache::get('recent_online_players.' . $key, []));
 
             return view('player.index', [
                 'recently_viewed' => $recentlyViewed

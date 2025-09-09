@@ -77,12 +77,12 @@
                 ],
             ]);
 
-            $recentGuilds = (new Collection(
+            $recentGuilds = new Collection(
                 Redis::connection('cache')
                     ->zRevRangeByScore('recent_guilds', '+inf', '0', [
                         'withscores' => true
                     ])
-            ))->map(static function ($value, $key) {
+            )->map(static function ($value, $key) {
                 $guildData = Cache::get('recent_guilds.' . $key, [
                     'name' => $key
                 ]);
@@ -120,12 +120,12 @@
                 ];
             })->flatten(1);
 
-            $recentOnlinePlayers = (new Collection(
+            $recentOnlinePlayers = new Collection(
                 Redis::connection('cache')
                     ->zRevRangeByScore('recent_online_players', '+inf', '0', [
                         'withscores' => true
                     ])
-            ))->map(static fn($value, $uuid) => [
+            )->map(static fn($value, $uuid) => [
                 'url'       => route('player.status', [$uuid]),
                 'frequency' => 'daily',
                 'priority'  => .6

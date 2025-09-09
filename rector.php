@@ -25,6 +25,7 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::EARLY_RETURN,
         LaravelSetList::LARAVEL_100,
         LaravelSetList::LARAVEL_110,
+        LaravelSetList::LARAVEL_120,
         LaravelSetList::LARAVEL_CODE_QUALITY,
         LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,
     ]);

@@ -60,7 +60,7 @@
          * @return bool|resource
          */
         private function getHead(Request $request, string $uuid) {
-            return (new ThreeDAvatar())->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, true, true, true, -30);
+            return new ThreeDAvatar()->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, true, true, true, -30);
         }
 
         public function getHeadAsPNG(Request $request, string $uuid): Response {
@@ -90,7 +90,7 @@
          * @return bool|resource
          */
         private function getSkin(Request $request, string $uuid) {
-            return (new ThreeDAvatar())->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, false, true, true, -30);
+            return new ThreeDAvatar()->getThreeDSkinFromCache($uuid, min((int)$request->input('size', 5), 20), 45, false, true, true, -30);
         }
 
         public function getSkinAsPNG(Request $request, string $uuid): Response {

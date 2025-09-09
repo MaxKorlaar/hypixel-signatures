@@ -60,12 +60,12 @@
      */
     class GuildController extends Controller {
         public function getIndex(): View {
-            $recentlyViewed = (new Collection(
+            $recentlyViewed = new Collection(
                 Redis::connection('cache')
                     ->zRevRangeByScore('recent_guilds', '+inf', '0', [
                         'withscores' => true, 'limit' => [0, 20]
                     ])
-            ))->map(static fn($value, $key) => ['id' => $key, 'views' => $value] + Cache::get('recent_guilds.' . $key, ['name' => $key]));
+            )->map(static fn($value, $key) => ['id' => $key, 'views' => $value] + Cache::get('recent_guilds.' . $key, ['name' => $key]));
 
             return view('guild.index', [
                 'recently_viewed' => $recentlyViewed
@@ -168,7 +168,7 @@
                     throw new HypixelFetchException('An unknown error has occurred while trying to fetch the guildmaster of ' . $guild->getName());
                 }
 
-                $preferredGames = (new Collection($guild->getPreferredGames()))->map(static function ($gameName) {
+                $preferredGames = new Collection($guild->getPreferredGames())->map(static function ($gameName) {
                     $gameType = GameTypes::fromEnum($gameName);
 
                     if ($gameType === null) {

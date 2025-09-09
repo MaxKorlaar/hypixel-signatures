@@ -93,10 +93,9 @@
 
         /**
          *
-         * @param callable|null $playerCallback
          * @throws HypixelPHPException
          */
-        protected function getMemberList(Guild $guild, callable $playerCallback = null): array {
+        protected function getMemberList(Guild $guild, ?callable $playerCallback = null): array {
             $memberList   = [];
             $totalMembers = $guild->getMemberCount();
             $loaded       = 0;

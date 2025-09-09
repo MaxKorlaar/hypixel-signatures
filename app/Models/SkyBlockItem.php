@@ -77,7 +77,7 @@
          */
         private function simplify(Tag $item) {
             if ($item instanceof CompoundTag || $item instanceof ListTag) {
-                return (new Collection($item->getValue()))->mapWithKeys(function ($mapItem, $key) {
+                return new Collection($item->getValue())->mapWithKeys(function ($mapItem, $key) {
                     /** @var Tag $mapItem */
                     return [$key => $this->simplify($mapItem)];
                 });

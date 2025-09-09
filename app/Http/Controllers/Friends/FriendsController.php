@@ -60,12 +60,12 @@
      */
     class FriendsController extends Controller {
         public function getIndex(): View {
-            $recentlyViewed = (new Collection(
+            $recentlyViewed = new Collection(
                 Redis::connection('cache')
                     ->zRevRangeByScore('recent_friends', '+inf', '0', [
                         'withscores' => true, 'limit' => [0, 20]
                     ])
-            ))->map(static fn($value, $key) => ['uuid' => $key, 'views' => $value] + Cache::get('recent_friends.' . $key, []));
+            )->map(static fn($value, $key) => ['uuid' => $key, 'views' => $value] + Cache::get('recent_friends.' . $key, []));
 
             return view('friends.index', [
                 'recently_viewed' => $recentlyViewed

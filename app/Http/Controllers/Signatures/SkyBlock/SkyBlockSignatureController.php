@@ -52,7 +52,7 @@
         protected ?string $profileId = null;
 
         #[\Override]
-        public function render(Request $request, string $uuid, string $profileId = null): Response {
+        public function render(Request $request, string $uuid, ?string $profileId = null): Response {
             $this->profileId = $profileId;
 
             return parent::render($request, $uuid);
