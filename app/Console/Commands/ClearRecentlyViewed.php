@@ -57,8 +57,6 @@
 
         /**
          * Execute the console command.
-         *
-         * @return mixed
          */
         public function handle(): void {
             $recentFriendsCount = Redis::connection('cache')->zCount('recent_friends', '-inf', '+inf');

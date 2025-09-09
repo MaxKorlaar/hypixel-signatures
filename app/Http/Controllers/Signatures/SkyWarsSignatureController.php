@@ -49,10 +49,7 @@
     class SkyWarsSignatureController extends BaseSignature {
 
         /**
-         * @param Request $request
-         * @param Player  $player
          *
-         * @return Response
          * @throws HypixelPHPException
          */
         protected function signature(Request $request, Player $player): Response {
@@ -76,17 +73,9 @@
             $losses         = $stats->getInt('losses', 0);
             $levelFormatted = $stats->get('levelFormatted', '00');
 
-            if ($deaths !== 0) {
-                $kd = round($kills / $deaths, 2);
-            } else {
-                $kd = 'None';
-            }
+            $kd = $deaths !== 0 ? round($kills / $deaths, 2) : 'None';
 
-            if ($wins !== 0) {
-                $winsPercentage = round(($wins / ($wins + $losses)) * 100, 2);
-            } else {
-                $winsPercentage = 0;
-            }
+            $winsPercentage = $wins !== 0 ? round(($wins / ($wins + $losses)) * 100, 2) : 0;
 
             if ($request->has('no_3d_avatar')) {
                 [, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
@@ -119,7 +108,7 @@
             if ($request->has('show_survived_players')) {
                 imagettftext($image, 20, 0, $textBeneathAvatarX, $linesY[2], $black, $fontSourceSansProLight, 'Survived ' . number_format($survived) . ' players');
             } else {
-                ColourHelper::minecraftStringToTTFText($image, $fontSourceSansProLight, 20, $textBeneathAvatarX, $linesY[2] - 16, '§0Level: ' . mb_substr($levelFormatted, 0, -1)); // SkyWars level
+                ColourHelper::minecraftStringToTTFText($image, $fontSourceSansProLight, 20, $textBeneathAvatarX, $linesY[2] - 16, '§0Level: ' . mb_substr((string) $levelFormatted, 0, -1)); // SkyWars level
             }
 
             imagettftext($image, 20, 0, 350, $linesY[2], $black, $fontSourceSansProLight, "Wins percentage: {$winsPercentage}%"); // Percentage of games won

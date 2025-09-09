@@ -110,15 +110,11 @@
             'glb' => 'globe',
         ];
 
-        private array $properties;
-
         /**
          * BannerGenerator constructor.
-         *
-         * @param array $bannerProperties
          */
-        public function __construct(array $bannerProperties) {
-            $this->properties = $bannerProperties;
+        public function __construct(private array $properties)
+        {
         }
 
         /**

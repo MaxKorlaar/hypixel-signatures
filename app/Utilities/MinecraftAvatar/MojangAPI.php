@@ -44,8 +44,8 @@
      * @license MIT
      */
     class MojangAPI {
-        private string $sessionURL;
-        private string $profileURL;
+        private readonly string $sessionURL;
+        private readonly string $profileURL;
         private $timeout;
         private $cacheTime;
 
@@ -61,7 +61,6 @@
         /**
          * @param $uuid
          *
-         * @return array
          * @throws InvalidArgumentException
          * @throws JsonException
          */
@@ -85,16 +84,12 @@
                 return $request;
             }
 
-            $jsonArray    = json_decode($request['data'], true, 512, JSON_THROW_ON_ERROR);
+            $jsonArray    = json_decode((string) $request['data'], true, 512, JSON_THROW_ON_ERROR);
             $texturesJSON = $jsonArray['properties'][0];
-            $textures     = json_decode(base64_decode($texturesJSON['value']), true, 512, JSON_THROW_ON_ERROR);
+            $textures     = json_decode(base64_decode((string) $texturesJSON['value']), true, 512, JSON_THROW_ON_ERROR);
             if (isset($textures['textures']['SKIN'])) {
                 $skinArray = $textures['textures']['SKIN'];
-                if (isset($skinArray['metadata']['model'])) {
-                    $isSteve = $skinArray['metadata']['model'] !== 'slim';
-                } else {
-                    $isSteve = true;
-                }
+                $isSteve = isset($skinArray['metadata']['model']) ? $skinArray['metadata']['model'] !== 'slim' : true;
                 $skinURL = $skinArray['url'];
             } else { // https://github.com/crafatar/crafatar/blob/9d2fe0c45424de3ebc8e0b10f9446e7d5c3738b2/lib/skins.js#L90-L108
                 $skinURL = null;
@@ -104,7 +99,7 @@
                     intval($uuid[23], 16) ^
                     intval($uuid[31], 16));
 
-                $isSteve = $leastSignificantBits ? false : true;
+                $isSteve = !(bool) $leastSignificantBits;
             }
             $profileData = ['skinURL' => $skinURL, 'isSteve' => $isSteve, 'username' => $jsonArray['name'], 'uuid' => $jsonArray['id']];
             $return      = ['success' => true, 'data' => $profileData];
@@ -118,8 +113,6 @@
 
         /**
          * @param $url
-         *
-         * @return array
          */
         private function request($url): array {
             /*
@@ -149,8 +142,6 @@
 
         /**
          * @param $request
-         *
-         * @return bool
          */
         public function checkForThrottle($request): bool {
             return isset($request['status_code']) && $request['status_code'] === 429;
@@ -173,7 +164,6 @@
         /**
          * @param $username
          *
-         * @return array
          * @throws InvalidArgumentException
          * @throws JsonException
          */
@@ -195,7 +185,7 @@
                 return $request;
             }
 
-            $jsonArray = json_decode($request['data'], true, 512, JSON_THROW_ON_ERROR);
+            $jsonArray = json_decode((string) $request['data'], true, 512, JSON_THROW_ON_ERROR);
             $return    = ['success' => true, 'data' => $jsonArray];
 
             Log::debug('Fetched UUID from Mojang API', ['username' => $username, 'data' => $jsonArray]);
@@ -205,9 +195,6 @@
             return $return;
         }
 
-        /**
-         * @return int
-         */
         public function getTimeout(): int {
             return $this->timeout;
         }

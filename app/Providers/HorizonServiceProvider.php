@@ -45,9 +45,8 @@
     class HorizonServiceProvider extends HorizonApplicationServiceProvider {
         /**
          * Bootstrap any application services.
-         *
-         * @return void
          */
+        #[\Override]
         public function boot(): void {
             parent::boot();
 
@@ -57,21 +56,16 @@
 
             Horizon::night();
 
-            Horizon::auth(static function (Request $request) {
-                return app()->environment('local') || config('horizon.production_allow_ip') === $request->ip();
-            });
+            Horizon::auth(static fn(Request $request) => app()->environment('local') || config('horizon.production_allow_ip') === $request->ip());
         }
 
         /**
          * Register the Horizon gate.
          *
          * This gate determines who can access Horizon in non-local environments.
-         *
-         * @return void
          */
+        #[\Override]
         protected function gate(): void {
-            Gate::define('viewHorizon', static function ($user = null) {
-                return false;
-            });
+            Gate::define('viewHorizon', static fn($user = null) => false);
         }
     }

@@ -46,12 +46,6 @@
      */
     class TimestampSignatureController extends BaseSignature {
 
-        /**
-         * @param Request $request
-         * @param Player  $player
-         *
-         * @return Response
-         */
         protected function signature(Request $request, Player $player): Response {
             $image                  = BaseSignature::getImage(400, 100);
             $black                  = imagecolorallocate($image, 0, 0, 0);

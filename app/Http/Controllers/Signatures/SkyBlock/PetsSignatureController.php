@@ -51,12 +51,7 @@
      */
     class PetsSignatureController extends SkyBlockSignatureController {
 
-        /**
-         * @param Request $request
-         * @param Player  $player
-         *
-         * @return Response
-         */
+        #[\Override]
         protected function signature(Request $request, Player $player): Response {
             if ($this->profileId === null) {
                 return self::generateErrorImage('No SkyBlock profile has been given', 400);
@@ -64,9 +59,9 @@
 
             try {
                 $pets = SkyBlockStatsDataParser::getSkyBlockPets($player, $this->profileId);
-            } catch (HypixelFetchException $exception) {
+            } catch (HypixelFetchException) {
                 return self::generateErrorImage('An error has occurred while trying to fetch this SkyBlock profile. Please try again later.');
-            } catch (SkyBlockEmptyProfileException $e) {
+            } catch (SkyBlockEmptyProfileException) {
                 return self::generateErrorImage('This SkyBlock profile has no data. It may have been deleted.');
             }
 
@@ -82,7 +77,6 @@
             $avatarHeight          = 0;
             $size                  = 5;
             $distanceBetweenImages = $size;
-            $textDistance          = 0;
 
             // By default, pets are sorted based on rarity, and the active pet is the first pet.
             // This can be overridden using the sort=levels parameter.
@@ -129,7 +123,7 @@
                     $box->setStrokeSize(round($avatarHeight / 35));
                 }
 
-                $box->setBox($currentX, $currentY + $avatarHeight + $textDistance, $avatarWidth, $avatarHeight / 2);
+                $box->setBox($currentX, $avatarHeight, $avatarWidth, $avatarHeight / 2);
                 $box->setTextAlign('center', 'top');
                 $box->draw($pet['level']['level']);
 

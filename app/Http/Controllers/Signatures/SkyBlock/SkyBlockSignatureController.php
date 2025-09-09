@@ -49,20 +49,15 @@
      * @package App\Http\Controllers\Signatures
      */
     class SkyBlockSignatureController extends BaseSignature {
-        protected ?string $profileId;
+        protected ?string $profileId = null;
 
+        #[\Override]
         public function render(Request $request, string $uuid, string $profileId = null): Response {
             $this->profileId = $profileId;
 
             return parent::render($request, $uuid);
         }
 
-        /**
-         * @param Request $request
-         * @param Player  $player
-         *
-         * @return Response
-         */
         protected function signature(Request $request, Player $player): Response {
             if ($this->profileId === null) {
                 return self::generateErrorImage('Player does not have any SkyBlock profiles on their account, or they may have disabled API access for SkyBlock.');
@@ -70,9 +65,9 @@
 
             try {
                 $stats = SkyBlockStatsDataParser::getSkyBlockStats($player, $this->profileId);
-            } catch (HypixelFetchException $exception) {
+            } catch (HypixelFetchException) {
                 return self::generateErrorImage('An error has occurred while trying to fetch this SkyBlock profile. Please try again later.');
-            } catch (SkyBlockEmptyProfileException $e) {
+            } catch (SkyBlockEmptyProfileException) {
                 return self::generateErrorImage('This SkyBlock profile has no data. It may have been deleted.');
             }
 
@@ -131,7 +126,6 @@
          * @param     $image
          * @param     $destX
          * @param     $destY
-         * @param int $size
          */
         private function copyIcon($imageName, &$image, $destX, $destY, int $size = 2): void {
             $icon  = imagecreatefrompng(resource_path("images/{$imageName}.png"));

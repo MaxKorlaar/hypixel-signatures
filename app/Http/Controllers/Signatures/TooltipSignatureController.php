@@ -48,9 +48,7 @@
      */
     final class TooltipSignatureController extends BaseSignature {
         /**
-         * @param int $imageWidth
          *
-         * @param int $imageHeight
          *
          * @return false|resource
          */
@@ -115,12 +113,6 @@
             return $image;
         }
 
-        /**
-         * @param Request $request
-         * @param Player  $player
-         *
-         * @return Response
-         */
         protected function signature(Request $request, Player $player): Response {
             $image = self::getTooltipImage(430, 170);
 
@@ -151,9 +143,7 @@
             ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 3 * $spacing, '§7Achievement Points: §e' . number_format(Arr::get($player->getAchievementData(), 'standard.points.current', 0)), true);
 
             $quests          = new Collection($player->getArray('quests'));
-            $questsCompleted = $quests->whereNotNull('completions')->map(static function ($quest) {
-                return $quest['completions'];
-            })->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
+            $questsCompleted = $quests->whereNotNull('completions')->map(static fn($quest) => $quest['completions'])->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
 
             ColourHelper::minecraftStringToTTFText($image, $fontMinecraftRegular, $fontSize, 10, $start + 4 * $spacing, '§7Quests Completed: §6' . number_format($questsCompleted), true);
 

@@ -54,7 +54,8 @@
         /**
          * @var string Encoder version (old: this->VER)
          */
-        private $version;
+        // Static data
+        private $version = 'GifCreator: Under development';
 
         /**
          * @var bool Check the image is build or not (old: this->IMG)
@@ -84,7 +85,12 @@
         /**
          * @var array (old: this->ERR)
          */
-        private $errors;
+        private $errors = [
+            'ERR00' => 'Does not supported function for only one image.',
+            'ERR01' => 'Source is not a GIF image.',
+            'ERR02' => 'You have to give resource image variables, image URL or image binary sources in $frames array.',
+            'ERR03' => 'Does not make animation from animated GIF source.',
+        ];
 
         // Methods
         // ===================================================================================
@@ -94,22 +100,12 @@
          */
         public function __construct() {
             $this->reset();
-
-            // Static data
-            $this->version = 'GifCreator: Under development';
-            $this->errors  = [
-                'ERR00' => 'Does not supported function for only one image.',
-                'ERR01' => 'Source is not a GIF image.',
-                'ERR02' => 'You have to give resource image variables, image URL or image binary sources in $frames array.',
-                'ERR03' => 'Does not make animation from animated GIF source.',
-            ];
         }
 
         /**
          * Reset and clean the current object
          */
         public function reset() {
-            $this->frameSources;
             $this->gif      = 'GIF89a'; // the GIF header
             $this->imgBuilt = false;
             $this->loop     = 0;
@@ -172,7 +168,7 @@
                     $colour = imagecolortransparent($resourceImg);
                 }
 
-                if (strpos($this->frameSources[$i], 'GIF87a') !== 0 && strpos($this->frameSources[$i], 'GIF89a') !== 0) {
+                if (!str_starts_with((string) $this->frameSources[$i], 'GIF87a') && !str_starts_with((string) $this->frameSources[$i], 'GIF89a')) {
 
                     throw new RuntimeException($this->version . ': ' . $i . ' ' . $this->errors['ERR01']);
                 }
@@ -183,7 +179,7 @@
 
                         case '!':
 
-                            if ((substr($this->frameSources[$i], ($j + 3), 8)) === 'NETSCAPE') {
+                            if ((substr((string) $this->frameSources[$i], ($j + 3), 8)) === 'NETSCAPE') {
 
                                 throw new RuntimeException($this->version . ': ' . $this->errors['ERR03'] . ' (' . ($i + 1) . ' source).');
                             }
@@ -227,12 +223,12 @@
          */
         public function gifAddHeader(): void {
 
-            if (ord($this->frameSources[0][10]) & 0x80) {
+            if ((ord($this->frameSources[0][10]) & 0x80) !== 0) {
 
                 $cmap = 3 * (2 << (ord($this->frameSources[0][10]) & 0x07));
 
-                $this->gif .= substr($this->frameSources[0], 6, 7);
-                $this->gif .= substr($this->frameSources[0], 13, $cmap);
+                $this->gif .= substr((string) $this->frameSources[0], 6, 7);
+                $this->gif .= substr((string) $this->frameSources[0], 13, $cmap);
                 $this->gif .= "!\377\13NETSCAPE2.0\3\1" . $this->encodeAsciiToChar($this->loop) . "\0";
             }
         }
@@ -242,8 +238,6 @@
          * $param integer $char ASCII char
          *
          * @param $char
-         *
-         * @return string
          */
         public function encodeAsciiToChar($char): string {
             return (chr($char & 0xFF) . chr(($char >> 8) & 0xFF));
@@ -258,14 +252,14 @@
         public function addGifFrames($i, $d): void {
             $Locals_str = 13 + 3 * (2 << (ord($this->frameSources[$i][10]) & 0x07));
 
-            $Locals_end = strlen($this->frameSources[$i]) - $Locals_str - 1;
-            $Locals_tmp = substr($this->frameSources[$i], $Locals_str, $Locals_end);
+            $Locals_end = strlen((string) $this->frameSources[$i]) - $Locals_str - 1;
+            $Locals_tmp = substr((string) $this->frameSources[$i], $Locals_str, $Locals_end);
 
             $Global_len = 2 << (ord($this->frameSources[0][10]) & 0x07);
             $Locals_len = 2 << (ord($this->frameSources[$i][10]) & 0x07);
 
-            $Global_rgb = substr($this->frameSources[0], 13, 3 * (2 << (ord($this->frameSources[0][10]) & 0x07)));
-            $Locals_rgb = substr($this->frameSources[$i], 13, 3 * (2 << (ord($this->frameSources[$i][10]) & 0x07)));
+            $Global_rgb = substr((string) $this->frameSources[0], 13, 3 * (2 << (ord($this->frameSources[0][10]) & 0x07)));
+            $Locals_rgb = substr((string) $this->frameSources[$i], 13, 3 * (2 << (ord($this->frameSources[$i][10]) & 0x07)));
 
             $Locals_ext = "!\xF9\x04" . chr(($this->dis << 2) + 0) . chr(($d >> 0) & 0xFF) . chr(($d >> 8) & 0xFF) . "\x0\x0";
 
@@ -273,9 +267,9 @@
 
                 for ($j = 0; $j < (2 << (ord($this->frameSources[$i][10]) & 0x07)); $j++) {
 
-                    if (ord($Locals_rgb[3 * $j + 0]) == (($this->colour >> 16) & 0xFF) &&
-                        ord($Locals_rgb[3 * $j + 1]) == (($this->colour >> 8) & 0xFF) &&
-                        ord($Locals_rgb[3 * $j + 2]) == (($this->colour >> 0) & 0xFF)
+                    if (ord($Locals_rgb[3 * $j]) === ($this->colour >> 16 & 0xFF) &&
+                        ord($Locals_rgb[3 * $j + 1]) === ($this->colour >> 8 & 0xFF) &&
+                        ord($Locals_rgb[3 * $j + 2]) === ($this->colour >> 0 & 0xFF)
                     ) {
                         $Locals_ext = "!\xF9\x04" . chr(($this->dis << 2) + 1) . chr(($d >> 0) & 0xFF) . chr(($d >> 8) & 0xFF) . chr($j) . "\x0";
                         break;
@@ -302,7 +296,7 @@
 
             if (ord($this->frameSources[$i][10]) & 0x80 && $this->imgBuilt) {
 
-                if ($Global_len == $Locals_len) {
+                if ($Global_len === $Locals_len) {
 
                     if ($this->gifBlockCompare($Global_rgb, $Locals_rgb, $Global_len)) {
 
@@ -348,7 +342,7 @@
         public function gifBlockCompare($globalBlock, $localBlock, $length) {
             for ($i = 0; $i < $length; $i++) {
 
-                if ($globalBlock[3 * $i + 0] != $localBlock[3 * $i + 0] ||
+                if ($globalBlock[3 * $i] != $localBlock[3 * $i] ||
                     $globalBlock[3 * $i + 1] != $localBlock[3 * $i + 1] ||
                     $globalBlock[3 * $i + 2] != $localBlock[3 * $i + 2]
                 ) {

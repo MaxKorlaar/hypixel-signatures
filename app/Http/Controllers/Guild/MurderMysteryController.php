@@ -52,8 +52,6 @@
      */
     class MurderMysteryController extends MemberController {
         /**
-         * @param Request $request
-         * @param string  $nameOrId
          *
          * @return array[]|Application|Factory|RedirectResponse|View
          * @throws HypixelFetchException
@@ -91,9 +89,6 @@
         }
 
         /**
-         * @param Guild $guild
-         *
-         * @return array
          * @throws HypixelPHPException
          */
         private function getMurderMysteryMemberList(Guild $guild): array {
@@ -112,17 +107,9 @@
                 $detectiveWins = $stats->getInt('detective_wins');
                 $murdererWins  = $stats->getInt('murderer_wins');
 
-                if ($gamesPlayed > 0) {
-                    $winsPercentage = round(($wins / $gamesPlayed) * 100, 1);
-                } else {
-                    $winsPercentage = 0;
-                }
+                $winsPercentage = $gamesPlayed > 0 ? round(($wins / $gamesPlayed) * 100, 1) : 0;
 
-                if ($deaths > 0) {
-                    $kd = round($kills / $deaths, 2);
-                } else {
-                    $kd = 'N/A';
-                }
+                $kd = $deaths > 0 ? round($kills / $deaths, 2) : 'N/A';
 
                 return [
                     'wins'                        => $wins,

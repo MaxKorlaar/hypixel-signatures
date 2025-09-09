@@ -125,13 +125,11 @@
                     ->zRevRangeByScore('recent_online_players', '+inf', '0', [
                         'withscores' => true
                     ])
-            ))->map(static function ($value, $uuid) {
-                return [
-                    'url'       => route('player.status', [$uuid]),
-                    'frequency' => 'daily',
-                    'priority'  => .6
-                ];
-            });
+            ))->map(static fn($value, $uuid) => [
+                'url'       => route('player.status', [$uuid]),
+                'frequency' => 'daily',
+                'priority'  => .6
+            ]);
 
             return response(view('meta.sitemap', [
                 'pages' => $pages->concat($recentGuilds)->concat($recentOnlinePlayers)

@@ -77,16 +77,12 @@
          */
         public function getRotatingSkinFromCache($username, $size = 2, $speed = 3, $rotation = 5, $headOnly = false, $helmet = true, $layers = false, $return = 'binary') {
 
-            if ($layers) {
-                $l = '-withlayers';
-            } else {
-                $l = '';
-            }
+            $l = $layers ? '-withlayers' : '';
 
             if ($speed !== 3 || $rotation !== 5) {
-                $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$rotation}fms{$l}.gif";
+                $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower((string) $username) . "-{$size}x-{$speed}s-{$rotation}fms{$l}.gif";
             } else {
-                $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower($username) . "-{$size}x{$l}.gif";
+                $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower((string) $username) . "-{$size}x{$l}.gif";
             }
             $this->filepath = $imagepath;
 
@@ -179,18 +175,14 @@
             }
 
             if ($return === 'url' || $return === 'resource' || $return === 'save-binary') {
-                if ($layers) {
-                    $l = '-withlayers';
-                } else {
-                    $l = '';
-                }
+                $l = $layers ? '-withlayers' : '';
                 if ($this->invert) {
                     $frames *= -1;
                 }
                 if ($speed !== 3 || $frames !== 5) {
-                    $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower($username) . "-{$size}x-{$speed}s-{$frames}fms{$l}.gif";
+                    $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower((string) $username) . "-{$size}x-{$speed}s-{$frames}fms{$l}.gif";
                 } else {
-                    $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower($username) . "-{$size}x{$l}.gif";
+                    $imagepath = $this->imageStoragePath . 'rotate_gif/' . strtolower((string) $username) . "-{$size}x{$l}.gif";
                 }
 
                 if (!file_exists($this->imageStoragePath . 'rotate_gif/') && !mkdir($concurrentDirectory = $this->imageStoragePath . 'rotate_gif/', 0777, true) && !is_dir($concurrentDirectory)) {
@@ -215,32 +207,16 @@
          * @param      $username
          * @param int  $size
          * @param int  $angle
-         * @param bool $headOnly
-         * @param bool $helmet
-         * @param bool $layers
          *
-         * @param int  $verticalAngle
          *
          * @return bool|resource
          */
         public function getThreeDSkinFromCache($username, $size = 2, $angle = 0, bool $headOnly = false, bool $helmet = true, bool $layers = true, int $verticalAngle = 0) {
-            if ($headOnly) {
-                $head = '-head';
-            } else {
-                $head = '';
-            }
-            if (!$helmet) {
-                $noHelm = '-nohelm';
-            } else {
-                $noHelm = '';
-            }
-            if ($layers) {
-                $withLayers = '-withlayers';
-            } else {
-                $withLayers = '';
-            }
+            $head = $headOnly ? '-head' : '';
+            $noHelm = $helmet ? '' : '-nohelm';
+            $withLayers = $layers ? '-withlayers' : '';
 
-            $imagepath = $this->imageStoragePath . '3d/' . strtolower($username) . "-{$size}x-{$angle}-{$verticalAngle}-{$head}{$noHelm}{$withLayers}.webp";
+            $imagepath = $this->imageStoragePath . '3d/' . strtolower((string) $username) . "-{$size}x-{$angle}-{$verticalAngle}-{$head}{$noHelm}{$withLayers}.webp";
 
             return Cache::lock('minecraft.avatar.' . $imagepath)->block(5, function () use ($verticalAngle, $layers, $helmet, $headOnly, $angle, $size, $username, $imagepath) {
                 if (!file_exists($this->imageStoragePath . '3d/') && !mkdir($concurrentDirectory = $this->imageStoragePath . '3d/', 0777, true) && !is_dir($concurrentDirectory)) {
@@ -278,11 +254,7 @@
          * @param      $username
          * @param int  $size
          * @param int  $angle
-         * @param bool $headOnly
-         * @param bool $helmet
-         * @param bool $layers
          *
-         * @param int  $verticalAngle
          *
          * @return resource|string
          * @throws InvalidArgumentException

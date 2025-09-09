@@ -43,9 +43,8 @@
     class AppServiceProvider extends ServiceProvider {
         /**
          * Register any application services.
-         *
-         * @return void
          */
+        #[\Override]
         public function register(): void {
             //
         }
@@ -53,9 +52,7 @@
         /**
          * Bootstrap any application services.
          *
-         * @param UrlGenerator $urlGenerator
          *
-         * @return void
          */
         public function boot(UrlGenerator $urlGenerator): void {
             if (config('app.force_https')) {

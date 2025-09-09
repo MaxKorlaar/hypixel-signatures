@@ -67,16 +67,11 @@
         private $constants;
 
         public function __construct() {
-            $this->constants = Cache::rememberForever('skyblock.constants', static function () {
-                return new Collection(json_decode(File::get(resource_path('data/skyblock/constants.json')), true, 512, JSON_THROW_ON_ERROR));
-            });
+            $this->constants = Cache::rememberForever('skyblock.constants', static fn() => new Collection(json_decode(File::get(resource_path('data/skyblock/constants.json')), true, 512, JSON_THROW_ON_ERROR)));
         }
 
         /**
-         * @param Player $player
-         * @param string $id
          *
-         * @return Collection
          * @throws HypixelFetchException
          * @throws SkyBlockEmptyProfileException
          * @noinspection PhpDocRedundantThrowsInspection
@@ -89,11 +84,8 @@
         }
 
         /**
-         * @param Player $player
          *
-         * @param string $id
          *
-         * @return Collection
          * @throws HypixelFetchException
          * @throws SkyBlockEmptyProfileException
          * @noinspection PhpDocRedundantThrowsInspection
@@ -126,10 +118,7 @@
          * @link https://github.com/LeaPhant/skyblock-stats/blob/dd1f50231218a52eb0e66637a7827ef45e1963da/src/lib.js
          *
          *
-         * @param Collection $profile
-         * @param Player     $player
          *
-         * @return Collection
          */
         protected function getSkyBlockData(Collection $profile, Player $player): Collection {
             $return = new Collection([
@@ -189,15 +178,15 @@
 
             $averageLevelWithoutProgress = 0;
 
-            $skillLevels = $skillCollections->keys()->mapWithKeys(function ($value) use ($profile) {
-                return [strtolower($value) => $this->getLevelByXp($profile['experience_skill_' . strtolower($value)] ?? 0)];
-            });
+            $skillLevels = $skillCollections->keys()->mapWithKeys(fn($value) => [strtolower((string) $value) => $this->getLevelByXp($profile['experience_skill_' . strtolower((string) $value)] ?? 0)]);
 
             foreach ($skillLevels as $skill => $value) {
-                if ($skill === 'runecrafting' || $skill === 'carpentry') {
+                if ($skill === 'runecrafting') {
                     continue;
                 }
-
+                if ($skill === 'carpentry') {
+                    continue;
+                }
                 $averageLevel                += $value['level'] + $value['progress'];
                 $averageLevelWithoutProgress += $value['level'];
                 $totalSkillXp                += $value['xp'];
@@ -255,7 +244,7 @@
                             $tier = ((int)Str::afterLast($key, 'boss_kills_tier_')) + 1;
 
                             $returnSlayer['kills'][$tier]              = $value;
-                            $return['slayer_coins_spent'][$slayerName] = $return['slayer_coins_spent'][$slayerName] + $value * $this->get('slayer_cost')->get($tier);
+                            $return['slayer_coins_spent'][$slayerName] += $value * $this->get('slayer_cost')->get($tier);
                         }
                     }
 
@@ -267,10 +256,12 @@
                 }
 
                 foreach ($slayers as $slayerName => $slayer) {
-                    if (!Arr::has($slayer, 'level.currentLevel') || !isset($slayer['xp'])) {
+                    if (!Arr::has($slayer, 'level.currentLevel')) {
                         continue;
                     }
-
+                    if (!isset($slayer['xp'])) {
+                        continue;
+                    }
                     $slayerBonus = $this->getBonusStat($slayer['level']['currentLevel'], $slayerName . '_slayer', 9, 1);
 
                     $return['slayer_bonus'][$slayerName] = $slayerBonus;
@@ -296,7 +287,7 @@
 
             $requiredPetScore = $this->get('pet_rewards')->keys()->sort();
 
-            foreach ($requiredPetScore as $index => $score) {
+            foreach ($requiredPetScore as $score) {
                 if ($score > $return['pet_score']) {
                     continue;
                 }
@@ -322,9 +313,7 @@
 
             $items = $this->getItems($profile);
 
-            if ($items['talismans']->filter(static function (SkyBlockItem $item) {
-                    return $item->getTagId() === 'MELODY_HAIR';
-                })->count() === 1) {
+            if ($items['talismans']->filter(static fn(SkyBlockItem $item) => $item->getTagId() === 'MELODY_HAIR')->count() === 1) {
                 $return['stats']['intelligence'] += 26;
             }
 
@@ -339,29 +328,19 @@
              *
              * @link https://github.com/LeaPhant/skyblock-stats/blob/c2269c76ec028c31bd37d5bf7ffd90292f5547c2/src/lib.js#L1228
              */
-            if ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return Str::startsWith($armorPiece->getTagId(), 'LAPIS_ARMOR_');
-                })->count() === 4) {
+            if ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'LAPIS_ARMOR_'))->count() === 4) {
                 $items['armor'][0]['stats']['health'] = ($items['armor'][0]['stats']['health'] ?? 0) + 60;
-            } elseif (Arr::has($profile, 'collection.EMERALD') && is_numeric($profile['collection']['EMERALD']) && $items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return Str::startsWith($armorPiece->getTagId(), 'EMERALD_ARMOR_');
-                })->count() === 4) {
+            } elseif (Arr::has($profile, 'collection.EMERALD') && is_numeric($profile['collection']['EMERALD']) && $items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'EMERALD_ARMOR_'))->count() === 4) {
                 // Emerald Armor set adds 1 HP and 1 Defense per 3000 emeralds in collection
                 $emeraldBonus = min(350, floor($profile['collection']['EMERALD'] / 3000));
 
                 $items['armor'][0]['stats']['health']  = ($items['armor'][0]['stats']['health'] ?? 0) + $emeraldBonus;
                 $items['armor'][0]['stats']['defense'] = ($items['armor'][0]['stats']['defense'] ?? 0) + $emeraldBonus;
-            } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return Str::startsWith($armorPiece->getTagId(), 'FAIRY_');
-                })->count() === 4) {
+            } elseif ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'FAIRY_'))->count() === 4) {
                 $items['armor'][0]['stats']['speed'] += ($items['armor'][0]['stats']['speed'] ?? 0) + 10;
-            } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return Str::startsWith($armorPiece->getTagId(), 'SPEEDSTER_');
-                })->count() === 4) {
+            } elseif ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'SPEEDSTER_'))->count() === 4) {
                 $items['armor'][0]['stats']['speed'] += ($items['armor'][0]['stats']['speed'] ?? 0) + 20;
-            } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return Str::startsWith($armorPiece->getTagId(), 'YOUNG_DRAGON_');
-                })->count() === 4) {
+            } elseif ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'YOUNG_DRAGON_'))->count() === 4) {
                 $items['armor'][0]['stats']['speed'] = ($items['armor'][0]['stats']['speed'] ?? 0) + 70;
             }
 
@@ -392,16 +371,12 @@
              * Mastiff armor set bonus
              * Presumably placed after the talismans because it takes into account the player's crit damage
              */
-            if ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return Str::startsWith($armorPiece->getTagId(), 'MASTIFF_');
-                })->count() === 4) {
+            if ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'MASTIFF_'))->count() === 4) {
                 $return['stats']['health']            += 50 * $return['stats']['crit_damage'];
                 $items['armor'][0]['stats']['health'] += 50 * $return['stats']['crit_damage'];
             }
 
-            if ($items['talismans']->where('is_inactive', false)->filter(static function (SkyBlockItem $talisman) {
-                    return Str::is(['DAY_CRYSTAL', 'NIGHT_CRYSTAL'], $talisman->getTagId());
-                })->count() === 2) {
+            if ($items['talismans']->where('is_inactive', false)->filter(static fn(SkyBlockItem $talisman) => Str::is(['DAY_CRYSTAL', 'NIGHT_CRYSTAL'], $talisman->getTagId()))->count() === 2) {
                 $return['stats']['defense']  += 5;
                 $return['stats']['strength'] += 5;
             }
@@ -409,9 +384,7 @@
             /**
              * Obsidian chestplate bonus
              */
-            if ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return $armorPiece->getTagId() === 'OBSIDIAN_CHESTPLATE';
-                })->count() === 1) {
+            if ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => $armorPiece->getTagId() === 'OBSIDIAN_CHESTPLATE')->count() === 1) {
                 $obsidian = 0;
 
                 foreach ($items['inventory'] as $item) {
@@ -423,17 +396,11 @@
                 $return['stats']['speed'] += floor($obsidian / 20);
             }
 
-            if ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return Str::startsWith($armorPiece->getTagId(), 'CHEAP_TUXEDO_');
-                })->count() === 3) {
+            if ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'CHEAP_TUXEDO_'))->count() === 3) {
                 $return['stats']['health'] = 75;
-            } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return Str::startsWith($armorPiece->getTagId(), 'FANCY_TUXEDO_');
-                })->count() === 3) {
+            } elseif ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'FANCY_TUXEDO_'))->count() === 3) {
                 $return['stats']['health'] = 150;
-            } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return Str::startsWith($armorPiece->getTagId(), 'ELEGANT_TUXEDO_');
-                })->count() === 3) {
+            } elseif ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'ELEGANT_TUXEDO_'))->count() === 3) {
                 $return['stats']['health'] = 250;
             }
 
@@ -450,29 +417,19 @@
                     $weaponStats[$stat] += $value;
                 }
 
-                if (isset($item['stats']['crit_damage']) && $item['stats']['crit_damage'] > 0 && $items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                        return Str::startsWith($armorPiece->getTagId(), 'MASTIFF_');
-                    })->count() === 4) {
+                if (isset($item['stats']['crit_damage']) && $item['stats']['crit_damage'] > 0 && $items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'MASTIFF_'))->count() === 4) {
                     $weaponStats['health'] += 50 * $item['stats']['crit_damage'];
                 }
 
-                if ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                        return Str::startsWith($armorPiece->getTagId(), 'SUPERIOR_DRAGON_');
-                    })->count() === 4) {
+                if ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'SUPERIOR_DRAGON_'))->count() === 4) {
                     foreach ($weaponStats as $stat => $val) {
                         $weaponStats[$stat] = floor($val * 1.05);
                     }
-                } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                        return Str::startsWith($armorPiece->getTagId(), 'CHEAP_TUXEDO_');
-                    })->count() === 3) {
+                } elseif ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'CHEAP_TUXEDO_'))->count() === 3) {
                     $weaponStats['health'] = 75;
-                } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                        return Str::startsWith($armorPiece->getTagId(), 'FANCY_TUXEDO_');
-                    })->count() === 3) {
+                } elseif ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'FANCY_TUXEDO_'))->count() === 3) {
                     $weaponStats['health'] = 150;
-                } elseif ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                        return Str::startsWith($armorPiece->getTagId(), 'ELEGANT_TUXEDO_');
-                    })->count() === 3) {
+                } elseif ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'ELEGANT_TUXEDO_'))->count() === 3) {
                     $weaponStats['health'] = 250;
                 }
 
@@ -493,9 +450,7 @@
              * @link https://github.com/LeaPhant/skyblock-stats/blob/master/src/lib.js#L1278
              */
 
-            if ($items['armor']->filter(static function (SkyBlockItem $armorPiece) {
-                    return Str::startsWith($armorPiece->getTagId(), 'SUPERIOR_DRAGON_');
-                })->count() === 4) {
+            if ($items['armor']->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'SUPERIOR_DRAGON_'))->count() === 4) {
 
                 foreach ($return['stats'] as $stat => $value) {
                     $superiorBonus[$stat] = floor($value * 0.05);
@@ -522,9 +477,7 @@
             if ($items['highest_rarity_sword'] !== null) {
                 $sword = $items['highest_rarity_sword'];
             } else {
-                $sword = $items['weapons']->sort(static function ($a, $b) {
-                    return $a['item_index'] - $b['item_index'];
-                })->first();
+                $sword = $items['weapons']->sort(static fn($a, $b) => $a['item_index'] - $b['item_index'])->first();
             }
 
             if ($sword !== null) {
@@ -534,16 +487,10 @@
             if ($items['highest_rarity_rod'] !== null) {
                 $rod = $items['highest_rarity_rod'];
             } else {
-                $rod = $items['rods']->sort(static function ($a, $b) {
-                    return $a['item_index'] - $b['item_index'];
-                })->first();
+                $rod = $items['rods']->sort(static fn($a, $b) => $a['item_index'] - $b['item_index'])->first();
             }
 
             if ($rod !== null) {
-                if (isset($return['stats_with_sword'])) {
-                    $return['stats_with_sword']['sea_creature_chance'];
-                }
-
                 $return['stats']['sea_creature_chance'] = $return['weapon_stats'][$rod['item_uuid']]['sea_creature_chance'];
             }
 
@@ -552,25 +499,17 @@
             return $return;
         }
 
-        /**
-         * @return Collection
-         */
         public function getBaseStats(): Collection {
             return $this->get('base_stats');
         }
 
         /**
          * @param $item
-         *
-         * @return Collection
          */
         public function get($item): Collection {
             return new Collection($this->constants->get($item));
         }
 
-        /**
-         * @return Collection
-         */
         public function getBonusStats(): Collection {
             return $this->get('bonus_stats');
         }
@@ -579,8 +518,6 @@
          * @link https://github.com/SkyCryptWebsite/SkyCrypt/blob/640b1bda5bac65139764b696c4af9c32c0cbebd5/src/lib.js#L286
          *
          * @param $fairyExchanges
-         *
-         * @return Collection
          */
         protected function getFairyBonus($fairyExchanges): Collection {
             $bonus = $this->getStatTemplate();
@@ -603,8 +540,6 @@
          * @param $skill
          * @param $max
          * @param $incremention
-         *
-         * @return Collection
          */
         protected function getBonusStat($level, $skill, $max, $incremention): Collection {
             $skillBonusStats = new Collection($this->getBonusStats()->get($skill));
@@ -632,15 +567,11 @@
             return $bonus;
         }
 
-        /**
-         * @return Collection
-         */
         public function getStatTemplate(): Collection {
             return $this->get('stat_template');
         }
 
         /**
-         * @param SkyBlockResources $resources
          *
          * @noinspection PhpIncompatibleReturnTypeInspection
          * @noinspection PhpDocMissingReturnTagInspection
@@ -662,8 +593,6 @@
          *
          * @param      $xp
          * @param bool $runecrafting
-         *
-         * @return array
          */
         public function getLevelByXp($xp, $runecrafting = false): array {
             $xpTable = $runecrafting ? $this->get('runecrafting_xp') : $this->get('leveling_xp');
@@ -693,15 +622,9 @@
 
             $progress = max(0, min($currentXp / $xpForNextLevel, 1));
 
-            return compact('xp', 'level', 'maxLevel', 'currentXp', 'xpForNextLevel', 'progress');
+            return ['xp' => $xp, 'level' => $level, 'maxLevel' => $maxLevel, 'currentXp' => $currentXp, 'xpForNextLevel' => $xpForNextLevel, 'progress' => $progress];
         }
 
-        /**
-         * @param array  $slayer
-         * @param string $slayerName
-         *
-         * @return array
-         */
         protected function getSlayerLevel(array $slayer, string $slayerName): array {
             $xp            = $slayer['xp'] ?? 0;
             $claimedLevels = $slayer['claimed_levels'] ?? [];
@@ -731,15 +654,13 @@
                 $progress = 1;
             }
 
-            return compact('currentLevel', 'xp', 'maxLevel', 'progress', 'xpForNextLevel');
+            return ['currentLevel' => $currentLevel, 'xp' => $xp, 'maxLevel' => $maxLevel, 'progress' => $progress, 'xpForNextLevel' => $xpForNextLevel];
         }
 
         /**
          * @link https://github.com/LeaPhant/skyblock-stats/blob/c2269c76ec028c31bd37d5bf7ffd90292f5547c2/src/lib.js#L1428
          *
-         * @param Collection $profile
          *
-         * @return Collection
          */
         protected function getPets(Collection $profile): Collection {
             $return = new Collection();
@@ -752,7 +673,7 @@
                     continue;
                 }
 
-                $pet['rarity'] = strtolower($pet['tier']);
+                $pet['rarity'] = strtolower((string) $pet['tier']);
 
                 if (isset($pet['heldItem']) && $pet['heldItem'] === 'PET_ITEM_TIER_BOOST') {
                     $pet['rarity'] = self::PET_TIERS[min(count(self::PET_TIERS) - 1, array_search($pet['rarity'], self::PET_TIERS) + 1)];
@@ -791,19 +712,11 @@
                             return $b['level']['level'] - $a['level']['level'];
                         }
 
-                        $maxPetA = $return->filter(function ($pet) use ($a) {
-                            return $pet['type'] === $a['type'] && $pet['rarity'] === $a['rarity'];
-                        })->sort(static function ($x, $y) {
-                            return $y['level']['level'] - $x['level']['level'];
-                        });
+                        $maxPetA = $return->filter(fn($pet) => $pet['type'] === $a['type'] && $pet['rarity'] === $a['rarity'])->sort(static fn($x, $y) => $y['level']['level'] - $x['level']['level']);
 
                         $maxPetA = $maxPetA->isNotEmpty() ? $maxPetA->first()['level']['level'] : null;
 
-                        $maxPetB = $return->filter(function ($pet) use ($b) {
-                            return $pet['type'] === $b['type'] && $pet['rarity'] === $b['rarity'];
-                        })->sort(static function ($x, $y) {
-                            return $y['level']['level'] - $x['level']['level'];
-                        });
+                        $maxPetB = $return->filter(fn($pet) => $pet['type'] === $b['type'] && $pet['rarity'] === $b['rarity'])->sort(static fn($x, $y) => $y['level']['level'] - $x['level']['level']);
 
                         $maxPetB = $maxPetB->isNotEmpty() ? $maxPetB->first()['level']['level'] : null;
 
@@ -823,8 +736,6 @@
 
         /**
          * @param $pet
-         *
-         * @return array
          */
         protected function getPetLevel($pet): array {
             $rarityOffset = $this->get('pet_rarity_offset')->get($pet['rarity']);
@@ -862,14 +773,9 @@
                 $progress       = 1;
             }
 
-            return compact('level', 'currentXp', 'xpForNextLevel', 'progress', 'xpForMaxLevel');
+            return ['level' => $level, 'currentXp' => $currentXp, 'xpForNextLevel' => $xpForNextLevel, 'progress' => $progress, 'xpForMaxLevel' => $xpForMaxLevel];
         }
 
-        /**
-         * @param Collection $pets
-         *
-         * @return int
-         */
         protected function getPetScore(Collection $pets): int {
             $highestRarity = new Collection();
             $petValues     = $this->get('pet_value');
@@ -886,9 +792,7 @@
         /**
          * @link https://github.com/LeaPhant/skyblock-stats/blob/91a03c50f7b0d2ddf0ba50a6f170e1ea8b05fd6f/src/lib.js#L657
          *
-         * @param Collection $profile
          *
-         * @return Collection
          */
         protected function getItems(Collection $profile): Collection {
             SkyBlockItem::setDataParser($this);
@@ -961,15 +865,11 @@
                 $talisman['is_unique']   = true;
                 $talisman['is_inactive'] = false;
 
-                if ($talismans->filter(static function (SkyBlockItem $talisman) use ($id) {
-                    return !$talisman['is_inactive'] && $talisman->getTagId() === $id;
-                })->isNotEmpty()) {
+                if ($talismans->filter(static fn(SkyBlockItem $talisman) => !$talisman['is_inactive'] && $talisman->getTagId() === $id)->isNotEmpty()) {
                     $talisman['is_inactive'] = true;
                 }
 
-                if ($talismans->filter(static function (SkyBlockItem $talisman) use ($id) {
-                    return $talisman->getTagId() === $id;
-                })->isNotEmpty()) {
+                if ($talismans->filter(static fn(SkyBlockItem $talisman) => $talisman->getTagId() === $id)->isNotEmpty()) {
                     $talisman['is_unique'] = false;
                 }
             }
@@ -989,15 +889,11 @@
                 $talisman['is_unique']   = true;
                 $talisman['is_inactive'] = false;
 
-                if ($talismans->filter(static function (SkyBlockItem $talisman) use ($id) {
-                    return !$talisman['is_inactive'] && $talisman->getTagId() === $id;
-                })->isNotEmpty()) {
+                if ($talismans->filter(static fn(SkyBlockItem $talisman) => !$talisman['is_inactive'] && $talisman->getTagId() === $id)->isNotEmpty()) {
                     $talisman['is_inactive'] = true;
                 }
 
-                if ($talismans->filter(static function (SkyBlockItem $talisman) use ($id) {
-                    return $talisman->getTagId() === $id;
-                })->isNotEmpty()) {
+                if ($talismans->filter(static fn(SkyBlockItem $talisman) => $talisman->getTagId() === $id)->isNotEmpty()) {
                     $talisman['is_unique'] = false;
                 }
 
@@ -1009,7 +905,7 @@
              *
              * @var SkyBlockItem $item
              */
-            foreach ($inventory->concat($enderchest) as $index => $item) {
+            foreach ($inventory->concat($enderchest) as $item) {
                 $items = new Collection([$item]);
 
                 if ($item['type'] !== 'accessory' && isset($item['contains_items'])) {
@@ -1024,9 +920,7 @@
                     $insertTalisman['is_unique']   = true;
                     $insertTalisman['is_inactive'] = true;
 
-                    if ($talismans->filter(static function (SkyBlockItem $talisman) use ($id) {
-                        return $talisman->getTagId() === $id;
-                    })->isNotEmpty()) {
+                    if ($talismans->filter(static fn(SkyBlockItem $talisman) => $talisman->getTagId() === $id)->isNotEmpty()) {
                         $insertTalisman['is_unique'] = false;
                     }
 
@@ -1037,17 +931,13 @@
             /**
              * @link https://github.com/LeaPhant/skyblock-stats/blob/master/src/lib.js#L771
              */
-            foreach ($talismans->concat($armor) as $index => $talisman) {
+            foreach ($talismans->concat($armor) as $talisman) {
                 $id = $talisman->getTagId();
 
                 if (Str::startsWith($id, 'CAMPFIRE_TALISMAN_')) {
                     $tier = (int)Str::afterLast($id, '_');
 
-                    $maxTier = $talismans->filter(static function (SkyBlockItem $talisman) {
-                        return Str::startsWith($talisman->getTagId(), 'CAMPFIRE_TALISMAN_');
-                    })->map(static function (SkyBlockItem $talisman) {
-                        return (int)Str::afterLast($talisman->getTagId(), '_');
-                    })->max();
+                    $maxTier = $talismans->filter(static fn(SkyBlockItem $talisman) => Str::startsWith($talisman->getTagId(), 'CAMPFIRE_TALISMAN_'))->map(static fn(SkyBlockItem $talisman) => (int)Str::afterLast($talisman->getTagId(), '_'))->max();
 
                     if ($tier < $maxTier) {
                         $talisman['is_unique']   = false;
@@ -1058,11 +948,7 @@
                 if (Str::startsWith($id, 'WEDDING_RING_')) {
                     $tier = (int)Str::afterLast($id, '_');
 
-                    $maxTier = $talismans->filter(static function (SkyBlockItem $talisman) {
-                        return Str::startsWith($talisman->getTagId(), 'WEDDING_RING_');
-                    })->map(static function (SkyBlockItem $talisman) {
-                        return (int)Str::afterLast($talisman->getTagId(), '_');
-                    })->max();
+                    $maxTier = $talismans->filter(static fn(SkyBlockItem $talisman) => Str::startsWith($talisman->getTagId(), 'WEDDING_RING_'))->map(static fn(SkyBlockItem $talisman) => (int)Str::afterLast($talisman->getTagId(), '_'))->max();
 
                     if ($tier < $maxTier) {
                         $talisman['is_unique']   = false;
@@ -1075,15 +961,11 @@
                 if ($talismanUpgradesTable->has($id)) {
                     $talismanUpgrades = new Collection($talismanUpgradesTable->get($id));
 
-                    if ($talismans->filter(static function (SkyBlockItem $talisman) use ($talismanUpgrades) {
-                        return !$talisman['is_inactive'] && $talismanUpgrades->contains($talisman->getTagId());
-                    })->isNotEmpty()) {
+                    if ($talismans->filter(static fn(SkyBlockItem $talisman) => !$talisman['is_inactive'] && $talismanUpgrades->contains($talisman->getTagId()))->isNotEmpty()) {
                         $talisman['is_inactive'] = true;
                     }
 
-                    if ($talismans->filter(static function (SkyBlockItem $talisman) use ($talismanUpgrades) {
-                        return $talismanUpgrades->contains($talisman->getTagId());
-                    })->isNotEmpty()) {
+                    if ($talismans->filter(static fn(SkyBlockItem $talisman) => $talismanUpgrades->contains($talisman->getTagId()))->isNotEmpty()) {
                         $talisman['is_unique'] = false;
                     }
                 }
@@ -1093,9 +975,7 @@
                 if ($talismanDuplicatesTable->has($id)) {
                     $talismanDuplicates = new Collection($talismanDuplicatesTable->get($id));
 
-                    if ($talismans->filter(static function (SkyBlockItem $talisman) use ($talismanDuplicates) {
-                        return $talismanDuplicates->contains($talisman->getTagId());
-                    })->isNotEmpty()) {
+                    if ($talismans->filter(static fn(SkyBlockItem $talisman) => $talismanDuplicates->contains($talisman->getTagId()))->isNotEmpty()) {
                         $talisman['is_unique'] = false;
                     }
                 }
@@ -1130,9 +1010,7 @@
             }
 
             $return['talismans'] = $talismans;
-            $return['weapons']   = $allItems->filter(static function (SkyBlockItem $item) {
-                return $item['type'] === 'sword' || $item['type'] === 'bow';
-            });
+            $return['weapons']   = $allItems->filter(static fn(SkyBlockItem $item) => $item['type'] === 'sword' || $item['type'] === 'bow');
             $return['rods']      = $allItems->where('type', 'fishing rod');
 
             foreach ($allItems as $item) {
@@ -1140,9 +1018,7 @@
                     continue;
                 }
 
-                $return['weapons']->push(...$item['contains_items']->filter(static function (SkyBlockItem $item) {
-                    return $item['type'] === 'sword' || $item['type'] === 'bow';
-                }));
+                $return['weapons']->push(...$item['contains_items']->filter(static fn(SkyBlockItem $item) => $item['type'] === 'sword' || $item['type'] === 'bow'));
                 $return['rods']->push(...$item['contains_items']->where('type', 'fishing rod'));
             }
 
@@ -1207,32 +1083,18 @@
             $rodsInInventory   = $return['rods']->where('in_backpack', false);
 
             if ($swords->isNotEmpty()) {
-                $return['highest_rarity_sword'] = $swordsInInventory->filter(static function (SkyBlockItem $item) use ($swordsInInventory) {
-                    return $item['rarity'] === $swordsInInventory->first()['rarity'];
-                })->sort(static function ($a, $b) {
-                    return $a['item_index'] - $b['item_index'];
-                })->first();
+                $return['highest_rarity_sword'] = $swordsInInventory->filter(static fn(SkyBlockItem $item) => $item['rarity'] === $swordsInInventory->first()['rarity'])->sort(static fn($a, $b) => $a['item_index'] - $b['item_index'])->first();
             }
 
             if ($bows->isNotEmpty()) {
-                $return['highest_rarity_bow'] = $bowsInInventory->filter(static function (SkyBlockItem $item) use ($bowsInInventory) {
-                    return $item['rarity'] === $bowsInInventory->first()['rarity'];
-                })->sort(static function ($a, $b) {
-                    return $a['item_index'] - $b['item_index'];
-                })->first();
+                $return['highest_rarity_bow'] = $bowsInInventory->filter(static fn(SkyBlockItem $item) => $item['rarity'] === $bowsInInventory->first()['rarity'])->sort(static fn($a, $b) => $a['item_index'] - $b['item_index'])->first();
             }
 
             if ($return['rods']->isNotEmpty()) {
-                $return['highest_rarity_rod'] = $rodsInInventory->filter(static function (SkyBlockItem $item) use ($rodsInInventory) {
-                    return $item['rarity'] === $rodsInInventory->first()['rarity'];
-                })->sort(static function ($a, $b) {
-                    return $a['item_index'] - $b['item_index'];
-                })->first();
+                $return['highest_rarity_rod'] = $rodsInInventory->filter(static fn(SkyBlockItem $item) => $item['rarity'] === $rodsInInventory->first()['rarity'])->sort(static fn($a, $b) => $a['item_index'] - $b['item_index'])->first();
             }
 
-            $armorWithData = $armor->filter(static function (SkyBlockItem $item) {
-                return $item->hasData();
-            });
+            $armorWithData = $armor->filter(static fn(SkyBlockItem $item) => $item->hasData());
 
             if ($armorWithData->count() === 1) {
                 /** @var SkyBlockItem $armorPiece */
@@ -1253,25 +1115,17 @@
                     $armorPiece['armor_name'] = $name;
                 }
 
-                $reforgedArmorSet = $armor->filter(static function (SkyBlockItem $armorPiece) use ($armor) {
-                    return Arr::has($armorPiece, 'tag.ExtraAttributes.modifier') && Arr::has($armor[0], 'tag.ExtraAttributes.modifier') && $armorPiece['tag']['ExtraAttributes']['modifier'] === $armor[0]['tag']['ExtraAttributes']['modifier'];
-                });
+                $reforgedArmorSet = $armor->filter(static fn(SkyBlockItem $armorPiece) => Arr::has($armorPiece, 'tag.ExtraAttributes.modifier') && Arr::has($armor[0], 'tag.ExtraAttributes.modifier') && $armorPiece['tag']['ExtraAttributes']['modifier'] === $armor[0]['tag']['ExtraAttributes']['modifier']);
 
                 if ($reforgedArmorSet->count() === 4) {
                     $reforgeName = Str::before($armor[0]['display_name'], ' ');
                 }
 
-                $isMonsterSet = $armor->filter(static function (SkyBlockItem $armorPiece) {
-                        return Str::is(['SKELETON_HELMET', 'GUARDIAN_CHESTPLATE', 'CREEPER_LEGGINGS', 'SPIDER_BOOTS', 'TARANTULA_BOOTS'], $armorPiece->getTagId());
-                    })->count() === 4;
+                $isMonsterSet = $armor->filter(static fn(SkyBlockItem $armorPiece) => Str::is(['SKELETON_HELMET', 'GUARDIAN_CHESTPLATE', 'CREEPER_LEGGINGS', 'SPIDER_BOOTS', 'TARANTULA_BOOTS'], $armorPiece->getTagId()))->count() === 4;
 
-                $isPerfectSet = $armor->filter(static function (SkyBlockItem $armorPiece) {
-                        return Str::startsWith($armorPiece->getTagId(), 'PERFECT_');
-                    })->count() === 4;
+                $isPerfectSet = $armor->filter(static fn(SkyBlockItem $armorPiece) => Str::startsWith($armorPiece->getTagId(), 'PERFECT_'))->count() === 4;
 
-                if ($isMonsterSet || $armor->filter(static function (SkyBlockItem $armorPiece) use ($armor) {
-                        return Str::before($armorPiece['armor_name'], ' ') === Str::before($armor[0]['armor_name'], ' ');
-                    })->count() === 4) {
+                if ($isMonsterSet || $armor->filter(static fn(SkyBlockItem $armorPiece) => Str::before($armorPiece['armor_name'], ' ') === Str::before($armor[0]['armor_name'], ' '))->count() === 4) {
                     $outputName = Str::beforeLast($armor[0]['armor_name'], ' ');
 
                     if (!Str::endsWith($outputName, 'Armor') && !Str::startsWith($outputName, 'Armor')) {
@@ -1292,9 +1146,7 @@
                     }
 
                     if ($isPerfectSet) {
-                        $sameTier = $armor->filter(static function (SkyBlockItem $armorPiece) use ($armor) {
-                            return Str::afterLast($armorPiece->getTagId(), '_') === Str::afterLast($armor[0]->getTagId(), '_');
-                        });
+                        $sameTier = $armor->filter(static fn(SkyBlockItem $armorPiece) => Str::afterLast($armorPiece->getTagId(), '_') === Str::afterLast($armor[0]->getTagId(), '_'));
 
                         if ($sameTier->count() === 4) {
                             $return['armor_set'] = 'Perfect Armor - Tier ' . Str::afterLast($armor[0]->getTagId(), '_');
@@ -1321,12 +1173,11 @@
          * @return Collection|SkyBlockItem[]
          */
         private function getItemsFromData($dataBase64): Collection {
-            $data = gzdecode(base64_decode($dataBase64));
+            $data = gzdecode(base64_decode((string) $dataBase64));
 
             $nbtStream = new BigEndianNbtSerializer();
             $nbtData   = $nbtStream->read($data);
 
-            /** @var CompoundTag $itemsTag */
             $compoundTag = $nbtData->getTag();
 
             /** @var ListTag $nbtItems */
@@ -1334,7 +1185,7 @@
 
             $items = new Collection();
 
-            foreach ($nbtItems as $index => $nbtItem) {
+            foreach ($nbtItems as $nbtItem) {
                 $item = new SkyBlockItem($nbtItem);
 
                 $items[] = $item;
@@ -1348,8 +1199,6 @@
          *
          * @link https://github.com/LeaPhant/skyblock-stats/
          *
-         * @param int $health
-         * @param int $defense
          *
          * @return float|int
          */
@@ -1364,10 +1213,7 @@
         /**
          * @link https://github.com/LeaPhant/skyblock-stats/blob/9dc08903dff003c059cb52aef3be32ff51e84871/src/lib.js#L594
          *
-         * @param Player $player
-         * @param string $id
          *
-         * @return Collection
          * @throws HypixelFetchException
          * @throws SkyBlockEmptyProfileException
          */
@@ -1432,10 +1278,6 @@
         }
 
         /**
-         * @param Player $player
-         * @param string $id
-         *
-         * @return array
          * @throws HypixelFetchException
          * @throws SkyBlockEmptyProfileException
          */
@@ -1456,10 +1298,7 @@
         }
 
         /**
-         * @param Player $player
-         * @param string $id
          *
-         * @return Collection
          * @throws HypixelFetchException
          * @throws SkyBlockEmptyProfileException
          * @noinspection PhpDocRedundantThrowsInspection
@@ -1471,9 +1310,6 @@
             });
         }
 
-        /**
-         * @return Collection
-         */
         public function getConstants(): Collection {
             return $this->constants;
         }
