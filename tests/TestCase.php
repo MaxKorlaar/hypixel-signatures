@@ -1,6 +1,6 @@
 <?php
     /*
-     * Copyright (c) 2020-2024 Max Korlaar
+     * Copyright (c) 2020-2025 Max Korlaar
      * All rights reserved.
      *
      * Redistribution and use in source and binary forms, with or without
@@ -46,6 +46,24 @@
         protected function setUp(): void {
             parent::setUp();
 
-            $this->withoutExceptionHandling();
+            // Only disable exception handling for unit tests
+            // Feature tests should handle exceptions naturally to test error responses
+            if (strpos(static::class, 'Tests\Unit') === 0) {
+                $this->withoutExceptionHandling();
+            }
+        }
+
+        /**
+         * Helper method to enable exception handling for specific tests
+         */
+        protected function withExceptionHandling(): self {
+            return parent::withExceptionHandling();
+        }
+
+        /**
+         * Helper method to disable exception handling for specific tests
+         */
+        protected function withoutExceptionHandling(): self {
+            return parent::withoutExceptionHandling();
         }
     }
