@@ -54,9 +54,15 @@
             // Horizon::routeMailNotificationsTo('example@example.com');
             Horizon::routeSlackNotificationsTo(config('logging.channels.slack.url'), null);
 
-            Horizon::night();
+            Horizon::auth(static function (Request $request) {
+                if(app()->environment('local')) {
+                    return true;
+                }
 
-            Horizon::auth(static fn(Request $request) => app()->environment('local') || config('horizon.production_allow_ip') === $request->ip());
+                $allowedIps = explode(',', config('horizon.production_allow_ip'));
+
+                return in_array($request->ip(), $allowedIps, true);
+            });
         }
 
         /**
