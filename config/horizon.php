@@ -176,7 +176,7 @@
                     'connection'  => 'redis',
                     'queue'       => ['default', 'hypixel-api'],
                     'balance'     => 'auto',
-                    'processes'   => 10,
+                    'processes'   => 8,
                     'tries'       => 5,
                     'retry_after' => 60,
                     'timeout'     => 60
