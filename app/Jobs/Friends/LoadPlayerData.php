@@ -35,10 +35,12 @@
     use App\Utilities\HypixelAPI;
     use Cache;
     use Illuminate\Bus\Queueable;
+    use Illuminate\Contracts\Queue\ShouldBeUniqueUntilProcessing;
     use Illuminate\Contracts\Queue\ShouldQueue;
     use Illuminate\Contracts\Redis\LimiterTimeoutException;
     use Illuminate\Foundation\Bus\Dispatchable;
     use Illuminate\Queue\InteractsWithQueue;
+    use Illuminate\Queue\Middleware\WithoutOverlapping;
     use Illuminate\Queue\SerializesModels;
     use Illuminate\Support\Facades\Redis;
     use Log;
@@ -50,8 +52,15 @@
      *
      * @package App\Jobs\Friends
      */
-    class LoadPlayerData implements ShouldQueue {
+    class LoadPlayerData implements ShouldQueue, ShouldBeUniqueUntilProcessing {
         use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+        /**
+         * The number of times the job may be attempted.
+         *
+         * @var int
+         */
+        public int $tries = 1;
 
         /**
          * Create a new job instance.
@@ -96,5 +105,15 @@
             }, static function () {
                 // Could not obtain lock...
             });
+        }
+
+        public function uniqueId(): string {
+            return $this->uuid;
+        }
+
+        public function middleware(): array {
+            return [
+                new WithoutOverlapping($this->uuid, 5, 60),
+            ];
         }
     }
