@@ -67,7 +67,7 @@
         private $constants;
 
         public function __construct() {
-            $this->constants = Cache::rememberForever('skyblock.constants', static fn() => new Collection(json_decode(File::get(resource_path('data/skyblock/constants.json')), true, 512, JSON_THROW_ON_ERROR)));
+            $this->constants = new Collection(json_decode(File::get(resource_path('data/skyblock/constants.json')), true, 512, JSON_THROW_ON_ERROR));
         }
 
         /**
