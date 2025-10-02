@@ -34,6 +34,8 @@
 
     use Illuminate\Console\Scheduling\Schedule;
     use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+    use Spatie\Health\Commands\RunHealthChecksCommand;
+    use Spatie\Health\Commands\ScheduleCheckHeartbeatCommand;
 
     /**
      * Class Kernel
@@ -62,6 +64,8 @@
             $schedule->command('clean:directories')->everyFourHours()->storeOutput();
             $schedule->command('horizon:snapshot')->everyFiveMinutes()->storeOutput();
             $schedule->command('cloudflare:reload')->weekly()->storeOutput();
+            $schedule->command(ScheduleCheckHeartbeatCommand::class)->everyMinute();
+            $schedule->command(RunHealthChecksCommand::class)->everyMinute();
 
             // $schedule->command('inspire')
             //          ->hourly();

@@ -34,6 +34,15 @@
 
     use Illuminate\Routing\UrlGenerator;
     use Illuminate\Support\ServiceProvider;
+    use Spatie\Health\Checks\Checks\CacheCheck;
+    use Spatie\Health\Checks\Checks\DatabaseCheck;
+    use Spatie\Health\Checks\Checks\DebugModeCheck;
+    use Spatie\Health\Checks\Checks\EnvironmentCheck;
+    use Spatie\Health\Checks\Checks\HorizonCheck;
+    use Spatie\Health\Checks\Checks\QueueCheck;
+    use Spatie\Health\Checks\Checks\ScheduleCheck;
+    use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;
+    use Spatie\Health\Facades\Health;
 
     /**
      * Class AppServiceProvider
@@ -58,5 +67,15 @@
             if (config('app.force_https')) {
                 $urlGenerator->forceScheme('https');
             }
+
+            Health::checks([
+                HorizonCheck::new(),
+                ScheduleCheck::new(),
+                CacheCheck::new(),
+                DatabaseCheck::new(),
+                DebugModeCheck::new(),
+                EnvironmentCheck::new(),
+                QueueCheck::new()
+            ]);
         }
     }
