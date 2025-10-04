@@ -72,7 +72,7 @@
         }
 
         /**
-         * Test fetching a well-known player (Notch/069a79f4-44e9-4726-a5be-fca90e38aaf5)
+         * Test fetching player data (Technoblade)
          * This verifies the v2 player endpoint works
          * 
          * @throws HypixelPHPException
@@ -80,8 +80,8 @@
         public function testCanFetchPlayerData(): void {
             $api = new HypixelAPI();
             
-            // Notch's UUID - a well-known Minecraft player
-            $uuid = '069a79f444e94726a5befca90e38aaf5';
+            // Technoblade's UUID
+            $uuid = 'b876ec32e396476ba1158438d83c67d4';
             
             $player = $api->getPlayerByUuid($uuid);
             
@@ -99,8 +99,8 @@
         public function testServerTypesWorksWithPlayerStats(): void {
             $api = new HypixelAPI();
             
-            // Use Notch's UUID
-            $uuid = '069a79f444e94726a5befca90e38aaf5';
+            // Technoblade's UUID
+            $uuid = 'b876ec32e396476ba1158438d83c67d4';
             
             $player = $api->getPlayerByUuid($uuid);
             $this->assertInstanceOf(Player::class, $player);
@@ -173,7 +173,8 @@
             $api = new HypixelAPI();
             
             try {
-                $uuid = '069a79f444e94726a5befca90e38aaf5';
+                // Technoblade's UUID
+                $uuid = 'b876ec32e396476ba1158438d83c67d4';
                 $player = $api->getPlayerByUuid($uuid);
                 
                 $this->assertInstanceOf(Player::class, $player);
