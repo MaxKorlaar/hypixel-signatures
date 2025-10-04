@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020-2024 Max Korlaar
+ * Copyright (c) 2020-2025 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,5 +36,6 @@
         'friends'       => 'Freunde',
         'guild'         => 'Gilden',
         'player_status' => 'Online Status',
-        'beta_warning' => '<b>Heads up!</b> Hypixel.Paniek.de befindet sich noch in der Beta-Phase und kann gelegentlich kaputt gehen. Wenn Sie Feedback haben oder mehr Funktionalität auf dieser Website hinzugefügt sehen möchten, zögern Sie nicht, sich mit mir in Verbindung zu setzen: <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">@MaxKorlaar auf Twitter</a> oder auf dem <a href="https://hypixel.net/threads/2880476/" target="_blank" rel="noopener">Hypixel Forum</a>.'
+        'beta_warning' => '<b>Heads up!</b> Hypixel.Paniek.de befindet sich noch in der Beta-Phase und kann gelegentlich kaputt gehen. Wenn Sie Feedback haben oder mehr Funktionalität auf dieser Website hinzugefügt sehen möchten, zögern Sie nicht, sich mit mir in Verbindung zu setzen: <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">@MaxKorlaar auf Twitter</a> oder auf dem <a href="https://hypixel.net/threads/2880476/" target="_blank" rel="noopener">Hypixel Forum</a>.',
+        'looking_for_maintainers' => '<b>Entwickler gesucht!</b> Ich suche nach Entwicklern, die mir helfen, diese Website mit den neuesten Änderungen an Hypixels Minispielen auf dem neuesten Stand zu halten. Wenn Sie interessiert sind, schauen Sie sich bitte das <a href="https://github.com/MaxKorlaar/hypixel-signatures" target="_blank" rel="noopener">GitHub Repository</a> an. Leider bin ich heutzutage ziemlich beschäftigt und habe nicht die Ressourcen, das Projekt selbst zu aktualisieren. <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">Finden Sie mich auf Twitter/X</a> &centerdot; <a href="https://twitter.com/MaxKorlaar" target="_blank">Schauen Sie sich meine Freelance Remote-Full-Stack-Webentwicklung an</a>',
     ];
