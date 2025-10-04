@@ -171,6 +171,11 @@
       <path value="$PROJECT_DIR$/vendor/symfony/mailer" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php83" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php84" />
+      <path value="$PROJECT_DIR$/vendor/symfony/mailgun-mailer" />
+      <path value="$PROJECT_DIR$/vendor/laravel/boost" />
+      <path value="$PROJECT_DIR$/vendor/laravel/roster" />
+      <path value="$PROJECT_DIR$/vendor/laravel/mcp" />
+      <path value="$PROJECT_DIR$/vendor/symfony/yaml" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.4" />

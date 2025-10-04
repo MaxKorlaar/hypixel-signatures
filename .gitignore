@@ -122,6 +122,10 @@ fabric.properties
 .idea/$CACHE_FILE$
 .idea/commandlinetools/Laravel*.xml
 .idea/copilot*
+.claude/settings.local.json
+.mcp.json
+.junie/mcp/mcp.json
+.vscode/mcp.json
 
 .vagrant
 .phpstorm.meta.php
