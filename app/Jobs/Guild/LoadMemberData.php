@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2021-2024 Max Korlaar
+ * Copyright (c) 2021-2025 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -103,7 +103,9 @@ namespace App\Jobs\Guild;
 
         public function middleware(): array {
             return [
-                new WithoutOverlapping($this->uuid, 5, 60),
+                new WithoutOverlapping($this->uuid)
+                    ->expireAfter(60)
+                    ->dontRelease(),
             ];
         }
     }
