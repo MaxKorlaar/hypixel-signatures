@@ -42,7 +42,7 @@
     use Illuminate\Support\Collection;
     use Illuminate\Support\Str;
     use Intervention\Image\Laravel\Facades\Image;
-    use Plancke\HypixelPHP\classes\gameType\GameTypes;
+    use Plancke\HypixelPHP\classes\serverType\ServerTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\guild\Guild;
     use Plancke\HypixelPHP\responses\player\Player;
@@ -132,7 +132,7 @@
             $games = new Collection($guild->getExpByGameType());
 
             $mostActiveGames = $games->sortDesc()->slice(0, 3)->map(static function ($xp, $gameName) {
-                $gameType = GameTypes::fromEnum($gameName);
+                $gameType = ServerTypes::fromEnum($gameName);
 
                 if ($gameType === null) {
                     return ucfirst(strtolower($gameName));

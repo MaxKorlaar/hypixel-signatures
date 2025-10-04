@@ -39,7 +39,7 @@
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\View\View;
-    use Plancke\HypixelPHP\classes\gameType\GameTypes;
+    use Plancke\HypixelPHP\classes\serverType\ServerTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\guild\Guild;
     use Plancke\HypixelPHP\responses\player\GameStats;
@@ -94,7 +94,7 @@
         private function getMegaWallsMemberList(Guild $guild): array {
             return $this->getMemberList($guild, static function (Player $player) {
                 /** @var GameStats $stats */
-                $stats = $player->getStats()->getGameFromID(GameTypes::WALLS3);
+                $stats = $player->getStats()->getGameFromID(ServerTypes::WALLS3);
 
                 $kills  = $stats->getInt('kills');
                 $deaths = $stats->getInt('deaths');

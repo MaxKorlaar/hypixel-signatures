@@ -38,7 +38,7 @@
     use Illuminate\Contracts\View\Factory;
     use Illuminate\Http\Request;
     use Illuminate\View\View;
-    use Plancke\HypixelPHP\classes\gameType\GameTypes;
+    use Plancke\HypixelPHP\classes\serverType\ServerTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\guild\Guild;
     use Plancke\HypixelPHP\responses\player\GameStats;
@@ -96,7 +96,7 @@
         private function getSkyWarsMemberList(Guild $guild): array {
             return $this->getMemberList($guild, static function (Player $player) {
                 /** @var GameStats $stats */
-                $stats = $player->getStats()->getGameFromID(GameTypes::SKYWARS);
+                $stats = $player->getStats()->getGameFromID(ServerTypes::SKYWARS);
 
                 $kills  = $stats->getInt('kills');
                 $deaths = $stats->getInt('deaths');
