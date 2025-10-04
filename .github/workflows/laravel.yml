@@ -144,6 +144,7 @@ jobs:
         run: php artisan optimize
         env:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
+          HYPIXEL_API_KEY: ${{ secrets.HYPIXEL_API_KEY }}
 
       - name: Download built assets
         uses: actions/download-artifact@v4
@@ -156,3 +157,5 @@ jobs:
 
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/bin/phpunit
+        env:
+          HYPIXEL_API_KEY: ${{ secrets.HYPIXEL_API_KEY }}
