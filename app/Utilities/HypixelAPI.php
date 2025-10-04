@@ -57,8 +57,13 @@
         public function __construct() {
             $this->api = new HypixelPHP(config('signatures.api_key'));
             $this->api->setLogger(new LaravelLogger($this->api));
-            $this->api->getCacheHandler()->setBaseDirectory(storage_path('app/cache/hypixelphp'));
-            $this->api->getCacheHandler()->setCacheTime(CacheTimes::STATUS, 60);
+            
+            // Use custom cache handler with proper guild lookup implementations
+            $cacheHandler = new CustomFlatFileCacheHandler($this->api);
+            $cacheHandler->setBaseDirectory(storage_path('app/cache/hypixelphp'));
+            $cacheHandler->setCacheTime(CacheTimes::STATUS, 60);
+            $this->api->setCacheHandler($cacheHandler);
+            
             $this->api->getFetcher()->setTimeOut(config('signatures.api_timeout'));
         }
 
