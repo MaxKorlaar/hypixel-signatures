@@ -38,7 +38,7 @@
     use Illuminate\Support\Arr;
     use Illuminate\Support\Collection;
     use Intervention\Image\Laravel\Facades\Image;
-    use Plancke\HypixelPHP\classes\gameType\GameTypes;
+    use Plancke\HypixelPHP\classes\serverType\ServerTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\player\Player;
 
@@ -64,7 +64,7 @@
             $username           = $player->getName();
             $rankNameWithColour = $this->getColouredRankName($player);
 
-            $lastgameType = GameTypes::fromEnum($mostRecentGame);
+            $lastgameType = ServerTypes::fromEnum($mostRecentGame);
             if ($lastgameType !== null) {
                 $mostRecentGame = $lastgameType->getName();
             }

@@ -36,7 +36,7 @@
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
     use Intervention\Image\Laravel\Facades\Image;
-    use Plancke\HypixelPHP\classes\gameType\GameTypes;
+    use Plancke\HypixelPHP\classes\serverType\ServerTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\player\GameStats;
     use Plancke\HypixelPHP\responses\player\Player;
@@ -64,7 +64,7 @@
 
             $mainStats = $player->getStats();
             /** @var GameStats $stats */
-            $stats = $mainStats->getGameFromID(GameTypes::BEDWARS);
+            $stats = $mainStats->getGameFromID(ServerTypes::BEDWARS);
 
             $level      = GameUtils::getBedWars()->getExpCalculator()->getLevelForExp($stats->getInt('Experience'));
             $wins       = $stats->get('wins_bedwars', 0);

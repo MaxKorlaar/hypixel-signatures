@@ -39,7 +39,7 @@ namespace App\Http\Controllers\Guild;
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\View\View;
-    use Plancke\HypixelPHP\classes\gameType\GameTypes;
+    use Plancke\HypixelPHP\classes\serverType\ServerTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\guild\Guild;
     use Plancke\HypixelPHP\responses\player\GameStats;
@@ -97,7 +97,7 @@ namespace App\Http\Controllers\Guild;
         private function getBedWarsMemberList(Guild $guild): array {
             return $this->getMemberList($guild, static function (Player $player) {
                 /** @var GameStats $stats */
-                $stats = $player->getStats()->getGameFromID(GameTypes::BEDWARS);
+                $stats = $player->getStats()->getGameFromID(ServerTypes::BEDWARS);
 
                 $wins = $stats->getInt('wins_bedwars');
 

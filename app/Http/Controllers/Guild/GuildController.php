@@ -46,7 +46,7 @@
     use Illuminate\Support\Str;
     use Illuminate\View\View;
     use JsonException;
-    use Plancke\HypixelPHP\classes\gameType\GameTypes;
+    use Plancke\HypixelPHP\classes\serverType\ServerTypes;
     use Plancke\HypixelPHP\color\ColorUtils;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\guild\Guild;
@@ -169,7 +169,7 @@
                 }
 
                 $preferredGames = new Collection($guild->getPreferredGames())->map(static function ($gameName) {
-                    $gameType = GameTypes::fromEnum($gameName);
+                    $gameType = ServerTypes::fromEnum($gameName);
 
                     if ($gameType === null) {
                         return ucfirst(strtolower($gameName));
@@ -181,7 +181,7 @@
                 $games = new Collection($guild->getExpByGameType());
 
                 $mostActiveGames = $games->sortDesc()->slice(0, 5)->map(static function ($xp, $gameName) {
-                    $gameType = GameTypes::fromEnum($gameName);
+                    $gameType = ServerTypes::fromEnum($gameName);
 
                     if ($gameType === null) {
                         return ucfirst(strtolower($gameName));

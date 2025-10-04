@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5df2ec7b1a1eeade864bafa62bc9fc3e",
+    "content-hash": "736b539f7e47f8953721b45c6abff7e5",
     "packages": [
         {
             "name": "brick/math",
@@ -3143,44 +3143,39 @@
         },
         {
             "name": "plancke/hypixel-php",
-            "version": "dev-master",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/MaxKorlaar/hypixel-php.git",
-                "reference": "f1adca3b615857290fc7662145e437101ace72be"
+                "url": "https://github.com/Plancke/hypixel-php.git",
+                "reference": "de48cd84b5733d1a106210edd329b7d17265a2b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MaxKorlaar/hypixel-php/zipball/f1adca3b615857290fc7662145e437101ace72be",
-                "reference": "f1adca3b615857290fc7662145e437101ace72be",
+                "url": "https://api.github.com/repos/Plancke/hypixel-php/zipball/de48cd84b5733d1a106210edd329b7d17265a2b1",
+                "reference": "de48cd84b5733d1a106210edd329b7d17265a2b1",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
-                "php": "^7.3|^8.0"
+                "php": "^7.0|^8.0"
             },
             "require-dev": {
                 "ext-mongodb": "^1.4.2",
                 "mongodb/mongodb": "^1.4.2",
-                "phpunit/phpunit": "^11.0"
+                "phpunit/phpunit": "8.0.6"
             },
             "suggest": {
                 "ext-mongodb": "^1.4.2",
                 "mongodb/mongodb": "^1.4.2"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Plancke\\HypixelPHP\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Plancke\\Tests\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3201,9 +3196,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Plancke/hypixel-php/issues",
-                "source": "https://github.com/MaxKorlaar/hypixel-php/tree/master"
+                "source": "https://github.com/Plancke/hypixel-php/tree/1.5.1"
             },
-            "time": "2025-07-12T08:16:50+00:00"
+            "time": "2025-07-11T22:24:29+00:00"
         },
         {
             "name": "pocketmine/binaryutils",
@@ -11251,7 +11246,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "lunakid/anim-gif": 20,
-        "plancke/hypixel-php": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,

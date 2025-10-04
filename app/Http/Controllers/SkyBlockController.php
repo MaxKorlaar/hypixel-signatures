@@ -33,7 +33,7 @@
 namespace App\Http\Controllers;
 
     use App\Utilities\HypixelAPI;
-    use Plancke\HypixelPHP\classes\gameType\GameTypes;
+    use Plancke\HypixelPHP\classes\serverType\ServerTypes;
     use Plancke\HypixelPHP\exceptions\HypixelPHPException;
     use Plancke\HypixelPHP\responses\player\GameStats;
     use Plancke\HypixelPHP\responses\player\Player;
@@ -56,7 +56,7 @@ namespace App\Http\Controllers;
                 $mainStats = $player->getStats();
 
                 /** @var GameStats $stats */
-                $stats    = $mainStats->getGameFromID(GameTypes::SKYBLOCK);
+                $stats    = $mainStats->getGameFromID(ServerTypes::SKYBLOCK);
                 $profiles = $stats->get('profiles', []);
 
                 return [
