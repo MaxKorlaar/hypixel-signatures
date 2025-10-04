@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2021-2024 Max Korlaar
+ * Copyright (c) 2021-2025 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,6 +34,9 @@
 
     use Illuminate\Console\Scheduling\Schedule;
     use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+    use Spatie\Health\Commands\DispatchQueueCheckJobsCommand;
+    use Spatie\Health\Commands\RunHealthChecksCommand;
+    use Spatie\Health\Commands\ScheduleCheckHeartbeatCommand;
 
     /**
      * Class Kernel
@@ -53,15 +56,18 @@
         /**
          * Define the application's command schedule.
          *
-         * @param Schedule $schedule
          *
          * @return void
          */
+        #[\Override]
         protected function schedule(Schedule $schedule) {
             $schedule->command('hypixel-cache:clear-recent')->monthly()->storeOutput();
             $schedule->command('clean:directories')->everyFourHours()->storeOutput();
             $schedule->command('horizon:snapshot')->everyFiveMinutes()->storeOutput();
             $schedule->command('cloudflare:reload')->weekly()->storeOutput();
+            $schedule->command(ScheduleCheckHeartbeatCommand::class)->everyMinute();
+            $schedule->command(RunHealthChecksCommand::class)->everyMinute();
+            $schedule->command(DispatchQueueCheckJobsCommand::class)->everyMinute();
 
             // $schedule->command('inspire')
             //          ->hourly();
@@ -72,6 +78,7 @@
          *
          * @return void
          */
+        #[\Override]
         protected function commands() {
             $this->load(__DIR__ . '/Commands');
 

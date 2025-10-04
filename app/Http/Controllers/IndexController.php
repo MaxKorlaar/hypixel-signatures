@@ -45,9 +45,6 @@
      * @package App\Http\Controllers
      */
     class IndexController extends Controller {
-        /**
-         * @return View
-         */
         public function index(): View {
             return view('index');
         }
@@ -193,8 +190,6 @@
         }
 
         /**
-         * @param Request $request
-         *
          *
          * @return Application|RedirectResponse|Redirector
          */

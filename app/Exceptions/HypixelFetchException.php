@@ -41,9 +41,6 @@
      * @package App\Exceptions
      */
     class HypixelFetchException extends Exception {
-        /**
-         * @return View
-         */
         public function render(): View {
             return view('errors.hypixel_api', [
                 'error' => $this->getMessage()

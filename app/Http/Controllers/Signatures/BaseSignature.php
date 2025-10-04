@@ -56,9 +56,6 @@
 
         private const FULLY_TRANSPARENT = 127;
 
-        /**
-         * @var HypixelAPI $api
-         */
         protected HypixelAPI $api;
 
         /**
@@ -69,12 +66,6 @@
             $this->api = new HypixelAPI();
         }
 
-        /**
-         * @param Request $request
-         * @param string  $uuid
-         *
-         * @return Response
-         */
         public function render(Request $request, string $uuid): Response {
 
             $playerOrResponse = $this->getPlayerData($uuid);
@@ -86,7 +77,6 @@
         }
 
         /**
-         * @param Player $player
          * @param        $image
          *
          * @return int[]
@@ -94,16 +84,14 @@
          */
         protected function get2dAvatar(Player $player, &$image): array {
             $avatarWidth        = 0;
-            $textX              = $avatarWidth + 5;
+            $textX              = 5;
             $textBeneathAvatarX = $textX;
 
             return [$avatarWidth, $textX, $textBeneathAvatarX];
         }
 
         /**
-         * @param Player $player
          * @param        $image
-         *
          * @return int[]
          */
         protected function get3dAvatar(Player $player, &$image): array {
@@ -120,11 +108,6 @@
             return [$avatarWidth, $textX, $textBeneathAvatarX];
         }
 
-        /**
-         * @param Player $player
-         *
-         * @return string
-         */
         protected function getColouredRankName(Player $player): string {
             $rank       = $player->getRank(false);
             $rankColour = $rank->getColor();
@@ -138,8 +121,6 @@
         }
 
         /**
-         * @param string $uuid
-         *
          * @return Response|Player
          */
         protected function getPlayerData(string $uuid) {
@@ -161,7 +142,7 @@
                 Log::debug('Unexpected API response', ['uuid' => $uuid, 'response' => $player, 'api' => $this->api]);
 
                 return self::generateErrorImage('Unexpected API response.');
-            } catch (InvalidUUIDException $exception) {
+            } catch (InvalidUUIDException) {
                 return self::generateErrorImage('UUID is invalid.', 400);
             } catch (BadResponseCodeException $exception) {
                 if ($exception->getActualCode() === 429) {
@@ -182,8 +163,6 @@
          * @param int    $height
          *
          * @param string $title
-         *
-         * @return Response
          */
         public static function generateErrorImage($error, $statusCode = 500, $width = 740, $height = 160, $title = 'Something went wrong'): Response {
             $image = self::getImage($width, $height);
@@ -219,12 +198,6 @@
             return $image;
         }
 
-        /**
-         * @param Request $request
-         * @param Player  $player
-         *
-         * @return Response
-         */
         abstract protected function signature(Request $request, Player $player): Response;
 
         /**
@@ -234,12 +207,11 @@
          * @param     $font
          * @param     $imageWidth
          * @param     $imageHeight
-         * @param int $size
          */
         protected function addWatermark($image, $font, $imageWidth, $imageHeight, int $size = 16): void {
             $grey = imagecolorallocate($image, 203, 203, 203);
 
-            $watermarkBoundingBox = imagettfbbox($size, 0, $font, config('signatures.watermark'));
-            imagettftext($image, $size, 0, $imageWidth - $watermarkBoundingBox[4], $imageHeight - $watermarkBoundingBox[3], $grey, $font, config('signatures.watermark'));
+            $watermarkBoundingBox = imagettfbbox($size, 0, $font, (string) config('signatures.watermark'));
+            imagettftext($image, $size, 0, $imageWidth - $watermarkBoundingBox[4], $imageHeight - $watermarkBoundingBox[3], $grey, $font, (string) config('signatures.watermark'));
         }
     }

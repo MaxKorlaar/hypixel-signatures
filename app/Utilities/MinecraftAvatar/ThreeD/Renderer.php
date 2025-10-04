@@ -72,35 +72,20 @@
      * Class Renderer
      */
     class Renderer {
-        public $fetchError = null;
-        private $playerName = null;
+        public $fetchError;
         private $playerSkin = false;
         private $isNewSkinType = false;
-        private $hd_ratio = 1;
-        private $vR = null;
-        private $hR = null;
-        private $hrh = null;
-        private $vrll = null;
-        private $vrrl = null;
-        private $vrla = null;
-        private $vrra = null;
-        private $head_only = null;
-        private $display_hair = null;
-        private $format = null;
-        // Rotation variables in radians (3D Rendering)
-        private $ratio = null; // Vertical rotation on the X axis.
-        private $aa = null; // Horizontal rotation on the Y axis.
-        private $layers = null; // Head, Helmet, Torso, Arms, Legs
-        private $alpha = null;
-        private $omega = null;
+        private $hd_ratio = 1; // Head, Helmet, Torso, Arms, Legs
+        private $alpha;
+        private $omega;
         private $members_angles = [];
-        private $visible_faces_format = null;
-        private $visible_faces = null;
-        private $all_faces = null;
-        private $front_faces = null;
-        private $back_faces = null;
-        private $cube_points = null;
-        private $polygons = null;
+        private $visible_faces_format;
+        private $visible_faces;
+        private $all_faces;
+        private $front_faces;
+        private $back_faces;
+        private $cube_points;
+        private $polygons;
 
         /**
          * @param      $user
@@ -118,21 +103,8 @@
          * @param      $layers
          * @param bool $aa
          */
-        public function __construct($user, $vr, $hr, $hrh, $vrll, $vrrl, $vrla, $vrra, $displayHair, $headOnly, $format, $ratio, $layers, $aa = true) {
-            $this->playerName   = $user;
-            $this->vR           = $vr;
-            $this->hR           = $hr;
-            $this->hrh          = $hrh;
-            $this->vrll         = $vrll;
-            $this->vrrl         = $vrrl;
-            $this->vrla         = $vrla;
-            $this->vrra         = $vrra;
-            $this->head_only    = $headOnly;
-            $this->display_hair = $displayHair;
-            $this->format       = $format;
-            $this->ratio        = $ratio;
-            $this->aa           = $aa;
-            $this->layers       = $layers;
+        public function __construct(private $playerName, private $vR, private $hR, private $hrh, private $vrll, private $vrrl, private $vrla, private $vrra, private $display_hair, private $head_only, private $format, private $ratio, private $layers, private $aa = true)
+        {
         }
 
         /** Function renders the 3d image
@@ -172,12 +144,8 @@
          * Espects an UUID.
          * Returns player skin texure link, false on failure
          */
-
-        /**
-         * @return bool
-         */
         private function getPlayerSkin(): bool {
-            if (trim($this->playerName) === '') {
+            if (trim((string) $this->playerName) === '') {
                 throw new InvalidArgumentException('Playername or UUID is empty');
             }
 
@@ -1172,7 +1140,7 @@
                             $volume_points[0][$j][$k + 1],
                             $volume_points[0][$j + 1][$k + 1],
                             $volume_points[0][$j + 1][$k]
-                        ], imagecolorat($img_png, 0 + $k, 20 * $hd_ratio + $j));
+                        ], imagecolorat($img_png, $k, 20 * $hd_ratio + $j));
                         $this->polygons['rightLeg']['left'][]  = new Polygon([
                             $volume_points[4 * $hd_ratio][$j][$k],
                             $volume_points[4 * $hd_ratio][$j][$k + 1],
@@ -1398,16 +1366,13 @@
 
             if ($this->aa === true) {
                 // double the ration for downscaling later (sort of AA)
-                $ratio = $ratio * 2;
+                $ratio *= 2;
             }
-
-            if ($cacheTime > 0) {
-                $ts = gmdate('D, d M Y H:i:s', time() + $cacheTime) . ' GMT';
-                if ($output !== 'return') {
-                    header('Expires: ' . $ts);
-                    header('Pragma: cache');
-                    header('Cache-Control: max-age=' . $cacheTime);
-                }
+            $ts = gmdate('D, d M Y H:i:s', time() + $cacheTime) . ' GMT';
+            if ($output !== 'return') {
+                header('Expires: ' . $ts);
+                header('Pragma: cache');
+                header('Cache-Control: max-age=' . $cacheTime);
             }
 
             if ($this->format !== 'svg') {
@@ -1473,9 +1438,6 @@
             return $imgOutput;
         }
 
-        /**
-         * @return array
-         */
         private function getDisplayOrder(): array {
             $display_order = [];
             if (in_array('top', $this->front_faces, true)) {

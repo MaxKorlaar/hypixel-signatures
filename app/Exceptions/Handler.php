@@ -76,12 +76,12 @@
         /**
          * Report or log an exception.
          *
-         * @param Throwable $exception
          *
          * @return void
          * @throws Exception
          * @throws Throwable
          */
+        #[\Override]
         public function report(Throwable $exception) {
             if (($exception instanceof BadResponseCodeException) && $exception->getActualCode() === 429) {
                 Log::stack(['daily'])->error($exception->getMessage(), ['url' => Request::url(), 'data' => Request::except('_token')]);
@@ -100,11 +100,11 @@
          * Render an exception into an HTTP response.
          *
          * @param \Illuminate\Http\Request $request
-         * @param Throwable                $exception
          *
          * @return JsonResponse|\Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
          * @throws Throwable
          */
+        #[\Override]
         public function render($request, Throwable $exception) {
             if ($exception instanceof BadResponseCodeException) {
                 return Response::view('errors.hypixel_api', [

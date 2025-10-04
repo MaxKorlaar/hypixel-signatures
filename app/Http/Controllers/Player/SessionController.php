@@ -57,18 +57,13 @@
      * @package App\Http\Controllers\Player
      */
     class SessionController extends Controller {
-        /**
-         * @return View
-         */
         public function getIndex(): View {
-            $recentlyViewed = (new Collection(
+            $recentlyViewed = new Collection(
                 Redis::connection('cache')
                     ->zRevRangeByScore('recent_online_players', '+inf', '0', [
                         'withscores' => true, 'limit' => [0, 20]
                     ])
-            ))->map(static function ($value, $key) {
-                return ['uuid' => $key, 'views' => $value] + Cache::get('recent_online_players.' . $key, []);
-            });
+            )->map(static fn($value, $key) => ['uuid' => $key, 'views' => $value] + Cache::get('recent_online_players.' . $key, []));
 
             return view('player.index', [
                 'recently_viewed' => $recentlyViewed
@@ -76,9 +71,7 @@
         }
 
         /**
-         * @param ViewStatusByUsernameRequest $request
          *
-         * @return RedirectResponse|null
          * @throws JsonException
          * @throws InvalidArgumentException
          */
@@ -87,9 +80,7 @@
         }
 
         /**
-         * @param string $username
          *
-         * @return RedirectResponse
          * @throws InvalidArgumentException
          * @throws JsonException
          */
@@ -114,9 +105,7 @@
         }
 
         /**
-         * @param string $username
          *
-         * @return RedirectResponse
          * @throws InvalidArgumentException
          * @throws JsonException
          */
@@ -125,8 +114,6 @@
         }
 
         /**
-         * @param Request $request
-         * @param string  $uuid
          *
          * @return array|RedirectResponse|View
          * @throws HypixelFetchException

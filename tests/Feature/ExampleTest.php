@@ -42,8 +42,6 @@
     class ExampleTest extends TestCase {
         /**
          * A basic test example.
-         *
-         * @return void
          */
         public function testHomePage(): void {
             $response = $this->get(route('home'));

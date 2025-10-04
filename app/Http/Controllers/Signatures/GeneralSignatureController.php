@@ -50,10 +50,7 @@
     class GeneralSignatureController extends BaseSignature {
 
         /**
-         * @param Request $request
-         * @param Player  $player
          *
-         * @return Response
          * @throws HypixelPHPException
          */
         protected function signature(Request $request, Player $player): Response {
@@ -73,9 +70,7 @@
             }
 
             $quests          = new Collection($player->getArray('quests'));
-            $questsCompleted = $quests->whereNotNull('completions')->map(static function ($quest) {
-                return $quest['completions'];
-            })->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
+            $questsCompleted = $quests->whereNotNull('completions')->map(static fn($quest) => $quest['completions'])->flatten()->count(); // Unfortunately, the number shown in-game might differ from the actual amount
 
             if ($request->has('no_3d_avatar')) {
                 [, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);
@@ -119,8 +114,6 @@
 
         /**
          * @param $image
-         *
-         * @return array
          */
         protected static function getColours($image): array {
             $black  = imagecolorallocate($image, 0, 0, 0);

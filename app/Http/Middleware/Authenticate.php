@@ -48,9 +48,11 @@
          *
          * @return string
          */
+        #[\Override]
         protected function redirectTo($request) {
             if (!$request->expectsJson()) {
                 return route('login');
             }
+            return null;
         }
     }

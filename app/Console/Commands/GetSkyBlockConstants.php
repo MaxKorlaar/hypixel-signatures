@@ -74,7 +74,6 @@
         /**
          * Execute the console command.
          *
-         * @return int
          * @throws RequestException|JsonException
          * @throws FileNotFoundException
          */

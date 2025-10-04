@@ -36,31 +36,19 @@
      * Class Polygon
      */
     class Polygon {
-        private $_dots;
-        private $_colour;
         private $_isProjected = false;
-        private $_face = 'w';
-        private $_faceDepth = 0;
 
         /**
          * @param $dots
          * @param $colour
          */
-        public function __construct($dots, $colour) {
-            $this->_dots   = $dots;
-            $this->_colour = $colour;
-            $coord_0       = $dots[0]->getOriginCoord();
-            $coord_1       = $dots[1]->getOriginCoord();
-            $coord_2       = $dots[2]->getOriginCoord();
+        public function __construct(private $_dots, private $_colour) {
+            $coord_0       = $this->_dots[0]->getOriginCoord();
+            $coord_1       = $this->_dots[1]->getOriginCoord();
+            $coord_2       = $this->_dots[2]->getOriginCoord();
             if ($coord_0['x'] == $coord_1['x'] && $coord_1['x'] == $coord_2['x']) {
-                $this->_face      = 'x';
-                $this->_faceDepth = $coord_0['x'];
             } elseif ($coord_0['y'] == $coord_1['y'] && $coord_1['y'] == $coord_2['y']) {
-                $this->_face      = 'y';
-                $this->_faceDepth = $coord_0['y'];
             } elseif ($coord_0['z'] == $coord_1['z'] && $coord_1['z'] == $coord_2['z']) {
-                $this->_face      = 'z';
-                $this->_faceDepth = $coord_0['z'];
             }
         }
 
@@ -126,7 +114,7 @@
                 $points_2d[] = ($coord['y'] - $minY) * $ratio;
                 $nb_points++;
             }
-            if (!($same_plan_x || $same_plan_y)) {
+            if (!$same_plan_x && !$same_plan_y) {
                 $colour = imagecolorallocate($image, $r, $g, $b);
                 imagefilledpolygon($image, $points_2d, $nb_points, $colour);
             }
@@ -152,23 +140,6 @@
             foreach ($this->_dots as &$dot) {
                 $dot->preProject($dx, $dy, $dz, $cos_alpha, $sin_alpha, $cos_omega, $sin_omega);
             }
-        }
-
-        /**
-         * @return string
-         */
-        private function getFace() {
-            return $this->_face;
-        }
-
-        /**
-         * @return int
-         */
-        private function getFaceDepth() {
-            if (!$this->_isProjected) {
-                $this->project();
-            }
-            return $this->_faceDepth;
         }
 
         public function project() {

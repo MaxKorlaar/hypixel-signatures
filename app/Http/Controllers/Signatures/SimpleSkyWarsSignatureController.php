@@ -65,11 +65,7 @@
             $kills  = $stats->getInt('kills');
             $deaths = $stats->getInt('deaths');
 
-            if ($deaths !== 0) {
-                $kd = round($kills / $deaths, 2);
-            } else {
-                $kd = 'None';
-            }
+            $kd = $deaths !== 0 ? round($kills / $deaths, 2) : 'None';
 
             $artwork = imagecreatefrompng(resource_path('images/hypixel/artwork/Skywars-175.png'));
 
@@ -82,7 +78,7 @@
             imagettftext($image, 30, 0, $textBegin, 92, $textColor, $fontNeutonRegular, number_format($kills) . ' kills');
             imagettftext($image, 30, 0, $textBegin, 138, $textColor, $fontNeutonRegular, $kd . ' k/d ratio');
 
-            imagettftext($image, 12, 0, $textBegin, 165, $grey, $fontNeutonLight, config('signatures.watermark')); // Watermark/advertisement
+            imagettftext($image, 12, 0, $textBegin, 165, $grey, $fontNeutonLight, (string) config('signatures.watermark')); // Watermark/advertisement
 
             return response(Image::read($image)->encodeByExtension('png'))
                 ->header('Content-Type', 'image/png')

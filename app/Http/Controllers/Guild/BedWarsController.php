@@ -52,8 +52,6 @@ namespace App\Http\Controllers\Guild;
      */
     class BedWarsController extends MemberController {
         /**
-         * @param Request $request
-         * @param string  $nameOrId
          *
          * @return array[]|Application|Factory|RedirectResponse|View
          * @throws HypixelFetchException
@@ -92,7 +90,6 @@ namespace App\Http\Controllers\Guild;
 
 
         /**
-         * @param Guild $guild
          *
          * @return array[]
          * @throws HypixelPHPException
@@ -116,29 +113,13 @@ namespace App\Http\Controllers\Guild;
 
                 $gamesPlayed = $stats->getInt('games_played_bedwars', 0);
 
-                if ($totalDeaths !== 0) {
-                    $totalKd = round($totalKills / $totalDeaths, 2);
-                } else {
-                    $totalKd = 'N/A';
-                }
+                $totalKd = $totalDeaths !== 0 ? round($totalKills / $totalDeaths, 2) : 'N/A';
 
-                if ($wins !== 0 && $gamesPlayed !== 0) {
-                    $winsPercentage = round(($wins / $gamesPlayed) * 100, 1);
-                } else {
-                    $winsPercentage = 0;
-                }
+                $winsPercentage = $wins !== 0 && $gamesPlayed !== 0 ? round(($wins / $gamesPlayed) * 100, 1) : 0;
 
-                if ($deaths !== 0) {
-                    $kd = round($kills / $deaths, 2);
-                } else {
-                    $kd = 'N/A';
-                }
+                $kd = $deaths !== 0 ? round($kills / $deaths, 2) : 'N/A';
 
-                if ($finalDeaths !== 0) {
-                    $finalKd = round($finalKills / $finalDeaths, 2);
-                } else {
-                    $finalKd = 'N/A';
-                }
+                $finalKd = $finalDeaths !== 0 ? round($finalKills / $finalDeaths, 2) : 'N/A';
 
                 $achievements = $player->getArray('achievements');
 

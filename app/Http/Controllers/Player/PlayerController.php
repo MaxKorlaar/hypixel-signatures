@@ -44,9 +44,7 @@
      */
     class PlayerController extends Controller {
         /**
-         * @param string $username
          *
-         * @return array
          * @throws InvalidArgumentException
          * @throws JsonException
          */
@@ -57,9 +55,7 @@
         }
 
         /**
-         * @param string $uuid
          *
-         * @return array
          * @throws InvalidArgumentException
          * @throws JsonException
          */

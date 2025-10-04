@@ -53,10 +53,6 @@
         private int $grey;
 
         /**
-         * @param Request $request
-         * @param Player  $player
-         *
-         * @return Response
          * @throws HypixelPHPException
          * @throws Exception
          */
@@ -83,17 +79,13 @@
 
             $kd = $this->getKD($kills, $deaths);
 
-            if ($wins !== 0) {
-                $winsPercentage = round(($wins / ($wins + $losses)) * 100, 2);
-            } else {
-                $winsPercentage = 0;
-            }
+            $winsPercentage = $wins !== 0 ? round(($wins / ($wins + $losses)) * 100, 2) : 0;
 
             [$textX, $textBeneathAvatarX] = $this->addBasicItems($request, $player, $generalImage, 'General SkyWars statistics');
 
             $this->addStatistics($generalImage, $textX, $textBeneathAvatarX, $wins, $kills, $kd, false, $winsPercentage);
 
-            ColourHelper::minecraftStringToTTFText($generalImage, $this->fontSourceSansProLight, 20, $textBeneathAvatarX, 114, '§0Level: ' . mb_substr($levelFormatted, 0, -1)); // SkyWars level
+            ColourHelper::minecraftStringToTTFText($generalImage, $this->fontSourceSansProLight, 20, $textBeneathAvatarX, 114, '§0Level: ' . mb_substr((string) $levelFormatted, 0, -1)); // SkyWars level
 
             $this->addWatermark($generalImage, $this->fontSourceSansProLight, 650, 160); // Watermark/advertisement
 
@@ -113,11 +105,7 @@
 
             $kd = $this->getKD($kills, $deaths);
 
-            if ($wins !== 0) {
-                $winsPercentage = round(($wins / ($wins + $losses)) * 100, 2);
-            } else {
-                $winsPercentage = 0;
-            }
+            $winsPercentage = $wins !== 0 ? round(($wins / ($wins + $losses)) * 100, 2) : 0;
 
             $this->addStatistics($soloImage, $textX, $textBeneathAvatarX, $wins, $kills, $kd, $survivedPlayers, $winsPercentage);
             $this->addWatermark($soloImage, $this->fontSourceSansProLight, 650, 160); // Watermark/advertisement
@@ -138,11 +126,7 @@
 
             $kd = $this->getKD($kills, $deaths);
 
-            if ($wins !== 0) {
-                $winsPercentage = round(($wins / ($wins + $losses)) * 100, 2);
-            } else {
-                $winsPercentage = 0;
-            }
+            $winsPercentage = $wins !== 0 ? round(($wins / ($wins + $losses)) * 100, 2) : 0;
 
             $this->addStatistics($megaImage, $textX, $textBeneathAvatarX, $wins, $kills, $kd, $survivedPlayers, $winsPercentage);
             $this->addWatermark($megaImage, $this->fontSourceSansProLight, 650, 160); // Watermark/advertisement
@@ -163,11 +147,7 @@
 
             $kd = $this->getKD($kills, $deaths);
 
-            if ($wins !== 0) {
-                $winsPercentage = round(($wins / ($wins + $losses)) * 100, 2);
-            } else {
-                $winsPercentage = 0;
-            }
+            $winsPercentage = $wins !== 0 ? round(($wins / ($wins + $losses)) * 100, 2) : 0;
 
             $this->addStatistics($teamsImage, $textX, $textBeneathAvatarX, $wins, $kills, $kd, $survivedPlayers, $winsPercentage);
             $this->addWatermark($teamsImage, $this->fontSourceSansProLight, 650, 160); // Watermark/advertisement
@@ -188,11 +168,7 @@
 
             $kd = $this->getKD($kills, $deaths);
 
-            if ($wins !== 0) {
-                $winsPercentage = round(($wins / ($wins + $losses)) * 100, 2);
-            } else {
-                $winsPercentage = 0;
-            }
+            $winsPercentage = $wins !== 0 ? round(($wins / ($wins + $losses)) * 100, 2) : 0;
 
             $this->addStatistics($rankedImage, $textX, $textBeneathAvatarX, $wins, $kills, $kd, $survivedPlayers, $winsPercentage);
             $this->addWatermark($rankedImage, $this->fontSourceSansProLight, 650, 160); // Watermark/advertisement
@@ -222,6 +198,7 @@
         /**
          * @inheritDoc
          */
+        #[\Override]
         public static function getImage($width, $height) {
             $image       = imagecreatetruecolor($width, $height);
             $transparent = imagecolorallocatealpha($image, 254, 254, 254, 0);
@@ -245,14 +222,9 @@
         }
 
         /**
-         * @param Request  $request
-         * @param Player   $player
          *
          * @param resource $image
          *
-         * @param string   $title
-         *
-         * @return array
          * @throws HypixelPHPException
          */
         private function addBasicItems(Request $request, Player $player, &$image, string $title): array {
@@ -283,13 +255,8 @@
 
         /**
          * @param           $image
-         * @param int       $textX
-         * @param int       $textBeneathAvatarX
-         * @param int       $wins
-         * @param int       $kills
          * @param           $kd
          * @param int|false $survived
-         * @param int       $winsPercentage
          */
         private function addStatistics(&$image, int $textX, int $textBeneathAvatarX, int $wins, int $kills, $kd, $survived, int $winsPercentage): void {
             $linesY = [60, 95, 130]; // Y starting points of the various text lines

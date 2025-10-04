@@ -50,10 +50,7 @@
     class BedWarsSignatureController extends BaseSignature {
 
         /**
-         * @param Request $request
-         * @param Player  $player
          *
-         * @return Response
          * @throws HypixelPHPException
          */
         protected function signature(Request $request, Player $player): Response {
@@ -76,17 +73,9 @@
             $deaths     = $stats->get('final_deaths_bedwars', 0);
             $games      = $stats->getInt('games_played_bedwars', 0);
 
-            if ($deaths !== 0) {
-                $kd = round($finalKills / $deaths, 2);
-            } else {
-                $kd = 'None';
-            }
+            $kd = $deaths !== 0 ? round($finalKills / $deaths, 2) : 'None';
 
-            if ($wins !== 0 && $games !== 0) {
-                $winsPercentage = round(($wins / ($games)) * 100, 2);
-            } else {
-                $winsPercentage = 0;
-            }
+            $winsPercentage = $wins !== 0 && $games !== 0 ? round(($wins / ($games)) * 100, 2) : 0;
 
             if ($request->has('no_3d_avatar')) {
                 [, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);

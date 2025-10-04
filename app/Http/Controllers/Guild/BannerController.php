@@ -48,9 +48,6 @@ namespace App\Http\Controllers\Guild;
      */
     class BannerController extends Controller {
         /**
-         * @param string $guildId
-         *
-         * @return Response
          * @throws HypixelPHPException
          */
         public function getBanner(string $guildId): Response {

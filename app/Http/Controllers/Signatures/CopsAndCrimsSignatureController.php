@@ -71,11 +71,7 @@
             $roundWins     = $stats->getInt('round_wins');
             $headshotKills = $stats->getInt('headshot_kills');
 
-            if ($deaths !== 0) {
-                $kd = round($kills / $deaths, 2);
-            } else {
-                $kd = 'None';
-            }
+            $kd = $deaths !== 0 ? round($kills / $deaths, 2) : 'None';
 
             if ($request->has('no_3d_avatar')) {
                 [, $textX, $textBeneathAvatarX] = $this->get2dAvatar($player, $image);

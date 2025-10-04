@@ -55,9 +55,8 @@
 
         /**
          * Define your route model bindings, pattern filters, etc.
-         *
-         * @return void
          */
+        #[\Override]
         public function boot(): void {
             Route::pattern('uuid', '[0-9a-f]{32}');
 
@@ -68,43 +67,31 @@
 
         /**
          * Configure the rate limiters for the application.
-         *
-         * @return void
          */
         protected function configureRateLimiting(): void {
-            RateLimiter::for('player-status', static function (Request $request) {
-                return Limit::perHour(120)->by($request->ip())->response(function (Request $request, array $headers) {
-                    $retryAfter = $headers['Retry-After'] ?? 3600;
-                    return response()->view('errors.429', ['retry_after' => $retryAfter], 429);
-                });
-            });
+            RateLimiter::for('player-status', static fn(Request $request) => Limit::perHour(120)->by($request->ip())->response(function (Request $request, array $headers) {
+                $retryAfter = $headers['Retry-After'] ?? 3600;
+                return response()->view('errors.429', ['retry_after' => $retryAfter], 429);
+            }));
 
-            RateLimiter::for('friends', static function (Request $request) {
-                return Limit::perHour(200)->by($request->ip())->response(function (Request $request, array $headers) {
-                    $retryAfter = $headers['Retry-After'] ?? 3600;
-                    return response()->view('errors.429', ['retry_after' => $retryAfter], 429);
-                });
-            });
+            RateLimiter::for('friends', static fn(Request $request) => Limit::perHour(200)->by($request->ip())->response(function (Request $request, array $headers) {
+                $retryAfter = $headers['Retry-After'] ?? 3600;
+                return response()->view('errors.429', ['retry_after' => $retryAfter], 429);
+            }));
 
-            RateLimiter::for('guild', static function (Request $request) {
-                return Limit::perHour(400)->by($request->ip())->response(function (Request $request, array $headers) {
-                    $retryAfter = $headers['Retry-After'] ?? 3600;
-                    return response()->view('errors.429', ['retry_after' => $retryAfter], 429);
-                });
-            });
+            RateLimiter::for('guild', static fn(Request $request) => Limit::perHour(400)->by($request->ip())->response(function (Request $request, array $headers) {
+                $retryAfter = $headers['Retry-After'] ?? 3600;
+                return response()->view('errors.429', ['retry_after' => $retryAfter], 429);
+            }));
 
-            RateLimiter::for('player', static function (Request $request) {
-                return Limit::perHour(600)->by($request->ip())->response(function (Request $request, array $headers) {
-                    $retryAfter = $headers['Retry-After'] ?? 3600;
-                    return response()->view('errors.429', ['retry_after' => $retryAfter], 429);
-                });
-            });
+            RateLimiter::for('player', static fn(Request $request) => Limit::perHour(600)->by($request->ip())->response(function (Request $request, array $headers) {
+                $retryAfter = $headers['Retry-After'] ?? 3600;
+                return response()->view('errors.429', ['retry_after' => $retryAfter], 429);
+            }));
         }
 
         /**
          * Define the routes for the application.
-         *
-         * @return void
          */
         public function map(): void {
             //$this->mapApiRoutes();
@@ -119,8 +106,6 @@
          * Define the "api" routes for the application.
          *
          * These routes are typically stateless.
-         *
-         * @return void
          */
         protected function mapApiRoutes(): void {
             Route::prefix('api')
@@ -133,8 +118,6 @@
          * Define the "web" routes for the application.
          *
          * These routes all receive session state, CSRF protection, etc.
-         *
-         * @return void
          */
         protected function mapWebRoutes(): void {
             Route::middleware('web')

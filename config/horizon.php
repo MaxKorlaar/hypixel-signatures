@@ -174,37 +174,19 @@
             'production' => [
                 'supervisor-1' => [
                     'connection'  => 'redis',
-                    'queue'       => ['default'],
+                    'queue'       => ['default', 'hypixel-api'],
                     'balance'     => 'auto',
-                    'processes'   => 1,
+                    'processes'   => 8,
                     'tries'       => 5,
-                    'retry_after' => 120,
-                    'timeout'     => 60
-                ],
-                'supervisor-2' => [
-                    'connection'  => 'redis',
-                    'queue'       => ['hypixel-api'],
-                    'balance'     => 'auto',
-                    'processes'   => 20,
-                    'tries'       => 1,
                     'retry_after' => 60,
-                    'timeout'     => 15
-                ],
+                    'timeout'     => 60
+                ]
             ],
 
             'local' => [
                 'supervisor-1' => [
                     'connection'  => 'redis',
-                    'queue'       => ['default'],
-                    'balance'     => 'auto',
-                    'processes'   => 3,
-                    'tries'       => 5,
-                    'retry_after' => 60,
-                    'timeout'     => 30
-                ],
-                'supervisor-2' => [
-                    'connection'  => 'redis',
-                    'queue'       => ['hypixel-api'],
+                    'queue'       => ['default', 'hypixel-api'],
                     'balance'     => 'auto',
                     'processes'   => 20,
                     'tries'       => 5,

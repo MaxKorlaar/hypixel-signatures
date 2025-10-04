@@ -52,8 +52,6 @@
      */
     class TNTGamesController extends MemberController {
         /**
-         * @param Request $request
-         * @param string  $nameOrId
          *
          * @return array[]|Application|Factory|RedirectResponse|View
          * @throws HypixelFetchException
@@ -91,9 +89,6 @@
         }
 
         /**
-         * @param Guild $guild
-         *
-         * @return array
          * @throws HypixelPHPException
          */
         private function getTNTGamesMemberList(Guild $guild): array {
@@ -107,11 +102,7 @@
                 $recordTNTRun = gmdate('i:s', $stats->getInt('record_tntrun'));
                 $recordPVPRun = gmdate('i:s', $stats->getInt('record_pvprun'));
 
-                if ($deathsWizards > 0) {
-                    $kdWizards = round($killsWizards / $deathsWizards, 2);
-                } else {
-                    $kdWizards = 'N/A';
-                }
+                $kdWizards = $deathsWizards > 0 ? round($killsWizards / $deathsWizards, 2) : 'N/A';
 
                 return [
                     'wins_bowspleef'  => $stats->getInt('wins_bowspleef'),
