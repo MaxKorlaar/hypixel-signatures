@@ -1,6 +1,6 @@
 <?php
     /*
- * Copyright (c) 2020-2024 Max Korlaar
+ * Copyright (c) 2020-2025 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,5 +36,6 @@
         'friends'       => 'Friends',
         'guild'         => 'Guild',
         'player_status' => 'Online Status',
-        'beta_warning' => '<b>Heads up!</b> Hypixel.Paniek.de is still in beta, and may occasionally break. If you have any feedback, or would like to see more functionality added to this site, don\'t hesitate to get in touch with me: <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">@MaxKorlaar on Twitter</a> or on the <a href="https://hypixel.net/threads/2880476/" target="_blank" rel="noopener">Hypixel Forums</a>.'
+        'beta_warning' => '<b>Heads up!</b> Hypixel.Paniek.de is still in beta, and may occasionally break. If you have any feedback, or would like to see more functionality added to this site, don\'t hesitate to get in touch with me: <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">@MaxKorlaar on Twitter</a> or on the <a href="https://hypixel.net/threads/2880476/" target="_blank" rel="noopener">Hypixel Forums</a>.',
+        'looking_for_maintainers' => '<b>Developers wanted!</b> I\'m looking for maintainers to help me keep this site up-to-date with the latest changes to Hypixel\'s minigames. If you\'re interested, please check out the <a href="https://github.com/MaxKorlaar/hypixel-signatures" target="_blank" rel="noopener">GitHub repository</a>. Sadly, I am quite occupied nowadays and don\'t have the resources to update the project by myself. <a href="https://twitter.com/MaxKorlaar" target="_blank" rel="noopener">Find me on Twitter/X</a> &centerdot; <a href="https://twitter.com/MaxKorlaar" target="_blank">Check out my freelance remote full stack web development work</a>',
     ];
