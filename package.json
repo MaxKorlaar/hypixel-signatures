@@ -8,8 +8,8 @@
     "production": "mix --production"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.2.1",
-    "@vue/compiler-sfc": "^3.5.13",
+    "@vitejs/plugin-vue" : "^5.2.4",
+    "@vue/compiler-sfc" : "^3.5.22",
     "axios": "^1.12.2",
     "browser-sync": "^2.29.3",
     "browser-sync-webpack-plugin": "^2.4.0",
@@ -23,7 +23,7 @@
     "resolve-url-loader": "^4.0.0",
     "sass": "^1.93.2",
     "sass-loader": "^16.0.5",
-    "vue": "^3.5.13",
+    "vue" : "^3.5.22",
     "vue-loader": "^17.4.2"
   },
   "dependencies": {
