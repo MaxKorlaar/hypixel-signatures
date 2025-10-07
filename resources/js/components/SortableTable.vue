@@ -40,11 +40,14 @@
                     <slot v-bind:item="item"></slot>
                 </tr>
                 <tr v-if="index > 3 && (index) % 4 === 0">
-                    <InFeedAdsense ins-style="display:block;height: 75px"
-                                   data-ad-client="ca-pub-9570587520778628"
-                                   data-ad-layout-key="-ez+5q+5e-d4+4m"
-                                   data-ad-slot="8224948143">
-                    </InFeedAdsense>
+                    <td colspan="100%">
+                        <Adsense adStyle="display:block;height: 75px"
+                                 clientId="ca-pub-9570587520778628"
+                                 format="fluid"
+                                 layoutKey="-ez+5q+5e-d4+4m"
+                                 slotId="8224948143">
+                        </Adsense>
+                    </td>
                 </tr>
             </template>
         </tbody>
@@ -55,16 +58,10 @@
 </template>
 
 <script>
-import Ads from 'vue-google-adsense';
-import vue_script2 from "vue-script2";
-import Vue from "vue";
-
-Vue.use(vue_script2);
-Vue.use(Ads.InFeedAdsense);
-
 export default {
-    name:     "SortableTable",
-    props:    ['data'],
+    name:       "SortableTable",
+    props:      ['data'],
+    inject:     ['emitter'],
     data() {
         return {
             sort: {
@@ -89,8 +86,8 @@ export default {
             return this.data;
         }
     },
-    mounted() {
-        this.$on('sortBy', field => {
+    created() {
+        this.emitter.on('sortBy', field => {
             if (field === this.sort.by) {
                 switch (this.sort.direction) {
                     case "asc":
@@ -105,7 +102,7 @@ export default {
                 this.sort.direction = 'asc';
                 this.sort.by        = field;
             }
-        })
+        });
     }
 }
 </script>

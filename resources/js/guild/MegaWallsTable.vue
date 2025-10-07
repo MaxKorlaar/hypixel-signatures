@@ -57,25 +57,25 @@
                     <span class="formatted-name" v-html="data.item.formatted_name"></span>
                 </td>
                 <td>
-                    {{ data.item.wins|number_format }}
+                    {{ number_format(data.item.wins) }}
                 </td>
                 <td>
-                    {{ data.item.kills|number_format }}
+                    {{ number_format(data.item.kills) }}
                 </td>
                 <td>
-                    {{ data.item.assists|number_format }}
+                    {{ number_format(data.item.assists) }}
                 </td>
                 <td>
-                    {{ data.item.kd|number_format }}
+                    {{ number_format(data.item.kd) }}
                 </td>
                 <td>
                     {{ data.item.wins_percentage }}%
                 </td>
                 <td>
-                    {{ data.item.kills_final|number_format }}
+                    {{ number_format(data.item.kills_final) }}
                 </td>
                 <td>
-                    {{ data.item.kd_final|number_format }}
+                    {{ number_format(data.item.kd_final) }}
                 </td>
             </template>
             <template v-slot:footer>
@@ -112,6 +112,12 @@ import CalculatedCell from "../components/CalculatedCell";
 export default {
     name:       "MegaWallsTable",
     components: {SortableTable, SortableHeader, CalculatedCell},
-    props:      ['members']
+    props:      ['members'],
+    methods:    {
+        number_format(value) {
+            if (isNaN(value)) return value;
+            return (new Intl.NumberFormat()).format(value);
+        }
+    }
 }
 </script>

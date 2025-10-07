@@ -58,28 +58,28 @@
                     <span class="formatted-name" v-html="data.item.formatted_name"></span>
                 </td>
                 <td>
-                    {{ data.item.wins|number_format }}
+                    {{ number_format(data.item.wins) }}
                 </td>
                 <td>
-                    {{ data.item.kills|number_format }}
+                    {{ number_format(data.item.kills) }}
                 </td>
                 <td>
-                    {{ data.item.kd|number_format }}
+                    {{ number_format(data.item.kd) }}
                 </td>
                 <td>
                     {{ data.item.wins_percentage }}%
                 </td>
                 <td>
-                    {{ data.item.wins_detective|number_format }}
+                    {{ number_format(data.item.wins_detective) }}
                 </td>
                 <td>
-                    {{ data.item.wins_murderer|number_format }}
+                    {{ number_format(data.item.wins_murderer) }}
                 </td>
                 <td>
-                    {{ data.item.quickest_detective_win_time|time_format }}
+                    {{ time_format(data.item.quickest_detective_win_time) }}
                 </td>
                 <td>
-                    {{ data.item.quickest_murderer_win_time|time_format }}
+                    {{ time_format(data.item.quickest_murderer_win_time) }}
                 </td>
             </template>
             <template v-slot:footer>
@@ -121,7 +121,11 @@ export default {
     components: {SortableTable, SortableHeader, CalculatedCell},
     props:      ['members'],
     methods:    {
-        formatTime
+        number_format(value) {
+            if (isNaN(value)) return value;
+            return (new Intl.NumberFormat()).format(value);
+        },
+        time_format: formatTime
     }
 }
 </script>

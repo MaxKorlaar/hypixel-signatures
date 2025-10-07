@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2024 Max Korlaar
+ * Copyright (c) 2020-2025 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,29 +28,28 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import Vue from 'vue';
-import Ads from 'vue-google-adsense';
-import vue_script2 from "vue-script2";
-
-Vue.use(vue_script2);
-Vue.use(Ads.InFeedAdsense);
+import {createApp} from 'vue';
+import mitt from 'mitt';
+import {Adsense} from 'vue3-google-adsense';
 
 const axios = require('axios').default;
 
-// noinspection ObjectAllocationIgnored
-new Vue({
-    el:       '#friends-list-app',
-    data:     {
-        friends:               [],
-        meta:                  {
-            total_friends: 0,
-            loaded:        0
-        },
-        urls:                  {
-            get_friends: ''
-        },
-        loading:               true,
-        visible_friends_count: 150
+const emitter = mitt();
+
+const app = createApp({
+    data() {
+        return {
+            friends:               [],
+            meta:                  {
+                total_friends: 0,
+                loaded:        0
+            },
+            urls:                  {
+                get_friends: ''
+            },
+            loading:               true,
+            visible_friends_count: 150
+        }
     },
     methods:  {
         getFriendsInterval() {
@@ -79,8 +78,6 @@ new Vue({
             });
         }
     },
-    watch:    {},
-    computed: {},
     mounted() {
         this.friends = window.Paniek.friends;
         this.meta    = window.Paniek.meta;
@@ -101,3 +98,7 @@ new Vue({
         });
     }
 });
+
+app.component('Adsense', Adsense);
+app.provide('emitter', emitter);
+app.mount('#friends-list-app');

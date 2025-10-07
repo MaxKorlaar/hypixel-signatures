@@ -67,11 +67,13 @@
                         </label>
                     </div>
                     {% if config_get('signatures.google_ads_client_id') %}
-                        <in-feed-adsense v-if="index === current_signature_group.signatures.length - 2 || index % 4 === 0"
-                                         data-ad-client="{{ config_get('signatures.google_ads_client_id') }}"
-                                         data-ad-layout-key="-75+ev-15-20+86"
-                                         data-ad-slot="2775738048">
-                        </in-feed-adsense>
+                        <adsense v-if="index === current_signature_group.signatures.length - 2 || index % 4 === 0"
+                                 ad-style="display:block"
+                                 format="fluid"
+                                 layout-key="-75+ev-15-20+86"
+                                 client-id="{{ config_get('signatures.google_ads_client_id') }}"
+                                 slot-id="2775738048">
+                        </adsense>
                     {% endif %}
                 </template>
             </div>

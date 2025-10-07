@@ -85,44 +85,44 @@
                 </td>
                 <!--Bow Spleef-->
                 <td>
-                    {{ data.item.wins_bowspleef|number_format }}
+                    {{ number_format(data.item.wins_bowspleef) }}
                 </td>
                 <td>
-                    {{ data.item.shots_bowspleef|number_format }}
+                    {{ number_format(data.item.shots_bowspleef) }}
                 </td>
                 <!--TNT Run-->
                 <td>
-                    {{ data.item.wins_tntrun|number_format }}
+                    {{ number_format(data.item.wins_tntrun) }}
                 </td>
                 <td>
                     {{ data.item.record_tntrun }}
                 </td>
                 <!--PVP Run-->
                 <td>
-                    {{ data.item.wins_pvprun|number_format }}
+                    {{ number_format(data.item.wins_pvprun) }}
                 </td>
                 <td>
                     {{ data.item.record_pvprun }}
                 </td>
                 <!--TNT Tag-->
                 <td>
-                    {{ data.item.wins_tnttag|number_format }}
+                    {{ number_format(data.item.wins_tnttag) }}
                 </td>
                 <td>
-                    {{ data.item.kills_tnttag|number_format }}
+                    {{ number_format(data.item.kills_tnttag) }}
                 </td>
                 <!--Wizards-->
                 <td>
-                    {{ data.item.wins_wizards|number_format }}
+                    {{ number_format(data.item.wins_wizards) }}
                 </td>
                 <td>
-                    {{ data.item.kills_wizards|number_format }}
+                    {{ number_format(data.item.kills_wizards) }}
                 </td>
                 <td>
-                    {{ data.item.assists_wizards|number_format }}
+                    {{ number_format(data.item.assists_wizards) }}
                 </td>
                 <td>
-                    {{ data.item.kd_wizards|number_format }}
+                    {{ number_format(data.item.kd_wizards) }}
                 </td>
             </template>
             <template v-slot:footer>
@@ -182,7 +182,11 @@ export default {
     components: {SortableTable, SortableHeader, CalculatedCell},
     props:      ['members'],
     methods:    {
-        formatTime
+        number_format(value) {
+            if (isNaN(value)) return value;
+            return (new Intl.NumberFormat()).format(value);
+        },
+        time_format: formatTime
     }
 }
 </script>

@@ -75,36 +75,36 @@
                 </td>
                 <!--Total-->
                 <td>
-                    {{ data.item.level|number_format }}
+                    {{ number_format(data.item.level) }}
                 </td>
                 <td>
-                    {{ data.item.wins|number_format }}
+                    {{ number_format(data.item.wins) }}
                 </td>
                 <td>
-                    {{ data.item.kills|number_format }}
+                    {{ number_format(data.item.kills) }}
                 </td>
                 <td>
-                    {{ data.item.kd|number_format }}
+                    {{ number_format(data.item.kd) }}
                 </td>
                 <td>
-                    {{ data.item.wins_percentage|number_format }}%
+                    {{ number_format(data.item.wins_percentage) }}%
                 </td>
                 <td>
-                    {{ data.item.beds_broken|number_format }}
+                    {{ number_format(data.item.beds_broken) }}
                 </td>
                 <!--Normal-->
                 <td>
-                    {{ data.item.kills_normal|number_format }}
+                    {{ number_format(data.item.kills_normal) }}
                 </td>
                 <td>
-                    {{ data.item.kd_normal|number_format }}
+                    {{ number_format(data.item.kd_normal) }}
                 </td>
                 <!--Final-->
                 <td>
-                    {{ data.item.kills_final|number_format }}
+                    {{ number_format(data.item.kills_final) }}
                 </td>
                 <td>
-                    {{ data.item.kd_final|number_format }}
+                    {{ number_format(data.item.kd_final) }}
                 </td>
             </template>
             <template v-slot:footer>
@@ -153,6 +153,12 @@ import CalculatedCell from "../components/CalculatedCell";
 export default {
     name:       "BedWarsTable",
     components: {SortableTable, SortableHeader, CalculatedCell},
-    props:      ['members']
+    props:      ['members'],
+    methods:    {
+        number_format(value) {
+            if (isNaN(value)) return value;
+            return (new Intl.NumberFormat()).format(value);
+        }
+    }
 }
 </script>

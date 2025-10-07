@@ -56,7 +56,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/status.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .version()
-    .vue()
+    .vue({version: 3})
     .extract(['vue', 'axios'])
     .purgeCss()
     .webpackConfig({
@@ -64,6 +64,11 @@ mix.js('resources/js/app.js', 'public/js')
             new MomentLocalesPlugin({
                 localesToKeep: ['nl', 'de'],
             }),
+            new (require('webpack')).DefinePlugin({
+                __VUE_OPTIONS_API__: JSON.stringify(true),
+                __VUE_PROD_DEVTOOLS__: JSON.stringify(false),
+                __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: JSON.stringify(false)
+            })
         ]
     })
     .browserSync({
