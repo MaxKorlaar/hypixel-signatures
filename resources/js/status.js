@@ -28,21 +28,21 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import Vue from 'vue';
+import { createApp } from 'vue';
 import * as moment from "moment";
 
 const axios = require('axios').default;
 
-// noinspection ObjectAllocationIgnored
-new Vue({
-    el:       '#player-status-app',
-    data:     {
-        urls:    {
-            get_status: ''
-        },
-        loading: true,
-        status:  null,
-        player:  {}
+const app = createApp({
+    data() {
+        return {
+            urls:    {
+                get_status: ''
+            },
+            loading: true,
+            status:  null,
+            player:  {}
+        }
     },
     methods:  {
         getStatusInterval() {
@@ -67,7 +67,6 @@ new Vue({
             });
         }
     },
-    watch:    {},
     computed: {
         last_seen() {
             return moment(this.player.last_seen, undefined, window.Paniek.language).fromNow();
@@ -85,3 +84,5 @@ new Vue({
         }, 30 * 1000);
     }
 });
+
+app.mount('#player-status-app');
