@@ -20,7 +20,7 @@
     "laravel/tinker": "^2.7",
     "lunakid/anim-gif": "dev-dev-array-access-bug",
     "marvinlabs/laravel-discord-logger": "^1.1",
-    "monicahq/laravel-cloudflare": "^3",
+    "monicahq/laravel-cloudflare": "^4",
     "morrislaptop/laravel-queue-clear": "^1.2",
     "plancke/hypixel-php": "^1.5",
     "pocketmine/nbt": "^1.0.0",
@@ -38,7 +38,7 @@
     "laravel/envoy": "^2.8",
     "mockery/mockery": "^1.6",
     "nunomaduro/collision": "^8.0",
-    "phpunit/phpunit": "^11.0",
+    "phpunit/phpunit": "^12.4",
     "rector/rector": "^2.1",
     "roave/security-advisories": "dev-latest"
   },
