@@ -27,7 +27,7 @@
     "vue-loader": "^17.4.2"
   },
   "dependencies": {
-    "@primer/css": "^15.2.0",
+    "@primer/css": "^22.0.2",
     "bourbon": "^7.3.0",
     "mitt": "^3.0.1",
     "moment": "^2.30.1",
