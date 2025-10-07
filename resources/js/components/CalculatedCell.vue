@@ -31,7 +31,7 @@
 
 <template>
     <td>
-        {{ value|number_format }}
+        {{ number_format(value) }}
         <slot></slot>
     </td>
 </template>
@@ -63,6 +63,12 @@ export default {
             formatterMethod() {
                 return typeof this.formatter === 'undefined' ? (value => round(value, this.precision)) : this.formatter;
             }
+        }
+    },
+    methods:  {
+        number_format(value) {
+            if (isNaN(value)) return value;
+            return (new Intl.NumberFormat()).format(value);
         }
     },
     computed: {
