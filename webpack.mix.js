@@ -56,7 +56,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/status.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .version()
-    .vue()
+    .vue({version: 3})
     .extract(['vue', 'axios'])
     .purgeCss()
     .webpackConfig({

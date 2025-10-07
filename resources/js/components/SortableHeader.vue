@@ -47,6 +47,7 @@ export default {
             default: true
         }
     },
+    inject:   ['emitter'],
     computed: {
         sort_by() {
             return this.$parent.sort.by;
@@ -57,7 +58,7 @@ export default {
     },
     methods:  {
         sort(by) {
-            this.$parent.$emit('sortBy', by);
+            this.emitter.emit('sortBy', by);
         }
     }
 }

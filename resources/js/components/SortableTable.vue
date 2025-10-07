@@ -55,16 +55,13 @@
 </template>
 
 <script>
-import Ads from 'vue-google-adsense';
-import vue_script2 from "vue-script2";
-import Vue from "vue";
-
-Vue.use(vue_script2);
-Vue.use(Ads.InFeedAdsense);
+import { InFeedAdsense } from 'vue-google-adsense';
 
 export default {
-    name:     "SortableTable",
-    props:    ['data'],
+    name:       "SortableTable",
+    components: { InFeedAdsense },
+    props:      ['data'],
+    inject:     ['emitter'],
     data() {
         return {
             sort: {
@@ -89,8 +86,8 @@ export default {
             return this.data;
         }
     },
-    mounted() {
-        this.$on('sortBy', field => {
+    created() {
+        this.emitter.on('sortBy', field => {
             if (field === this.sort.by) {
                 switch (this.sort.direction) {
                     case "asc":
@@ -105,7 +102,7 @@ export default {
                 this.sort.direction = 'asc';
                 this.sort.by        = field;
             }
-        })
+        });
     }
 }
 </script>

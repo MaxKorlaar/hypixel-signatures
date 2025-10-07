@@ -28,7 +28,8 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import Vue from 'vue';
+import { createApp } from 'vue';
+import mitt from 'mitt';
 import SkyWarsTable from "./guild/SkyWarsTable";
 import MembersTable from "./guild/MembersTable";
 import BedWarsTable from "./guild/BedWarsTable";
@@ -40,28 +41,22 @@ import formatTime from "./guild/_filters/timeFormat";
 
 const axios = require('axios').default;
 
-Vue.filter('number_format', value => {
-    if (isNaN(value)) return value;
+const emitter = mitt();
 
-    return (new Intl.NumberFormat()).format(value);
-});
-
-Vue.filter('time_format', formatTime);
-
-// noinspection ObjectAllocationIgnored
-new Vue({
-    el:         '#guild-members-app',
+const app = createApp({
     components: {SkyWarsTable, MembersTable, BedWarsTable, TNTGamesTable, MegaWallsTable, MurderMysteryTable, GeneralStatisticsTable},
-    data:       {
-        members: [],
-        meta:    {
-            total_members: 0,
-            loaded:        0
-        },
-        urls:    {
-            get_members: ''
-        },
-        loading: true
+    data() {
+        return {
+            members: [],
+            meta:    {
+                total_members: 0,
+                loaded:        0
+            },
+            urls:    {
+                get_members: ''
+            },
+            loading: true
+        }
     },
     methods:    {
         getMembersInterval() {
@@ -103,3 +98,14 @@ new Vue({
 
     }
 });
+
+app.config.globalProperties.$filters = {
+    number_format(value) {
+        if (isNaN(value)) return value;
+        return (new Intl.NumberFormat()).format(value);
+    },
+    time_format: formatTime
+};
+
+app.provide('emitter', emitter);
+app.mount('#guild-members-app');

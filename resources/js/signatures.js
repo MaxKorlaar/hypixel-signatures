@@ -28,35 +28,35 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import Vue from 'vue';
-import Ads from 'vue-google-adsense';
-import vue_script2 from "vue-script2";
-
-Vue.use(vue_script2);
-Vue.use(Ads.InFeedAdsense);
+import { createApp } from 'vue';
+import mitt from 'mitt';
+import { InFeedAdsense } from 'vue-google-adsense';
 
 const axios = require('axios').default;
 
-// noinspection ObjectAllocationIgnored
-new Vue({
-    el:       '#signature-app',
-    data:     {
-        signatures:              {},
-        current_signature_group: {},
-        urls:                    {
-            get_uuid:              '',
-            get_profile:           '',
-            get_skyblock_profiles: '',
-        },
-        selected_signature:      null,
-        username:                null,
-        uuid:                    null,
-        loading:                 true,
-        errors:                  {},
-        skyblock: {
-            profile:  null,
-            profiles: [],
-            loading:  true
+const emitter = mitt();
+
+const app = createApp({
+    components: { InFeedAdsense },
+    data() {
+        return {
+            signatures:              {},
+            current_signature_group: {},
+            urls:                    {
+                get_uuid:              '',
+                get_profile:           '',
+                get_skyblock_profiles: '',
+            },
+            selected_signature:      null,
+            username:                null,
+            uuid:                    null,
+            loading:                 true,
+            errors:                  {},
+            skyblock: {
+                profile:  null,
+                profiles: [],
+                loading:  true
+            }
         }
     },
     methods:  {
@@ -224,3 +224,6 @@ new Vue({
         }
     }
 });
+
+app.provide('emitter', emitter);
+app.mount('#signature-app');

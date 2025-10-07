@@ -85,52 +85,52 @@
                 </td>
                 <!--Total-->
                 <td>
-                    {{ data.item.wins|number_format }}
+                    {{ number_format(data.item.wins) }}
                 </td>
                 <td>
-                    {{ data.item.kills|number_format }}
+                    {{ number_format(data.item.kills) }}
                 </td>
                 <td>
-                    {{ data.item.kd|number_format }}
+                    {{ number_format(data.item.kd) }}
                 </td>
                 <td>
                     {{ data.item.wins_percentage }}%
                 </td>
                 <!--Solo-->
                 <td>
-                    {{ data.item.wins_solo|number_format }}
+                    {{ number_format(data.item.wins_solo) }}
                 </td>
                 <td>
-                    {{ data.item.kills_solo|number_format }}
+                    {{ number_format(data.item.kills_solo) }}
                 </td>
                 <td>
-                    {{ data.item.kd_solo|number_format }}
+                    {{ number_format(data.item.kd_solo) }}
                 </td>
                 <td>
                     {{ data.item.wins_percentage_solo }}%
                 </td>
                 <!--Teams-->
                 <td>
-                    {{ data.item.wins_teams|number_format }}
+                    {{ number_format(data.item.wins_teams) }}
                 </td>
                 <td>
-                    {{ data.item.kills_teams|number_format }}
+                    {{ number_format(data.item.kills_teams) }}
                 </td>
                 <td>
-                    {{ data.item.kd_teams|number_format }}
+                    {{ number_format(data.item.kd_teams) }}
                 </td>
                 <td>
                     {{ data.item.wins_percentage_teams }}%
                 </td>
                 <!--Mega-->
                 <td>
-                    {{ data.item.wins_mega|number_format }}
+                    {{ number_format(data.item.wins_mega) }}
                 </td>
                 <td>
-                    {{ data.item.kills_mega|number_format }}
+                    {{ number_format(data.item.kills_mega) }}
                 </td>
                 <td>
-                    {{ data.item.kd_mega|number_format }}
+                    {{ number_format(data.item.kd_mega) }}
                 </td>
                 <td>
                     {{ data.item.wins_percentage_mega }}%
@@ -196,6 +196,12 @@ import CalculatedCell from "../components/CalculatedCell";
 export default {
     name:       "SkyWarsTable",
     components: {CalculatedCell, SortableTable, SortableHeader},
-    props: ['members']
+    props:      ['members'],
+    methods:    {
+        number_format(value) {
+            if (isNaN(value)) return value;
+            return (new Intl.NumberFormat()).format(value);
+        }
+    }
 }
 </script>

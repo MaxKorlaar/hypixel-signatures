@@ -55,19 +55,19 @@
                     <span class="formatted-name" v-html="data.item.formatted_name"></span>
                 </td>
                 <td>
-                    {{ data.item.level|number_format }}
+                    {{ number_format(data.item.level) }}
                 </td>
                 <td>
-                    {{ data.item.achievement_points|number_format }}
+                    {{ number_format(data.item.achievement_points) }}
                 </td>
                 <td>
-                    {{ data.item.karma|number_format }}
+                    {{ number_format(data.item.karma) }}
                 </td>
                 <td>
-                    {{ data.item.quests_completed|number_format }}
+                    {{ number_format(data.item.quests_completed) }}
                 </td>
                 <td>
-                    {{ data.item.challenges_completed|number_format }}
+                    {{ number_format(data.item.challenges_completed) }}
                 </td>
             </template>
             <template v-slot:footer>
@@ -100,6 +100,12 @@ import CalculatedCell from "../components/CalculatedCell";
 export default {
     name:       "GeneralStatisticsTable",
     components: {SortableTable, SortableHeader, CalculatedCell},
-    props:      ['members']
+    props:      ['members'],
+    methods:    {
+        number_format(value) {
+            if (isNaN(value)) return value;
+            return (new Intl.NumberFormat()).format(value);
+        }
+    }
 }
 </script>
