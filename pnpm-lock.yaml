@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@primer/css':
-        specifier: ^15.2.0
-        version: 15.2.0
+        specifier: ^22.0.2
+        version: 22.0.2(@primer/primitives@11.2.0)
       bourbon:
         specifier: ^7.3.0
         version: 7.3.0
@@ -946,12 +946,14 @@ packages:
     resolution: {integrity: sha512-dfUnCxiN9H4ap84DvD2ubjw+3vUNpstxa0TneY/Paat8a3R4uQZDLSvWjmznAY/DoahqTHl9V46HF/Zs3F29pg==}
     engines: {node: '>= 10.0.0'}
 
-  '@primer/css@15.2.0':
-    resolution: {integrity: sha512-/vNDchWrxlXqd6E+SWQcChPHJVzGia9aCaTYoz8O9sJTnUSiTKOgSNCQuOXyUInPruTRSqj+z3MZxayKcTsWhA==}
-    hasBin: true
+  '@primer/css@22.0.2':
+    resolution: {integrity: sha512-FfXd1ga05oewKjDRi9cPmy7BSnb/6QOjTIxAtDj94Hoyk+qJxHhgvhbcnZwBfL3WKP6HeUT3PnsT9k+43Bmg3Q==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@primer/primitives': 10.x || 11.x
 
-  '@primer/octicons@9.6.0':
-    resolution: {integrity: sha512-B5Wzk5izRXXz0JqEXJkVUtqhCXSpUKgqYkVwegMkp5sziBW+ksd9LPbONlCWyyLODwf9GsI2sBXekR7m+JJDBw==}
+  '@primer/primitives@11.2.0':
+    resolution: {integrity: sha512-JDX0kFjPqQ2gEv7ryDzS1tk9ZM8cylCet1VzImaK9Mv8/jj+/I5Ox7Z1UdM8N35y0aUetJzB3HqodtMnQ2oPBg==}
 
   '@rollup/rollup-android-arm-eabi@4.52.4':
     resolution: {integrity: sha512-BTm2qKNnWIQ5auf4deoetINJm2JzvihvGb9R6K/ETwKLql/Bb3Eg2H1FBp1gUb4YGbydMA3jcmQTR73q7J+GAA==}
@@ -4974,13 +4976,11 @@ snapshots:
       '@parcel/watcher-win32-x64': 2.5.1
     optional: true
 
-  '@primer/css@15.2.0':
+  '@primer/css@22.0.2(@primer/primitives@11.2.0)':
     dependencies:
-      '@primer/octicons': 9.6.0
+      '@primer/primitives': 11.2.0
 
-  '@primer/octicons@9.6.0':
-    dependencies:
-      object-assign: 4.1.1
+  '@primer/primitives@11.2.0': {}
 
   '@rollup/rollup-android-arm-eabi@4.52.4':
     optional: true
