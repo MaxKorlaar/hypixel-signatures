@@ -47,11 +47,13 @@
                     </div>
                 </a>
                 {% if config_get('signatures.google_ads_client_id') %}
-                    <in-feed-adsense ins-style="display:block;height: 119px" v-if="(index + 10) % 15 === 0"
-                                     data-ad-layout-key="-gm-n+0-hk+p2"
-                                     data-ad-client="{{ config_get('signatures.google_ads_client_id') }}"
-                                     data-ad-slot="7628028258">
-                    </in-feed-adsense>
+                    <adsense v-if="(index + 10) % 15 === 0"
+                             ad-style="display:block;height: 119px"
+                             format="fluid"
+                             layout-key="-gm-n+0-hk+p2"
+                             client-id="{{ config_get('signatures.google_ads_client_id') }}"
+                             slot-id="7628028258">
+                    </adsense>
                 {% endif %}
             </template>
         </div>

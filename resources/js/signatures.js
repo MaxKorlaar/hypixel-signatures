@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2020-2024 Max Korlaar
+ * Copyright (c) 2020-2025 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,9 +28,9 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import { createApp } from 'vue';
+import {createApp} from 'vue';
 import mitt from 'mitt';
-import { InFeedAdsense } from 'vue-google-adsense';
+import {Adsense} from 'vue3-google-adsense';
 
 const axios = require('axios').default;
 
@@ -224,6 +224,6 @@ const app = createApp({
     }
 });
 
-app.component('InFeedAdsense', InFeedAdsense);
+app.component('Adsense', Adsense);
 app.provide('emitter', emitter);
 app.mount('#signature-app');

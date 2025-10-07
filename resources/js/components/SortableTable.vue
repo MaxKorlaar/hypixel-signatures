@@ -40,11 +40,14 @@
                     <slot v-bind:item="item"></slot>
                 </tr>
                 <tr v-if="index > 3 && (index) % 4 === 0">
-                    <InFeedAdsense ins-style="display:block;height: 75px"
-                                   data-ad-client="ca-pub-9570587520778628"
-                                   data-ad-layout-key="-ez+5q+5e-d4+4m"
-                                   data-ad-slot="8224948143">
-                    </InFeedAdsense>
+                    <td colspan="100%">
+                        <Adsense adStyle="display:block;height: 75px"
+                                 clientId="ca-pub-9570587520778628"
+                                 format="fluid"
+                                 layoutKey="-ez+5q+5e-d4+4m"
+                                 slotId="8224948143">
+                        </Adsense>
+                    </td>
                 </tr>
             </template>
         </tbody>
@@ -55,11 +58,8 @@
 </template>
 
 <script>
-import { InFeedAdsense } from 'vue-google-adsense';
-
 export default {
     name:       "SortableTable",
-    components: { InFeedAdsense },
     props:      ['data'],
     inject:     ['emitter'],
     data() {

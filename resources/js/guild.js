@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021-2024 Max Korlaar
+ * Copyright (c) 2021-2025 Max Korlaar
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,8 +28,9 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import { createApp } from 'vue';
+import {createApp} from 'vue';
 import mitt from 'mitt';
+import {Adsense} from 'vue3-google-adsense';
 import SkyWarsTable from "./guild/SkyWarsTable";
 import MembersTable from "./guild/MembersTable";
 import BedWarsTable from "./guild/BedWarsTable";
@@ -106,6 +107,8 @@ app.config.globalProperties.$filters = {
     },
     time_format: formatTime
 };
+
+app.component('Adsense', Adsense);
 
 app.provide('emitter', emitter);
 app.mount('#guild-members-app');
