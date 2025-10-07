@@ -11,7 +11,7 @@
     "@vitejs/plugin-vue" : "^5.2.4",
     "@vue/compiler-sfc" : "^3.5.22",
     "axios": "^1.12.2",
-    "browser-sync": "^2.29.3",
+    "browser-sync": "^3.0.4",
     "browser-sync-webpack-plugin": "^2.4.0",
     "cross-env": "^7.0.3",
     "laravel-mix": "^6.0.49",
