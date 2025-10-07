@@ -37,7 +37,6 @@ const axios = require('axios').default;
 const emitter = mitt();
 
 const app = createApp({
-    components: { InFeedAdsense },
     data() {
         return {
             friends:               [],
@@ -100,5 +99,6 @@ const app = createApp({
     }
 });
 
+app.component('InFeedAdsense', InFeedAdsense);
 app.provide('emitter', emitter);
 app.mount('#friends-list-app');
