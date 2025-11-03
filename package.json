@@ -8,7 +8,7 @@
     "production": "mix --production"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue" : "^5.2.4",
+    "@vitejs/plugin-vue" : "^6.0.1",
     "@vue/compiler-sfc" : "^3.5.22",
     "axios": "^1.12.2",
     "browser-sync": "^3.0.4",
