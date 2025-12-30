@@ -72,6 +72,6 @@
 
             $response->assertStatus(200);
 
-            $response->assertHeader('Content-Type', 'text/xml; charset=UTF-8');
+            $response->assertHeader('Content-Type', 'text/xml; charset=utf-8');
         }
     }
