@@ -26,7 +26,7 @@ jobs:
     # If you do not check out your code, Copilot will do this for you.
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Start MySQL service
         run: docker run -d --name test-mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=yes -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=hypixelsignatures -p 3306:3306 mysql:latest
