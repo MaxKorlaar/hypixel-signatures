@@ -39,7 +39,7 @@ jobs:
           done
           echo 'MySQL is ready!'
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v5
         name: Setup pnpm
         with:
           run_install: false
