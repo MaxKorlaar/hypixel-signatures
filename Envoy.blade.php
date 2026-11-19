@@ -12,6 +12,7 @@ down
 git
 composer
 optimize
+horizon
 node
 build
 up
@@ -20,6 +21,7 @@ up
 @story('simple-deploy')
 git
 optimize
+horizon
 build
 @endstory
 
@@ -30,6 +32,11 @@ build
 @task('optimize')
 cd /var/www/hypixel-signatures
 php artisan optimize
+@endtask
+
+@task('horizon')
+cd /var/www/hypixel-signatures
+php artisan horizon:terminate
 @endtask
 
 @task('down')
