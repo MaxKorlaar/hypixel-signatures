@@ -32,6 +32,7 @@
 
     namespace App\Providers;
 
+    use App\Utilities\QueuePreforkCheck;
     use Illuminate\Routing\UrlGenerator;
     use Illuminate\Support\ServiceProvider;
     use Spatie\Health\Checks\Checks\CacheCheck;
@@ -75,7 +76,8 @@
                 DatabaseCheck::new(),
                 DebugModeCheck::new(),
                 EnvironmentCheck::new(),
-                QueueCheck::new()
+                QueueCheck::new(),
+                QueuePreforkCheck::new()
             ]);
         }
     }
